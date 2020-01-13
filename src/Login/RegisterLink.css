@@ -1,0 +1,10 @@
+.Register{
+  font-size: 12px;
+}
+.registerUser {
+	display: inline;
+	color: orange
+}
+.registerText {
+	color: white;
+}
