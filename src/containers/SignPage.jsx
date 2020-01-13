@@ -5,7 +5,6 @@ import FormLogin from '../components/form-login/FormLogin';
 class SignPage extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       path : this.props.match.path
     };
