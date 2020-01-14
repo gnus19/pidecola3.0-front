@@ -13,3 +13,15 @@ input{
 input::placeholder{
   color: #ffffff;
 }
+
+@media (max-width : 425px){
+  input{
+    width: 350px;
+  }
+}
+
+@media (max-width : 320px){
+  input{
+    width: 300px;
+  }
+}

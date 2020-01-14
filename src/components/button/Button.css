@@ -17,3 +17,15 @@
   background: #1E2172;
   color: #ffffff;
 }
+
+@media (max-width : 425px){
+  .Button{
+    width: 350px;
+  }
+}
+
+@media (max-width : 320px){
+  .Button{
+    width: 300px;
+  }
+}

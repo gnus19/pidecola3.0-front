@@ -14,6 +14,7 @@ class SignPage extends Component {
   render () {
     return (
       <div className="SignPage">
+        <div className="Over"></div>
         {
           this.state.path === '/login' ?
             <FormLogin />
