@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import FormRegister from '../components/form-register/FormRegister';
-import 'assets/css/SignPage.css'
+import FormRegister from '../components/form-register/FormRegister';
 import FormLogin from '../components/form-login/FormLogin';
+import 'assets/css/SignPage.css'
 
 class SignPage extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class SignPage extends Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div className="SignPage">
         <div className="Over"></div>
@@ -19,8 +20,7 @@ class SignPage extends Component {
           this.state.path === '/login' ?
             <FormLogin />
           :
-            null
-            // <FormRegister />
+            <FormRegister />
         }
       </div>
     )

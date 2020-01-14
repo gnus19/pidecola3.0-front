@@ -1,13 +1,13 @@
-.FormLogin {
+.FormRegister {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
   justify-content: space-evenly;
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 15%;
   width: 550px;
-  min-height: 75vh;
+  min-height: 70vh;
   background: rgba(30, 33, 114, .6);
   border-radius: 20px;
 }
@@ -42,6 +42,10 @@
   height: 150px;
 }
 
+.msg-footer{
+  margin-top: 10px;
+}
+
 .msg-footer p{
   font-size: 18px;
   color: #ffffff;
@@ -57,26 +61,26 @@
 }
 
 @media (max-width : 1440px){
-  .FormLogin{
-    /* top: 10%; */
+  .Container-Img{
+    margin: 20px 0;
   }
 }
 
 @media (max-width : 1024px){
-  .FormLogin{
+  .FormRegister{
     width: 450px;
     left: 12%;
   }
 }
 
 @media (max-width : 768px){
-  .FormLogin{
+  .FormRegister{
     left: 22%;
   }
 }
 
 @media (max-width : 425px){
-  .FormLogin{
+  .FormRegister{
     background: transparent;
     width: 100%;
     position: sticky;
@@ -85,10 +89,21 @@
   }
   
   .Container-Img{
-    margin-top: 40px;
+    margin: 30px 0;
   }
 
-  .FormLogin .Form{
-    margin-top: 120px;
+  .FormRegister .Form{
+    margin-top: 20px;
   }
+}
+
+@media (max-width : 425px){
+  .Container-Img{
+    margin: 5px 0;
+  }
+
+  .msg-footer{
+    margin-top: 3px;
+  }
+
 }

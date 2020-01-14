@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom';
 import InputSign from 'components/imput-sign/ImputSign'
 import Button from 'components/button/Button'
 import logo from 'assets/images/logo.png'
@@ -9,7 +10,7 @@ class FormLogin extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-      isMobile : window.ismobile
+      isMobile : window.ismobile()
     };
   }
 
@@ -37,7 +38,7 @@ class FormLogin extends Component {
 				<div
 					className="msg-footer"
 				>
-					<p>¿No tienes una cuenta? <span>Regístrate aquí.</span></p>
+					<p>¿No tienes una cuenta? <NavLink to={{pathname: '/register'}}><span>Regístrate aquí.</span></NavLink></p>
 				</div>
 			</div>
 		)

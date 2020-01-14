@@ -8,18 +8,20 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route 
-            exact
-            path='/login'
-            render={(props) => <SignPage {...props}/>}
-          />
-          <Route 
-            exact
-            path='/register'
-            render={(props) => <SignPage />}
-          />
-        </Switch>
+        <div>
+          <Switch>
+            <Route 
+              exact
+              path='/login'
+              render={(props) => <SignPage {...props}/>}
+            />
+            <Route 
+              exact
+              path='/register'
+              render={(props) => <SignPage {...props}/>}
+            />
+          </Switch>
+        </div>
       </Router>
     </div>
   );
