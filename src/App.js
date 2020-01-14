@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import './App.css';
+import './assets/css/App.css';
 import SignPage from './containers/SignPage';
 
 function App() {

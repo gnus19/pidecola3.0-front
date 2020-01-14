@@ -1,0 +1,16 @@
+.SignPage{
+  height: 100%;
+  width: 100%;
+  background: url('../images/navigation.jpg');
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+@media (max-width : 768px){
+  .SignPage{
+    background: url('../images/autostop.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+}

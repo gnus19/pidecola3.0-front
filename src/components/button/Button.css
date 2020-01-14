@@ -1,0 +1,19 @@
+.Button {
+	width: 70%;
+	padding: 8px;
+	border-radius: 25px;
+	font-weight: bold;
+  border: none;
+  width: 400px;
+  height: 60px;
+}
+
+.yellow-btn{
+  background: #FFD302;
+  color: #1E2172;
+}
+
+.blue-btn{
+  background: #1E2172;
+  color: #ffffff;
+}

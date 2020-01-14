@@ -1,36 +1,29 @@
-.Form {
-	height: 100%;
+.FormLogin {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 550px;
+  min-height: 75vh;
+  background: rgba(30, 33, 114, .6);
+  border-radius: 20px;
+}
 
+.Form{
+  width: auto;
+  display: flex;
+  flex-direction: column;
 }
-input.email, input.password {
-	border-radius: 25px;
-	padding: 8px 8px 8px 16px;
-	margin-bottom: 8px;
-	border-color:	white;
-	border-style: solid;
-	background-color:	transparent;
-	color:white;
-	font-weight: bold;
-	width: 70%;
-}
-.loginButton {
-	width: 70%;
-	padding: 8px;
-	border-radius: 25px;
-	background-color: blue;
-	color: white;
-	font-weight: bold;
-	border: none;
-}
+
 .forgotPassword {
 	display: block;
-	font-weight: bold;
 	color: white;
-	margin-top: 16px;
+  margin-top: 16px;
+  text-align: right;
+  margin-right: 20px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -43,4 +36,55 @@ input.email, input.password {
 
 ::-ms-input-placeholder { /* Microsoft Edge */
 	opacity: 1;
+}
+
+.Logo{
+  height: 150px;
+}
+
+.msg-footer p{
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.msg-footer span{
+  color: #FFD302;
+  font-weight: bold;
+}
+
+@media (max-width : 1440px){
+  .FormLogin{
+    /* top: 10%; */
+  }
+}
+
+@media (max-width : 1024px){
+  .FormLogin{
+    width: 450px;
+    left: 12%;
+  }
+}
+
+@media (max-width : 768px){
+  .FormLogin{
+    left: 22%;
+  }
+}
+
+@media (max-width : 425px){
+  .FormLogin{
+    background: transparent;
+    width: 100%;
+    position: sticky;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .Container-Img{
+    margin-top: 40px;
+  }
+
+  .FormLogin .Form{
+    margin-top: 120px;
+  }
 }
