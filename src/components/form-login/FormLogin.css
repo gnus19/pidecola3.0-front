@@ -39,7 +39,7 @@
 }
 
 .Logo{
-  height: 100px;
+  height: 150px;
 }
 
 .msg-footer p{
@@ -76,6 +76,7 @@
 }
 
 @media (max-width : 425px){
+  
   .FormLogin{
     background: transparent;
     width: 100%;
