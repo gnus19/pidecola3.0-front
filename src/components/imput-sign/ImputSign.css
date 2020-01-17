@@ -1,17 +1,26 @@
 input{
-  border-radius: 30px;
+  border-radius: 10vh;
   padding: 8px 8px 8px 35px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: solid 2px #ffffff;
   background-color: transparent;
   color: white;
   font-weight: bold;
-  width: 400px;
-  height: 60px;
+  width: 30vw;
+  height: 8vh;
+  letter-spacing: .6px;
 }
 
 input::placeholder{
   color: #ffffff;
+  font-size: 2vh;
+}
+
+
+@media (max-width : 768px){
+  input{
+    width: 40vw;
+  }
 }
 
 @media (max-width : 425px){

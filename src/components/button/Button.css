@@ -1,11 +1,13 @@
 .Button {
 	width: 70%;
 	padding: 8px;
-	border-radius: 25px;
+	border-radius: 10vh;
 	font-weight: bold;
   border: none;
-  width: 400px;
-  height: 60px;
+  width: 30vw;
+  height: 8vh;
+  font-size: 2.4vh;
+  letter-spacing: .6px;
 }
 
 .yellow-btn{
@@ -13,9 +15,19 @@
   color: #1E2172;
 }
 
+.yellow-btn:hover{
+  background: #fff700;
+}
+
 .blue-btn{
   background: #1E2172;
   color: #ffffff;
+}
+
+@media (max-width : 768px){
+  .Button{
+    width: 40vw;
+  }
 }
 
 @media (max-width : 425px){
