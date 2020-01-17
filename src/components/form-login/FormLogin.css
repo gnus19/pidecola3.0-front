@@ -76,6 +76,7 @@
 }
 
 @media (max-width : 425px){
+  
   .FormLogin{
     background: transparent;
     width: 100%;
@@ -85,10 +86,43 @@
   }
   
   .Container-Img{
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .FormLogin .Form{
     margin-top: 120px;
+  }
+}
+
+@media (max-width: 400px) {
+  .FormLogin .Form{
+    margin-top: 100px;
+  }
+  .Container-Img{
+    margin-top: 20px;
+  }
+  .Logo {
+    height: 100px;
+  }
+
+  .Form {
+    display: flex;
+    align-items: center;
+  }
+
+  .tlf, .email, .password {
+    width: 250px;
+    height: 45px;
+  }
+
+  .blue-btn, .yellow-btn {
+    width: 250px;
+    height: 45px;
+  }
+  .forgotPassword {
+    margin-bottom: 0;
+  }
+  .forgotPassword, .msg-footer p{
+    font-size: 12px;
   }
 }

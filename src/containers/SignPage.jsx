@@ -6,6 +6,7 @@ import 'assets/css/SignPage.css'
 class SignPage extends Component {
   constructor(props) {
     super(props);
+    console.log('props', this.props)
     this.state = {
       path : this.props.match.path
     };
@@ -17,7 +18,7 @@ class SignPage extends Component {
       <div className="SignPage">
         <div className="Over"></div>
         {
-          this.state.path === '/login' ?
+          this.props.match.path === '/login' ?
             <FormLogin />
           :
             <FormRegister />
