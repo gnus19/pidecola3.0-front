@@ -70,7 +70,7 @@
 
 @media (max-width: 1024px) {
   .FormRegister {
-    width: 40vw;
+    width: 50%;
     left: 12%;
   }
 }
