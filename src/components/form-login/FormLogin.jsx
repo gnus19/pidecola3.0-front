@@ -6,6 +6,9 @@ import InputSign from 'components/imput-sign/ImputSign'
 import Button from 'components/button/Button'
 import logo from 'assets/images/logo.png'
 
+//Services
+import { loginUser } from 'services/userServices';
+
 // Assets
 import './FormLogin.css'
 
@@ -16,11 +19,8 @@ class FormLogin extends Component {
 		this.state = {
 			isMobile : window.ismobile(),
 			email: "",
-			password: "",
-			emailError: "",
+			password: ""
 		};
-		this.updateValidators = this.updateValidators.bind(this);
-		this.displayValidationErrors = this.displayValidationErrors.bind(this);
 	}
 
 	validators = {
@@ -50,6 +50,19 @@ class FormLogin extends Component {
 		},
 	};
 
+  handleRegister = (event) => {
+    event.preventDefault();
+    let required = {...this.state}
+    delete required.isMobile
+    loginUser(required)
+    .then( response => {
+      console.log(response, this)
+    })
+    .catch( error => {
+      console.log(error)
+    })
+  }
+
 	inputChange = (event) => {
 		this.setState({
 			[event.target.className]: event.target.value,
@@ -57,7 +70,7 @@ class FormLogin extends Component {
 		this.updateValidators(event.target.className, event.target.value)
 	}
 
-	updateValidators(fieldName, value) {
+	updateValidators = (fieldName, value) => {
     this.validators[fieldName].errors = [];
     this.validators[fieldName].state = value;
     this.validators[fieldName].valid = true;
@@ -76,7 +89,7 @@ class FormLogin extends Component {
     });
 	}
 	
-	displayValidationErrors(fieldName) {
+	displayValidationErrors = (fieldName) => {
     let validator = this.validators[fieldName];
     let result = '';
     if (validator && !validator.valid) {
@@ -97,7 +110,7 @@ class FormLogin extends Component {
 		return (
 			<div className="FormLogin">
 				<div className="Container-Img">
-					<img className="Logo" src={logo} />
+					<img className="Logo" src={logo} alt=""/>
 				</div>
 				<form className="Form" >
 					<InputSign 
@@ -105,7 +118,7 @@ class FormLogin extends Component {
 						placeholder="Correo"
 						type="text"
 						value={this.state.email}
-						inputChange={ this.inputChange }
+						onChange={ (event) => this.inputChange(event) }
 					/>
 					{this.displayValidationErrors('email')}
 					<InputSign 
@@ -113,13 +126,13 @@ class FormLogin extends Component {
 						placeholder="Contraseña"
 						type="password"
 						value={this.state.password}
-						inputChange={this.inputChange}
+						onChange={ (event) => this.inputChange(event) }
 					/>
 					{this.displayValidationErrors('password')}
 					<Button 
 						className =  { this.state.isMobile ? "blue" : "yellow"}
 						text= "Iniciar Sesion"
-						type="submit"
+						onClick={ (event) => this.handleRegister(event)}
 					/>
 					<p className="forgotPassword">¿Olvidó su contraseña?</p>
 				</form>

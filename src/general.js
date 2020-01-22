@@ -11,5 +11,6 @@ export const general = {
   },
 
   // Users Routes
-  POST_USER: `${server}/users`
+  POST_USER: `${server}/users`,
+  POST_LOGIN: `${server}/login`
 }

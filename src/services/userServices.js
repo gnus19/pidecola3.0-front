@@ -9,3 +9,12 @@ export function createUser (req) {
         { 'Content-Type': 'application/json' }
     })
 }
+
+export function loginUser(req) {
+  return axios.post(general.POST_LOGIN, req,
+    {
+      headers: { 'Content-Type': 'application/json' }
+    }
+  )
+
+}
