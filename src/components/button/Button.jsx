@@ -11,9 +11,10 @@ const handleColor = (btnType) => {
   }
 }
 
-const Button = ({className, text}) => (
+const Button = ({className, text, type}) => (
   <button 
-    className={ "Button " + handleColor(className) } 
+    className={ "Button " + handleColor(className) }
+    type={type}
   >
     {text}
   </button>
