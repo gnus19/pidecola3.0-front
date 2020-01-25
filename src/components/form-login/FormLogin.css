@@ -65,8 +65,17 @@
   margin: 2vh 0;
 }
 
-@media (max-width: 1024px) {
-  .FormLogin {
+.error-container {
+  display: flex;
+  height: auto;
+  margin-bottom: 8px;;
+}
+.error {
+  color: red;
+  font-size: 12px
+}
+@media (max-width : 1024px){
+  .FormLogin{
     width: 40vw;
     left: 12%;
   }

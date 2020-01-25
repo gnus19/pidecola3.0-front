@@ -1,28 +1,28 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import './assets/css/App.css';
-import SignPage from './containers/SignPage';
+import './assets/css/App.css'
+import SignPage from './containers/SignPage'
 
-function App() {
+function App () {
   return (
     <Router>
-      <div className="App">
+      <div className='App'>
         <Switch>
-          <Route 
+          <Route
             exact
             path='/login'
-            render={(props) => <SignPage {...props}/>}
+            render={(props) => <SignPage {...props} />}
           />
-          <Route 
+          <Route
             exact
             path='/register'
-            render={(props) => <SignPage {...props}/>}
+            render={(props) => <SignPage {...props} />}
           />
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
