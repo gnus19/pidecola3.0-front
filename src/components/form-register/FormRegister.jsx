@@ -35,6 +35,7 @@ class FormRegister extends Component {
     delete required.passwordConfirmation
     delete required.isMobile
     createUser(required)
+    .then(res => res.json())
     .then( response => {
       console.log(response, this)
     })
@@ -55,24 +56,28 @@ class FormRegister extends Component {
             type='text'
             className='email'
             placeholder='Correo'
+            onChange = { e => this.onChange(e)}
           />
           <InputSign
             name='phoneNumber'
             type='text'
             className='tlf'
             placeholder='Telefono'
+            onChange = { e => this.onChange(e)}
           />
           <InputSign
             name='password'
             type='password'
             className='password'
             placeholder='Contraseña'
+            onChange = { e => this.onChange(e)}
           />
           <InputSign
             name='passwordConfirmation'
             type='password'
             className='password'
             placeholder='Confirmar Contraseña'
+            onChange = { e => this.onChange(e)}
           />
           <Button
             className={this.state.isMobile ? 'blue' : 'yellow'}

@@ -68,12 +68,21 @@
 .error-container {
   display: flex;
   height: auto;
-  margin-bottom: 8px;;
+  margin-bottom: 8px;
 }
 .error {
   color: red;
-  font-size: 12px
+  font-size: 12px;
 }
+
+
+.ErrorMessage{
+  font-size: 12px;
+  color: red;
+  text-align: right;
+  margin-right: 22px;
+}
+
 @media (max-width : 1024px){
   .FormLogin{
     width: 40vw;

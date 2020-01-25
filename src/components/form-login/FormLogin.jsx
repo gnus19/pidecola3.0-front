@@ -82,8 +82,8 @@ class FormLogin extends Component {
             name={"email"}
             onChange={this.handleChange}
           />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.emailError}
+          <div className="ErrorMessage">
+            <p>{this.state.emailError}</p>
           </div>
           <InputSign
             className="password"
@@ -92,8 +92,8 @@ class FormLogin extends Component {
             name={"password"}
             onChange={this.handleChange}
           />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.passwordError}
+          <div className="ErrorMessage">
+            <p>{this.state.passwordError}</p>
           </div>
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
