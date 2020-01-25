@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "./ImputSign.css";
+import './ImputSign.css'
 
 const InputSign = (props) => (
   <input

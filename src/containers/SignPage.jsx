@@ -14,7 +14,7 @@ class SignPage extends Component {
             : <FormRegister />
         }
       </div>
-    );
+    )
   }
 }
 
