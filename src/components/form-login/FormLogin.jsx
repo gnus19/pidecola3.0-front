@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 // Internal Components
-import InputSign from 'components/imput-sign/ImputSign'
-import Button from 'components/button/Button'
-import logo from 'assets/images/logo.png'
+import InputSign from "components/imput-sign/ImputSign";
+import Button from "components/button/Button";
+import logo from "assets/images/logo.png";
 
 //Services
 // import { loginUser } from 'services/userServices';
 
 // Assets
-import './FormLogin.css'
+import "./FormLogin.css";
 
 const initialState = {
   isMobile: window.ismobile(),
@@ -63,7 +63,6 @@ class FormLogin extends Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log("FUNCIONA LOGIN");
       this.setState(initialState);
     }
   };
@@ -72,7 +71,7 @@ class FormLogin extends Component {
     return (
       <div className="FormLogin">
         <div className="Container-Img">
-          <img className="Logo" src={logo} alt="Logo"/>
+          <img className="Logo" src={logo} alt="Logo" />
         </div>
         <form className="Form" onSubmit={this.handleSubmit}>
           <InputSign

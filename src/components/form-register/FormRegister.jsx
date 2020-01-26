@@ -55,9 +55,6 @@ class FormRegister extends Component {
     let passwordError = "";
     let passwordConfirmationError = "";
 
-    console.log("STATE");
-    console.log(this.state);
-
     if (this.state.email === "") {
       emailError = "Introduzca una dirección de correo";
     } else if (!this.state.email.includes("@")) {
@@ -113,7 +110,6 @@ class FormRegister extends Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log("FUNCIONA REGISTER");
       this.setState(initialState);
     }
   };
@@ -168,7 +164,7 @@ class FormRegister extends Component {
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
             text="Registrate"
-            //onClick={event => this.handleRegister(event)}
+            onClick={event => this.handleRegister(event)}
           />
         </form>
         <div className="msg-footer">
