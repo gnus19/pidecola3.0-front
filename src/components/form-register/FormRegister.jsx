@@ -168,7 +168,7 @@ class FormRegister extends Component {
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
             text="Registrate"
-            onClick={event => this.handleRegister(event)}
+            //onClick={event => this.handleRegister(event)}
           />
         </form>
         <div className="msg-footer">

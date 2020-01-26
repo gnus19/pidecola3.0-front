@@ -57,6 +57,9 @@
 }
 
 .msg-footer span {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   color: #ffd302;
   font-weight: bold;
 }
@@ -68,15 +71,15 @@
 .error-container {
   display: flex;
   height: auto;
-  margin-bottom: 8px;;
+  margin-bottom: 8px;
 }
 .error {
   color: red;
-  font-size: 12px
+  font-size: 12px;
 }
-@media (max-width : 1024px){
-  .FormLogin{
-    width: 40vw;
+@media (max-width: 1024px) {
+  .FormLogin {
+    width: 50%;
     left: 12%;
   }
 }
@@ -127,7 +130,7 @@
     align-items: center;
   }
 
-  .tlf,
+  .phoneNumber,
   .email,
   .password {
     width: 250px;

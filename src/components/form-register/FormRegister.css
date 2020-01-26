@@ -57,6 +57,9 @@
 }
 
 .msg-footer span {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   color: #ffd302;
   font-weight: bold;
 }
@@ -67,7 +70,7 @@
 
 @media (max-width: 1024px) {
   .FormRegister {
-    width: 40vw;
+    width: 50%;
     left: 12%;
   }
 }
@@ -118,7 +121,7 @@
     align-items: center;
   }
 
-  .tlf,
+  .phoneNumber,
   .email,
   .password {
     width: 250px;
