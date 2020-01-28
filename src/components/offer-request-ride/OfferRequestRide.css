@@ -1,0 +1,33 @@
+.OfferRequestRide {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.OfferRequest {
+  height: 75%;
+  background-color: hotpink;
+}
+
+.RideLog {
+  height: 25%;
+  background-color: indigo;
+}
+
+.RequestButton,
+.OfferButton {
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  background: #171956;
+  border-color: #171956;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 50%;
+  width: 30%;
+}
