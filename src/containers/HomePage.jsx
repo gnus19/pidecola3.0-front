@@ -7,16 +7,24 @@ import profilePicture from "assets/images/profilePicture.jpg";
 import OfferRequestRide from "../components/offer-request-ride/OfferRequestRide";
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+  
   render() {
     return (
       <div className="HomePage">
         <nav className="Top">
           <img className="Logo" src={logo} alt="Logo" />
         </nav>
-        <div class="container-fluid">
-          <div class="row">
+        <div className="container-fluid">
+          <div className="row">
             <nav className="Sidebar">
-              <div class="sidebar-sticky">
+              <div className="sidebar-sticky">
                 <div className="Info">
                   <img
                     className="ProfilePicture"
@@ -26,21 +34,21 @@ class HomePage extends Component {
                   <p className="Username">Usuario</p>
                   <p className="Carnet">Carnet</p>
                 </div>
-                <ul class="nav flex-column">
-                  <li class="Options">
+                <ul className="nav flex-column">
+                  <li className="Options">
                     <a style={{ color: "black", fontWeight: "bold" }}>Inicio</a>
                   </li>
-                  <li class="Options">
+                  <li className="Options">
                     <a style={{ color: "black", fontWeight: "bold" }}>Perfil</a>
                   </li>
-                  <li class="Options">
+                  <li className="Options">
                     <a style={{ color: "black", fontWeight: "bold" }}>Ayuda</a>
                   </li>
                 </ul>
               </div>
             </nav>
             <div className="Main">
-              <OfferRequestRide />
+              <OfferRequestRide {...this.props}/>
             </div>
           </div>
         </div>
