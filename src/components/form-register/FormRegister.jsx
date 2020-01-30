@@ -41,6 +41,7 @@ class FormRegister extends Component {
     delete required.passwordConfirmation;
     delete required.isMobile;
     createUser(required)
+      .then(res => res.json())
       .then(response => {
         console.log(response, this);
       })
