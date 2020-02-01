@@ -1,43 +1,43 @@
 .Button {
-	width: 70%;
-	padding: 8px;
-	border-radius: 10vh;
-	font-weight: bold;
+  width: 70%;
+  padding: 8px;
+  border-radius: 10vh;
+  font-weight: bold;
   border: none;
-  width: 30vw;
+  width: 100%;
   height: 8vh;
   font-size: 2.4vh;
-  letter-spacing: .6px;
+  letter-spacing: 0.6px;
 }
 
-.yellow-btn{
-  background: #FFD302;
-  color: #1E2172;
+.yellow-btn {
+  background: #ffd302;
+  color: #1e2172;
 }
 
-.yellow-btn:hover{
+.yellow-btn:hover {
   background: #fff700;
 }
 
-.blue-btn{
-  background: #1E2172;
+.blue-btn {
+  background: #1e2172;
   color: #ffffff;
 }
 
-@media (max-width : 768px){
-  .Button{
+@media (max-width: 768px) {
+  .Button {
     width: 40vw;
   }
 }
 
-@media (max-width : 425px){
-  .Button{
+@media (max-width: 425px) {
+  .Button {
     width: 350px;
   }
 }
 
-@media (max-width : 320px){
-  .Button{
+@media (max-width: 320px) {
+  .Button {
     width: 300px;
   }
 }
