@@ -68,11 +68,17 @@
   margin: 2vh 0;
 }
 
-.ErrorMessage{
+.ErrorMessage {
   font-size: 12px;
   color: red;
   text-align: right;
   margin-right: 22px;
+}
+
+@media (max-width: 1366px) {
+  .FormRegister {
+    width: 50%;
+  }
 }
 
 @media (max-width: 1024px) {
