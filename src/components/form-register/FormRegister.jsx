@@ -37,16 +37,25 @@ class FormRegister extends Component {
 
   handleRegister = event => {
     event.preventDefault();
+    const target = event.target;
+    target.disabled = true
+    target.innerText = 'Espere...'
     let required = { ...this.state };
     delete required.passwordConfirmation;
     delete required.isMobile;
     createUser(required)
       .then(res => res.json())
       .then(response => {
-        console.log(response, this);
+        if(response.status){
+          this.props.history.push({pathname: '/login' });
+        }else{
+          target.disabled = false
+          target.innerText = 'Registrate' 
+        }
       })
       .catch(error => {
-        console.log(error);
+        target.disabled = false
+        target.innerText = 'Registrate' 
       });
   };
 
@@ -99,12 +108,7 @@ class FormRegister extends Component {
   };
 
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
-    this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value
-    });
+    this.setState({[event.target.name]: event.target.value});
   };
 
   handleSubmit = event => {

@@ -10,8 +10,8 @@ class SignPage extends Component {
         <div className='Over' />
         {
           this.props.match.path === '/login'
-            ? <FormLogin />
-            : <FormRegister />
+            ? <FormLogin {...this.props} />
+            : <FormRegister {...this.props} />
         }
       </div>
     )
