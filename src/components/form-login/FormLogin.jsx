@@ -7,7 +7,7 @@ import Button from "components/button/Button";
 import logo from "assets/images/logo.png";
 
 //Services
-// import { loginUser } from 'services/userServices';
+import { loginUser } from 'services/userServices';
 
 // Assets
 import "./FormLogin.css";
@@ -51,12 +51,7 @@ class FormLogin extends Component {
   };
 
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
-    this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value
-    });
+    this.setState({[event.target.name]: event.target.value});
   };
 
   handleSubmit = event => {
@@ -65,6 +60,28 @@ class FormLogin extends Component {
     if (isValid) {
       this.setState(initialState);
     }
+  };
+
+  handleLogin = event => {
+    event.preventDefault();
+    const target = event.target;
+    target.disabled = true
+    target.innerText = 'Espere...'
+    let required = { ...this.state };
+    loginUser(required)
+      .then(res => res.json())
+      .then(response => {
+        if(response.status){
+          this.props.history.push({pathname: '/dashboard' });
+        }else{
+          target.disabled = false
+          target.innerText = 'Registrate' 
+        }
+      })
+      .catch(error => {
+        target.disabled = false
+        target.innerText = 'Registrate' 
+      });
   };
 
   render() {
@@ -97,6 +114,7 @@ class FormLogin extends Component {
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
             text="Iniciar Sesion"
+            onClick={event => this.handleLogin(event)}
           />
           <p className="forgotPassword">¿Olvidó su contraseña?</p>
         </form>
