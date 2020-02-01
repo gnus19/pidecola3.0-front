@@ -1,8 +1,9 @@
 input {
-  border-radius: 10vh !important;
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
   padding: 8px 8px 8px 35px;
   margin-bottom: 5px;
-  border: solid 2px #ffffff !important;
   background-color: transparent !important;
   color: white !important;
   font-weight: bold !important;
@@ -19,6 +20,12 @@ input::placeholder {
 @media (max-width: 1366px) {
   input {
     width: 30vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  input {
+    width: 40vw;
   }
 }
 
