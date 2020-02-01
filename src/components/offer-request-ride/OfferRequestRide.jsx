@@ -1,54 +1,60 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  BrowserRouter as Router,
   Route,
-  Link,
-  Switch
+  Switch,
+  useHistory
 } from "react-router-dom";
 import "./OfferRequestRide.css";
-import routesList from "../routes-list/routesList";
+import RoutesList from "../routes-list/RoutesList";
 
-class OfferRequestRide extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       
+function OfferRequestRide(props) {
+  let history = useHistory();
+  const goTo = (opcion) => {
+    if (opcion === 'pedir') {
+      history.push(`${props.match.url}/pedir`);
     }
-  }
-  
+    else {
+      history.push(`${props.match.url}/ofrecer`);
+    }
+  };
+  // console.log(props);
 
-  render() {
-    console.log(this.props.match.url);
-    
-    return (
-      <div className="OfferRequestRide">
+	return (
+    <div className="OfferRequestRide">
+    <Switch>
+      <Route exact path={`${props.match.url}`} render={props =>
+        <React.Fragment>
         <div className="OfferRequest">
-          <button className="RequestButton">
-            <Link to={`${this.props.match.url}/routes`}>
+          <button className="RequestButton" onClick={() => { goTo('pedir') }}>
+            <div style={{ height: '100%' }}>
               <div>
-                <p>Titulo</p>
+                <p>Pedir cola</p>
               </div>
               <div>
                 IMagen
               </div>
-            </Link>
-          </button>
-          <button className="OfferButton">
-            <div>
-              <p>Titulo</p>
             </div>
-            <div>
-              IMagen
+          </button>
+          <button className="OfferButton" onClick={() => { goTo("ofrecer") }}>
+            <div style={{ height: '100%' }}>
+              <div>
+                <p>Ofrecer cola</p>
+              </div>
+              <div>
+                IMagen
+              </div>
             </div>
           </button>
         </div>
         <div className="RideLog" style={{ color: "white", fontWeight: "bold" }}>
           *PATROCINADORES/HISTORIAL*
         </div>
-      </div>
-    );
-  }
+        </React.Fragment>
+      } />
+      <Route exact path={`${props.match.url}/:accion`} render={props => <RoutesList {...props} />} />
+    </Switch>
+    </div>
+	)
 }
 
-export default OfferRequestRide;
+export default OfferRequestRide
