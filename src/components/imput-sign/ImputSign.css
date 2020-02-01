@@ -18,7 +18,7 @@ input::placeholder {
 
 @media (max-width: 1366px) {
   input {
-    width: 40vw;
+    width: 30vw;
   }
 }
 
