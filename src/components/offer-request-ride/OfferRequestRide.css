@@ -10,16 +10,20 @@
 .OfferRequest {
   height: 75%;
   background-color: hotpink;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .RideLog {
   height: 25%;
   background-color: indigo;
+  justify-content: center;
 }
 
 .RequestButton,
 .OfferButton {
-  margin-top: 10%;
+  margin-top: 5%;
   margin-right: 10%;
   margin-left: 10%;
   background: #171956;
@@ -28,6 +32,66 @@
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 50%;
-  width: 30%;
+  height: 76%;
+  width: 50%;
+  border-top-style: solid;
+  border-top-width: 115px;
+}
+
+.RequestButton {
+  background: url("../../assets/images/autostop.jpg");
+  background-size: 100%;
+}
+
+.OfferButton {
+  background: url("../../assets/images/navigation.jpg");
+  background-size: 100%;
+}
+
+.Mensaje {
+  font-weight: bold;
+  font-size: 140%;
+  margin-left: 5%;
+  text-align: center;
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 357px;
+    width: 408px;
+  }
+}
+
+@media (max-width: 768px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 36%;
+    width: 89%;
+    background: white;
+    border-top-width: 50px;
+  }
+
+  .Mensaje {
+    font-weight: bold;
+    font-size: 105%;
+    margin-left: 5%;
+    text-align: center;
+    color: black;
+  }
 }
