@@ -75,6 +75,12 @@
   margin-right: 22px;
 }
 
+@media (max-width: 1366px) {
+  .FormRegister {
+    width: 50%;
+  }
+}
+
 @media (max-width: 1024px) {
   .FormRegister {
     width: 50%;
