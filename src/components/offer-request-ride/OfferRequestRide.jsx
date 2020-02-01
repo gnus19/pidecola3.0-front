@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import "./OfferRequestRide.css";
-import autostop from "assets/images/autostop.jpg";
 
 class OfferRequestRide extends Component {
   render() {
     return (
       <div className="OfferRequestRide">
-        <div className="RideLog" style={{ color: "white", fontWeight: "bold" }}>
-          *PATROCINADORES/HISTORIAL*
-        </div>
+        <div className="Recommendations"></div>
         <div className="OfferRequest">
           <button className="RequestButton">
             <span className="Mensaje">

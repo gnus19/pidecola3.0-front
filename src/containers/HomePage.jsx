@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//import FormRegister from "../components/form-register/FormRegister";
-//import FormLogin from "../components/form-login/FormLogin";
 import "assets/css/HomePage.css";
 import logo from "assets/images/logo.png";
 import list from "assets/images/list.svg";
