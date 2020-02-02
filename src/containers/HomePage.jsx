@@ -9,16 +9,37 @@ import profilePicture from "assets/images/profilePicture.jpg";
 import OfferRequestRide from "../components/offer-request-ride/OfferRequestRide";
 
 class HomePage extends Component {
+  openNav = () => {
+    document.getElementById("Sidebar").style.width = "50%";
+  };
+
+  closeNav = () => {
+    document.getElementById("Sidebar").style.width = "0";
+  };
+
   render() {
     return (
       <div className="HomePage">
         <nav className="Top">
-          <img className="OptionList" src={list} alt="OptionList" />
-          <img className="Logo" src={logo} alt="Logo" />
+          <div className="TopOption">
+            <button className="OptionButton" onClick={this.openNav}>
+              <img className="OptionList" src={list} alt="OptionList" />
+            </button>
+          </div>
+          <div className="TopLogo">
+            <img className="Logo" src={logo} alt="Logo" />
+          </div>
         </nav>
-        <div class="container-fluid">
-          <div class="row">
-            <nav className="Sidebar">
+        <div class="container-fluid" id="container-fluid">
+          <div class="row" id="row">
+            <nav className="Sidebar" id="Sidebar">
+              <a
+                href="javascript:void(0)"
+                className="HideOption"
+                onClick={this.closeNav}
+              >
+                ×
+              </a>
               <div class="sidebar-sticky">
                 <div className="Info">
                   <img
@@ -59,7 +80,7 @@ class HomePage extends Component {
                 </ul>
               </div>
             </nav>
-            <div className="Main">
+            <div className="Main" id="main">
               <OfferRequestRide />
             </div>
           </div>
@@ -71,102 +92,3 @@ class HomePage extends Component {
 }
 
 export default HomePage;
-
-/*
-<nav class="sidenav---_u0En collapsed---2IIb7">
-  <button role="button" class="sidenav-toggle---23_Hl" aria-expanded="false">
-    <span class="icon-bar---2jamJ"></span>
-    <span class="icon-bar---2jamJ"></span>
-    <span class="icon-bar---2jamJ"></span>
-  </button>
-  <div role="menu" class="sidenav-nav---uvKqK">
-    <div
-      role="presentation"
-      class="sidenav-navitem---3r9ER selected---91VwC highlighted---1vG8Y"
-    >
-      <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-        <div class="navicon---d-E_g">
-          <i
-            class="fa fa-fw fa-home"
-            style="font-size: 1.75em; vertical-align: middle;"
-          ></i>
-        </div>
-        <div title="Home" class="navtext---2Ylza" style="padding-right: 32px;">
-          Home
-        </div>
-      </div>
-    </div>
-    <div role="presentation" class="sidenav-navitem---3r9ER">
-      <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-        <div class="navicon---d-E_g">
-          <i
-            class="fa fa-fw fa-line-chart"
-            style="font-size: 1.75em; vertical-align: middle;"
-          ></i>
-        </div>
-        <div
-          title="Devices"
-          class="navtext---2Ylza"
-          style="padding-right: 32px;"
-        >
-          Devices
-        </div>
-      </div>
-    </div>
-    <div role="presentation" class="sidenav-navitem---3r9ER">
-      <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-        <div class="navicon---d-E_g">
-          <i
-            class="fa fa-fw fa-list-alt"
-            style="font-size: 1.75em; vertical-align: middle;"
-          ></i>
-        </div>
-        <div
-          title="Reports"
-          class="navtext---2Ylza"
-          style="padding-right: 32px;"
-        >
-          Reports
-        </div>
-      </div>
-    </div>
-    <div role="presentation" class="sidenav-navitem---3r9ER expandable---2ZpGQ">
-      <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-        <div class="navicon---d-E_g">
-          <i
-            class="fa fa-fw fa-cogs"
-            style="font-size: 1.5em; vertical-align: middle;"
-          ></i>
-        </div>
-        <div
-          title="Settings"
-          class="navtext---2Ylza"
-          style="padding-right: 32px;"
-        >
-          Settings
-        </div>
-      </div>
-      <div role="menu" class="sidenav-subnav---3Hr7K">
-        <div role="heading" class="sidenav-subnavitem---3Rbfo">
-          Settings
-        </div>
-        <div role="presentation" class="sidenav-subnavitem---3Rbfo">
-          <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-            <div title="Policies" class="navtext---2Ylza">
-              Policies
-            </div>
-          </div>
-        </div>
-        <div role="presentation" class="sidenav-subnavitem---3Rbfo">
-          <div class="navitem---3LFxv" role="menuitem" tabindex="-1">
-            <div title="Network" class="navtext---2Ylza">
-              Network
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-*/
