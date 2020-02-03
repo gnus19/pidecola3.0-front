@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 // Internal Components
-import InputSign from 'components/imput-sign/ImputSign'
-import Button from 'components/button/Button'
-import logo from 'assets/images/logo.png'
+import InputSign from "components/imput-sign/ImputSign";
+import Button from "components/button/Button";
+import logo from "assets/images/logo.png";
 
 //Services
-// import { loginUser } from 'services/userServices';
+import { loginUser } from 'services/userServices';
 
 // Assets
-import './FormLogin.css'
+import "./FormLogin.css";
 
 const initialState = {
   isMobile: window.ismobile(),
@@ -51,28 +51,44 @@ class FormLogin extends Component {
   };
 
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
-    this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value
-    });
+    this.setState({[event.target.name]: event.target.value});
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log("FUNCIONA LOGIN");
       this.setState(initialState);
     }
+  };
+
+  handleLogin = event => {
+    event.preventDefault();
+    const target = event.target;
+    target.disabled = true
+    target.innerText = 'Espere...'
+    let required = { ...this.state };
+    loginUser(required)
+      .then(res => res.json())
+      .then(response => {
+        if(response.status){
+          this.props.history.push({pathname: '/dashboard' });
+        }else{
+          target.disabled = false
+          target.innerText = 'Registrate' 
+        }
+      })
+      .catch(error => {
+        target.disabled = false
+        target.innerText = 'Registrate' 
+      });
   };
 
   render() {
     return (
       <div className="FormLogin">
         <div className="Container-Img">
-          <img className="Logo" src={logo} alt="Logo"/>
+          <img className="Logo" src={logo} alt="Logo" />
         </div>
         <form className="Form" onSubmit={this.handleSubmit}>
           <InputSign
@@ -98,6 +114,7 @@ class FormLogin extends Component {
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
             text="Iniciar Sesion"
+            onClick={event => this.handleLogin(event)}
           />
           <p className="forgotPassword">¿Olvidó su contraseña?</p>
         </form>
