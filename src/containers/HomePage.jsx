@@ -23,30 +23,6 @@ class HomePage extends Component {
         </nav>
         <div className="container-fluid">
           <div className="row">
-            <nav className="Sidebar">
-              <div className="sidebar-sticky">
-                <div className="Info">
-                  <img
-                    className="ProfilePicture"
-                    src={profilePicture}
-                    alt="profilePicture pidecola"
-                  />
-                  <p className="Username">Usuario</p>
-                  <p className="Carnet">Carnet</p>
-                </div>
-                <ul className="nav flex-column">
-                  <li className="Options">
-                    <a style={{ color: "black", fontWeight: "bold" }}>Inicio</a>
-                  </li>
-                  <li className="Options">
-                    <a style={{ color: "black", fontWeight: "bold" }}>Perfil</a>
-                  </li>
-                  <li className="Options">
-                    <a style={{ color: "black", fontWeight: "bold" }}>Ayuda</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
             <div className="Main">
               <OfferRequestRide {...this.props}/>
             </div>
