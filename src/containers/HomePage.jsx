@@ -27,7 +27,7 @@ class HomePage extends Component {
             </button>
           </div>
           <div className="TopLogo">
-            <img className="Logo" src={logo} alt="Logo" />
+            <img className="HomeLogo" src={logo} alt="HomeLogo" />
           </div>
         </nav>
         <div class="container-fluid" id="container-fluid">
