@@ -86,7 +86,14 @@
 
 @media (max-width: 1024px) {
   .FormLogin {
-    width: 50%;
+    width: 40%;
+  }
+
+  .email,
+  .password,
+  .phoneNumber {
+    width: 35vw;
+    left: 25%;
   }
 }
 

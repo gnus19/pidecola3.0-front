@@ -62,7 +62,7 @@
 .ImageOfferButton {
   height: 75%;
   width: 100%;
-  background: url("../../assets/images/navigation.jpg");
+  background: url("../../assets/images/rider.jpg");
   background-size: cover;
 }
 
@@ -84,15 +84,15 @@
 @media (max-width: 1024px) {
   .OfferRequest {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
   }
 
   .RequestButton,
   .OfferButton {
-    height: 357px;
-    width: 408px;
+    height: 75%;
+    width: 50%;
   }
 }
 
@@ -137,6 +137,7 @@
   .OverButton {
     align-items: center;
     display: flex;
+    justify-content: center;
   }
 
   .Comment {
@@ -145,5 +146,39 @@
     margin: 5%;
     text-align: center;
     color: black;
+  }
+}
+
+/*iPad*/
+@media (width: 768px) and (height: 1024px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Comment {
+    font-weight: bold;
+    font-size: 200%;
+    margin: 5%;
+    text-align: center;
+    color: black;
+  }
+}
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 1366px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 43%;
+    width: 50%;
   }
 }
