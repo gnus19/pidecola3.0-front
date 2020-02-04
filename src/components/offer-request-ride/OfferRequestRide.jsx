@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import "./OfferRequestRide.css";
 import RoutesList from "../routes-list/RoutesList";
+import AvailablePassengers from '../availablePassengers/AvailablePassengers';
 
 function OfferRequestRide(props) {
   let history = useHistory();
@@ -52,6 +53,7 @@ function OfferRequestRide(props) {
         </React.Fragment>
       } />
       <Route exact path={`${props.match.url}/:accion`} render={props => <RoutesList {...props} />} />
+      <Route exact path={`${props.match.url}/:accion/pasajeros`} render={props => <AvailablePassengers {...props} />}/>
     </Switch>
     </div>
 	)

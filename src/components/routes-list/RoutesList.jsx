@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 // import Button from 'react-bootstrap/Button'
 
 import Button from "components/button/Button";
+import { Route } from 'react-router-dom';
 import './RoutesList.css';
 
 function RoutesList({ match: { url, params } }) {
@@ -10,7 +11,7 @@ function RoutesList({ match: { url, params } }) {
 	const [show, setShow] = useState(true);
 
 	return (
-		<div className="offer-request-content">
+		<div className="offer-request-content container-fluid">
 			{/* Routes {params.accion} */}
       {/* <Alert show={show} variant="danger">
         <Alert.Heading>
@@ -37,7 +38,7 @@ function RoutesList({ match: { url, params } }) {
 				</select>
 			</div>
 			<div className="carta">
-				<div>
+				<div className="separador">
 					<label htmlFor="direction">Dirección</label>
 					<select id="direction">
 						<option>HACIA USB</option>
@@ -56,9 +57,9 @@ function RoutesList({ match: { url, params } }) {
 				</div>
 			</div>
 			<Button
-				className="search-button"
+				className="blue"
 				text="BUSCAR"
-				onClick={event => console.log('Clikec')}
+				onClick={event => console.log('Clicked')}
 			/>
 		</div>
 	)
