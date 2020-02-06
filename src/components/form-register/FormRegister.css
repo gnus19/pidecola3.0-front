@@ -150,3 +150,10 @@
     margin-bottom: 0;
   }
 }
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 1366px) {
+  .FormRegister {
+    width: 50%;
+  }
+}

@@ -109,6 +109,13 @@
     width: 50vw;
     left: 25%;
   }
+
+  .email,
+  .password,
+  .phoneNumber {
+    width: 100%;
+    left: 25%;
+  }
 }
 
 @media (max-width: 425px) {
@@ -131,6 +138,13 @@
   .forgotPassword {
     margin-right: 0;
     text-align: center;
+  }
+
+  .email,
+  .password,
+  .phoneNumber {
+    width: 100%;
+    left: 25%;
   }
 }
 
@@ -164,5 +178,12 @@
   }
   .forgotPassword {
     margin-bottom: 0;
+  }
+}
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 1366px) {
+  .FormLogin {
+    width: 50%;
   }
 }
