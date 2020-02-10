@@ -6,13 +6,13 @@ import "assets/css/SignPage.css";
 class SignPage extends Component {
   render() {
     return (
-      <div className="SignPage">
-        <div className="Over" />
-        {this.props.match.path === "/login" ? (
-          <FormLogin {...this.props} />
-        ) : (
-          <FormRegister {...this.props} />
-        )}
+      <div className='SignPage'>
+        <div className='Over' />
+        {
+          this.props.match.path === '/login'
+            ? <FormLogin {...this.props} />
+            : <FormRegister {...this.props} />
+        }
       </div>
     );
   }

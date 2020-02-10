@@ -45,6 +45,11 @@
   width: 20%;
   height: 100%;
 }
+@media (max-width: 768px) {
+  .Sidebar {
+    display: none;
+  }
+}
 
 .HideOption {
   display: none;
@@ -84,7 +89,7 @@
 }
 
 .Main {
-  width: 80%;
+  width: 100%;
   align-content: center;
 }
 

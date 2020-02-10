@@ -81,7 +81,7 @@ class HomePage extends Component {
               </div>
             </nav>
             <div className="Main" id="main">
-              <OfferRequestRide />
+              <OfferRequestRide {...this.props}/>
             </div>
           </div>
         </div>
