@@ -21,7 +21,8 @@ const initialState = {
   emailError: "",
   phoneNumberError: "",
   passwordError: "",
-  passwordConfirmationError: ""
+  passwordConfirmationError: "",
+  responseError: ""
 };
 
 class FormRegister extends Component {
@@ -37,6 +38,8 @@ class FormRegister extends Component {
 
   handleRegister = event => {
     event.preventDefault();
+    const isValid = this.validate();
+
     const target = event.target;
     target.disabled = true
     target.innerText = 'Espere...'
@@ -46,17 +49,18 @@ class FormRegister extends Component {
     createUser(required)
       .then(res => res.json())
       .then(response => {
+        console.log(response);
+        
         if(response.status){
           this.props.history.push({pathname: '/login' });
         }else{
           target.disabled = false
-          target.innerText = 'Registrate' 
+          target.innerText = 'Registrate'
+          this.setState({
+            responseError: response.message
+          })
         }
       })
-      .catch(error => {
-        target.disabled = false
-        target.innerText = 'Registrate' 
-      });
   };
 
   validate = () => {
@@ -125,7 +129,13 @@ class FormRegister extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="logo pidecola" />
         </div>
-        <form className="Form" onSubmit={this.handleSubmit}>
+        {
+          this.state.responseError != '' && 
+          <div className="responseError">
+          {this.state.responseError}
+        </div>
+        }
+        <form className="Form">
           <InputSign
             name={"email"}
             type="text"

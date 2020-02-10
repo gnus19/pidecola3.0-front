@@ -47,6 +47,14 @@
   height: 20vh;
 }
 
+.responseError {
+  color: white;
+  background-color: #FF5252;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
 .msg-footer p {
   font-size: 2.5vh;
   color: #ffffff;

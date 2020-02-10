@@ -1,0 +1,69 @@
+.HomePage {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.Top {
+  display: flex;
+  flex-direction: column;
+  background: #171956;
+  position: sticky;
+  align-items: center;
+  height: 17%;
+}
+
+.Logo {
+  margin-top: 1vh;
+  height: 15vh;
+}
+
+.container-fluid {
+  height: 80%;
+}
+
+.row {
+  height: 100%;
+}
+
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  background: #1e2172;
+  width: 20%;
+  height: 100%;
+}
+@media (max-width: 768px) {
+  .Sidebar {
+    display: none;
+  }
+}
+
+.ProfilePicture {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.Username {
+  margin-bottom: 0;
+  color: white;
+  height: 34px;
+}
+
+.Carnet {
+  margin-top: 0;
+  color: #ffd302;
+}
+
+.Options {
+  font-size: 3vh;
+  align-self: left;
+  background: #ffd302;
+}
+
+.Main {
+  width: 100%;
+  align-content: center;
+}

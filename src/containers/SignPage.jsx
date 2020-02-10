@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import FormRegister from '../components/form-register/FormRegister'
-import FormLogin from '../components/form-login/FormLogin'
-import 'assets/css/SignPage.css'
+import React, { Component } from "react";
+import FormRegister from "../components/form-register/FormRegister";
+import FormLogin from "../components/form-login/FormLogin";
+import "assets/css/SignPage.css";
 
 class SignPage extends Component {
-  render () {
+  render() {
     return (
       <div className='SignPage'>
         <div className='Over' />
@@ -14,8 +14,8 @@ class SignPage extends Component {
             : <FormRegister {...this.props} />
         }
       </div>
-    )
+    );
   }
 }
 
-export default SignPage
+export default SignPage;
