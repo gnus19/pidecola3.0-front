@@ -54,9 +54,6 @@ function OfferRequestRide(props) {
             </div>
           </button>
         </div>
-        <div className="RideLog" style={{ color: "white", fontWeight: "bold" }}>
-          *PATROCINADORES/HISTORIAL*
-        </div>
         </React.Fragment>
       } />
       <Route exact path={`${props.match.url}/:accion`} render={props => <RoutesList {...props} />} />
