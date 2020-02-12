@@ -80,7 +80,7 @@ class FormLogin extends Component {
       })
       .catch(error => {
         target.disabled = false
-        target.innerText = 'Registrate' 
+        target.innerText = 'Inicia Sesión' 
       });
   };
 
