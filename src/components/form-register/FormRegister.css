@@ -91,7 +91,7 @@
 
 @media (max-width: 1024px) {
   .FormRegister {
-    width: 50%;
+    width: 40%;
     left: 12%;
   }
 }
@@ -156,5 +156,12 @@
   }
   .forgotPassword {
     margin-bottom: 0;
+  }
+}
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 1366px) {
+  .FormRegister {
+    width: 50%;
   }
 }

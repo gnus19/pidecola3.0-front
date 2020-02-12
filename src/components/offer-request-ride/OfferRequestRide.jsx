@@ -25,30 +25,34 @@ function OfferRequestRide(props) {
     <Switch>
       <Route exact path={`${props.match.url}`} render={props =>
         <React.Fragment>
+        <div className="Recommendations"></div>
         <div className="OfferRequest">
           <button className="RequestButton" onClick={() => { goTo('pedir') }}>
-            <div style={{ height: '100%' }}>
-              <div>
-                <p>Pedir cola</p>
-              </div>
-              <div>
-                IMagen
+            <div className="TopButton">
+              <span className="TopComment">Pedir cola</span>
+            </div>
+            <div className="ImageRequestButton">
+              <div className="OverButton">
+                <span className="Comment">
+                  Solicita una cola para ir a la universidad o para salir de
+                  ella
+                </span>
               </div>
             </div>
           </button>
           <button className="OfferButton" onClick={() => { goTo("ofrecer") }}>
-            <div style={{ height: '100%' }}>
-              <div>
-                <p>Ofrecer cola</p>
-              </div>
-              <div>
-                IMagen
+            <div className="TopButton">
+              <span className="TopComment">Dar cola</span>
+            </div>
+            <div className="ImageOfferButton">
+              <div className="OverButton">
+                <span className="Comment">
+                  Brinda la ayuda a un compañero, profesor o empleado para ir o
+                  salir de la universidad
+                </span>
               </div>
             </div>
           </button>
-        </div>
-        <div className="RideLog" style={{ color: "white", fontWeight: "bold" }}>
-          *PATROCINADORES/HISTORIAL*
         </div>
         </React.Fragment>
       } />
