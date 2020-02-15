@@ -6,9 +6,9 @@ import Button from "components/button/Button";
 import { Route } from 'react-router-dom';
 import './RoutesList.css';
 
-function RoutesList({ match: { url, params } }) {
+function RoutesList(props) {
 	
-	const [show, setShow] = useState(true);
+	console.log('PROPS: ', props);
 
 	return (
 		<div className="offer-request-content container-fluid">
@@ -29,14 +29,18 @@ function RoutesList({ match: { url, params } }) {
 			<div className="pidecola-message">
 				Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
 			</div>
-			<div className="carta">
-				<label htmlFor="vehicle">Vehículo</label>
-				<select id="vehicle">
-					<option>AVEO-GRIS-AB123SS</option>
-					<option>OPTRA-ROSADO-BG134PW</option>
-					<option>WOLFWAGEN-AMARILLO-NZ944SC</option>
-				</select>
-			</div>
+			{
+				props.location.state.pideCola && 
+				<div className="carta">
+					<label htmlFor="vehicle">Vehículo</label>
+					<select id="vehicle">
+						<option>AVEO-GRIS-AB123SS</option>
+						<option>OPTRA-ROSADO-BG134PW</option>
+						<option>WOLFWAGEN-AMARILLO-NZ944SC</option>
+					</select>
+				</div>
+			}
+
 			<div className="carta">
 				<div className="separador">
 					<label htmlFor="direction">Dirección</label>

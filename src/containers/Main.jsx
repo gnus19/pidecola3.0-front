@@ -33,7 +33,7 @@ const Main = ({ children }) => (
           >
             ×
           </a>
-          <div class="sidebar-sticky">
+          <div className="sidebar-sticky">
             <div className="Info">
               <img
                 className="ProfilePicture"
@@ -43,17 +43,17 @@ const Main = ({ children }) => (
               <p className="Username">Usuario</p>
               <p className="Carnet">Carnet</p>
             </div>
-            <ul class="nav flex-column">
+            <ul className="nav flex-column">
               <li className="Options">
-                <i class="material-icons">home</i>
+                <i className="material-icons">home</i>
                 <span>Inicio</span>
               </li>
               <li className="Options">
-                <i class="material-icons">account_circle</i>
+                <i className="material-icons">account_circle</i>
                 <span>Perfil</span>
               </li>
               <li className="Options">
-                <i class="material-icons">help</i>
+                <i className="material-icons">help</i>
                 <span>Ayuda</span>
               </li>
             </ul>

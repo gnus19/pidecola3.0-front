@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   Route,
   Switch,
-  useHistory
+  useHistory,
+  NavLink
 } from "react-router-dom";
 import "./OfferRequestRide.css";
 import RoutesList from "../../components/routes-list/RoutesList";
@@ -24,7 +25,7 @@ class OfferRequestRide extends Component {
           <React.Fragment>
           { this.props.recommendations && <div className="Recommendations"></div>}
           <div className="OfferRequest">
-            <button className="RequestButton" onClick={() => { this.props.history.push({pathname: '/pedir'}) }}>
+            <NavLink className="RequestButton" to={{pathname: "/aventon", state: {pideCola: true}}}>
               <div className="TopButton">
                 <span className="TopComment">Pedir cola</span>
               </div>
@@ -36,8 +37,8 @@ class OfferRequestRide extends Component {
                   </span>
                 </div>
               </div>
-            </button>
-            <button className="OfferButton" onClick={() => { this.props.history.push({pathname: '/ofrecer'}) }}>
+            </NavLink>
+            <NavLink className="OfferButton" to={{pathname: "/aventon", state: {pideCola: false}}}>
               <div className="TopButton">
                 <span className="TopComment">Dar cola</span>
               </div>
@@ -49,7 +50,7 @@ class OfferRequestRide extends Component {
                   </span>
                 </div>
               </div>
-            </button>
+            </NavLink>
           </div>
           </React.Fragment>
       </div>
