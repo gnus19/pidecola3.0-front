@@ -11,7 +11,6 @@
 
 #Content-Sec {
   display: flex;
-  height: 90%;
 }
 
 .Top {
@@ -106,6 +105,9 @@
   .Top {
     height: 10%;
   }
+  #Content-Sec {
+    height: 90%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -117,7 +119,9 @@
     align-items: center;
     height: 12%;
   }
-
+  #Content-Sec {
+    height: 88%;
+  }
   .TopOption {
     width: 20%;
     height: 100%;

@@ -11,7 +11,8 @@ import "assets/css/App.css";
 import SignPage from "containers/SignPage";
 import HomePage from "containers/HomePage";
 import Main from "containers/Main";
-import OfferRequestRide from "./components/offer-request-ride/OfferRequestRide";
+import OfferRequestRide from "./containers/offer-request-ride/OfferRequestRide";
+import RoutesList from "./components/routes-list/RoutesList";
 
 function App() {
   return (
@@ -32,7 +33,11 @@ function App() {
           <Main>
             <Route
               path="/home"
-              render={props => <OfferRequestRide {...props} />}
+              render={props => <HomePage {...props} />}
+            />
+            <Route
+              path="/aventon"
+              render={props => <RoutesList {...props} />}
             />
           </Main>
         </Switch>
