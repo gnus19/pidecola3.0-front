@@ -5,12 +5,11 @@
   text-align: center;
 }
 
-#Content-Prin{
-   height: 100%;
+#Content-Prin {
+  height: 100%;
 }
 
-
-#Content-Sec{
+#Content-Sec {
   display: flex;
   height: 90%;
 }
@@ -37,7 +36,7 @@
 
 .HomeLogo {
   margin-top: 0.5%;
-  height: 60px;
+  height: 90%;
 }
 
 .Conten-Sec {
@@ -89,12 +88,13 @@
   color: #000;
 }
 
-.Options span{
-  margin: 0 20px; 
+.Options span {
+  margin: 0 20px;
 }
 
-.Options i{
+.Options i {
   font-size: 25px;
+  line-height: inherit;
 }
 
 .Main {
@@ -109,7 +109,6 @@
 }
 
 @media (max-width: 768px) {
-
   .Top {
     display: flex;
     flex-direction: row;
