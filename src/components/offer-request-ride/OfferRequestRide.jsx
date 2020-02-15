@@ -25,7 +25,7 @@ function OfferRequestRide(props) {
     <Switch>
       <Route exact path={`${props.match.url}`} render={props =>
         <React.Fragment>
-        <div className="Recommendations"></div>
+        { props.recommendations && <div className="Recommendations"></div>}
         <div className="OfferRequest">
           <button className="RequestButton" onClick={() => { goTo('pedir') }}>
             <div className="TopButton">

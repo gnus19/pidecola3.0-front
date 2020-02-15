@@ -5,6 +5,16 @@
   text-align: center;
 }
 
+#Content-Prin{
+   height: 100%;
+}
+
+
+#Content-Sec{
+  display: flex;
+  height: 90%;
+}
+
 .Top {
   display: flex;
   flex-direction: row;
@@ -27,15 +37,11 @@
 
 .HomeLogo {
   margin-top: 0.5%;
+  height: 60px;
+}
+
+.Conten-Sec {
   height: 90%;
-}
-
-.container-fluid {
-  height: 83%;
-}
-
-.row {
-  height: 100%;
 }
 
 .Sidebar {
@@ -70,17 +76,25 @@
 .Options {
   font-size: 3vh;
   align-self: left;
-  background: #ffd302;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 0;
 }
 
-.HouseFill,
-.PersonFill,
-.InfoFill {
-  width: 7%;
-  margin-right: 5%;
+.Options:hover {
+  background: #ffd302;
+  color: #000;
+}
+
+.Options span{
+  margin: 0 20px; 
+}
+
+.Options i{
+  font-size: 25px;
 }
 
 .Main {
@@ -88,13 +102,13 @@
   align-content: center;
 }
 
-@media (max-width: 768px) {
-  .HomePage {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    text-align: center;
+@media (max-width: 1440px) {
+  .Top {
+    height: 10%;
   }
+}
+
+@media (max-width: 768px) {
 
   .Top {
     display: flex;
@@ -134,15 +148,6 @@
     height: 90%;
     margin-right: 20%;
   }
-
-  .container-fluid {
-    height: 88%;
-  }
-
-  .row {
-    height: 100%;
-  }
-
   .Sidebar {
     width: 0;
     overflow-x: hidden;

@@ -71,8 +71,9 @@ class FormLogin extends Component {
     loginUser(required)
       .then(res => res.json())
       .then(response => {
-        if(response.status){
-          this.props.history.push({pathname: '/dashboard' });
+        if(response.status && response.data[0]){
+          localStorage.setItem('tkauth', response.data[0].tkauth)
+          this.props.history.push({pathname: '/home' });
         }else{
           target.disabled = false
           target.innerText = 'Registrate' 

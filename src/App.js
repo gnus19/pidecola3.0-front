@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-import "./assets/css/App.css";
-import SignPage from "./containers/SignPage";
-import HomePage from "./containers/HomePage";
+import "assets/css/App.css";
+import SignPage from "containers/SignPage";
+import HomePage from "containers/HomePage";
+import Main from 'containers/Main';
+
 
 function App() {
   return (
@@ -20,8 +22,16 @@ function App() {
             path="/register"
             render={props => <SignPage {...props} />}
           />
-          <Route path="/home" render={props => <HomePage {...props} />} />
-          <Redirect exact from="/" to="/login" />
+          <Main>
+            <Route 
+              path="/home" 
+              render={props => <HomePage {...props} />} 
+            />
+          </Main>
+          <Redirect 
+            exact 
+            from="/" 
+            to="/login" />
         </Switch>
       </div>
     </Router>
