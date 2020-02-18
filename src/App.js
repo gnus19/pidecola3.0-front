@@ -12,8 +12,8 @@ import SignPage from "containers/SignPage";
 import HomePage from "containers/HomePage";
 import Main from "containers/Main";
 import OfferRequestRide from "./containers/offer-request-ride/OfferRequestRide";
-import RoutesList from "./components/routes-list/RoutesList";
-import AvailablePassengers from './components/availablePassengers/AvailablePassengers';
+import RoutesList from "containers/RoutesList";
+import AvailablePassengers from "./components/availablePassengers/AvailablePassengers";
 
 function App() {
   return (
@@ -32,10 +32,7 @@ function App() {
           />
           <Redirect exact from="/" to="/login" />
           <Main>
-            <Route
-              path="/home"
-              render={props => <HomePage {...props} />}
-            />
+            <Route path="/home" render={props => <HomePage {...props} />} />
             <Route
               path="/aventon"
               render={props => <RoutesList {...props} />}
