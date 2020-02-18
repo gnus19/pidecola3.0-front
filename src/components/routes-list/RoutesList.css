@@ -36,3 +36,13 @@
 	background-color: transparent;
 	border: 0;
 }
+.SearchButton {
+	width: inherit;
+	padding: 12px 0;
+	color: white;
+	background: #171956;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	border-radius: 5px;
+}

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 // import Button from 'react-bootstrap/Button'
 
 import Button from "components/button/Button";
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import './RoutesList.css';
 
 function RoutesList(props) {
@@ -60,11 +60,12 @@ function RoutesList(props) {
 					</select>
 				</div>
 			</div>
-			<Button
-				className="blue"
-				text="BUSCAR"
-				onClick={event => console.log('Clicked')}
-			/>
+			<NavLink
+				className="SearchButton"
+				to="/pasajeros"
+			>
+				BUSCAR
+			</NavLink>
 		</div>
 	)
 }

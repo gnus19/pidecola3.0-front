@@ -8,6 +8,7 @@ import {
 import "./OfferRequestRide.css";
 import RoutesList from "../../components/routes-list/RoutesList";
 import AvailablePassengers from '../../components/availablePassengers/AvailablePassengers';
+import CardButton from '../../components/cardButton/CardButton';
 
 class OfferRequestRide extends Component {
 
@@ -25,32 +26,22 @@ class OfferRequestRide extends Component {
           <React.Fragment>
           { this.props.recommendations && <div className="Recommendations"></div>}
           <div className="OfferRequest">
-            <NavLink className="RequestButton" to={{pathname: "/aventon", state: {pideCola: true}}}>
-              <div className="TopButton">
-                <span className="TopComment">Pedir cola</span>
-              </div>
-              <div className="ImageRequestButton">
-                <div className="OverButton">
-                  <span className="Comment">
-                    Solicita una cola para ir a la universidad o para salir de
-                    ella
-                  </span>
-                </div>
-              </div>
-            </NavLink>
-            <NavLink className="OfferButton" to={{pathname: "/aventon", state: {pideCola: false}}}>
-              <div className="TopButton">
-                <span className="TopComment">Dar cola</span>
-              </div>
-              <div className="ImageOfferButton">
-                <div className="OverButton">
-                  <span className="Comment">
-                    Brinda la ayuda a un compañero, profesor o empleado para ir o
-                    salir de la universidad
-                  </span>
-                </div>
-              </div>
-            </NavLink>
+            <CardButton 
+              className="RequestButton"
+              path="/aventon"
+              pideCola={true}
+              title="Pedir cola"
+              text="Solicita una cola para ir a la universidad o para salir de
+              ella"
+            />
+            <CardButton 
+              className="OfferButton"
+              path="/aventon"
+              pideCola={false}
+              title="Dar cola"
+              text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
+            />
+            
           </div>
           </React.Fragment>
       </div>

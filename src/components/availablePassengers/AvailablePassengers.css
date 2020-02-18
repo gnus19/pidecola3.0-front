@@ -1,10 +1,22 @@
+.sticky {
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
+.Button {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.carta {
+	margin-top: 20px;
+}
 .grid-container {
+	padding: 8px;
 	display: grid;
 	grid-template-areas: 
-		'carnet carnet carnet'
-		'foto nombre ruta'
-		'foto comentario comentario';
-	gap: 8px;
+		'carnet carnet carnet carnet'
+		'foto foto nombre ruta'
+		'foto foto comentario comentario';
 }
 .grid-container > div {
   background-color: rgba(#2196F3, 0.4);
@@ -16,7 +28,13 @@
 	grid-area: carnet;
 }
 .foto {
+
 	grid-area: foto;
+	border-radius: 50%;
+	background-color: #DDDBDB;
+	background-image: url("../../assets/images/user.png");
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .nombre {
 	grid-area: nombre;
@@ -25,5 +43,6 @@
 	grid-area: ruta;
 }
 .comentario {
+	padding: 0 !important;
 	grid-area: comentario;
 }

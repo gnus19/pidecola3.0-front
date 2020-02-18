@@ -13,6 +13,7 @@ import HomePage from "containers/HomePage";
 import Main from "containers/Main";
 import OfferRequestRide from "./containers/offer-request-ride/OfferRequestRide";
 import RoutesList from "./components/routes-list/RoutesList";
+import AvailablePassengers from './components/availablePassengers/AvailablePassengers';
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route
               path="/aventon"
               render={props => <RoutesList {...props} />}
+            />
+            <Route
+              path="/pasajeros"
+              render={props => <AvailablePassengers {...props} />}
             />
           </Main>
         </Switch>
