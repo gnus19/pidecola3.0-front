@@ -10,6 +10,9 @@
 
 .Section-Profile-Left{
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Section-Profile-Rigth{
@@ -48,4 +51,29 @@
     align-items: center;
     font-size: 50px;
     cursor: pointer;
+}
+
+.Section-Profile-Left .child1{
+    width: 226px;
+    height: 226px;
+    margin-top: 5vh;
+}
+
+.Section-Profile-Left .child2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.ContentCar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 ;
+}
+
+.ContentCar p{
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
 }
