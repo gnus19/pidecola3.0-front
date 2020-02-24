@@ -93,7 +93,6 @@ class FormLogin extends Component {
         </div>
         <form className="Form" onSubmit={this.handleSubmit}>
           <InputSign
-            className="email"
             placeholder="Correo"
             type="text"
             name={"email"}
@@ -103,7 +102,6 @@ class FormLogin extends Component {
             <p>{this.state.emailError}</p>
           </div>
           <InputSign
-            className="password"
             placeholder="Contraseña"
             type="password"
             name={"password"}
