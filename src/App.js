@@ -13,7 +13,7 @@ import HomePage from "containers/HomePage";
 import Main from "containers/Main";
 import OfferRequestRide from "./containers/offer-request-ride/OfferRequestRide";
 import RoutesList from "containers/RoutesList";
-import AvailablePassengers from "./components/availablePassengers/AvailablePassengers";
+import AvailablePassengers from "./containers/AvailablePassengers";
 
 function App() {
   return (

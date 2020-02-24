@@ -1,48 +1,56 @@
 .offer-request-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
 }
+
 .pidecola-message {
-	background-color: red;
-	color: white;
-	width: inherit;
-	border-radius: 5px;
-	padding: 8px;
-	display: flex;
+  background-color: #ffc107;
+  color: white;
+  width: inherit;
+  border-radius: 5px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  margin-top: 1cm;
 }
+
 .carta {
-	box-shadow: 0px 2px 4px #888888;
-	border-radius: 5px;
-	position: relative;
-	width: inherit;
+  box-shadow: 0px 2px 4px #888888;
+  border-radius: 5px;
+  position: relative;
+  width: inherit;
 }
+
 .carta .separador {
-	border-bottom: 1px groove rgba(136, 136, 136, 0.2);
+  border-bottom: 1px groove rgba(136, 136, 136, 0.2);
 }
+
 .carta label {
-	margin: 0;
-	width: 25%;
-	padding: 8px;
+  margin: 0;
+  width: 25%;
+  padding: 8px;
 }
+
 .carta select {
-	width: 75%;
-	padding: 8px;
-	text-align: justify;
+  width: 75%;
+  padding: 8px;
+  text-align: justify;
   -moz-text-align-last: center;
-	text-align-last: center;
-	background-color: transparent;
-	border: 0;
+  text-align-last: center;
+  background-color: transparent;
+  border: 0;
 }
+
 .SearchButton {
-	width: inherit;
-	padding: 12px 0;
-	color: white;
-	background: #171956;
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	border-radius: 5px;
+  width: inherit;
+  padding: 12px 0;
+  color: white;
+  background: #171956;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
 }

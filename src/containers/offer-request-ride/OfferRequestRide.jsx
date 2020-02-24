@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, useHistory, NavLink } from "react-router-dom";
 import "./OfferRequestRide.css";
-import AvailablePassengers from "../../components/availablePassengers/AvailablePassengers";
+import AvailablePassengers from "../AvailablePassengers";
 import CardButton from "../../components/cardButton/CardButton";
 
 class OfferRequestRide extends Component {

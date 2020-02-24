@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { Route, NavLink } from "react-router-dom";
 import "../assets/css/RoutesList.css";
 import DropDownList from "../components/dropDownList/DropDownList";
+import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 
 class RoutesList extends Component {
   constructor(props) {
@@ -20,10 +21,11 @@ class RoutesList extends Component {
           {/*{this.props.recommendations && (
             <div className="Recommendations"></div>
 		  )}*/}
-          <div className="pidecola-message">
+          <RecommendationBanner />
+          {/*<div className="pidecola-message" text="">
             Pide Cola USB te recuerda no utilizar tu telefono celular al
             conducir.
-          </div>
+    </div>*/}
           {this.props.location.state.pideCola && (
             <div className="carta">
               <DropDownList htmlFor="vehicle" id="vehicle"></DropDownList>

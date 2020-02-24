@@ -7,7 +7,7 @@ import Button from "components/button/Button";
 import logo from "assets/images/logo.png";
 
 //Services
-import { loginUser } from 'services/userServices';
+import { loginUser } from "services/userServices";
 
 // Assets
 import "./FormLogin.css";
@@ -51,7 +51,7 @@ class FormLogin extends Component {
   };
 
   handleChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
@@ -65,23 +65,23 @@ class FormLogin extends Component {
   handleLogin = event => {
     event.preventDefault();
     const target = event.target;
-    target.disabled = true
-    target.innerText = 'Espere...'
+    target.disabled = true;
+    target.innerText = "Espere...";
     let required = { ...this.state };
     loginUser(required)
       .then(res => res.json())
       .then(response => {
-        if(response.status && response.data[0]){
-          localStorage.setItem('tkauth', response.data[0].tkauth)
-          this.props.history.push({pathname: '/home' });
-        }else{
-          target.disabled = false
-          target.innerText = 'Registrate' 
+        if (response.status && response.data[0]) {
+          localStorage.setItem("tkauth", response.data[0].tkauth);
+          this.props.history.push({ pathname: "/home" });
+        } else {
+          target.disabled = false;
+          target.innerText = "Registrate";
         }
       })
       .catch(error => {
-        target.disabled = false
-        target.innerText = 'Inicia Sesión' 
+        target.disabled = false;
+        target.innerText = "Inicia Sesión";
       });
   };
 
@@ -114,10 +114,10 @@ class FormLogin extends Component {
           </div>
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
-            text="Iniciar Sesion"
+            text="Iniciar Sesión"
             onClick={event => this.handleLogin(event)}
           />
-          <p className="forgotPassword">¿Olvidó su contraseña?</p>
+          <p className="forgotPassword">¿Olvidaste tu contraseña?</p>
         </form>
         <div className="msg-footer">
           <p>
