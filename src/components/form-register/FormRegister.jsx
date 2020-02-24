@@ -41,8 +41,8 @@ class FormRegister extends Component {
     // const isValid = this.validate();
 
     const target = event.target;
-    target.disabled = true
-    target.innerText = 'Espere...'
+    target.disabled = true;
+    target.innerText = "Espere...";
     let required = { ...this.state };
     delete required.passwordConfirmation;
     delete required.isMobile;
@@ -50,17 +50,17 @@ class FormRegister extends Component {
       .then(res => res.json())
       .then(response => {
         console.log(response);
-        
-        if(response.status){
-          this.props.history.push({pathname: '/login' });
-        }else{
-          target.disabled = false
-          target.innerText = 'Registrate'
+
+        if (response.status) {
+          this.props.history.push({ pathname: "/login" });
+        } else {
+          target.disabled = false;
+          target.innerText = "Registrate";
           this.setState({
             responseError: response.message
-          })
+          });
         }
-      })
+      });
   };
 
   validate = () => {
@@ -112,7 +112,7 @@ class FormRegister extends Component {
   };
 
   handleChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
@@ -129,12 +129,9 @@ class FormRegister extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="logo pidecola" />
         </div>
-        {
-          this.state.responseError !== '' && 
-          <div className="responseError">
-          {this.state.responseError}
-        </div>
-        }
+        {this.state.responseError != "" && (
+          <div className="responseError">{this.state.responseError}</div>
+        )}
         <form className="Form">
           <InputSign
             name={"email"}
@@ -148,7 +145,8 @@ class FormRegister extends Component {
           <InputSign
             name={"phoneNumber"}
             type="text"
-            placeholder="Telefono"
+            className="phoneNumber"
+            placeholder="Teléfono"
             onChange={this.handleChange}
           />
           <div style={{ color: "red", fontWeight: "bold" }}>
@@ -174,7 +172,7 @@ class FormRegister extends Component {
           </div>
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
-            text="Registrate"
+            text="Regístrate"
             onClick={event => this.handleRegister(event)}
           />
         </form>
@@ -182,7 +180,7 @@ class FormRegister extends Component {
           <p>
             ¿Ya tienes una cuenta?{" "}
             <NavLink to={{ pathname: "/login" }}>
-              <span>Inicia sesion.</span>
+              <span>Inicia sesión.</span>
             </NavLink>
           </p>
         </div>
