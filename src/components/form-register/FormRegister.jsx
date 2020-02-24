@@ -38,7 +38,7 @@ class FormRegister extends Component {
 
   handleRegister = event => {
     event.preventDefault();
-    const isValid = this.validate();
+    // const isValid = this.validate();
 
     const target = event.target;
     target.disabled = true
@@ -130,7 +130,7 @@ class FormRegister extends Component {
           <img className="Logo" src={logo} alt="logo pidecola" />
         </div>
         {
-          this.state.responseError != '' && 
+          this.state.responseError !== '' && 
           <div className="responseError">
           {this.state.responseError}
         </div>
@@ -139,7 +139,6 @@ class FormRegister extends Component {
           <InputSign
             name={"email"}
             type="text"
-            className="email"
             placeholder="Correo"
             onChange={this.handleChange}
           />
@@ -149,7 +148,6 @@ class FormRegister extends Component {
           <InputSign
             name={"phoneNumber"}
             type="text"
-            className="phoneNumber"
             placeholder="Telefono"
             onChange={this.handleChange}
           />
@@ -159,7 +157,6 @@ class FormRegister extends Component {
           <InputSign
             name={"password"}
             type="password"
-            className="password"
             placeholder="Contraseña"
             onChange={this.handleChange}
           />
@@ -169,7 +166,6 @@ class FormRegister extends Component {
           <InputSign
             name={"passwordConfirmation"}
             type="password"
-            className="password"
             placeholder="Confirmar Contraseña"
             onChange={this.handleChange}
           />

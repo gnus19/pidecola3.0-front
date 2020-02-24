@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect, NavLink } from "react
 
 import "assets/css/App.css";
 import SignPage from "containers/SignPage";
-import HomePage from "containers/HomePage";
+// import HomePage from "containers/HomePage";
+import Profile from "containers/Profile";
 import Main from 'containers/Main';
 import OfferRequestRide from "./components/offer-request-ride/OfferRequestRide";
 
@@ -27,6 +28,10 @@ function App() {
             <Route 
               path="/home" 
               render={props => <OfferRequestRide {...props} />} 
+            />
+            <Route 
+              path="/profile" 
+              render={props => <Profile {...props} />} 
             />
           </Main>
           <Redirect 

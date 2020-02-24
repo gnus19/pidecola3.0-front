@@ -1,4 +1,4 @@
-input {
+.InputSign {
   border: 3px solid #ffffff;
   box-sizing: border-box;
   border-radius: 5px;
@@ -12,37 +12,37 @@ input {
   letter-spacing: 0.6px !important;
 }
 
-input::placeholder {
+.InputSign::placeholder {
   color: #ffffff !important;
   font-size: 2vh;
 }
 
 @media (max-width: 1366px) {
-  input {
+  .InputSign {
     width: 30vw;
   }
 }
 
 @media (max-width: 1024px) {
-  input {
+  .InputSign {
     width: 40vw;
   }
 }
 
 @media (max-width: 768px) {
-  input {
+  .InputSign {
     width: 40vw;
   }
 }
 
 @media (max-width: 425px) {
-  input {
+  .InputSign {
     width: 350px;
   }
 }
 
 @media (max-width: 320px) {
-  input {
+  .InputSign {
     width: 300px;
   }
 }
