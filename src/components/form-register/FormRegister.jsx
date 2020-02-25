@@ -129,7 +129,7 @@ class FormRegister extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="logo pidecola" />
         </div>
-        {this.state.responseError != "" && (
+        {this.state.responseError !== "" && (
           <div className="responseError">{this.state.responseError}</div>
         )}
         <form className="Form">
@@ -145,7 +145,6 @@ class FormRegister extends Component {
           <InputSign
             name={"phoneNumber"}
             type="text"
-            className="phoneNumber"
             placeholder="Teléfono"
             onChange={this.handleChange}
           />
