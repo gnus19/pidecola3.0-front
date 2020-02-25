@@ -1,0 +1,156 @@
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/*
+.Button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+*/
+
+.cancelarButton {
+  width: inherit;
+  padding: 12px 0;
+  color: white;
+  background: #d32f2f;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.carta {
+  margin-top: 20px;
+}
+
+.grid-container {
+  padding: 8px;
+  display: grid;
+  grid-template-areas:
+    "foto nombre cohorte año"
+    "foto carrera ruta parada"
+    "foto comentario inputComentario inputComentario";
+}
+
+.grid-container > div {
+  background-color: rgba(#2196f3, 0.4);
+  text-align: center;
+  padding: 10px 0;
+}
+
+.foto {
+  grid-area: foto;
+  border-radius: 50%;
+  background-color: #dddbdb;
+  background-image: url("../../assets/images/user.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 117.97px;
+  height: 120px;
+  justify-self: center;
+}
+
+.nombre {
+  grid-area: nombre;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.carrera {
+  grid-area: carrera;
+  font-size: 16px;
+}
+
+.cohorte {
+  grid-area: cohorte;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.año {
+  grid-area: año;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #4caf50;
+}
+
+.ruta {
+  grid-area: ruta;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.parada {
+  grid-area: parada;
+  font-size: 16px;
+}
+
+.comentario {
+  padding: 0 !important;
+  grid-area: comentario;
+  font-weight: bold;
+}
+
+.inputComentario {
+  padding: 0 !important;
+  grid-area: inputComentario;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    padding: 8px;
+    display: grid;
+    grid-template-areas:
+      "foto nombre cohorte año"
+      "foto carrera ruta parada"
+      "foto comentario inputComentario inputComentario";
+  }
+
+  .grid-container > div {
+    background-color: rgba(#2196f3, 0.4);
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .foto {
+    width: 55px;
+    height: 56px;
+    margin-top: 25%;
+  }
+
+  .nombre,
+  .carrera {
+    font-size: 12px;
+  }
+
+  .cohorte,
+  .año,
+  .ruta,
+  .parada,
+  .comentario,
+  .inputComentario {
+    font-size: 10px;
+  }
+}
+
+@media (width: 320px) and (height: 568px) {
+  .foto {
+    margin-top: 50%;
+  }
+}
+
+/*iPad*/
+@media (width: 768px) and (height: 1024px) {
+  .foto {
+    width: 80px;
+    height: 80px;
+    margin-top: 5%;
+  }
+}

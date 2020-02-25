@@ -29,7 +29,7 @@
   align-items: center;
   padding: 0cm;
   margin: 20px 30px;
-  border:none;
+  border: none;
 }
 
 .TopButton {
@@ -132,6 +132,7 @@
   .ImageOfferButton,
   .OverButton {
     background: white;
+    border-radius: 0 0 5px 5px;
   }
 
   .OverButton {

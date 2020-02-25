@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "assets/css/HomePage.css";
-import OfferRequestRide from "../components/offer-request-ride/OfferRequestRide";
+import OfferRequestRide from "./offer-request-ride/OfferRequestRide";
 
 class HomePage extends Component {
   render() {
