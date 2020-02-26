@@ -12,6 +12,7 @@ import SignPage from "containers/SignPage";
 import HomePage from "containers/HomePage";
 import Main from "containers/Main";
 import Profile from "containers/Profile";
+import VehicleDetail from "containers/VehicleDetail";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 
@@ -41,7 +42,12 @@ function App() {
               path="/pasajeros"
               render={props => <AvailablePassengers {...props} />}
             />
-            <Route path="/profile" render={props => <Profile {...props} />} />
+            <Route 
+              path="/profile" 
+              render={props => <Profile {...props} />} />
+            <Route 
+              path="/add_vehicle" 
+              render={props => <VehicleDetail {...props} />} />
           </Main>
         </Switch>
       </div>

@@ -15,7 +15,7 @@
 
 #Content-Sec{
   display: flex;
-  height: 90%;
+  height: auto;
 }
 
 .Top {
@@ -85,6 +85,7 @@
   color: #fff;
   cursor: pointer;
   padding: 10px 0;
+  align-items: center;
 }
 
 .Options:hover {
@@ -98,6 +99,10 @@
 
 .Options i{
   font-size: 25px;
+}
+
+a:hover{
+  text-decoration: none;
 }
 
 .Main {

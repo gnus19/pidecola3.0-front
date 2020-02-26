@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg"
 import usercar from "assets/images/user-car.png"
@@ -43,9 +44,15 @@ class Profile extends Component {
 							},
 							{
 								type: 'input',
-								label: 'Carnets',
+								label: 'Edad',
+								attrs: {}
+							},
+							{
+								type: 'input',
+								label: 'Género',
 								attrs: {}
 							}
+							
 						]}
 					/>
 					<InputPC
@@ -66,23 +73,30 @@ class Profile extends Component {
 						fields = {[
 							{
 								type: 'input',
+								label: 'Gremio',
+								attrs: {}
+							},
+							{
+								type: 'input',
 								label: 'Carrera',
 								attrs: {}
 							},
 							{
 								type: 'input',
-								label: 'Dirección',
+								label: 'Carnet',
 								attrs: {}
 							}
 						]}
 					/>
 					<div className="SubSection-Add">
-						<div className="child1">
-							<p>Agregar Vehículo</p>
-							<div className="PlusButton">
-								+
+						<NavLink to="/add_vehicle">
+							<div className="child1">
+								<p>Agregar Vehículo</p>
+								<div className="PlusButton">
+									+
+								</div>
 							</div>
-						</div>
+						</NavLink>
 					</div>
 				</div>
 			</div>
