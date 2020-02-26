@@ -2,6 +2,7 @@ import React from "react";
 import logo from "assets/images/logo.png";
 import list from "assets/images/list.svg";
 import profilePicture from "assets/images/profilePicture.jpg";
+import { NavLink } from "react-router-dom";
 
 const openNav = () => {
   document.getElementById("Sidebar").style.width = "50%";
@@ -44,14 +45,18 @@ const Main = ({ children }) => (
               <p className="Carnet">Carnet</p>
             </div>
             <ul className="nav flex-column">
-              <li className="Options">
-                <i className="material-icons">home</i>
-                <span>Inicio</span>
-              </li>
-              <li className="Options">
-                <i className="material-icons">account_circle</i>
-                <span>Perfil</span>
-              </li>
+              <NavLink to="/home">
+                <li className="Options">
+                  <i className="material-icons">home</i>
+                  <span>Inicio</span>
+                </li>
+              </NavLink>
+              <NavLink to="/profile">
+                <li className="Options">
+                  <i className="material-icons">account_circle</i>
+                  <span>Perfil</span>
+                </li>
+              </NavLink>
               <li className="Options">
                 <i className="material-icons">help</i>
                 <span>Ayuda</span>
