@@ -22,7 +22,9 @@ const Main = ({ children }) => (
           </button>
         </div>
         <div className="TopLogo">
+          <NavLink to="/home">
           <img className="HomeLogo" src={logo} alt="HomeLogo" />
+          </NavLink>
         </div>
       </nav>
       <div id="Content-Sec">

@@ -98,9 +98,14 @@ class RoutesList extends Component {
             </div>
           </div>
         </React.Fragment>
+        {this.props.location.state.pideCola ? (
         <NavLink className="SearchButton" to="/pasajeros" onClick={this.sendRequest}>
           BUSCAR
         </NavLink>
+        ) :
+        <NavLink className="WaitButton" to="/espere">
+          SOLICITAR
+        </NavLink>}
       </div>
     );
   }

@@ -15,6 +15,7 @@ import Profile from "containers/Profile";
 import VehicleDetail from "containers/VehicleDetail";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
+import WaitOffer from "./containers/WaitOffer";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
               path="/pasajeros"
               render={props => <AvailablePassengers {...props} />}
             />
+            <Route 
+              path="/espere" 
+              render={props => <WaitOffer {...props} />} />
             <Route 
               path="/profile" 
               render={props => <Profile {...props} />} />

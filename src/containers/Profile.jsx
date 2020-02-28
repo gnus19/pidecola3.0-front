@@ -46,11 +46,6 @@ class Profile extends Component {
 								type: 'input',
 								label: 'Edad',
 								attrs: {}
-							},
-							{
-								type: 'input',
-								label: 'Género',
-								attrs: {}
 							}
 							
 						]}
@@ -71,11 +66,7 @@ class Profile extends Component {
 					/>
 					<InputPC
 						fields = {[
-							{
-								type: 'input',
-								label: 'Gremio',
-								attrs: {}
-							},
+							
 							{
 								type: 'input',
 								label: 'Carrera',

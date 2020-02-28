@@ -15,8 +15,7 @@ function AvailablePassengers() {
         </div>*/}
         <div className="carta">
           <p>
-            AVEO-GRIS-AB000WY || <br />
-            BARUTA
+            AVEO-GRIS-AB000WY || HACIA USB || BARUTA
           </p>
         </div>
         {/*<Button
