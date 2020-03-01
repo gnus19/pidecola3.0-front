@@ -100,6 +100,7 @@
 .Main {
   width: 80%;
   align-content: center;
+  background-color: #ebebeb;
 }
 
 @media (max-width: 1440px) {

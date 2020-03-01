@@ -15,7 +15,9 @@
   display: flex;
   justify-content: center;
   margin-top: 1cm;
-  text-shadow: 0 0 1.5px black, 0 0 1.5px black, 0 0 1.5px black, 0 0 1.5px black;
+  text-shadow: 0 0 1.5px black, 0 0 1.5px black, 0 0 1.5px black,
+    0 0 1.5px black;
+  box-shadow: 0px 0px 2px #888888;
 }
 
 .carta {
@@ -25,10 +27,11 @@
   width: inherit;
   padding: 10px;
   margin-bottom: 15px;
+  background-color: white;
 }
 
 .carta p {
-  margin: 0
+  margin: 0;
 }
 
 .carta .separador {
@@ -51,7 +54,8 @@
   border: 0;
 }
 
-.SearchButton, .WaitButton {
+.SearchButton,
+.WaitButton {
   width: inherit;
   padding: 12px 0;
   color: white;

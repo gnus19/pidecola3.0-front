@@ -13,10 +13,8 @@ function WaitOffer() {
         {/*<div className="pidecola-message" text="">
           Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
         </div>*/}
-        <div className="carta">
-          <p>
-            HACIA USB || BARUTA
-          </p>
+        <div className="cartaInfo">
+          <p>HACIA USB || BARUTA</p>
         </div>
         {/*<Button
           className="red"
@@ -34,13 +32,13 @@ function WaitOffer() {
         >
           Cancelar
         </NavLink>
-        <div style={{ margin:"100px"}}>
-        <span style={{fontWeight: "bold" , fontSize:"25px"}} >
+        <div style={{ margin: "100px" }}>
+          <span style={{ fontWeight: "bold", fontSize: "25px" }}>
             Espere ...
-        </span>
+          </span>
         </div>
       </div>
-      </div>
+    </div>
   );
 }
 

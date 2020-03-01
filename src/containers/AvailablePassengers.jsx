@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../components/button/Button";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
@@ -13,10 +12,8 @@ function AvailablePassengers() {
         {/*<div className="pidecola-message" text="">
           Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
         </div>*/}
-        <div className="carta">
-          <p>
-            AVEO-GRIS-AB000WY || HACIA USB || BARUTA
-          </p>
+        <div className="cartaInfo">
+          <p>AVEO-GRIS-AB000WY || HACIA USB || BARUTA</p>
         </div>
         {/*<Button
           className="red"
