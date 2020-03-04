@@ -54,6 +54,21 @@
   border: 0;
 }
 
+.Comentarios {
+  width: 100%
+}
+
+@media (max-width: 425px) {
+  .Inputs-PC label{
+    width: 35%;
+  }
+
+  .Inputs-PC input {
+    width: 65%;
+  }  
+}
+
+
 .SearchButton,
 .WaitButton {
   width: inherit;

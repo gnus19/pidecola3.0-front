@@ -89,8 +89,8 @@
 }
 
 .Options:hover {
-  background: #ffd302;
-  color: #000;
+  background: #ffd302 !important;
+  color: #000 !important;
 }
 
 .Options span{

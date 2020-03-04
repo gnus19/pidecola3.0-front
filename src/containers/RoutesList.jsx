@@ -17,17 +17,20 @@ class RoutesList extends Component {
     this.state = {
       user: "12-00000@usb.ve",
       direction: "",
-      route: ""
+      route: "",
+      comment: ""
     };
   }
 
   componentDidMount() {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
-    console.log(`${route.value} - ${direction.value}`);
+    const comment = document.getElementById("comment");
+    console.log(`${route.value} - ${direction.value} - ${comment.value}`);
     this.setState({
       direction: direction.value,
-      route: route.value
+      route: route.value,
+      comment: comment.value
     });
   }
 
@@ -49,8 +52,7 @@ class RoutesList extends Component {
       start_location:
         this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
-      comment: "",
-      im_going: ""
+      comment: this.state.comment
     };
     console.log(requestBody);
     requestRide(requestBody)
@@ -96,15 +98,16 @@ class RoutesList extends Component {
                 id="direction"
                 onChange={this.handleChange}
               ></DropDownList>
+            </div> 
               <DropDownList
                 htmlFor="route"
                 id="route"
                 onChange={this.handleChange}
               ></DropDownList>
-            </div>
+            
           </div>
           {!this.props.location.state.pideCola && (
-            <div className="carta comentarios">
+            <div className="Comentarios" id="comment">
               <InputPC
                 fields={[
                   {

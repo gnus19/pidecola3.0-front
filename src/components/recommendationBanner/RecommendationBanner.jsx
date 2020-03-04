@@ -28,12 +28,10 @@ class RecommendationBanner extends Component {
   componentDidMount() {
     this.myInterval = setInterval(() => {
       if (this.state.count + 1 < this.state.recommendations.length) {
-        console.log("PRUEBA 1");
         this.setState({
           count: this.state.count + 1
         });
       } else {
-        console.log("PRUEBA 2");
         this.setState({
           count: 0
         });

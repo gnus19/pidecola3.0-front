@@ -4,10 +4,10 @@ import './InputPC.css'
 
 const handleInput = field => {
     if(field.type === 'input'){
-        return <div>
+        return <>
             <label>{field.label}</label>
             <input {...field.attrs}/>
-        </div>
+        </>
     }
 }
 

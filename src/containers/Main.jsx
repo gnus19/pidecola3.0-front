@@ -9,7 +9,8 @@ const openNav = () => {
 };
 
 const closeNav = () => {
-  document.getElementById("Sidebar").style.width = "0";
+  if (window.screen.width < 768) {
+  document.getElementById("Sidebar").style.width = "0";}
 };
 
 const changeColor = id => {
@@ -44,7 +45,11 @@ const Main = ({ children }) => (
           </button>
         </div>
         <div className="TopLogo">
-          <NavLink to="/home">
+          <NavLink to="/home" onClick={() => {
+                  
+                  changeColor("homeOptions");
+                
+                }}>
             <img className="HomeLogo" src={logo} alt="HomeLogo" />
           </NavLink>
         </div>
@@ -72,9 +77,9 @@ const Main = ({ children }) => (
               <NavLink
                 to="/home"
                 onClick={() => {
-                  /*
+                  
                   changeColor("homeOptions");
-                */
+                
                 }}
               >
                 <li className="Options" id="homeOptions">
@@ -85,9 +90,9 @@ const Main = ({ children }) => (
               <NavLink
                 to="/profile"
                 onClick={() => {
-                  /*
+                  
                   changeColor("profileOptions");
-                */
+                
                 }}
               >
                 <li className="Options" id="profileOptions">
@@ -98,9 +103,9 @@ const Main = ({ children }) => (
               <NavLink
                 to="/help"
                 onClick={() => {
-                  /*
+                  
                   changeColor("helpOptions");
-                */
+                
                 }}
               >
                 <li className="Options" id="helpOptions">
@@ -111,7 +116,7 @@ const Main = ({ children }) => (
             </ul>
           </div>
         </nav>
-        <div className="Main" id="main">
+        <div className="Main" id="main" onClick={closeNav}>
           {children}
         </div>
       </div>
