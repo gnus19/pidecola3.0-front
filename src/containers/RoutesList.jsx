@@ -17,8 +17,7 @@ class RoutesList extends Component {
     this.state = {
       user: "12-00000@usb.ve",
       direction: "",
-      route: "",
-      comment: ""
+      route: ""
     };
   }
 
@@ -26,11 +25,10 @@ class RoutesList extends Component {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
     const comment = document.getElementById("comment");
-    console.log(`${route.value} - ${direction.value} - ${comment.value}`);
+    console.log(`${route.value} - ${direction.value}`);
     this.setState({
       direction: direction.value,
-      route: route.value,
-      comment: comment.value
+      route: route.value
     });
   }
 
