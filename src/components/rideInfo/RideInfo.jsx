@@ -1,9 +1,17 @@
 import React from "react";
 
-function Passenger({ nombre, carrera, cohorte, ruta, comentario }) {
+function RideInfo({
+  nombre,
+  cohorte,
+  carrera,
+  ruta,
+  numeroPasajeros,
+  pasajeros
+}) {
   return (
-    <div className="carta grid-container">
+    <div className="carta grid-container-offer">
       <div className="foto"></div>
+      <div className="titulo">{nombre} está dispuesto a darte la cola... </div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">
         Cohorte: <span> {cohorte}</span>
@@ -14,11 +22,11 @@ function Passenger({ nombre, carrera, cohorte, ruta, comentario }) {
       <div className="ruta">
         Ruta: <span> {ruta}</span>
       </div>
-      <div className="comentario">
-        Comentario: <span> {comentario}</span>
+      <div className="pasajeros">
+        Pasajeros a bordo ({numeroPasajeros}): <span> {pasajeros}</span>
       </div>
     </div>
   );
 }
 
-export default Passenger;
+export default RideInfo;

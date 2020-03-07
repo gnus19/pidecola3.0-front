@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg";
 import usercar from "assets/images/user-car.png";
-import InputPC from "components/input-pc/InputPC";
-import ImgContainer from "components/user-img/ImgContainer";
+import InputPC from "components/inputPc/InputPC";
+import ImgContainer from "components/userImg/ImgContainer";
 
 class Profile extends Component {
   render() {
@@ -75,7 +75,7 @@ class Profile extends Component {
             ]}
           />
           <div className="SubSection-Add">
-            <NavLink to="/add_vehicle">
+            <NavLink to="/addVehicle">
               <div className="child1">
                 <p>Agregar Vehículo</p>
                 <div className="PlusButton">+</div>

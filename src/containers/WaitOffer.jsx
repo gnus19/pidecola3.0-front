@@ -1,9 +1,7 @@
 import React from "react";
-import Button from "../components/button/Button";
+import { NavLink } from "react-router-dom";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import Passenger from "../components/passenger/Passenger";
-import { NavLink } from "react-router-dom";
 
 function WaitOffer(props) {
   

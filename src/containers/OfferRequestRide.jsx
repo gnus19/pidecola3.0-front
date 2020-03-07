@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./OfferRequestRide.css";
-import CardButton from "../../components/cardButton/CardButton";
+import "../assets/css/OfferRequestRide.css";
+import CardButton from "../components/cardButton/CardButton";
 
 class OfferRequestRide extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class OfferRequestRide extends Component {
           <div className="OfferRequest">
             <CardButton
               className="RequestButton"
-              path="/aventon"
+              path="/ride"
               pideCola={false}
               title="Pedir cola"
               text="Solicita una cola para ir a la universidad o para salir de
@@ -27,7 +27,7 @@ class OfferRequestRide extends Component {
             />
             <CardButton
               className="OfferButton"
-              path="/aventon"
+              path="/ride"
               pideCola={true}
               title="Dar cola"
               text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
