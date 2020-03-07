@@ -22,13 +22,7 @@ function AvailablePassengers() {
             console.log("Clicked");
           }}
         />*/}
-        <NavLink
-          className="cancelarButton"
-          onClick={() => {
-            console.log("Clicked");
-          }}
-          to="/home"
-        >
+        <NavLink className="cancelarButton" to="/home">
           Cancelar
         </NavLink>
       </div>

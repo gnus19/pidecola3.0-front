@@ -1,0 +1,78 @@
+.grid-container-offer {
+  padding: 8px;
+  display: grid;
+  grid-template-areas:
+    "titulo titulo titulo titulo"
+    "foto nombre cohorte año"
+    "foto carrera ruta parada"
+    "foto numeroPasajeros listaPasajeros listaPasajeros";
+}
+
+.grid-container-offer > div {
+  background-color: rgba(#2196f3, 0.4);
+  text-align: center;
+  padding: 10px 0;
+}
+
+.foto {
+  grid-area: foto;
+  border-radius: 50%;
+  background-color: #dddbdb;
+  background-image: url("../../assets/images/user.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 117.97px;
+  height: 120px;
+  justify-self: center;
+}
+
+.titulo {
+  grid-area: titulo;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.nombre {
+  grid-area: nombre;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.carrera {
+  grid-area: carrera;
+  font-size: 16px;
+}
+
+.cohorte {
+  grid-area: cohorte;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.año {
+  grid-area: año;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #4caf50;
+}
+
+.ruta {
+  grid-area: ruta;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.parada {
+  grid-area: parada;
+  font-size: 16px;
+}
+
+.numeroPasajeros {
+  grid-area: numeroPasajeros;
+  font-size: 16px;
+  font-weight: bold;
+}

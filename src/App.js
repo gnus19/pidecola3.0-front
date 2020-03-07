@@ -16,6 +16,7 @@ import VehicleDetail from "containers/VehicleDetail";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 import WaitOffer from "./containers/WaitOffer";
+import AcceptOffer from "./containers/AcceptOffer";
 
 function App() {
   return (
@@ -43,15 +44,13 @@ function App() {
               path="/pasajeros"
               render={props => <AvailablePassengers {...props} />}
             />
-            <Route 
-              path="/espere" 
-              render={props => <WaitOffer {...props} />} />
-            <Route 
-              path="/profile" 
-              render={props => <Profile {...props} />} />
-            <Route 
-              path="/add_vehicle" 
-              render={props => <VehicleDetail {...props} />} />
+            <Route path="/espere" render={props => <WaitOffer {...props} />} />
+            <Route path="/offer" render={props => <AcceptOffer {...props} />} />
+            <Route path="/profile" render={props => <Profile {...props} />} />
+            <Route
+              path="/add_vehicle"
+              render={props => <VehicleDetail {...props} />}
+            />
           </Main>
         </Switch>
       </div>
