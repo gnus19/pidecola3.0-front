@@ -5,7 +5,8 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 import Passenger from "../components/passenger/Passenger";
 import { NavLink } from "react-router-dom";
 
-function WaitOffer() {
+function WaitOffer(props) {
+  
   return (
     <div className="container-fluid">
       <div className="sticky">
@@ -14,7 +15,7 @@ function WaitOffer() {
           Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
         </div>*/}
         <div className="cartaInfo">
-          <p>HACIA USB || BARUTA</p>
+          <p>{`${props.location.state.direction.toUpperCase()} USB || ${props.location.state.route.toUpperCase()}`}</p>
         </div>
         {/*<Button
           className="red"

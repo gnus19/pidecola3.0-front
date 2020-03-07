@@ -127,7 +127,11 @@ class RoutesList extends Component {
             BUSCAR
           </NavLink>
         ) : (
-          <NavLink className="WaitButton" to="/espere">
+          <NavLink className="WaitButton" to={{
+            pathname: "/espere",
+            state: {direction: this.state.direction, route: this.state.route}
+            }}
+          >
             SOLICITAR
           </NavLink>
         )}
