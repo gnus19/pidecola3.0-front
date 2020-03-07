@@ -1,49 +1,78 @@
-import React from "react";
-import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import "assets/css/AcceptOffer.css";
-import RideOffer from "../components/rideOffer/RideOffer";
-import "../components/rideOffer/RideOffer.css";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import "assets/css/AcceptOffer.css";
+import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
+import RideInfo from "../components/rideInfo/RideInfo";
+import "../components/rideInfo/RideInfo.css";
+import VehicleInfo from "../components/vehicleInfo/VehicleInfo";
+import "../components/vehicleInfo/VehicleInfo.css";
 
-function AcceptOffer() {
-  return (
-    <div className="container-fluid">
-      <div className="sticky">
-        <RecommendationBanner />
-        <NavLink
-          className="cancelarButton"
-          onClick={() => {
-            console.log("Clicked");
-          }}
-          to="/home"
-        >
-          Cancelar
-        </NavLink>
-      </div>
-      <div>
-        <RideOffer
-          nombre="André Corcuera"
-          carrera="Ingeniería en Computación"
-          año="12"
-          parada="Baruta"
-          numeroPasajeros="2"
-          listaPasajeros="Ángel Morante, Pedro Maldonado"
-        />
-      </div>
-      <div className="aceptarRechazar">
-        <NavLink to="/ride">
-          <div className="aceptarCola">
-            <p>Aceptar</p>
+class AcceptOffer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      accepted: false
+    };
+  }
+
+  changeState = () => {
+    this.setState({
+      accepted: true
+    });
+  };
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="sticky">
+          <RecommendationBanner />
+          <NavLink
+            className="cancelarButton"
+            onClick={() => {
+              console.log("Clicked");
+            }}
+            to="/home"
+          >
+            Cancelar
+          </NavLink>
+        </div>
+        <React.Fragment>
+          <RideInfo
+            nombre="André Corcuera"
+            cohorte="12"
+            carrera="Ingeniería en Computación"
+            ruta="Baruta"
+            numeroPasajeros="2"
+            pasajeros="Ángel Morante, Pedro Maldonado"
+          />
+        </React.Fragment>
+        {!this.state.accepted && (
+          <div className="aceptarRechazar">
+            <div onClick={this.changeState}>
+              <div className="aceptarCola">
+                <p>Aceptar</p>
+              </div>
+            </div>
+            <NavLink to="/waitOffer">
+              <div className="rechazarCola">
+                <p>Rechazar</p>
+              </div>
+            </NavLink>
           </div>
-        </NavLink>
-        <NavLink to="/espere">
-          <div className="rechazarCola">
-            <p>Rechazar</p>
-          </div>
-        </NavLink>
+        )}
+        {this.state.accepted && (
+          <React.Fragment>
+            <VehicleInfo
+              marca="Toyota"
+              modelo="Corolla"
+              color="Rojo"
+              placa="XXX-XXX"
+            ></VehicleInfo>
+          </React.Fragment>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default AcceptOffer;

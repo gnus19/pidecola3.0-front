@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "assets/css/VehicleDetail.css";
-// import VehicleDetailPicture from "assets/images/VehicleDetailPicture.jpg"
 import usercar from "assets/images/user-car.png";
-import InputPC from "components/input-pc/InputPC";
-import ImgContainer from "components/user-img/ImgContainer";
+import InputPC from "components/inputPc/InputPC";
+import ImgContainer from "components/userImg/ImgContainer";
 
 class VehicleDetail extends Component {
   render() {

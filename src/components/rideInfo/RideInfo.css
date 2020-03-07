@@ -2,16 +2,19 @@
   padding: 8px;
   display: grid;
   grid-template-areas:
-    "titulo titulo titulo titulo"
-    "foto nombre cohorte año"
-    "foto carrera ruta parada"
-    "foto numeroPasajeros listaPasajeros listaPasajeros";
+    "titulo titulo titulo"
+    "foto nombre cohorte"
+    "foto carrera ruta"
+    "foto pasajeros pasajeros";
 }
 
 .grid-container-offer > div {
   background-color: rgba(#2196f3, 0.4);
   text-align: center;
-  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
 }
 
 .foto {
@@ -40,39 +43,33 @@
   font-size: 18px;
 }
 
-.carrera {
-  grid-area: carrera;
-  font-size: 16px;
-}
-
 .cohorte {
   grid-area: cohorte;
-  font-style: normal;
-  font-weight: bold;
 }
 
-.año {
-  grid-area: año;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  color: #4caf50;
+.carrera {
+  grid-area: carrera;
 }
 
 .ruta {
   grid-area: ruta;
-  font-size: 16px;
+}
+
+.pasajeros {
+  grid-area: pasajeros;
+}
+
+.cohorte,
+.carrera,
+.ruta,
+.pasajeros {
+  font-size: normal;
   font-weight: bold;
 }
 
-.parada {
-  grid-area: parada;
-  font-size: 16px;
-}
-
-.numeroPasajeros {
-  grid-area: numeroPasajeros;
-  font-size: 16px;
-  font-weight: bold;
+.cohorte span,
+.carrera span,
+.ruta span,
+.pasajeros span {
+  font-weight: normal;
 }

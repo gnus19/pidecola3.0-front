@@ -22,15 +22,17 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-left: 250px;
-  padding-right: 250px;
   align-items: center;
+  cursor: pointer;
+  margin-top: 50px;
 }
 
 .aceptarCola {
   background: #4caf50;
+  margin-left: 150px;
 }
 
 .rechazarCola {
   background: #d32f2f;
+  margin-right: 150px;
 }

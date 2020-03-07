@@ -1,8 +1,8 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import logo from "assets/images/logo.png";
 import list from "assets/images/list.svg";
 import profilePicture from "assets/images/profilePicture.jpg";
-import { NavLink } from "react-router-dom";
 
 const openNav = () => {
   document.getElementById("Sidebar").style.width = "50%";
@@ -10,7 +10,8 @@ const openNav = () => {
 
 const closeNav = () => {
   if (window.screen.width < 768) {
-  document.getElementById("Sidebar").style.width = "0";}
+    document.getElementById("Sidebar").style.width = "0";
+  }
 };
 
 const changeColor = id => {
@@ -45,11 +46,12 @@ const Main = ({ children }) => (
           </button>
         </div>
         <div className="TopLogo">
-          <NavLink to="/home" onClick={() => {
-                  
-                  changeColor("homeOptions");
-                
-                }}>
+          <NavLink
+            to="/home"
+            onClick={() => {
+              changeColor("homeOptions");
+            }}
+          >
             <img className="HomeLogo" src={logo} alt="HomeLogo" />
           </NavLink>
         </div>
@@ -77,9 +79,7 @@ const Main = ({ children }) => (
               <NavLink
                 to="/home"
                 onClick={() => {
-                  
                   changeColor("homeOptions");
-                
                 }}
               >
                 <li className="Options" id="homeOptions">
@@ -90,9 +90,7 @@ const Main = ({ children }) => (
               <NavLink
                 to="/profile"
                 onClick={() => {
-                  
                   changeColor("profileOptions");
-                
                 }}
               >
                 <li className="Options" id="profileOptions">
@@ -103,9 +101,7 @@ const Main = ({ children }) => (
               <NavLink
                 to="/help"
                 onClick={() => {
-                  
                   changeColor("helpOptions");
-                
                 }}
               >
                 <li className="Options" id="helpOptions">

@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-// import Alert from 'react-bootstrap/Alert'
-// import Button from 'react-bootstrap/Button'
-
-import { Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { requestRide } from "services/requestRideService";
 import "../assets/css/RoutesList.css";
 import DropDownList from "../components/dropDownList/DropDownList";
-import InputPC from "../components/input-pc/InputPC";
+import InputPC from "../components/inputPc/InputPC";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import { requestRide } from "services/requestRideService";
 
 class RoutesList extends Component {
   constructor(props) {
@@ -58,7 +55,7 @@ class RoutesList extends Component {
       .then(response => {
         console.log("Response: ", response);
         if (response.status) {
-          this.props.history.push({ pathname: "/pasajeros" });
+          this.props.history.push({ pathname: "/passengers" });
         } else {
           console.log("ERROR");
         }
@@ -96,13 +93,12 @@ class RoutesList extends Component {
                 id="direction"
                 onChange={this.handleChange}
               ></DropDownList>
-            </div> 
-              <DropDownList
-                htmlFor="route"
-                id="route"
-                onChange={this.handleChange}
-              ></DropDownList>
-            
+            </div>
+            <DropDownList
+              htmlFor="route"
+              id="route"
+              onChange={this.handleChange}
+            ></DropDownList>
           </div>
           {!this.props.location.state.pideCola && (
             <div className="Comentarios" id="comment">
@@ -121,13 +117,13 @@ class RoutesList extends Component {
         {this.props.location.state.pideCola ? (
           <NavLink
             className="SearchButton"
-            to="/pasajeros"
+            to="/passengers"
             onClick={this.sendRequest}
           >
             BUSCAR
           </NavLink>
         ) : (
-          <NavLink className="WaitButton" to="/espere">
+          <NavLink className="WaitButton" to="/waitOffer">
             SOLICITAR
           </NavLink>
         )}

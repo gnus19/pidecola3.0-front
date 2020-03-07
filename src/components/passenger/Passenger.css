@@ -1,0 +1,120 @@
+.grid-container {
+  padding: 8px;
+  display: grid;
+  grid-template-areas:
+    "foto nombre cohorte"
+    "foto carrera ruta"
+    "foto comentario comentario";
+}
+
+.grid-container > div {
+  background-color: rgba(#2196f3, 0.4);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+.foto {
+  grid-area: foto;
+  border-radius: 50%;
+  background-color: #dddbdb;
+  background-image: url("../../assets/images/user.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 117.97px;
+  height: 120px;
+  justify-self: center;
+}
+
+.nombre {
+  grid-area: nombre;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cohorte {
+  grid-area: cohorte;
+}
+
+.carrera {
+  grid-area: carrera;
+}
+
+.ruta {
+  grid-area: ruta;
+}
+
+.comentario {
+  grid-area: comentario;
+}
+
+.cohorte,
+.carrera,
+.ruta,
+.comentario {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.cohorte span,
+.carrera span,
+.ruta span,
+.comentario span {
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    padding: 8px;
+    display: grid;
+    grid-template-areas:
+      "foto nombre cohorte año"
+      "foto carrera ruta parada"
+      "foto comentario inputComentario inputComentario";
+  }
+
+  .grid-container > div {
+    background-color: rgba(#2196f3, 0.4);
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .foto {
+    width: 55px;
+    height: 56px;
+    margin-top: 25%;
+  }
+
+  .nombre,
+  .carrera {
+    font-size: 12px;
+  }
+
+  .cohorte,
+  .año,
+  .ruta,
+  .parada,
+  .comentario,
+  .inputComentario {
+    font-size: 10px;
+  }
+}
+
+@media (width: 320px) and (height: 568px) {
+  .foto {
+    margin-top: 50%;
+  }
+}
+
+/*iPad*/
+@media (width: 768px) and (height: 1024px) {
+  .foto {
+    width: 80px;
+    height: 80px;
+    margin-top: 5%;
+  }
+}
