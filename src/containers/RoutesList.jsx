@@ -9,7 +9,7 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 class RoutesList extends Component {
   constructor(props) {
     super(props);
-    console.log("Pide Cola: " + this.props.location.state);
+    console.log("Pide Cola: " + this.props.location.state.pideCola);
 
     this.state = {
       user: "12-00000@usb.ve",
@@ -49,13 +49,13 @@ class RoutesList extends Component {
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
       comment: this.state.comment
     };
-    console.log(requestBody);
+    console.log("send request body: ", requestBody);
     requestRide(requestBody)
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
         if (response.status) {
-          this.props.history.push({ pathname: "/passengers" });
+          this.props.history.push({ pathname: "/waitOffer", state: {direction: this.state.direction, route: this.state.route} });
         } else {
           console.log("ERROR");
         }
@@ -64,6 +64,11 @@ class RoutesList extends Component {
         console.log("Catch", error);
       });
   };
+
+  searchPassengers = event => {
+    event.preventDefault();
+
+  }
 
   render() {
     return (
@@ -77,7 +82,7 @@ class RoutesList extends Component {
             Pide Cola USB te recuerda no utilizar tu telefono celular al
             conducir.
     </div>*/}
-          {this.props.location.state.pideCola && (
+          { !this.props.location.state.pideCola && (
             <div className="carta">
               <DropDownList
                 htmlFor="vehicle"
@@ -100,7 +105,7 @@ class RoutesList extends Component {
               onChange={this.handleChange}
             ></DropDownList>
           </div>
-          {!this.props.location.state.pideCola && (
+          { this.props.location.state.pideCola && (
             <div className="Comentarios" id="comment">
               <InputPC
                 fields={[
@@ -114,19 +119,19 @@ class RoutesList extends Component {
             </div>
           )}
         </React.Fragment>
-        {this.props.location.state.pideCola ? (
+        { !this.props.location.state.pideCola ? (
           <NavLink
             className="SearchButton"
-            to="/passengers"
-            onClick={this.sendRequest}
+            to={{ pathname: "/passengers", state: {direction: this.state.direction, route: this.state.route, vehicle: this.state.vehicle} }}
+            // onClick={this.searchPassengers}
           >
             BUSCAR
           </NavLink>
         ) : (
           <NavLink className="WaitButton" to={{
-            pathname: "/espere",
-            state: {direction: this.state.direction, route: this.state.route}
-            }}
+            pathname: "/waitOffer",
+            state: {direction: this.state.direction, route: this.state.route} }}
+            onClick={this.sendRequest}
           >
             SOLICITAR
           </NavLink>

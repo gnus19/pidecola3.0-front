@@ -20,7 +20,7 @@ class OfferRequestRide extends Component {
             <CardButton
               className="RequestButton"
               path="/ride"
-              pideCola={false}
+              pideCola={true}
               title="Pedir cola"
               text="Solicita una cola para ir a la universidad o para salir de
               ella"
@@ -28,7 +28,7 @@ class OfferRequestRide extends Component {
             <CardButton
               className="OfferButton"
               path="/ride"
-              pideCola={true}
+              pideCola={false}
               title="Dar cola"
               text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
             />
