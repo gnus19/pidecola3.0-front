@@ -14,18 +14,20 @@ class RoutesList extends Component {
     this.state = {
       user: "12-00000@usb.ve",
       direction: "",
-      route: ""
+      route: "",
+      vehicle: ""
     };
   }
 
   componentDidMount() {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
-    const comment = document.getElementById("comment");
+    const vehvile = document.getElementById("vehicle");
     console.log(`${route.value} - ${direction.value}`);
     this.setState({
       direction: direction.value,
-      route: route.value
+      route: route.value,
+      vehicle: vehvile.value
     });
   }
 
