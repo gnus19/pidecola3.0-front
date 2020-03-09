@@ -22,12 +22,12 @@ class RoutesList extends Component {
   componentDidMount() {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
-    const vehvile = document.getElementById("vehicle");
+    const vehicle = !this.props.location.state.pideCola ? document.getElementById("vehicle"): '';
     console.log(`${route.value} - ${direction.value}`);
     this.setState({
       direction: direction.value,
       route: route.value,
-      vehicle: vehvile.value
+      vehicle: !this.props.location.state.pideCola ? vehicle.value : ''
     });
   }
 
