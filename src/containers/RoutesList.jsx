@@ -15,7 +15,8 @@ class RoutesList extends Component {
       user: "12-00000@usb.ve",
       direction: "",
       route: "",
-      vehicle: ""
+      vehicle: "",
+      comment: ""
     };
   }
 
@@ -23,11 +24,15 @@ class RoutesList extends Component {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
     const vehicle = !this.props.location.state.pideCola ? document.getElementById("vehicle"): '';
-    console.log(`${route.value} - ${direction.value}`);
+    const comment = !this.props.location.state.pideCola ? document.getElementById("comment"): '';
+    console.log("Comment: ", comment);
+    
+    console.log(`${route.value} - ${direction.value} - ${comment.value}`);
     this.setState({
       direction: direction.value,
       route: route.value,
-      vehicle: !this.props.location.state.pideCola ? vehicle.value : ''
+      vehicle: !this.props.location.state.pideCola ? vehicle.value : '',
+      comment: !this.props.location.state.pideCola ? comment.value : ''
     });
   }
 
@@ -41,9 +46,9 @@ class RoutesList extends Component {
 
   sendRequest = event => {
     event.preventDefault();
-    const direction = document.getElementById("direction");
-    const route = document.getElementById("route");
-
+    const comment = document.getElementById("comment");
+    console.log("request: ", comment.value);
+    
     const requestBody = {
       user: this.state.user,
       start_location:
@@ -108,13 +113,13 @@ class RoutesList extends Component {
             ></DropDownList>
           </div>
           { this.props.location.state.pideCola && (
-            <div className="Comentarios" id="comment">
+            <div className="Comentarios">
               <InputPC
                 fields={[
                   {
                     type: "input",
                     label: "Comentarios",
-                    attrs: {}
+                    attrs: {id: 'comment', onChange: this.handleChange}
                   }
                 ]}
               />
