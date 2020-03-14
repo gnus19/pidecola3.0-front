@@ -1,0 +1,44 @@
+.Inputs-PC {
+  box-shadow: 0px 2px 4px #888888;
+  border-radius: 5px;
+  position: relative;
+  background: #fff;
+}
+
+.Inputs-PC div {
+  border-bottom: 1px groove rgba(136, 136, 136, 0.2);
+}
+
+.Inputs-PC label {
+  margin: 0;
+  width: 25%;
+  padding: 8px;
+}
+
+.Inputs-PC select {
+  width: 75%;
+  padding: 8px;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  background-color: transparent;
+  border: 0;
+}
+
+.Inputs-PC input {
+  color: #000;
+  width: 75%;
+  padding: 8px;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  background-color: transparent;
+  border: 0;
+}
+
+@media (max-width: 425px) {
+  .Inputs-PC label,
+  .Inputs-PC input {
+    height: 30px;
+  }
+}

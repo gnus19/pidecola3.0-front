@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "assets/css/HomePage.css";
-import OfferRequestRide from "./offer-request-ride/OfferRequestRide";
+import OfferRequestRide from "./OfferRequestRide";
 
 class HomePage extends Component {
   render() {
-    return (
-      <OfferRequestRide {...this.props}/>
-    );
+    return <OfferRequestRide {...this.props} />;
   }
 }
 

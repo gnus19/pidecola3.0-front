@@ -1,12 +1,6 @@
-import React from 'react'
+import React from "react";
+import "./ImputSign.css";
 
-import './ImputSign.css'
+const InputSign = props => <input className={"InputSign"} {...props} />;
 
-const InputSign = (props) => (
-  <input
-    className={"InputSign"}
-    {...props}
-  />
-)
-
-export default InputSign
+export default InputSign;

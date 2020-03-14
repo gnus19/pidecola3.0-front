@@ -84,8 +84,8 @@
 }
 
 .Options:hover {
-  background: #ffd302;
-  color: #000;
+  background: #ffd302 !important;
+  color: #000 !important;
 }
 
 .Options span {
@@ -100,6 +100,7 @@
 .Main {
   width: 80%;
   align-content: center;
+  background-color: #ebebeb;
 }
 
 @media (max-width: 1440px) {
