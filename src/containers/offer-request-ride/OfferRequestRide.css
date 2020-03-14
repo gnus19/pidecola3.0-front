@@ -1,0 +1,185 @@
+.OfferRequestRide {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Recommendations {
+  height: 25%;
+  background-color: #e5e5e5;
+  justify-content: center;
+}
+
+.OfferRequest {
+  height: 100%;
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RequestButton,
+.OfferButton {
+  border-radius: 5px 5px 5px 5px;
+  height: 50%;
+  width: 40%;
+  align-items: center;
+  padding: 0cm;
+  margin: 20px 30px;
+  border: none;
+}
+
+.TopButton {
+  height: 25%;
+  width: cover;
+  background: #171956;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px 5px 0 0;
+}
+
+.TopComment,
+.Comment {
+  font-size: 140%;
+  margin: 5%;
+  text-align: center;
+  color: white;
+}
+
+.ImageRequestButton {
+  height: 75%;
+  width: cover;
+  background: url("../../assets/images/autostop.jpg");
+  background-size: cover;
+  border-radius: 0 0 5px 5px;
+}
+
+.ImageOfferButton {
+  height: 75%;
+  width: 100%;
+  background: url("../../assets/images/rider.jpg");
+  background-size: cover;
+  border-radius: 0 0 5px 5px;
+}
+
+.OverButton {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9051995798319328) 0%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  align-items: center;
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 75%;
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 36%;
+    width: 89%;
+    background: white;
+  }
+
+  .TopButton {
+    height: 25%;
+    width: cover;
+    background: #171956;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .TopComment {
+    font-weight: bold;
+    font-size: 105%;
+    margin-left: 5%;
+    text-align: center;
+    color: white;
+  }
+
+  .ImageRequestButton,
+  .ImageOfferButton,
+  .OverButton {
+    background: white;
+    border-radius: 0 0 5px 5px;
+  }
+
+  .OverButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Comment {
+    font-weight: bold;
+    font-size: 105%;
+    margin: 5%;
+    text-align: center;
+    color: black;
+  }
+}
+
+/*iPad*/
+@media (width: 768px) and (height: 1024px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Comment {
+    font-weight: bold;
+    font-size: 200%;
+    margin: 5%;
+    text-align: center;
+    color: black;
+  }
+}
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 1366px) {
+  .OfferRequest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RequestButton,
+  .OfferButton {
+    height: 43%;
+    width: 50%;
+  }
+}

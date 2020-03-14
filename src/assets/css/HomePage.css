@@ -1,6 +1,3 @@
-.App{
-  font-family: 'Roboto', sans-serif;
-}
 .HomePage {
   height: 100%;
   width: 100%;
@@ -8,14 +5,13 @@
   text-align: center;
 }
 
-#Content-Prin{
-   height: 100%;
+#Content-Prin {
+  height: 100%;
 }
 
-
-#Content-Sec{
+#Content-Sec {
   display: flex;
-  height: auto;
+  height: 83%;
 }
 
 .Top {
@@ -40,7 +36,7 @@
 
 .HomeLogo {
   margin-top: 0.5%;
-  height: 60px;
+  height: 90%;
 }
 
 .Conten-Sec {
@@ -85,7 +81,6 @@
   color: #fff;
   cursor: pointer;
   padding: 10px 0;
-  align-items: center;
 }
 
 .Options:hover {
@@ -93,32 +88,30 @@
   color: #000;
 }
 
-.Options span{
-  margin: 0 20px; 
+.Options span {
+  margin: 0 20px;
 }
 
-.Options i{
+.Options i {
   font-size: 25px;
-}
-
-a:hover{
-  text-decoration: none;
+  line-height: inherit;
 }
 
 .Main {
   width: 80%;
   align-content: center;
-  background: #F8F8F8;
 }
 
 @media (max-width: 1440px) {
   .Top {
     height: 10%;
   }
+  #Content-Sec {
+    height: 90%;
+  }
 }
 
 @media (max-width: 768px) {
-
   .Top {
     display: flex;
     flex-direction: row;
@@ -127,7 +120,9 @@ a:hover{
     align-items: center;
     height: 12%;
   }
-
+  #Content-Sec {
+    height: 88%;
+  }
   .TopOption {
     width: 20%;
     height: 100%;

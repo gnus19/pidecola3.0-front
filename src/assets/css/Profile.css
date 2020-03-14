@@ -1,0 +1,84 @@
+.Profile{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.Section-Profile-Left, .Section-Profile-Rigth{
+    height: 100%;
+}
+
+.Section-Profile-Left{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Section-Profile-Rigth{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px 0 20px;
+}
+
+.Section-Profile-Rigth .Inputs-PC{
+    margin: 20px 0;
+} 
+
+.SubSection-Add {
+    height: auto;
+}
+
+.SubSection-Add a{
+    text-decoration: none;
+    color: #000;
+}
+
+.SubSection-Add .child1{
+    width: 15%;
+}
+
+.SubSection-Add p{
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.PlusButton{
+    background: #fff;
+    height: 100px;
+    box-shadow: 0px 2px 4px #888888;
+    border-radius: 5px 5px 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.Section-Profile-Left .child1{
+    width: 226px;
+    height: 226px;
+    margin-top: 5vh;
+}
+
+.Section-Profile-Left .child2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.ContentCar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 ;
+}
+
+.ContentCar p{
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}

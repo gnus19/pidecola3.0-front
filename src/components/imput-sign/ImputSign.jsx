@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
 import './ImputSign.css'
 
-const InputSign = ({className, placeholder}) => (
-    <input 
-      className={className}
-      placeholder={placeholder} 
-    />
+const InputSign = (props) => (
+  <input
+    className={"InputSign"}
+    {...props}
+  />
 )
 
-export default InputSign;
+export default InputSign
