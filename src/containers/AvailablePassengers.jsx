@@ -1,85 +1,67 @@
-import React from "react";
-import Button from "../components/button/Button";
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import { getWaitingList } from "services/requestRideService";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
-import { NavLink } from "react-router-dom";
+import "../components/passenger/Passenger.css";
 
-function AvailablePassengers() {
-  return (
-    <div className="container-fluid">
-      <div className="sticky">
-        <RecommendationBanner />
-        {/*<div className="pidecola-message" text="">
+class AvailablePassengers extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+
+  componentDidMount() {
+    console.log(`${this.props.location.state.direction} - ${this.props.location.state.route}`);
+    getWaitingList({destination: this.props.location.state.route})
+    .then(res => res.json())
+    .then(
+      response => {
+        console.log('Response', response);
+      }
+    )
+    
+  }
+  
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="sticky">
+          <RecommendationBanner />
+          {/*<div className="pidecola-message" text="">
           Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
         </div>*/}
-        <div className="carta">
-          <p>
-            AVEO-GRIS-AB000WY || <br />
-            BARUTA
-          </p>
-        </div>
-        {/*<Button
+          <div className="cartaInfo">
+            <p>{`${this.props.location.state.vehicle} || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
+          </div>
+          {/*<Button
           className="red"
           text="Cancelar"
           onClick={() => {
             console.log("Clicked");
           }}
         />*/}
-        <NavLink
-          className="cancelarButton"
-          onClick={() => {
-            console.log("Clicked");
-          }}
-          to="/home"
-        >
-          Cancelar
-        </NavLink>
+          <NavLink className="cancelarButton" to="/home">
+            Cancelar
+          </NavLink>
+        </div>
+        <div className="listaPasajeros">
+          <Passenger
+            nombre="André Corcuera"
+            carrera="Ingeniería en Computación"
+            cohorte="12"
+            ruta="Baruta"
+            comentario="Realmente voy a Las Mercedes"
+          />
+        </div>
       </div>
-      <div className="listaPasajeros">
-        <Passenger
-          nombre="André Corcuera"
-          carrera="Ingeniería en Computación"
-          año="12"
-          parada="Baruta"
-          inputComentario="Realmente voy a Las Mercedes"
-        />
-        {/*<div className="carta grid-container">
-          <div className="carnet">12-12345</div>
-          <div className="foto"></div>
-          <div className="nombre">
-            Andre Corcuera <br /> Ing. computacion{" "}
-          </div>
-          <div className="ruta">
-            Baruta-chacaito <br /> Me dirijo: Rosal{" "}
-          </div>
-          <div className="comentario">Comentario</div>
-        </div>
-        <div className="carta grid-container">
-        <div className="carnet">12-12345</div>
-        <div className="foto"></div>
-        <div className="nombre">
-          Andre Corcuera <br /> Ing. computacion{" "}
-        </div>
-        <div className="ruta">
-          Baruta-chacaito <br /> Me dirijo: Rosal{" "}
-        </div>
-        <div className="comentario">Comentario</div>
-      </div>
-      <div className="carta grid-container">
-        <div className="carnet">12-12345</div>
-        <div className="foto"></div>
-        <div className="nombre">
-          Andre Corcuera <br /> Ing. computacion{" "}
-        </div>
-        <div className="ruta">
-          Baruta-chacaito <br /> Me dirijo: Rosal{" "}
-        </div>
-        <div className="comentario">Comentario</div>
-        </div>*/}
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default AvailablePassengers;

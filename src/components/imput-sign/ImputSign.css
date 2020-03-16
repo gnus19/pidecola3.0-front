@@ -41,8 +41,15 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .InputSign {
-    width: 300px;
+    width: 250px;
+  }
+}
+
+/*iPad Pro*/
+@media (width: 1024px) and (height: 768px) {
+  .InputSign {
+    width: 350px;
   }
 }

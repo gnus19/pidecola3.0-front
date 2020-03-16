@@ -49,7 +49,7 @@
 
 .responseError {
   color: white;
-  background-color: #FF5252;
+  background-color: #ff5252;
   padding: 8px;
   border-radius: 5px;
   font-weight: 500;
@@ -137,7 +137,7 @@
 
 @media (max-width: 400px) {
   .FormRegister .Form {
-    margin-top: 100px;
+    margin-top: 50px;
   }
   .Container-Img {
     margin-top: 20px;

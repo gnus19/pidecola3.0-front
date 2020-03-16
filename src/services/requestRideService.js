@@ -7,4 +7,14 @@ export function requestRide (req) {
 		}
 	})
 }
+
+export function getWaitingList (req) {
+	return fetch( '/requests/passengers',{
+		method: 'POST',
+		body: JSON.stringify(req),
+		headers:{
+			'Content-Type': 'application/json'
+		}
+	})
+}
   

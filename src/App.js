@@ -14,6 +14,8 @@ import Profile from "containers/Profile";
 import VehicleDetail from "containers/VehicleDetail";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
+import WaitOffer from "./containers/WaitOffer";
+import AcceptOffer from "./containers/AcceptOffer";
 
 const tokenRequired = (Component, props) => {
   const token = localStorage.getItem('tkauth')
@@ -44,12 +46,12 @@ function App() {
               render={props => tokenRequired(HomePage, props)}  
             />
             <Route
-              path="/aventon"
+              path="/ride"
               render={props => tokenRequired(RoutesList, props)}  
             />}
             />
             <Route
-              path="/pasajeros"
+              path="/passengers"
               render={props => tokenRequired(AvailablePassengers, props)}  
             />}
             />
@@ -57,10 +59,18 @@ function App() {
               path="/profile" 
               render={props => tokenRequired(Profile, props)}  
             />
-            <Route 
-              path="/add_vehicle" 
-              render={props => tokenRequired(VehicleDetail, props)}  
+            <Route
+              path="/addVehicle"
+              render={props => tokenRequired(VehicleDetail, props)}
             />
+            <Route
+              path="/waitOffer"
+              render={props => tokenRequired(WaitOffer, props)}  
+              />
+            <Route 
+              path="/offer" 
+              render={props => tokenRequired(AcceptOffer, props)}
+              />
           </Main>
         </Switch>
       </div>
