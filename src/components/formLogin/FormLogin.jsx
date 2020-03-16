@@ -54,16 +54,17 @@ class FormLogin extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = () => {
     const isValid = this.validate();
     if (isValid) {
       this.setState(initialState);
     }
+    return isValid
   };
 
   handleLogin = event => {
     event.preventDefault();
+    if(!this.handleSubmit()) return
     const target = event.target;
     target.disabled = true;
     target.innerText = "Espere...";
@@ -75,8 +76,8 @@ class FormLogin extends Component {
           localStorage.setItem("tkauth", response.data[0].tkauth);
           this.props.history.push({ pathname: "/home" });
         } else {
-          target.disabled = false;
-          target.innerText = "Registrate";
+          target.disabled = false
+          target.innerText = "Iniciar Sesión"
         }
       })
       .catch(error => {
@@ -91,7 +92,7 @@ class FormLogin extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="Logo" />
         </div>
-        <form className="Form" onSubmit={this.handleSubmit}>
+        <form className="Form">
           <InputSign
             placeholder="Correo"
             type="text"

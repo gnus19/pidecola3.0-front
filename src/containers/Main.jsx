@@ -36,6 +36,10 @@ const changeColor = id => {
   }
 };
 
+const removeLocalStorage = () => {
+  localStorage.removeItem("tkauth")
+}
+
 const Main = ({ children }) => (
   <div className="HomePage">
     <div id="Content-Prin">
@@ -107,6 +111,17 @@ const Main = ({ children }) => (
                 <li className="Options" id="helpOptions">
                   <i className="material-icons">help</i>
                   <span>Ayuda</span>
+                </li>
+              </NavLink>
+              <NavLink
+                to="/login"
+                onClick={() => {
+                  removeLocalStorage("helpOptions");
+                }}
+              >
+                <li className="Options" id="helpOptions">
+                  <i className="material-icons">exit_to_app</i>
+                  <span>Salir</span>
                 </li>
               </NavLink>
             </ul>

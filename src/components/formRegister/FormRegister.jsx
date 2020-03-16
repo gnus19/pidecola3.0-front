@@ -24,7 +24,7 @@ const initialState = {
   passwordConfirmationError: "",
   codeError: "",
   responseError: "",
-  validEmail: true
+  validEmail: false
 };
 
 class FormRegister extends Component {
@@ -63,7 +63,9 @@ class FormRegister extends Component {
   handleRegister = event => {
     event.preventDefault();
     // const isValid = this.validate();
-
+    this.setState({
+      responseError: ''
+    });
     const target = event.target;
     target.disabled = true;
     target.innerText = "Espere...";
@@ -86,7 +88,14 @@ class FormRegister extends Component {
             responseError: response.message
           });
         }
-      });
+      })
+      .catch( err => {
+          target.disabled = false;
+          target.innerText = "Registrate";
+          this.setState({
+            responseError: 'Perdon, ocurrio un error.'
+          });
+      })
   };
 
   validate = () => {
@@ -168,7 +177,7 @@ class FormRegister extends Component {
                 placeholder="Codigo"
                 onChange={this.handleChange}
               />
-              <div style={{ color: "red", fontWeight: "bold" }}>
+              <div style={{ color: "red", fontWeight: "bold", textAlign: "center", margin: '5px'}}>
                 {this.state.codeError}
               </div>
               <Button

@@ -21,7 +21,7 @@ export function loginUser (req) {
 }
 
 export function sendCode (req) {
-  return fetch( '/code',{
+  return fetch( 'users/code',{
     method: 'POST',
     body: JSON.stringify(req),
     headers:{
