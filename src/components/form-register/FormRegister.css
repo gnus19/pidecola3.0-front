@@ -83,6 +83,15 @@
   margin-right: 22px;
 }
 
+.Msg-Valid{
+  font-size: 17px;
+  width: 30vw;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 1366px) {
   .FormRegister {
     width: 40%;

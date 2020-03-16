@@ -19,3 +19,14 @@ export function loginUser (req) {
     }
   })
 }
+
+export function sendCode (req) {
+  return fetch( '/code',{
+    method: 'POST',
+    body: JSON.stringify(req),
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(req.email + ':' + req.password)
+    }
+  })
+}

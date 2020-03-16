@@ -7,7 +7,7 @@ import Button from "components/button/Button";
 import logo from "assets/images/logo.png";
 
 //Services
-import { createUser } from "services/userServices";
+import { createUser, sendCode } from "services/userServices";
 
 //Assets
 import "./FormRegister.css";
@@ -22,7 +22,9 @@ const initialState = {
   phoneNumberError: "",
   passwordError: "",
   passwordConfirmationError: "",
-  responseError: ""
+  codeError: "",
+  responseError: "",
+  validEmail: true
 };
 
 class FormRegister extends Component {
@@ -35,6 +37,28 @@ class FormRegister extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+
+  handleValidRegister = event => {
+    event.preventDefault();
+    this.setState({codeError: ''})
+    const target = event.target
+    target.disabled = true
+    target.innerText = "Espere..."
+    if(!this.state.code) return this.setState({codeError: 'Debe introducir el codigo de seguridad'})
+
+    sendCode({code: this.state.code, email: this.state.email})
+    .then(res => res.json())
+      .then(response => {
+        if (response.status && response.data[0]) {
+          localStorage.setItem("tkauth", response.data[0].tkauth);
+          this.props.history.push({ pathname: "/home" });
+        } else {
+          target.disabled = false
+          target.innerText = "Registrate"
+          return this.setState({codeError: response.message})
+        }
+      });
+  }
 
   handleRegister = event => {
     event.preventDefault();
@@ -52,7 +76,9 @@ class FormRegister extends Component {
         console.log(response);
 
         if (response.status) {
-          this.props.history.push({ pathname: "/login" });
+          this.setState({
+            validEmail: true,
+          });
         } else {
           target.disabled = false;
           target.innerText = "Registrate";
@@ -132,49 +158,70 @@ class FormRegister extends Component {
         {this.state.responseError !== "" && (
           <div className="responseError">{this.state.responseError}</div>
         )}
-        <form className="Form">
-          <InputSign
-            name={"email"}
-            type="text"
-            placeholder="Correo"
-            onChange={this.handleChange}
-          />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.emailError}
-          </div>
-          <InputSign
-            name={"phoneNumber"}
-            type="text"
-            placeholder="Teléfono"
-            onChange={this.handleChange}
-          />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.phoneNumberError}
-          </div>
-          <InputSign
-            name={"password"}
-            type="password"
-            placeholder="Contraseña"
-            onChange={this.handleChange}
-          />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.passwordError}
-          </div>
-          <InputSign
-            name={"passwordConfirmation"}
-            type="password"
-            placeholder="Confirmar Contraseña"
-            onChange={this.handleChange}
-          />
-          <div style={{ color: "red", fontWeight: "bold" }}>
-            {this.state.passwordConfirmationError}
-          </div>
-          <Button
-            className={this.state.isMobile ? "blue" : "yellow"}
-            text="Regístrate"
-            onClick={event => this.handleRegister(event)}
-          />
-        </form>
+          {
+            this.state.validEmail ? 
+            <form className="Form">
+              <p className="Msg-Valid">Para completar el registro fue enviado un correo electronico a: {this.state.email} con un codigo de seguridad que debes ingresar aqui: </p>
+              <InputSign
+                name={"code"}
+                type="number"
+                placeholder="Codigo"
+                onChange={this.handleChange}
+              />
+              <div style={{ color: "red", fontWeight: "bold" }}>
+                {this.state.codeError}
+              </div>
+              <Button
+                className={this.state.isMobile ? "blue" : "yellow"}
+                text="Verificar"
+                onClick={event => this.handleValidRegister(event)}
+              />
+            </form>
+            :
+            <form className="Form">
+              <InputSign
+                name={"email"}
+                type="text"
+                placeholder="Correo"
+                onChange={this.handleChange}
+              />
+              <div style={{ color: "red", fontWeight: "bold" }}>
+                {this.state.emailError}
+              </div>
+              <InputSign
+                name={"phoneNumber"}
+                type="text"
+                placeholder="Teléfono"
+                onChange={this.handleChange}
+              />
+              <div style={{ color: "red", fontWeight: "bold" }}>
+                {this.state.phoneNumberError}
+              </div>
+              <InputSign
+                name={"password"}
+                type="password"
+                placeholder="Contraseña"
+                onChange={this.handleChange}
+              />
+              <div style={{ color: "red", fontWeight: "bold" }}>
+                {this.state.passwordError}
+              </div>
+              <InputSign
+                name={"passwordConfirmation"}
+                type="password"
+                placeholder="Confirmar Contraseña"
+                onChange={this.handleChange}
+              />
+              <div style={{ color: "red", fontWeight: "bold" }}>
+                {this.state.passwordConfirmationError}
+              </div>
+              <Button
+                className={this.state.isMobile ? "blue" : "yellow"}
+                text="Regístrate"
+                onClick={event => this.handleRegister(event)}
+              />
+            </form>
+          }
         <div className="msg-footer">
           <p>
             ¿Ya tienes una cuenta?{" "}

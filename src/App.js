@@ -4,7 +4,6 @@ import {
   Route,
   Switch,
   Redirect,
-  NavLink
 } from "react-router-dom";
 
 import "assets/css/App.css";
@@ -16,7 +15,14 @@ import VehicleDetail from "containers/VehicleDetail";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 
+const tokenRequired = (Component, props) => {
+  const token = localStorage.getItem('tkauth')
+  if(!token) return <Redirect to="/login" />
+  return <Component {...props}/>
+}
+
 function App() {
+
   return (
     <Router>
       <div className="App">
@@ -33,21 +39,28 @@ function App() {
           />
           <Redirect exact from="/" to="/login" />
           <Main>
-            <Route path="/home" render={props => <HomePage {...props} />} />
+            <Route 
+              path="/home" 
+              render={props => tokenRequired(HomePage, props)}  
+            />
             <Route
               path="/aventon"
-              render={props => <RoutesList {...props} />}
+              render={props => tokenRequired(RoutesList, props)}  
+            />}
             />
             <Route
               path="/pasajeros"
-              render={props => <AvailablePassengers {...props} />}
+              render={props => tokenRequired(AvailablePassengers, props)}  
+            />}
             />
             <Route 
               path="/profile" 
-              render={props => <Profile {...props} />} />
+              render={props => tokenRequired(Profile, props)}  
+            />
             <Route 
               path="/add_vehicle" 
-              render={props => <VehicleDetail {...props} />} />
+              render={props => tokenRequired(VehicleDetail, props)}  
+            />
           </Main>
         </Switch>
       </div>
