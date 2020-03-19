@@ -25,14 +25,12 @@ class RoutesList extends Component {
     const route = document.getElementById("route");
     const vehicle = !this.props.location.state.pideCola ? document.getElementById("vehicle"): '';
     const comment = !this.props.location.state.pideCola ? document.getElementById("comment"): '';
-    console.log("Comment: ", comment);
     
-    console.log(`${route.value} - ${direction.value} - ${comment.value}`);
     this.setState({
       direction: direction.value,
       route: route.value,
       vehicle: !this.props.location.state.pideCola ? vehicle.value : '',
-      comment: !this.props.location.state.pideCola ? comment.value : ''
+      comment: this.props.location.state.pideCola ? comment.value : ''
     });
   }
 

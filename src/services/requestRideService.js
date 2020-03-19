@@ -9,7 +9,7 @@ export function requestRide (req) {
 }
 
 export function getWaitingList (req) {
-	return fetch( '/requests/passengers',{
+	return fetch( '/recommend',{
 		method: 'POST',
 		body: JSON.stringify(req),
 		headers:{

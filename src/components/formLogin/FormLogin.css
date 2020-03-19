@@ -71,7 +71,10 @@
 .error-container {
   display: flex;
   height: auto;
-  margin-bottom: 8px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 .error {
   color: red;
