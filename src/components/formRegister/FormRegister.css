@@ -78,12 +78,17 @@
 
 .ErrorMessage {
   font-size: 12px;
+  font-weight: bold;
   color: red;
   text-align: right;
   margin-right: 22px;
 }
 
-.Msg-Valid{
+.ErrorMessage p {
+  margin-bottom: 5px;
+}
+
+.Msg-Valid {
   font-size: 17px;
   width: 30vw;
   justify-content: center;

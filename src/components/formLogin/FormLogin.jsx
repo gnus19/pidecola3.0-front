@@ -31,7 +31,7 @@ class FormLogin extends Component {
     let passwordError = "";
 
     if (this.state.email === "") {
-      emailError = "Introduzca una dirección de correo";
+      emailError = "Introduce una dirección de correo";
     } else if (!this.state.email.includes("@")) {
       emailError = "Dirección de correo inválida";
     } else if (this.state.email.split("@")[1] !== "usb.ve") {
@@ -39,7 +39,7 @@ class FormLogin extends Component {
     }
 
     if (this.state.password === "") {
-      passwordError = "Introduzca una contraseña";
+      passwordError = "Introduce una contraseña";
     }
 
     if (emailError || passwordError) {
@@ -59,12 +59,12 @@ class FormLogin extends Component {
     if (isValid) {
       this.setState(initialState);
     }
-    return isValid
+    return isValid;
   };
 
   handleLogin = event => {
     event.preventDefault();
-    if(!this.handleSubmit()) return
+    if (!this.handleSubmit()) return;
     const target = event.target;
     target.disabled = true;
     target.innerText = "Espere...";
@@ -76,8 +76,8 @@ class FormLogin extends Component {
           localStorage.setItem("tkauth", response.data[0].tkauth);
           this.props.history.push({ pathname: "/home" });
         } else {
-          target.disabled = false
-          target.innerText = "Iniciar Sesión"
+          target.disabled = false;
+          target.innerText = "Inicia Sesión";
         }
       })
       .catch(error => {
@@ -113,7 +113,7 @@ class FormLogin extends Component {
           </div>
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
-            text="Iniciar Sesión"
+            text="Inicia Sesión"
             onClick={event => this.handleLogin(event)}
           />
           <p className="forgotPassword">¿Olvidaste tu contraseña?</p>

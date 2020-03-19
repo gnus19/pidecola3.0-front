@@ -9,7 +9,7 @@ const openNav = () => {
 };
 
 const closeNav = () => {
-  if (window.screen.width < 768) {
+  if (window.screen.width <= 768) {
     document.getElementById("Sidebar").style.width = "0";
   }
 };
@@ -37,8 +37,8 @@ const changeColor = id => {
 };
 
 const removeLocalStorage = () => {
-  localStorage.removeItem("tkauth")
-}
+  localStorage.removeItem("tkauth");
+};
 
 const Main = ({ children }) => (
   <div className="HomePage">

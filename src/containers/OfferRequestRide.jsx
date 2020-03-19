@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/OfferRequestRide.css";
 import CardButton from "../components/cardButton/CardButton";
+import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 
 class OfferRequestRide extends Component {
   constructor(props) {
@@ -13,9 +14,7 @@ class OfferRequestRide extends Component {
     return (
       <div className="OfferRequestRide">
         <React.Fragment>
-          {this.props.recommendations && (
-            <div className="Recommendations"></div>
-          )}
+          <RecommendationBanner />
           <div className="OfferRequest">
             <CardButton
               className="RequestButton"
