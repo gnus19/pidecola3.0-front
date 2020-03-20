@@ -26,7 +26,7 @@ class RoutesList extends Component {
     const vehicle = !this.props.location.state.pideCola
       ? document.getElementById("vehicle")
       : "";
-    const comment = this.props.location.state.pideCola
+    const comment = !this.props.location.state.pideCola
       ? document.getElementById("comment")
       : "";
 
@@ -40,7 +40,6 @@ class RoutesList extends Component {
 
   handleChange = event => {
     const element = document.getElementById(event.target.id);
-    console.log(`${event.target.id}: ${element.value}`);
     this.setState({
       [event.target.id]: element.value
     });

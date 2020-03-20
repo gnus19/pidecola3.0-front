@@ -190,11 +190,12 @@ class FormRegister extends Component {
           <div className="responseError">{this.state.responseError}</div>
         )}
         {this.state.validEmail ? (
+          // Validation form
           <form className="Form">
             <p className="Msg-Valid">
-              Para completar el registro se envió un correo electronico a:{" "}
-              {this.state.email} con un código de seguridad que debes ingresar
-              aquí:{" "}
+              Para completar el registro fue enviado un correo electronico a:{" "}
+              {this.state.email} con un codigo de seguridad que debes ingresar
+              aqui:{" "}
             </p>
             <InputSign
               name={"code"}
@@ -219,6 +220,7 @@ class FormRegister extends Component {
             />
           </form>
         ) : (
+          // Register form
           <form className="Form">
             <InputSign
               name={"email"}
@@ -226,8 +228,8 @@ class FormRegister extends Component {
               placeholder="Correo"
               onChange={this.handleChange}
             />
-            <div className="ErrorMessage">
-              <p>{this.state.emailError}</p>
+            <div style={{ color: "red", fontWeight: "bold" }}>
+              {this.state.emailError}
             </div>
             <InputSign
               name={"phoneNumber"}
@@ -235,8 +237,8 @@ class FormRegister extends Component {
               placeholder="Teléfono"
               onChange={this.handleChange}
             />
-            <div className="ErrorMessage">
-              <p>{this.state.phoneNumberError}</p>
+            <div style={{ color: "red", fontWeight: "bold" }}>
+              {this.state.phoneNumberError}
             </div>
             <InputSign
               name={"password"}
@@ -244,8 +246,8 @@ class FormRegister extends Component {
               placeholder="Contraseña"
               onChange={this.handleChange}
             />
-            <div className="ErrorMessage">
-              <p>{this.state.passwordError}</p>
+            <div style={{ color: "red", fontWeight: "bold" }}>
+              {this.state.passwordError}
             </div>
             <InputSign
               name={"passwordConfirmation"}
@@ -253,8 +255,8 @@ class FormRegister extends Component {
               placeholder="Confirmar Contraseña"
               onChange={this.handleChange}
             />
-            <div className="ErrorMessage">
-              <p>{this.state.passwordConfirmationError}</p>
+            <div style={{ color: "red", fontWeight: "bold" }}>
+              {this.state.passwordConfirmationError}
             </div>
             <Button
               className={this.state.isMobile ? "blue" : "yellow"}

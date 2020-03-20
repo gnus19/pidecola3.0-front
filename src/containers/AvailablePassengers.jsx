@@ -12,7 +12,7 @@ class AvailablePassengers extends Component {
     super(props)
   
     this.state = {
-       
+      passengers: []
     }
   }
 
@@ -23,9 +23,12 @@ class AvailablePassengers extends Component {
     .then(
       response => {
         console.log('Response', response);
+        this.setState({passengers: response.data})
       }
     )
-    
+  }
+
+  passengers = (list) => {
   }
   
   render() {
@@ -51,13 +54,19 @@ class AvailablePassengers extends Component {
           </NavLink>
         </div>
         <div className="listaPasajeros">
-          <Passenger
-            nombre="André Corcuera"
-            carrera="Ingeniería en Computación"
-            cohorte="12"
-            ruta="Baruta"
-            comentario="Realmente voy a Las Mercedes"
-          />
+          {this.state.passengers.map((list, index) => {
+              let routeName = list.name;
+              return list.requests.map((passenger, passengerIndex) => {
+                return <Passenger
+                  nombre="André Corcuera"
+                  carrera="Ingeniería en Computación"
+                  cohorte="12"
+                  ruta={list.name}
+                  comentario={passenger.comment}
+                />
+              })
+            })
+          }
         </div>
       </div>
     );
