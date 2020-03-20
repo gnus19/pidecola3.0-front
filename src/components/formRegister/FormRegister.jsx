@@ -70,6 +70,7 @@ class FormRegister extends Component {
     target.disabled = true;
     target.innerText = "Espere...";
     let required = { ...this.state };
+    required.register = true
     delete required.passwordConfirmation;
     delete required.isMobile;
     createUser(required)
