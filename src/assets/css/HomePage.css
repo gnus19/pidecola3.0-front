@@ -103,12 +103,12 @@
   background-color: #ebebeb;
 }
 
-@media (max-width: 1440px) {
+@media (min-width: 1440px) {
   .Top {
-    height: 10%;
+    height: 12%;
   }
   #Content-Sec {
-    height: 90%;
+    height: 88%;
   }
 }
 
@@ -162,6 +162,7 @@
     z-index: 1;
     top: 0;
     left: 0;
+    height: 100%;
   }
 
   .HideOption {

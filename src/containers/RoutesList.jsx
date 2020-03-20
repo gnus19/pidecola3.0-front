@@ -23,22 +23,23 @@ class RoutesList extends Component {
   componentDidMount() {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
-    const vehicle = !this.props.location.state.pideCola ? document.getElementById("vehicle"): '';
-    const comment = !this.props.location.state.pideCola ? document.getElementById("comment"): '';
-    console.log("Comment: ", comment);
-    
-    console.log(`${route.value} - ${direction.value} - ${comment.value}`);
+    const vehicle = !this.props.location.state.pideCola
+      ? document.getElementById("vehicle")
+      : "";
+    const comment = !this.props.location.state.pideCola
+      ? document.getElementById("comment")
+      : "";
+
     this.setState({
       direction: direction.value,
       route: route.value,
-      vehicle: !this.props.location.state.pideCola ? vehicle.value : '',
-      comment: !this.props.location.state.pideCola ? comment.value : ''
+      vehicle: !this.props.location.state.pideCola ? vehicle.value : "",
+      comment: this.props.location.state.pideCola ? comment.value : ""
     });
   }
 
   handleChange = event => {
     const element = document.getElementById(event.target.id);
-    console.log(`${event.target.id}: ${element.value}`);
     this.setState({
       [event.target.id]: element.value
     });
@@ -48,11 +49,10 @@ class RoutesList extends Component {
     event.preventDefault();
     const comment = document.getElementById("comment");
     console.log("request: ", comment.value);
-    
+
     const requestBody = {
       user: this.state.user,
-      start_location:
-        this.state.direction === "hacia" ? this.state.route : "USB",
+      starLocation: this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
       comment: this.state.comment
     };
@@ -62,7 +62,10 @@ class RoutesList extends Component {
       .then(response => {
         console.log("Response: ", response);
         if (response.status) {
-          this.props.history.push({ pathname: "/waitOffer", state: {direction: this.state.direction, route: this.state.route} });
+          this.props.history.push({
+            pathname: "/waitOffer",
+            state: { direction: this.state.direction, route: this.state.route }
+          });
         } else {
           console.log("ERROR");
         }
@@ -74,8 +77,7 @@ class RoutesList extends Component {
 
   searchPassengers = event => {
     event.preventDefault();
-
-  }
+  };
 
   render() {
     return (
@@ -89,7 +91,7 @@ class RoutesList extends Component {
             Pide Cola USB te recuerda no utilizar tu telefono celular al
             conducir.
     </div>*/}
-          { !this.props.location.state.pideCola && (
+          {!this.props.location.state.pideCola && (
             <div className="carta">
               <DropDownList
                 htmlFor="vehicle"
@@ -112,32 +114,46 @@ class RoutesList extends Component {
               onChange={this.handleChange}
             ></DropDownList>
           </div>
-          { this.props.location.state.pideCola && (
+          {this.props.location.state.pideCola && (
             <div className="Comentarios">
               <InputPC
                 fields={[
                   {
                     type: "input",
                     label: "Comentarios",
-                    attrs: {id: 'comment', onChange: this.handleChange}
+                    attrs: { id: "comment", onChange: this.handleChange }
                   }
                 ]}
               />
             </div>
           )}
         </React.Fragment>
-        { !this.props.location.state.pideCola ? (
+        {!this.props.location.state.pideCola ? (
           <NavLink
             className="SearchButton"
-            to={{ pathname: "/passengers", state: {direction: this.state.direction, route: this.state.route, vehicle: this.state.vehicle} }}
+            to={{
+              pathname: "/passengers",
+              state: {
+                direction: this.state.direction,
+                route: this.state.route,
+                vehicle: this.state.vehicle
+              }
+            }}
             // onClick={this.searchPassengers}
           >
             BUSCAR
           </NavLink>
         ) : (
-          <NavLink className="WaitButton" to={{
-            pathname: "/waitOffer",
-            state: {direction: this.state.direction, route: this.state.route} }}
+          <NavLink
+            className="WaitButton"
+            to={{
+              pathname: "/waitOffer",
+              state: {
+                direction: this.state.direction,
+                route: this.state.route,
+                comment: this.state.comment
+              }
+            }}
             onClick={this.sendRequest}
           >
             SOLICITAR

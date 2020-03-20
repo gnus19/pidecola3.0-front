@@ -47,6 +47,11 @@
   height: 20vh;
 }
 
+.logoUSBmobile,
+.logoFCEmobile {
+  display: none;
+}
+
 .responseError {
   color: white;
   background-color: #ff5252;
@@ -78,16 +83,22 @@
 
 .ErrorMessage {
   font-size: 12px;
+  font-weight: bold;
   color: red;
   text-align: right;
   margin-right: 22px;
 }
 
-.Msg-Valid{
+.ErrorMessage p {
+  margin-bottom: 5px;
+}
+
+.Msg-Valid {
   font-size: 17px;
   width: 30vw;
   justify-content: center;
   text-align: center;
+  align-self: center;
   color: #fff;
   margin-bottom: 20px;
 }
@@ -133,6 +144,26 @@
     margin-right: 0;
     text-align: center;
   }
+
+  .logoUSBmobile {
+    display: flex;
+    float: left;
+    height: 60px;
+    margin-top: 15px;
+    margin-left: 15px;
+    position: absolute;
+    align-self: flex-start;
+  }
+
+  .logoFCEmobile {
+    display: flex;
+    float: right;
+    height: 60px;
+    margin-top: 15px;
+    margin-right: 15px;
+    position: absolute;
+    align-self: flex-end;
+  }
 }
 
 @media (max-width: 400px) {
@@ -165,6 +196,9 @@
   }
   .forgotPassword {
     margin-bottom: 0;
+  }
+  p.Msg-Valid {
+    width: 80vw;
   }
 }
 

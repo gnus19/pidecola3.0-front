@@ -57,3 +57,17 @@
 .placa span {
   font-weight: normal;
 }
+
+@media (max-width: 425px) {
+  .fotoVehiculo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .marca,
+  .modelo,
+  .color,
+  .placa {
+    font-size: 12px;
+  }
+}

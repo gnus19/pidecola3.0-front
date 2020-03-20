@@ -71,7 +71,10 @@
 .error-container {
   display: flex;
   height: auto;
-  margin-bottom: 8px;
+  background-color: #ff5252;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 .error {
   color: red;
@@ -99,6 +102,7 @@
 
 .ErrorMessage {
   font-size: 12px;
+  font-weight: bold;
   color: red;
   text-align: right;
   margin-right: 22px;
