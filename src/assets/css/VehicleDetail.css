@@ -98,7 +98,7 @@
   font-weight: bold;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1024px) {
   .VehicleDetail {
     display: flex;
     flex-direction: column;
@@ -125,6 +125,13 @@
     padding: 0 40px 0 20px;
   }
 
+  .acceptButton,
+  .cancelButton {
+    width: 320px;
+  }
+}
+
+@media (max-width: 425px) {
   .Section-VehicleDetail-Left .child1 {
     width: 200px;
     height: 200px;
@@ -133,6 +140,20 @@
 
   .acceptButton,
   .cancelButton {
-    width: 125px;
+    width: 165px;
+  }
+}
+
+@media (max-width: 400px) {
+  .acceptButton,
+  .cancelButton {
+    width: 140px;
+  }
+}
+
+@media (max-width: 320px) {
+  .acceptButton,
+  .cancelButton {
+    width: 120px;
   }
 }

@@ -19,7 +19,6 @@ class RecommendationBanner extends Component {
     const { recommendations, count } = this.state;
     return (
       <div className="pidecola-message" text="">
-        {/*Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.*/}
         {recommendations[count]}
       </div>
     );
@@ -36,7 +35,7 @@ class RecommendationBanner extends Component {
           count: 0
         });
       }
-    }, 10000);
+    }, 7000);
   }
 
   componentWillUnmount() {
