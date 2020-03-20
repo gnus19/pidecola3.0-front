@@ -10,16 +10,16 @@ function RideInfo({
 }) {
   return (
     <div className="carta grid-container-offer">
-      <div className="foto"></div>
+      <div className="fotoConductor"></div>
       <div className="titulo">{nombre} está dispuesto a darte la cola... </div>
-      <div className="nombre">{nombre}</div>
-      <div className="cohorte">
+      <div className="nombreConductor">{nombre}</div>
+      <div className="cohorteConductor">
         Cohorte: <span> {cohorte}</span>
       </div>
-      <div className="carrera">
+      <div className="carreraConductor">
         Carrera: <span> {carrera}</span>
       </div>
-      <div className="ruta">
+      <div className="rutaConductor">
         Ruta: <span> {ruta}</span>
       </div>
       <div className="pasajeros">

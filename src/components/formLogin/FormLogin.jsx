@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import InputSign from "components/imput-sign/ImputSign";
 import Button from "components/button/Button";
 import logo from "assets/images/logo.png";
+import usb from "assets/images/usb.png";
+import fce from "assets/images/fce.png";
 
 //Services
 import { loginUser } from "services/userServices";
@@ -32,7 +34,7 @@ class FormLogin extends Component {
     let passwordError = "";
 
     if (this.state.email === "") {
-      emailError = "Introduzca una dirección de correo";
+      emailError = "Introduce una dirección de correo";
     } else if (!this.state.email.includes("@")) {
       emailError = "Dirección de correo inválida";
     } else if (this.state.email.split("@")[1] !== "usb.ve") {
@@ -40,7 +42,7 @@ class FormLogin extends Component {
     }
 
     if (this.state.password === "") {
-      passwordError = "Introduzca una contraseña";
+      passwordError = "Introduce una contraseña";
     }
 
     if (emailError || passwordError) {
@@ -60,12 +62,12 @@ class FormLogin extends Component {
     if (isValid) {
       this.setState(initialState);
     }
-    return isValid
+    return isValid;
   };
 
   handleLogin = event => {
     event.preventDefault();
-    if(!this.handleSubmit()) return
+    if (!this.handleSubmit()) return;
     const target = event.target;
     target.disabled = true;
     target.innerText = "Espere...";
@@ -79,8 +81,8 @@ class FormLogin extends Component {
         } else {
           target.disabled = false;
           target.innerText = "Iniciar Sesión";
-          
-          this.setState({messageError: response.message});
+
+          this.setState({ messageError: response.message });
         }
       })
       .catch(error => {
@@ -92,14 +94,14 @@ class FormLogin extends Component {
   render() {
     return (
       <div className="FormLogin">
+        <img className="logoUSBmobile" src={usb} alt="logo usb mobile" />
+        <img className="logoFCEmobile" src={fce} alt="logo fce mobile" />
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="Logo" />
         </div>
-        { this.state.messageError !== "" &&
-          <div className="error-container">
-            {this.state.messageError}
-          </div>        
-        }
+        {this.state.messageError !== "" && (
+          <div className="error-container">{this.state.messageError}</div>
+        )}
         <form className="Form">
           <InputSign
             placeholder="Correo"
@@ -121,7 +123,7 @@ class FormLogin extends Component {
           </div>
           <Button
             className={this.state.isMobile ? "blue" : "yellow"}
-            text="Iniciar Sesión"
+            text="Inicia Sesión"
             onClick={event => this.handleLogin(event)}
           />
           <p className="forgotPassword">¿Olvidaste tu contraseña?</p>
