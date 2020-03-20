@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import InputSign from "components/imput-sign/ImputSign";
 import Button from "components/button/Button";
 import logo from "assets/images/logo.png";
+import usb from "assets/images/usb.png";
+import fce from "assets/images/fce.png";
 
 //Services
 import { loginUser } from "services/userServices";
@@ -89,6 +91,8 @@ class FormLogin extends Component {
   render() {
     return (
       <div className="FormLogin">
+        <img className="logoUSBmobile" src={usb} alt="logo usb mobile" />
+        <img className="logoFCEmobile" src={fce} alt="logo fce mobile" />
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="Logo" />
         </div>
