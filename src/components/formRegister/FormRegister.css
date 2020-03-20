@@ -88,6 +88,7 @@
   width: 30vw;
   justify-content: center;
   text-align: center;
+  align-self: center;
   color: #fff;
   margin-bottom: 20px;
 }
@@ -165,6 +166,9 @@
   }
   .forgotPassword {
     margin-bottom: 0;
+  }
+  p.Msg-Valid {
+    width: 80vw;
   }
 }
 

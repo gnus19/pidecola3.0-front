@@ -17,7 +17,8 @@ const initialState = {
   email: "",
   password: "",
   emailError: "",
-  passwordError: ""
+  passwordError: "",
+  messageError: ""
 };
 
 class FormLogin extends Component {
@@ -76,8 +77,10 @@ class FormLogin extends Component {
           localStorage.setItem("tkauth", response.data[0].tkauth);
           this.props.history.push({ pathname: "/home" });
         } else {
-          target.disabled = false
-          target.innerText = "Iniciar Sesión"
+          target.disabled = false;
+          target.innerText = "Iniciar Sesión";
+          
+          this.setState({messageError: response.message});
         }
       })
       .catch(error => {
@@ -92,6 +95,11 @@ class FormLogin extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="Logo" />
         </div>
+        { this.state.messageError !== "" &&
+          <div className="error-container">
+            {this.state.messageError}
+          </div>        
+        }
         <form className="Form">
           <InputSign
             placeholder="Correo"

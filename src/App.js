@@ -48,12 +48,10 @@ function App() {
             <Route
               path="/ride"
               render={props => tokenRequired(RoutesList, props)}  
-            />}
             />
             <Route
               path="/passengers"
               render={props => tokenRequired(AvailablePassengers, props)}  
-            />}
             />
             <Route 
               path="/profile" 

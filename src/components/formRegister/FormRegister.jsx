@@ -168,7 +168,8 @@ class FormRegister extends Component {
           <div className="responseError">{this.state.responseError}</div>
         )}
           {
-            this.state.validEmail ? 
+            this.state.validEmail ?
+            // VAlidation form 
             <form className="Form">
               <p className="Msg-Valid">Para completar el registro fue enviado un correo electronico a: {this.state.email} con un codigo de seguridad que debes ingresar aqui: </p>
               <InputSign
@@ -187,6 +188,7 @@ class FormRegister extends Component {
               />
             </form>
             :
+            // Register form
             <form className="Form">
               <InputSign
                 name={"email"}
