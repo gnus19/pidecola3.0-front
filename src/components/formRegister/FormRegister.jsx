@@ -46,7 +46,7 @@ class FormRegister extends Component {
     target.innerText = "Espere..."
     if(!this.state.code) return this.setState({codeError: 'Debe introducir el codigo de seguridad'})
 
-    sendCode({code: this.state.code, email: this.state.email})
+    sendCode({code: this.state.code, email: this.state.email, password: this.state.password})
     .then(res => res.json())
       .then(response => {
         if (response.status && response.data[0]) {
