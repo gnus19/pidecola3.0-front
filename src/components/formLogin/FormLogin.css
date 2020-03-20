@@ -71,7 +71,7 @@
 .error-container {
   display: flex;
   height: auto;
-  background-color: red;
+  background-color: #ff5252;
   color: white;
   border-radius: 5px;
   padding: 5px;

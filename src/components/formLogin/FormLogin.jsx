@@ -79,8 +79,6 @@ class FormLogin extends Component {
         } else {
           target.disabled = false;
           target.innerText = "Iniciar Sesión";
-          console.log(response);
-          console.log('' === false);
           
           this.setState({messageError: response.message});
         }
@@ -97,7 +95,7 @@ class FormLogin extends Component {
         <div className="Container-Img">
           <img className="Logo" src={logo} alt="Logo" />
         </div>
-        { this.state.messageError !== '' &&
+        { this.state.messageError !== "" &&
           <div className="error-container">
             {this.state.messageError}
           </div>        

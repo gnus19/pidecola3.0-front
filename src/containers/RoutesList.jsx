@@ -36,7 +36,6 @@ class RoutesList extends Component {
 
   handleChange = event => {
     const element = document.getElementById(event.target.id);
-    console.log(`${event.target.id}: ${element.value}`);
     this.setState({
       [event.target.id]: element.value
     });
@@ -49,7 +48,7 @@ class RoutesList extends Component {
     
     const requestBody = {
       user: this.state.user,
-      start_location:
+      starLocation:
         this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
       comment: this.state.comment
