@@ -6,7 +6,7 @@ const handleInput = field => {
     return (
       <>
         <label>{field.label}</label>
-        <input {...field.attrs} />
+        <input {...field.attrs} value={field.value} />
       </>
     );
   }
