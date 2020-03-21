@@ -12,7 +12,7 @@ class RoutesList extends Component {
     console.log("Pide Cola: " + this.props.location.state.pideCola);
 
     this.state = {
-      user: "12-00000@usb.ve",
+      user: localStorage.getItem("email"),
       direction: "",
       route: "",
       vehicle: "",

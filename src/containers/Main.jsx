@@ -37,7 +37,8 @@ const changeColor = id => {
 };
 
 const removeLocalStorage = () => {
-  localStorage.removeItem("tkauth")
+  localStorage.removeItem("tkauth");
+  localStorage.removeItem("email");
 }
 
 const Main = ({ children }) => (

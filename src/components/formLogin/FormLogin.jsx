@@ -73,8 +73,11 @@ class FormLogin extends Component {
     loginUser(required)
       .then(res => res.json())
       .then(response => {
+        console.log('Response',response);
+        
         if (response.status && response.data[0]) {
           localStorage.setItem("tkauth", response.data[0].tkauth);
+          localStorage.setItem("email", response.data[0].email);
           this.props.history.push({ pathname: "/home" });
         } else {
           target.disabled = false;

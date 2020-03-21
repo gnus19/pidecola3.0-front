@@ -4,7 +4,8 @@ export function createUser (req) {
     method: 'POST',
     body: JSON.stringify(req),
     headers:{
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(req.email + ':' + req.password)
     }
   })
 }
