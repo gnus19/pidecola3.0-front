@@ -51,3 +51,24 @@ export function infoProfile() {
     }
   });
 }
+
+export function editVehicle(req) {
+  return fetch("/users/add/vehicle", {
+    method: "PUT",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}
+
+export function infoVehicle() {
+  return fetch("/users/add/vehicle", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}
