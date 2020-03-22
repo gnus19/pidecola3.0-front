@@ -69,12 +69,25 @@ class Profile extends Component {
       });
   };
 
+  inputProfileClick() {
+    document.getElementById("inputProfileImage").click();
+  }
+
   render() {
     return (
       <div className="Profile">
         <div className="Section-Profile-Left">
           <div className="child1">
-            <ImgContainer src={profilePicture} alt="Image Profile" />
+            <input
+              type="file"
+              className="inputProfileImage"
+              id="inputProfileImage"
+            />
+            <ImgContainer
+              src={profilePicture}
+              alt="Image Profile"
+              onClick={this.inputProfileClick}
+            />
           </div>
           <div className="child2">
             <div className="ContentCar">
@@ -86,6 +99,14 @@ class Profile extends Component {
               />
               <p>Vehículo 1</p>
             </div>
+          </div>
+          <div className="child3">
+            <p>Agregar Vehículo</p>
+            <NavLink to="/addVehicle">
+              <div className="PlusButton">+</div>
+            </NavLink>
+            {/*<p>Eliminar Vehículo</p>
+            <div className="DeleteButton">×</div>*/}
           </div>
         </div>
         <div className="Section-Profile-Right">
@@ -144,12 +165,6 @@ class Profile extends Component {
             ]}
           />
           <div className="SubSection-Add">
-            <div className="child1">
-              <p>Agregar Vehículo</p>
-              <NavLink to="/addVehicle">
-                <div className="PlusButton">+</div>
-              </NavLink>
-            </div>
             <div className="guardarCambios" onClick={this.sendEdit}>
               Guardar cambios
             </div>

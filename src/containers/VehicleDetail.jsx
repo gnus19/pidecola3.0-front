@@ -58,6 +58,7 @@ class VehicleDetail extends Component {
     info.append("year", this.state.year);
     info.append("color", this.state.color);
     info.append("vehicle_capacity", this.state.vehicleCap);
+    console.log("Info: ", info);
     editVehicle(info)
       .then(res => res.json())
       .then(response => {
@@ -74,13 +75,26 @@ class VehicleDetail extends Component {
     });
   };
 
+  inputVehicleClick() {
+    document.getElementById("inputVehicleImage").click();
+  }
+
   render() {
     return (
       <div className="VehicleDetail">
         <div className="Section-VehicleDetail-Left">
           <div className="child1">
-            <input type="file" onChange={this.fileSelected} />
-            <ImgContainer src={usercar} alt="Image Vehicle" />
+            <input
+              type="file"
+              className="inputVehicleImage"
+              id="inputVehicleImage"
+              onChange={this.fileSelected}
+            />
+            <ImgContainer
+              src={usercar}
+              alt="Image Vehicle"
+              onClick={this.inputVehicleClick}
+            />
           </div>
         </div>
         <div className="Section-VehicleDetail-Right">
