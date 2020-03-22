@@ -18,17 +18,17 @@ const changeColor = id => {
   document.getElementById(id).style.background = "#ffd302";
   document.getElementById(id).style.color = "#000";
 
-  if (id == "homeOptions") {
+  if (id === "homeOptions") {
     document.getElementById("profileOptions").style.background = "#1e2172";
     document.getElementById("profileOptions").style.color = "#fff";
     document.getElementById("helpOptions").style.background = "#1e2172";
     document.getElementById("helpOptions").style.color = "#fff";
-  } else if (id == "profileOptions") {
+  } else if (id === "profileOptions") {
     document.getElementById("homeOptions").style.background = "#1e2172";
     document.getElementById("homeOptions").style.color = "#fff";
     document.getElementById("helpOptions").style.background = "#1e2172";
     document.getElementById("helpOptions").style.color = "#fff";
-  } else if (id == "helpOptions") {
+  } else if (id === "helpOptions") {
     document.getElementById("homeOptions").style.background = "#1e2172";
     document.getElementById("homeOptions").style.color = "#fff";
     document.getElementById("profileOptions").style.background = "#1e2172";
