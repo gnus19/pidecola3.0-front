@@ -117,7 +117,7 @@ class Profile extends Component {
                 type: "input",
                 label: "Correo",
                 value: this.state.email,
-                attrs: {}
+                attrs: { id: "email", onChange: this.handleEdit }
               },
               {
                 type: "input",
@@ -139,7 +139,7 @@ class Profile extends Component {
                 type: "input",
                 label: "Carnet",
                 value: this.state.carnet,
-                attrs: {}
+                attrs: { id: "carnet", onChange: this.handleEdit }
               }
             ]}
           />
