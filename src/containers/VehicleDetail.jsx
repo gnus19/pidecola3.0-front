@@ -50,28 +50,15 @@ class VehicleDetail extends Component {
 
   sendVehicleEdit = event => {
     event.preventDefault();
-
-    const info = new FormData();
-    info.append("vehicle_pic", this.state.vehiclePic);
+    let info = new FormData();
+    info.append("file", this.state.vehiclePic);
     info.append("plate", this.state.plate);
     info.append("brand", this.state.brand);
     info.append("model", this.state.model);
     info.append("year", this.state.year);
     info.append("color", this.state.color);
     info.append("vehicle_capacity", this.state.vehicleCap);
-
-    const editVehicleBody = {
-      vehicle_pic: this.state.vehiclePic,
-      plate: this.state.plate,
-      brand: this.state.brand,
-      model: this.state.model,
-      year: this.state.year,
-      color: this.state.color,
-      vehicle_capacity: this.state.vehicleCap
-    };
-
-    console.log("send vehicle body: ", editVehicleBody);
-    editVehicle(editVehicleBody)
+    editVehicle(info)
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
