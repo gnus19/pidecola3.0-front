@@ -48,7 +48,7 @@ class RoutesList extends Component {
     
     const requestBody = {
       user: this.state.user,
-      starLocation:
+      startLocation:
         this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
       comment: this.state.comment
