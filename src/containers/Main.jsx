@@ -9,7 +9,7 @@ const openNav = () => {
 };
 
 const closeNav = () => {
-  if (window.screen.width < 768) {
+  if (window.screen.width <= 768) {
     document.getElementById("Sidebar").style.width = "0";
   }
 };

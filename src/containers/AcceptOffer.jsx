@@ -48,16 +48,14 @@ class AcceptOffer extends Component {
         </React.Fragment>
         {!this.state.accepted && (
           <div className="aceptarRechazar">
-            <div onClick={this.changeState}>
-              <div className="aceptarCola">
-                <p>Aceptar</p>
-              </div>
+            <div className="aceptarCola" onClick={this.changeState}>
+              <p>Aceptar</p>
             </div>
-            <NavLink to="/waitOffer">
-              <div className="rechazarCola">
+            <div className="rechazarCola">
+              <NavLink to="/waitOffer">
                 <p>Rechazar</p>
-              </div>
-            </NavLink>
+              </NavLink>
+            </div>
           </div>
         )}
         {this.state.accepted && (

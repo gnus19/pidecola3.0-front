@@ -102,6 +102,7 @@
 
 .ErrorMessage {
   font-size: 12px;
+  font-weight: bold;
   color: red;
   text-align: right;
   margin-right: 22px;

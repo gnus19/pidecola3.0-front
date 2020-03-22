@@ -1,6 +1,8 @@
+import { SERVER } from '../global'
+
 export function createUser (req) {
   // return fetch('/express_backend');
-  return fetch( '/users',{
+  return fetch( SERVER + '/users',{
     method: 'POST',
     body: JSON.stringify(req),
     headers:{
@@ -11,7 +13,7 @@ export function createUser (req) {
 }
 
 export function loginUser (req) {
-  return fetch( '/login',{
+  return fetch( SERVER + '/login',{
     method: 'POST',
     body: JSON.stringify(req),
     headers:{
@@ -22,7 +24,7 @@ export function loginUser (req) {
 }
 
 export function sendCode (req) {
-  return fetch( 'users/code',{
+  return fetch( SERVER + '/users/code',{
     method: 'POST',
     body: JSON.stringify(req),
     headers:{

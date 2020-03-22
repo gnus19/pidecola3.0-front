@@ -3,9 +3,9 @@
   display: grid;
   grid-template-areas:
     "titulo titulo titulo"
-    "foto nombre cohorte"
-    "foto carrera ruta"
-    "foto pasajeros pasajeros";
+    "fotoConductor nombreConductor cohorteConductor"
+    "fotoConductor carreraConductor rutaConductor"
+    "fotoConductor pasajeros pasajeros";
 }
 
 .grid-container-offer > div {
@@ -17,15 +17,15 @@
   align-content: center;
 }
 
-.foto {
-  grid-area: foto;
+.fotoConductor {
+  grid-area: fotoConductor;
   border-radius: 50%;
   background-color: #dddbdb;
   background-image: url("../../assets/images/user.png");
   background-position: center;
   background-repeat: no-repeat;
-  /* width: 117.97px;
-  height: 120px; */
+  width: 117.97px;
+  height: 120px;
   justify-self: center;
 }
 
@@ -35,48 +35,73 @@
   font-weight: bold;
 }
 
-.nombre {
-  grid-area: nombre;
+.nombreConductor {
+  grid-area: nombreConductor;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   /* font-size: 18px; */
 }
 
-.cohorte {
-  grid-area: cohorte;
+.cohorteConductor {
+  grid-area: cohorteConductor;
 }
 
-.carrera {
-  grid-area: carrera;
+.carreraConductor {
+  grid-area: carreraConductor;
 }
 
-.ruta {
-  grid-area: ruta;
+.rutaConductor {
+  grid-area: rutaConductor;
 }
 
 .pasajeros {
   grid-area: pasajeros;
 }
 
-.cohorte,
-.carrera,
-.ruta,
+.cohorteConductor,
+.carreraConductor,
+.rutaConductor,
 .pasajeros {
   font-size: normal;
   font-weight: bold;
 }
 
-.cohorte span,
-.carrera span,
-.ruta span,
+.cohorteConductor span,
+.carreraConductor span,
+.rutaConductor span,
 .pasajeros span {
   font-weight: normal;
 }
 
-@media (min-width: 600px) {
-  .foto {
-    width: 117.97px;
-    height: 120px;
+@media (max-width: 425px) {
+  .grid-container-offer {
+    grid-template-areas:
+      "titulo titulo titulo"
+      "fotoConductor nombreConductor cohorteConductor"
+      "carreraConductor carreraConductor rutaConductor"
+      "pasajeros pasajeros pasajeros";
+  }
+
+  .fotoConductor {
+    width: 90px;
+    height: 90px;
+  }
+
+  .titulo {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  .nombreConductor {
+    font-size: 15px;
+  }
+
+  .cohorteConductor,
+  .carreraConductor,
+  .rutaConductor,
+  .pasajeros {
+    font-size: 12px;
+    margin-top: 5px;
   }
 }

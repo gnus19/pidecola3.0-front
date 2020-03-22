@@ -1,5 +1,7 @@
+import { SERVER } from '../global'
+
 export function requestRide (req) {
-	return fetch( '/requests',{
+	return fetch( SERVER + '/requests',{
 		method: 'POST',
 		body: JSON.stringify(req),
 		headers:{
@@ -10,7 +12,7 @@ export function requestRide (req) {
 }
 
 export function getWaitingList (req) {
-	return fetch( '/recommend',{
+	return fetch( SERVER + '/recommend',{
 		method: 'POST',
 		body: JSON.stringify(req),
 		headers:{
