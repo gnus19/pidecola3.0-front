@@ -1,23 +1,19 @@
-import { SERVER } from '../global'
-
 export function requestRide (req) {
-	return fetch( SERVER + '/requests',{
+	return fetch( '/requests',{
 		method: 'POST',
 		body: JSON.stringify(req),
 		headers:{
-			'Content-Type': 'application/json',
-			Authorization: "Basic " + btoa(req.email + ":" + req.password)
+			'Content-Type': 'application/json'
 		}
 	})
 }
 
 export function getWaitingList (req) {
-	return fetch( SERVER + '/recommend',{
+	return fetch( '/recommend',{
 		method: 'POST',
 		body: JSON.stringify(req),
 		headers:{
-			'Content-Type': 'application/json',
-			Authorization: "Basic " + btoa(req.email + ":" + req.password)
+			'Content-Type': 'application/json'
 		}
 	})
 }

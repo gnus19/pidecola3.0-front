@@ -11,7 +11,7 @@ class VehicleDetail extends Component {
     super(props);
     this.state = {
       vehiclePreview: usercar,
-      vehiclePic: null,
+      vehiclePic: "",
       plate: "",
       brand: "",
       model: "",

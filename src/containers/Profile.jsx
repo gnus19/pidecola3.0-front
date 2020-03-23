@@ -10,19 +10,22 @@ import profilePicture from "assets/images/profilePicture.jpg";
 import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
+import DropDownList from "../components/dropDownList/DropDownList";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       profilePic: "",
+      profilePreview: profilePicture,
       email: "",
       firstName: "",
       lastName: "",
       carnet: "",
       age: "",
       phoneNumber: "",
-      major: ""
+      major: "",
+      picChanged: false
     };
   }
 
@@ -32,6 +35,7 @@ class Profile extends Component {
       .then(response => {
         console.log("Response: ", response);
         this.setState({
+          profilePreview: response.data.profile_pic,
           profilePic: response.data.profile_pic,
           email: response.data.email,
           firstName: response.data.first_name,
@@ -55,6 +59,13 @@ class Profile extends Component {
   };
 
   sendEdit = event => {
+    this.sendProfileEdit(event);
+    if (this.state.picChanged) {
+      this.sendProfilePicEdit(event);
+    }
+  };
+
+  sendProfileEdit = event => {
     event.preventDefault();
     const editBody = {
       first_name: this.state.firstName,
@@ -81,47 +92,35 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        console.log("profile pic: ", response.data.profile_pic);
+        this.setState({ profilePreview: response.data.profile_pic });
       })
       .catch(error => {
         console.log("Catch", error);
       });
-  };
-
-  /*
-  sendProfilePicEdit = event => {
-    event.preventDefault();
-    let info = new FormData();
-    info.append("profile_pic", this.state.profilePic);
-    info.append("first_name", this.state.firstName);
-    info.append("last_name", this.state.lastName);
-    info.append("age", this.state.age);
-    info.append("phone_number", this.state.phoneNumber);
-    info.append("major", this.state.major);
-    console.log("Info: ", info);
-    editProfilePicture(info)
-      .then(res => res.json())
-      .then(response => {
-        console.log("Response: ", response);
-        this.setState({
-          profilePic: response.data.profile_pic
-        });
-      })
-      .catch(error => {
-        console.log("Catch", error);
-      });
-  };
-  */
-
-  profileImageSelected = event => {
-    this.setState({
-      profilePic: event.target.files[0]
-    });
   };
 
   inputProfileClick() {
     document.getElementById("inputProfileImage").click();
   }
+
+  profileImageSelected = event => {
+    this.setState({
+      profilePic: event.target.files[0]
+    });
+
+    const myFileItemReader = new FileReader();
+    myFileItemReader.addEventListener(
+      "load",
+      () => {
+        this.setState({
+          profilePreview: myFileItemReader.result,
+          picChanged: true
+        });
+      },
+      false
+    );
+    myFileItemReader.readAsDataURL(event.target.files[0]);
+  };
 
   render() {
     return (
@@ -135,7 +134,7 @@ class Profile extends Component {
               onChange={this.profileImageSelected}
             />
             <ImgContainer
-              src={this.state.profilePic}
+              src={this.state.profilePreview}
               alt="Image Profile"
               onClick={this.inputProfileClick}
             />
@@ -187,6 +186,12 @@ class Profile extends Component {
             fields={[
               {
                 type: "input",
+                label: "Carnet",
+                value: this.state.carnet,
+                attrs: {}
+              },
+              {
+                type: "input",
                 label: "Correo",
                 value: this.state.email,
                 attrs: {}
@@ -199,22 +204,14 @@ class Profile extends Component {
               }
             ]}
           />
-          <InputPC
-            fields={[
-              {
-                type: "input",
-                label: "Carrera",
-                value: this.state.major,
-                attrs: { id: "major", onChange: this.handleEdit }
-              },
-              {
-                type: "input",
-                label: "Carnet",
-                value: this.state.carnet,
-                attrs: {}
-              }
-            ]}
-          />
+          <div className="carta">
+            <DropDownList
+              className="majorList"
+              htmlFor="major"
+              id="major"
+              onChange={this.handleEdit}
+            ></DropDownList>
+          </div>
           <div className="SubSection-Add">
             <div className="guardarCambios" onClick={this.sendEdit}>
               Guardar cambios
