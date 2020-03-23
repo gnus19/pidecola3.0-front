@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { editProfile, infoProfile } from "services/userServices";
+import {
+  editProfile,
+  editProfilePicture,
+  infoProfile
+} from "services/userServices";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg";
 import usercar from "assets/images/user-car.png";
@@ -11,6 +15,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profilePic: "",
       email: "",
       firstName: "",
       lastName: "",
@@ -27,6 +32,7 @@ class Profile extends Component {
       .then(response => {
         console.log("Response: ", response);
         this.setState({
+          profilePic: response.data.profile_pic,
           email: response.data.email,
           firstName: response.data.first_name,
           lastName: response.data.last_name,
@@ -50,7 +56,6 @@ class Profile extends Component {
 
   sendEdit = event => {
     event.preventDefault();
-
     const editBody = {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
@@ -58,7 +63,6 @@ class Profile extends Component {
       phone_number: this.state.phoneNumber,
       major: this.state.major
     };
-    console.log("send edit body: ", editBody);
     editProfile(editBody)
       .then(res => res.json())
       .then(response => {
@@ -67,6 +71,52 @@ class Profile extends Component {
       .catch(error => {
         console.log("Catch", error);
       });
+  };
+
+  sendProfilePicEdit = event => {
+    event.preventDefault();
+    let profilePicture = new FormData();
+    profilePicture.append("file", this.state.profilePic);
+    editProfilePicture(profilePicture)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+        console.log("profile pic: ", response.data.profile_pic);
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  };
+
+  /*
+  sendProfilePicEdit = event => {
+    event.preventDefault();
+    let info = new FormData();
+    info.append("profile_pic", this.state.profilePic);
+    info.append("first_name", this.state.firstName);
+    info.append("last_name", this.state.lastName);
+    info.append("age", this.state.age);
+    info.append("phone_number", this.state.phoneNumber);
+    info.append("major", this.state.major);
+    console.log("Info: ", info);
+    editProfilePicture(info)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+        this.setState({
+          profilePic: response.data.profile_pic
+        });
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  };
+  */
+
+  profileImageSelected = event => {
+    this.setState({
+      profilePic: event.target.files[0]
+    });
   };
 
   inputProfileClick() {
@@ -82,9 +132,10 @@ class Profile extends Component {
               type="file"
               className="inputProfileImage"
               id="inputProfileImage"
+              onChange={this.profileImageSelected}
             />
             <ImgContainer
-              src={profilePicture}
+              src={this.state.profilePic}
               alt="Image Profile"
               onClick={this.inputProfileClick}
             />

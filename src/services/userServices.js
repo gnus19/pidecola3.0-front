@@ -1,9 +1,9 @@
-import { SERVER } from '../global'
+import { SERVER } from "../global";
 
-export function createUser (req) {
+export function createUser(req) {
   // return fetch('/express_backend');
-  return fetch( SERVER + '/users',{
-    method: 'POST',
+  return fetch(SERVER + "/users", {
+    method: "POST",
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json"
@@ -11,9 +11,9 @@ export function createUser (req) {
   });
 }
 
-export function loginUser (req) {
-  return fetch( SERVER + '/login',{
-    method: 'POST',
+export function loginUser(req) {
+  return fetch(SERVER + "/login", {
+    method: "POST",
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
@@ -22,13 +22,23 @@ export function loginUser (req) {
   });
 }
 
-export function sendCode (req) {
-  return fetch( SERVER + '/users/code',{
-    method: 'POST',
+export function sendCode(req) {
+  return fetch(SERVER + "/users/code", {
+    method: "POST",
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
       Authorization: "Basic " + btoa(req.email + ":" + req.password)
+    }
+  });
+}
+
+export function infoProfile() {
+  return fetch(SERVER + "/users", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
     }
   });
 }
@@ -44,18 +54,8 @@ export function editProfile(req) {
   });
 }
 
-export function infoProfile() {
-  return fetch(SERVER +  "/users", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
-  });
-}
-
-export function editVehicle(req) {
-  return fetch(SERVER +  "/users/add/vehicle", {
+export function editProfilePicture(req) {
+  return fetch(SERVER + "/users", {
     method: "PUT",
     body: req,
     headers: {
@@ -64,11 +64,11 @@ export function editVehicle(req) {
   });
 }
 
-export function infoVehicle() {
+export function addVehicle(req) {
   return fetch(SERVER + "/users/add/vehicle", {
-    method: "GET",
+    method: "PUT",
+    body: req,
     headers: {
-      "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("tkauth")
     }
   });

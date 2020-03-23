@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { editVehicle, infoVehicle } from "services/userServices";
+import { addVehicle, infoVehicle } from "services/userServices";
 import "assets/css/VehicleDetail.css";
 import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
@@ -10,6 +10,7 @@ class VehicleDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      vehiclePreview: usercar,
       vehiclePic: null,
       plate: "",
       brand: "",
@@ -59,20 +60,38 @@ class VehicleDetail extends Component {
     info.append("color", this.state.color);
     info.append("vehicle_capacity", this.state.vehicleCap);
     console.log("Info: ", info);
-    editVehicle(info)
+    addVehicle(info)
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
+        this.setState({
+          vehiclePic:
+            response.data.vehicles[response.data.vehicles.length - 1]
+              .vehicle_pic
+        });
+        this.props.history.push({
+          pathname: "/profile"
+        });
       })
       .catch(error => {
         console.log("Catch", error);
       });
   };
 
-  fileSelected = event => {
+  vehicleImageSelected = event => {
     this.setState({
       vehiclePic: event.target.files[0]
     });
+
+    const myFileItemReader = new FileReader();
+    myFileItemReader.addEventListener(
+      "load",
+      () => {
+        this.setState({ vehiclePreview: myFileItemReader.result });
+      },
+      false
+    );
+    myFileItemReader.readAsDataURL(event.target.files[0]);
   };
 
   inputVehicleClick() {
@@ -88,10 +107,10 @@ class VehicleDetail extends Component {
               type="file"
               className="inputVehicleImage"
               id="inputVehicleImage"
-              onChange={this.fileSelected}
+              onChange={this.vehicleImageSelected}
             />
             <ImgContainer
-              src={usercar}
+              src={this.state.vehiclePreview}
               alt="Image Vehicle"
               onClick={this.inputVehicleClick}
             />
