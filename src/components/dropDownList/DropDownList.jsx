@@ -1,22 +1,16 @@
 import React from "react";
 
-function dropDownList({ htmlFor, id, onChange }) {
+function dropDownList({ id, onChange, vehicleList }) {
   return (
     <React.Fragment>
       {id == "vehicle" ? (
         <React.Fragment>
-          <label htmlFor={htmlFor}>Vehículo</label>
-          <select id={id} onChange={onChange}>
-            <option value="AVEO-GRIS-AB123SS">AVEO-GRIS-AB123SS</option>
-            <option value="OPTRA-ROSADO-BG134PW">OPTRA-ROSADO-BG134PW</option>
-            <option value="WOLFWAGEN-AMARILLO-NZ944SC">
-              WOLFWAGEN-AMARILLO-NZ944SC
-            </option>
-          </select>
+          <label>Vehículo</label>
+          <select id={id} onChange={onChange}></select>
         </React.Fragment>
       ) : id == "direction" ? (
         <React.Fragment>
-          <label htmlFor={htmlFor}>Dirección</label>
+          <label>Dirección</label>
           <select id={id} onChange={onChange}>
             <option value="hacia">HACIA USB</option>
             <option value="desde">DESDE USB</option>
@@ -24,9 +18,9 @@ function dropDownList({ htmlFor, id, onChange }) {
         </React.Fragment>
       ) : id == "major" ? (
         <React.Fragment>
-          <label htmlFor={htmlFor}>Carrera</label>
+          <label>Carrera</label>
           <select id={id} onChange={onChange}>
-            <option value="">SELECCIONE UNA CARRERA</option>
+            <option value="">SELECCIONA UNA CARRERA</option>
             <option value="Arquitectura">ARQUITECTURA</option>
             <option value="Economía">ECONOMÍA</option>
             <option value="Ing. de Computación">ING. DE COMPUTACIÓN</option>
@@ -55,7 +49,7 @@ function dropDownList({ htmlFor, id, onChange }) {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <label htmlFor={htmlFor}>Ruta</label>
+          <label>Ruta</label>
           <select id={id} onChange={onChange}>
             <option value="Baruta">BARUTA</option>
             <option value="Chacaito">CHACAITO</option>

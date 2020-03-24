@@ -159,7 +159,7 @@ class Profile extends Component {
             </div>
             <div className="seccionEliminar">
               <p>Eliminar Vehículo</p>
-              <NavLink to="/removeVehicle">
+              <NavLink to="/deleteVehicle">
                 <div className="DeleteButton">×</div>
               </NavLink>
             </div>
@@ -213,7 +213,6 @@ class Profile extends Component {
           <div className="carta">
             <DropDownList
               className="majorList"
-              htmlFor="major"
               id="major"
               onChange={this.handleEdit}
             ></DropDownList>

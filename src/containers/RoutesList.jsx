@@ -52,7 +52,8 @@ class RoutesList extends Component {
 
     const requestBody = {
       user: this.state.user,
-      startLocation: this.state.direction === "hacia" ? this.state.route : "USB",
+      startLocation:
+        this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
       comment: this.state.comment
     };
@@ -94,7 +95,6 @@ class RoutesList extends Component {
           {!this.props.location.state.pideCola && (
             <div className="carta">
               <DropDownList
-                htmlFor="vehicle"
                 id="vehicle"
                 onChange={this.handleChange}
               ></DropDownList>
@@ -103,13 +103,11 @@ class RoutesList extends Component {
           <div className="carta">
             <div className="separador">
               <DropDownList
-                htmlFor="direction"
                 id="direction"
                 onChange={this.handleChange}
               ></DropDownList>
             </div>
             <DropDownList
-              htmlFor="route"
               id="route"
               onChange={this.handleChange}
             ></DropDownList>
