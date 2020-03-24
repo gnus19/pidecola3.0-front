@@ -44,6 +44,14 @@
   display: none;
 }
 
+.responseError {
+  color: white;
+  background-color: #ff5252;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
 .acceptButton,
 .cancelButton {
   width: 325px;

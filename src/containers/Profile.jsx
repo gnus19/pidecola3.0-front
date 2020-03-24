@@ -151,12 +151,18 @@ class Profile extends Component {
             </div>
           </div>
           <div className="child3">
-            <p>Agregar Vehículo</p>
-            <NavLink to="/addVehicle">
-              <div className="PlusButton">+</div>
-            </NavLink>
-            {/*<p>Eliminar Vehículo</p>
-            <div className="DeleteButton">×</div>*/}
+            <div className="seccionAgregar">
+              <p>Agregar Vehículo</p>
+              <NavLink to="/addVehicle">
+                <div className="PlusButton">+</div>
+              </NavLink>
+            </div>
+            <div className="seccionEliminar">
+              <p>Eliminar Vehículo</p>
+              <NavLink to="/removeVehicle">
+                <div className="DeleteButton">×</div>
+              </NavLink>
+            </div>
           </div>
         </div>
         <div className="Section-Profile-Right">

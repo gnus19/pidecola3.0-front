@@ -17,30 +17,10 @@ class VehicleDetail extends Component {
       model: "",
       year: "",
       color: "",
-      vehicleCap: ""
+      vehicleCap: "",
+      responseError: ""
     };
   }
-
-  /*
-  componentDidMount() {
-    infoVehicle()
-      .then(res => res.json())
-      .then(response => {
-        console.log("Response: ", response);
-        this.setState({
-          plate: response.data.plate,
-          brand: response.data.brand,
-          model: response.data.model,
-          year: response.data.year,
-          color: response.data.color,
-          vehicleCap: response.data.vehicle_capacity
-        });
-      })
-      .catch(error => {
-        console.log("Catch", error);
-      });
-  }
-  */
 
   handleEdit = event => {
     const element = document.getElementById(event.target.id);
@@ -49,8 +29,65 @@ class VehicleDetail extends Component {
     });
   };
 
+  validVehicle = () => {
+    let valid = true;
+    let errorMessage = "";
+
+    if (
+      this.state.plate !== "" &&
+      (this.state.plate.length < 6 || this.state.plate.length > 7)
+    ) {
+      errorMessage = errorMessage + "Introduzca una placa válida. ";
+      valid = false;
+    }
+
+    if (
+      this.state.year !== "" &&
+      (isNaN(this.state.year) === true || this.state.year.length !== 4)
+    ) {
+      errorMessage = errorMessage + "Introduzca un año válido. ";
+      valid = false;
+    }
+
+    if (isNaN(this.state.vehicleCap) === true) {
+      errorMessage =
+        errorMessage + "Capacidad solo puede ser un valor numérico. ";
+      valid = false;
+    }
+
+    if (
+      this.state.plate ||
+      this.state.brand ||
+      this.state.model ||
+      this.state.year ||
+      this.state.color ||
+      this.state.vehicleCap === ""
+    ) {
+      errorMessage = errorMessage + "Todos los campos son requeridos.";
+    }
+
+    if (!valid) {
+      this.setState({
+        responseError: errorMessage
+      });
+      return false;
+    }
+
+    this.setState({
+      responseError: ""
+    });
+
+    return true;
+  };
+
   sendVehicleEdit = event => {
     event.preventDefault();
+    /*
+    if (!this.validVehicle()) {
+      return;
+    }
+    */
+
     let info = new FormData();
     info.append("file", this.state.vehiclePic);
     info.append("plate", this.state.plate);
@@ -64,11 +101,6 @@ class VehicleDetail extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        this.setState({
-          vehiclePic:
-            response.data.vehicles[response.data.vehicles.length - 1]
-              .vehicle_pic
-        });
         this.props.history.push({
           pathname: "/profile"
         });
@@ -117,6 +149,9 @@ class VehicleDetail extends Component {
           </div>
         </div>
         <div className="Section-VehicleDetail-Right">
+          {this.state.responseError !== "" && (
+            <div className="responseError">{this.state.responseError}</div>
+          )}
           <InputPC
             fields={[
               {

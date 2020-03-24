@@ -71,10 +71,20 @@
 
 .child3 {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  width: 100%;
+}
+
+.seccionAgregar,
+.seccionEliminar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
 }
 
 .Section-Profile-Left .child1 {
@@ -119,6 +129,12 @@
 .carta {
   width: 100% !important;
   margin: 20px 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .child3 p {
+    font-size: 12px;
+  }
 }
 
 /*left = top, right = bottom */

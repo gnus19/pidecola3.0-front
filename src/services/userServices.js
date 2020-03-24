@@ -1,6 +1,8 @@
+import { SERVER } from "../global";
+
 export function createUser(req) {
   // return fetch('/express_backend');
-  return fetch("/users", {
+  return fetch(SERVER + "/users", {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
@@ -10,7 +12,7 @@ export function createUser(req) {
 }
 
 export function loginUser(req) {
-  return fetch("/login", {
+  return fetch(SERVER + "/login", {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
@@ -21,7 +23,7 @@ export function loginUser(req) {
 }
 
 export function sendCode(req) {
-  return fetch("users/code", {
+  return fetch(SERVER + "/users/code", {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
@@ -32,7 +34,7 @@ export function sendCode(req) {
 }
 
 export function editProfile(req) {
-  return fetch("/users", {
+  return fetch(SERVER + "/users", {
     method: "PUT",
     body: JSON.stringify(req),
     headers: {
@@ -42,11 +44,31 @@ export function editProfile(req) {
   });
 }
 
-export function infoProfile(req) {
-  return fetch("/users", {
+export function editProfilePicture(req) {
+  return fetch(SERVER + "/users/update/picture", {
+    method: "PUT",
+    body: req,
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}
+
+export function infoProfile() {
+  return fetch(SERVER + "/users", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}
+
+export function addVehicle(req) {
+  return fetch(SERVER + "/users/add/vehicle", {
+    method: "PUT",
+    body: req,
+    headers: {
       Authorization: "Bearer " + localStorage.getItem("tkauth")
     }
   });
