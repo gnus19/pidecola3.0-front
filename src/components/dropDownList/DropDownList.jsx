@@ -7,11 +7,11 @@ function dropDownList({ id, onChange, vehicleList }) {
         <React.Fragment>
           <label>Vehículo</label>
           <select id={id} onChange={onChange}>
-            {vehicleList.map(list => {
-              return list.requests.map(vehicle => {
+            { vehicleList &&
+              vehicleList.map(vehicle => {
                 return <option value={vehicle.plate}>{vehicle.plate}</option>;
-              });
-            })}
+              })
+            }
           </select>
         </React.Fragment>
       ) : id == "direction" ? (

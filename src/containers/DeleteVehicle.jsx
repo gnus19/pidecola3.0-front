@@ -21,7 +21,7 @@ class DeleteVehicle extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        console.log("VEHICULO: ", response.data.vehicles[0]);
+        console.log("VEHICULO: ", response.data.vehicles);
         this.setState({
           vehicles: response.data.vehicles
         });
@@ -44,12 +44,16 @@ class DeleteVehicle extends Component {
         <div className="seccionVehiculos"></div>
         <div className="listaVehiculos">
           <div className="carta">
-            <DropDownList
+            {
+              this.state.vehicles &&
+              <DropDownList
               className="vehicleList"
               id="vehicle"
               onChange={this.handleChange}
               vehicleList={this.state.vehicles}
-            ></DropDownList>
+              >
+              </DropDownList>
+            }
           </div>
         </div>
         <div className="eliminarCancelar">
