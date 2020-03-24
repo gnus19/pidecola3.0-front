@@ -6,7 +6,13 @@ function dropDownList({ id, onChange, vehicleList }) {
       {id == "vehicle" ? (
         <React.Fragment>
           <label>Vehículo</label>
-          <select id={id} onChange={onChange}></select>
+          <select id={id} onChange={onChange}>
+            {vehicleList.map(list => {
+              return list.requests.map(vehicle => {
+                return <option value={vehicle.plate}>{vehicle.plate}</option>;
+              });
+            })}
+          </select>
         </React.Fragment>
       ) : id == "direction" ? (
         <React.Fragment>

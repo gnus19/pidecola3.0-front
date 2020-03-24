@@ -23,7 +23,7 @@ class DeleteVehicle extends Component {
         console.log("Response: ", response);
         console.log("VEHICULO: ", response.data.vehicles[0]);
         this.setState({
-          vehicles: response.data.vehicles[0]
+          vehicles: response.data.vehicles
         });
       })
       .catch(error => {
@@ -48,7 +48,7 @@ class DeleteVehicle extends Component {
               className="vehicleList"
               id="vehicle"
               onChange={this.handleChange}
-              list={this.state.vehiculos}
+              vehicleList={this.state.vehicles}
             ></DropDownList>
           </div>
         </div>

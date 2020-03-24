@@ -30,6 +30,10 @@ class VehicleDetail extends Component {
   };
 
   validVehicle = () => {
+    this.setState({
+      responseError: ""
+    });
+
     let valid = true;
     let errorMessage = "";
 
@@ -37,7 +41,7 @@ class VehicleDetail extends Component {
       this.state.plate !== "" &&
       (this.state.plate.length < 6 || this.state.plate.length > 7)
     ) {
-      errorMessage = errorMessage + "Introduzca una placa válida. ";
+      errorMessage = errorMessage + "Introduce una placa válida. ";
       valid = false;
     }
 
@@ -45,7 +49,7 @@ class VehicleDetail extends Component {
       this.state.year !== "" &&
       (isNaN(this.state.year) === true || this.state.year.length !== 4)
     ) {
-      errorMessage = errorMessage + "Introduzca un año válido. ";
+      errorMessage = errorMessage + "Introduce un año válido. ";
       valid = false;
     }
 
@@ -56,14 +60,20 @@ class VehicleDetail extends Component {
     }
 
     if (
-      this.state.plate ||
-      this.state.brand ||
-      this.state.model ||
-      this.state.year ||
-      this.state.color ||
+      this.state.plate === "" ||
+      this.state.brand === "" ||
+      this.state.model === "" ||
+      this.state.year === "" ||
+      this.state.color === "" ||
       this.state.vehicleCap === ""
     ) {
-      errorMessage = errorMessage + "Todos los campos son requeridos.";
+      errorMessage = errorMessage + "Todos los campos son requeridos. ";
+      valid = false;
+    }
+
+    if (this.state.vehiclePic === "") {
+      errorMessage = errorMessage + "Agrega una imagen del vehículo.";
+      valid = false;
     }
 
     if (!valid) {
@@ -73,20 +83,15 @@ class VehicleDetail extends Component {
       return false;
     }
 
-    this.setState({
-      responseError: ""
-    });
-
     return true;
   };
 
   sendVehicleEdit = event => {
     event.preventDefault();
-    /*
+
     if (!this.validVehicle()) {
       return;
     }
-    */
 
     let info = new FormData();
     info.append("file", this.state.vehiclePic);
@@ -101,9 +106,12 @@ class VehicleDetail extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        this.props.history.push({
-          pathname: "/profile"
-        });
+
+        if (response.status) {
+          this.props.history.push({
+            pathname: "/profile"
+          });
+        }
       })
       .catch(error => {
         console.log("Catch", error);
@@ -197,11 +205,9 @@ class VehicleDetail extends Component {
             ]}
           />
           <div className="SubSection-Buttons">
-            <NavLink to="/profile">
-              <div className="acceptButton" onClick={this.sendVehicleEdit}>
-                <p>Guardar</p>
-              </div>
-            </NavLink>
+            <div className="acceptButton" onClick={this.sendVehicleEdit}>
+              <p>Guardar</p>
+            </div>
             <NavLink to="/profile">
               <div className="cancelButton">
                 <p>Cancelar</p>
