@@ -18,6 +18,10 @@
   padding: 0 20px 0 20px;
 }
 
+.carta {
+  height: max-content;
+}
+
 .deleteButton,
 .cancelDeleteButton {
   width: 325px;

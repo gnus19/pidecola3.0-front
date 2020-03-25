@@ -73,3 +73,14 @@ export function addVehicle(req) {
     }
   });
 }
+
+export function deleteVehicle(req) {
+  return fetch(SERVER + "/users/delete/vehicle", {
+    method: "PUT",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}

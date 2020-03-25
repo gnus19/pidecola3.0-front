@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { requestRide } from "services/requestRideService";
 import "assets/css/DeleteVehicle.css";
 import DropDownList from "../components/dropDownList/DropDownList";
-import InputPC from "../components/inputPc/InputPC";
-import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import { infoProfile } from "services/userServices";
+import { infoProfile, deleteVehicle } from "services/userServices";
 
 class DeleteVehicle extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      vehicles: ""
+      vehicles: "",
+      deleted: false
     };
   }
 
@@ -21,7 +19,6 @@ class DeleteVehicle extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        console.log("VEHICULO: ", response.data.vehicles);
         this.setState({
           vehicles: response.data.vehicles
         });
@@ -38,27 +35,47 @@ class DeleteVehicle extends Component {
     });
   };
 
+  sendDelete = event => {
+    event.preventDefault();
+    const toDelete = document.getElementById("vehicle");
+    const vehiclePlate = {
+      plate: toDelete.value
+    };
+
+    deleteVehicle(vehiclePlate)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+        if (response.status) {
+          this.props.history.push({
+            pathname: "/profile"
+          });
+        }
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="seccionVehiculos"></div>
         <div className="listaVehiculos">
           <div className="carta">
-            {
-              this.state.vehicles &&
+            {this.state.vehicles && (
               <DropDownList
-              className="vehicleList"
-              id="vehicle"
-              onChange={this.handleChange}
-              vehicleList={this.state.vehicles}
-              >
-              </DropDownList>
-            }
+                className="vehicleList"
+                id="vehicle"
+                onChange={this.handleChange}
+                vehicleList={this.state.vehicles}
+              ></DropDownList>
+            )}
           </div>
         </div>
         <div className="eliminarCancelar">
           <NavLink to="/profile">
-            <div className="deleteButton">
+            <div className="deleteButton" onClick={this.sendDelete}>
               <p>Eliminar</p>
             </div>
           </NavLink>
