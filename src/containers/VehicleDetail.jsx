@@ -47,13 +47,13 @@ class VehicleDetail extends Component {
 
     if (
       this.state.year !== "" &&
-      (isNaN(this.state.year) === true || this.state.year.length !== 4)
+      (isNaN(this.state.year) || this.state.year.length !== 4)
     ) {
       errorMessage = errorMessage + "Introduce un año válido. ";
       valid = false;
     }
 
-    if (isNaN(this.state.vehicleCap) === true) {
+    if (isNaN(this.state.vehicleCap)) {
       errorMessage =
         errorMessage + "Capacidad solo puede ser un valor numérico. ";
       valid = false;
@@ -158,7 +158,9 @@ class VehicleDetail extends Component {
         </div>
         <div className="Section-VehicleDetail-Right">
           {this.state.responseError !== "" && (
-            <div className="responseError">{this.state.responseError}</div>
+            <div className="responseVehicleError">
+              {this.state.responseError}
+            </div>
           )}
           <InputPC
             fields={[

@@ -25,7 +25,8 @@ class Profile extends Component {
       age: "",
       phoneNumber: "",
       major: "",
-      picChanged: false
+      picChanged: false,
+      responseError: ""
     };
   }
 
@@ -58,7 +59,48 @@ class Profile extends Component {
     });
   };
 
+  validProfile = () => {
+    this.setState({
+      responseError: ""
+    });
+
+    let valid = true;
+    let errorMessage = "";
+
+    if (!isNaN(this.state.firstName)) {
+      errorMessage = errorMessage + "Introduce un nombre válido. ";
+      valid = false;
+    }
+
+    if (!isNaN(this.state.lastName)) {
+      errorMessage = errorMessage + "Introduce un apellido válido. ";
+      valid = false;
+    }
+
+    if (isNaN(this.state.age)) {
+      errorMessage = errorMessage + "Introduce una edad válida. ";
+      valid = false;
+    }
+
+    if (this.state.phoneNumber.length !== 11) {
+      errorMessage = errorMessage + "Introduce un número de teléfono válido. ";
+      valid = false;
+    }
+
+    if (!valid) {
+      this.setState({
+        responseError: errorMessage
+      });
+      return false;
+    }
+
+    return true;
+  };
+
   sendEdit = event => {
+    if (!this.validProfile()) {
+      return;
+    }
     this.sendProfileEdit(event);
     if (this.state.picChanged) {
       this.sendProfilePicEdit(event);
@@ -133,21 +175,21 @@ class Profile extends Component {
               id="inputProfileImage"
               onChange={this.profileImageSelected}
             />
-            <ImgContainer
-              src={this.state.profilePreview}
-              alt="Image Profile"
-              onClick={this.inputProfileClick}
-            />
+            <div className="profilePicWeb">
+              <ImgContainer
+                src={this.state.profilePreview}
+                alt="Image Profile"
+                onClick={this.inputProfileClick}
+              />
+            </div>
           </div>
           <div className="child2">
             <div className="ContentCar">
               <ImgContainer
                 src={usercar}
                 alt="Image Profile"
-                height="130px"
-                width="130px"
               />
-              <p>Vehículo 1</p>
+              {/*<p>Vehículo 1</p>*/}
             </div>
           </div>
           <div className="child3">
@@ -166,6 +208,18 @@ class Profile extends Component {
           </div>
         </div>
         <div className="Section-Profile-Right">
+          {this.state.responseError !== "" && (
+            <div className="responseProfileError">
+              {this.state.responseError}
+            </div>
+          )}
+          <div className="profilePicMobile">
+            <ImgContainer
+              src={this.state.profilePreview}
+              alt="Image Profile"
+              onClick={this.inputProfileClick}
+            />
+          </div>
           <InputPC
             fields={[
               {

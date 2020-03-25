@@ -44,7 +44,7 @@
   display: none;
 }
 
-.responseError {
+.responseVehicleError {
   color: white;
   background-color: #ff5252;
   padding: 8px;
