@@ -167,7 +167,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="Profile">
-        <div className="Section-Profile-Left">
+         <div className="Section-Profile-Left">
           <div className="child1">
             <input
               type="file"
@@ -175,7 +175,7 @@ class Profile extends Component {
               id="inputProfileImage"
               onChange={this.profileImageSelected}
             />
-            <div className="profilePicWeb">
+            <div className="profilePicMobile">
               <ImgContainer
                 src={this.state.profilePreview}
                 alt="Image Profile"
@@ -183,43 +183,39 @@ class Profile extends Component {
               />
             </div>
           </div>
-          <div className="child2">
-            <div className="ContentCar">
-              <ImgContainer
-                src={usercar}
-                alt="Image Profile"
-              />
-              {/*<p>Vehículo 1</p>*/}
+          { !window.ismobile() &&
+          <> 
+            <div className="child2">
+              <div className="profilePicMobile">
+                <ImgContainer
+                  src={usercar}
+                  alt="Image Profile"
+                />
+              </div>
             </div>
-          </div>
-          <div className="child3">
-            <div className="seccionAgregar">
-              <p>Agregar Vehículo</p>
-              <NavLink to="/addVehicle">
-                <div className="PlusButton">+</div>
-              </NavLink>
+            <div className="child3">
+              <div className="seccionAgregar">
+                <p>Agregar Vehículo</p>
+                <NavLink to="/addVehicle">
+                  <div className="PlusButton">+</div>
+                </NavLink>
+              </div>
+              <div className="seccionEliminar">
+                <p>Eliminar Vehículo</p>
+                <NavLink to="/deleteVehicle">
+                  <div className="DeleteButton">×</div>
+                </NavLink>
+              </div>
             </div>
-            <div className="seccionEliminar">
-              <p>Eliminar Vehículo</p>
-              <NavLink to="/deleteVehicle">
-                <div className="DeleteButton">×</div>
-              </NavLink>
-            </div>
-          </div>
-        </div>
-        <div className="Section-Profile-Right">
+            </>
+          }
+        </div> 
+        <div className="Section-Profile-Middle">
           {this.state.responseError !== "" && (
             <div className="responseProfileError">
               {this.state.responseError}
             </div>
           )}
-          <div className="profilePicMobile">
-            <ImgContainer
-              src={this.state.profilePreview}
-              alt="Image Profile"
-              onClick={this.inputProfileClick}
-            />
-          </div>
           <InputPC
             fields={[
               {
@@ -271,6 +267,32 @@ class Profile extends Component {
               onChange={this.handleEdit}
             ></DropDownList>
           </div>
+          { window.ismobile() &&
+          <> 
+            <div className="child2">
+              <div className="profilePicMobile">
+                <ImgContainer
+                  src={usercar}
+                  alt="Image Profile"
+                />
+              </div>
+            </div>
+            <div className="child3">
+              <div className="seccionAgregar">
+                <p>Agregar Vehículo</p>
+                <NavLink to="/addVehicle">
+                  <div className="PlusButton">+</div>
+                </NavLink>
+              </div>
+              <div className="seccionEliminar">
+                <p>Eliminar Vehículo</p>
+                <NavLink to="/deleteVehicle">
+                  <div className="DeleteButton">×</div>
+                </NavLink>
+              </div>
+            </div>
+            </>
+          }
           <div className="SubSection-Add">
             <div className="guardarCambios" onClick={this.sendEdit}>
               Guardar cambios

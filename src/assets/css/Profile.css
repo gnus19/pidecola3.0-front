@@ -2,21 +2,19 @@
   display: flex;
   width: 100%;
   height: 100%;
-}
-
-.Section-Profile-Left,
-.Section-Profile-Right {
-  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .Section-Profile-Left {
   width: 30%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.Section-Profile-Right {
+.Section-Profile-Middle {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -24,7 +22,7 @@
   padding: 0 40px 0 20px;
 }
 
-.Section-Profile-Right .Inputs-PC {
+.Section-Profile-Middle .Inputs-PC {
   margin: 20px 0;
 }
 
@@ -87,15 +85,17 @@
   width: inherit;
 }
 
+.profilePicMobile {
+  height: 100px;
+  width: 100px;
+}
+
 .Section-Profile-Left .child1 {
-  width: 226px;
-  height: 226px;
-  margin-top: 5vh;
+  height: auto;
 }
 
 .Section-Profile-Left .child2 {
-  width: 226px;
-  height: 226px;
+  height: auto;
   display: flex;
   justify-content: flex-start;
 }
@@ -139,21 +139,62 @@
   border-radius: 5px;
   font-weight: 500;
 }
+/* Profile images size */
+@media (max-width: 320px) {
+  .Section-Profile-Left .profilePicMobile {
+    width: 150px;
+    height: 150px;
+  }
+  .Section-Profile-Middle .profilePicMobile {
+    width: 150px;
+    height: 150px;
+  }
+  .seccionAgregar, seccionEliminar {
+    width: 115px;
+    height: 115px;
+  }
+}
+@media (min-width: 375px) {
+  .Section-Profile-Left .profilePicMobile {
+    width: 175px;
+    height: 175px;
+  }
+  .Section-Profile-Middle .profilePicMobile {
+    width: 175px;
+    height: 175px;
+  }
+  .seccionAgregar, seccionEliminar {
+    width: 135px;
+    height: 135px;
+  }
+}
+@media (min-width: 768px) {
+  .Section-Profile-Left .profilePicMobile {
+    width: 200px;
+    height: 200px;
+  }
+  .Section-Profile-Middle .profilePicMobile {
+    width: 200px;
+    height: 200px;
+  }
+  .seccionAgregar, seccionEliminar {
+    width: 180px;
+    height: 180px;
+  }
+}
 
+/* p tag */
 @media (max-width: 1024px) {
   .child3 p {
     font-size: 12px;
   }
 }
 
-.profilePicMobile {
-  display: none;
-}
 
 /*left = top, right = bottom */
 @media (max-width: 425px) {
   .Profile {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .profilePicMobile {
@@ -166,40 +207,38 @@
   }
 
   .Section-Profile-Left,
-  .Section-Profile-Right {
+  .Section-Profile-Middle {
     width: 100%;
   }
 
   .Section-Profile-Left {
-    height: 50%;
+    margin-top: 5vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
 
-  .Section-Profile-Right {
-    height: 50%;
+  .Section-Profile-Middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 20px 0 20px;
   }
 
-  .Section-Profile-Left .child1 {
-    display: none;
-  }
-
-  .Section-Profile-Left .child2 {
-    height: 100%;
-    width: 50%;
+  .Section-Profile-Middle .child2 {
     margin-top: 0;
+    display: flex;
+    justify-content: center;
   }
 
-  .Section-Profile-Left .child3 {
+  .Section-Profile-Middle .child3 {
     margin-top: 0;
+    display: flex;
+    justify-content: center;
   }
 
-  .Section-Profile-Right .Inputs-PC {
+  .Section-Profile-Middle .Inputs-PC {
     margin: 10px 0;
   }
 
