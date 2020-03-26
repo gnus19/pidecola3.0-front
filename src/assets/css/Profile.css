@@ -85,9 +85,13 @@
   width: inherit;
 }
 
-.profilePicMobile {
+.picture {
   height: 100px;
   width: 100px;
+}
+
+#profile {
+  cursor: pointer;
 }
 
 .Section-Profile-Left .child1 {
@@ -125,6 +129,8 @@
   justify-content: center;
   flex-direction: column;
   margin-top: 60px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .carta {
@@ -140,47 +146,55 @@
   font-weight: 500;
 }
 /* Profile images size */
-@media (max-width: 320px) {
-  .Section-Profile-Left .profilePicMobile {
+@media (max-width: 360px) {
+  .Section-Profile-Left .picture {
     width: 150px;
     height: 150px;
   }
-  .Section-Profile-Middle .profilePicMobile {
+  .Section-Profile-Middle .picture {
     width: 150px;
     height: 150px;
   }
-  .seccionAgregar, seccionEliminar {
+  /*
+  .seccionAgregar,
+  seccionEliminar {
     width: 115px;
     height: 115px;
   }
+  */
 }
 @media (min-width: 375px) {
-  .Section-Profile-Left .profilePicMobile {
+  .Section-Profile-Left .picture {
     width: 175px;
     height: 175px;
   }
-  .Section-Profile-Middle .profilePicMobile {
+  .Section-Profile-Middle .picture {
     width: 175px;
     height: 175px;
   }
-  .seccionAgregar, seccionEliminar {
+  /*
+  .seccionAgregar,
+  seccionEliminar {
     width: 135px;
     height: 135px;
   }
+  */
 }
 @media (min-width: 768px) {
-  .Section-Profile-Left .profilePicMobile {
+  .Section-Profile-Left .picture {
     width: 200px;
     height: 200px;
   }
-  .Section-Profile-Middle .profilePicMobile {
+  .Section-Profile-Middle .picture {
     width: 200px;
     height: 200px;
   }
+  /*
   .seccionAgregar, seccionEliminar {
     width: 180px;
     height: 180px;
   }
+  */
 }
 
 /* p tag */
@@ -190,14 +204,13 @@
   }
 }
 
-
 /*left = top, right = bottom */
 @media (max-width: 425px) {
   .Profile {
     flex-direction: column;
   }
 
-  .profilePicMobile {
+  .picture {
     display: flex;
     justify-content: center;
   }
@@ -259,11 +272,12 @@
     margin-top: 15px;
     margin-bottom: 0.5rem;
   }
-
+  /*
   body .PlusButton {
     height: 50px;
     margin-top: 5px;
     padding: 10px;
     margin-left: 15px;
   }
+  */
 }

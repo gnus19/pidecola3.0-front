@@ -167,7 +167,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="Profile">
-         <div className="Section-Profile-Left">
+        <div className="Section-Profile-Left">
           <div className="child1">
             <input
               type="file"
@@ -175,41 +175,39 @@ class Profile extends Component {
               id="inputProfileImage"
               onChange={this.profileImageSelected}
             />
-            <div className="profilePicMobile">
+            <div className="picture">
               <ImgContainer
                 src={this.state.profilePreview}
                 alt="Image Profile"
+                id="profile"
                 onClick={this.inputProfileClick}
               />
             </div>
           </div>
-          { !window.ismobile() &&
-          <> 
-            <div className="child2">
-              <div className="profilePicMobile">
-                <ImgContainer
-                  src={usercar}
-                  alt="Image Profile"
-                />
+          {!window.ismobile() && (
+            <>
+              <div className="child2">
+                <div className="picture">
+                  <ImgContainer src={usercar} alt="Image Profile" />
+                </div>
               </div>
-            </div>
-            <div className="child3">
-              <div className="seccionAgregar">
-                <p>Agregar Vehículo</p>
-                <NavLink to="/addVehicle">
-                  <div className="PlusButton">+</div>
-                </NavLink>
+              <div className="child3">
+                <div className="seccionAgregar">
+                  <p>Agregar Vehículo</p>
+                  <NavLink to="/addVehicle">
+                    <div className="PlusButton">+</div>
+                  </NavLink>
+                </div>
+                <div className="seccionEliminar">
+                  <p>Eliminar Vehículo</p>
+                  <NavLink to="/deleteVehicle">
+                    <div className="DeleteButton">×</div>
+                  </NavLink>
+                </div>
               </div>
-              <div className="seccionEliminar">
-                <p>Eliminar Vehículo</p>
-                <NavLink to="/deleteVehicle">
-                  <div className="DeleteButton">×</div>
-                </NavLink>
-              </div>
-            </div>
             </>
-          }
-        </div> 
+          )}
+        </div>
         <div className="Section-Profile-Middle">
           {this.state.responseError !== "" && (
             <div className="responseProfileError">
@@ -221,13 +219,13 @@ class Profile extends Component {
               {
                 type: "input",
                 label: "Nombre",
-                value: this.state.firstName,
+                value: this.state.firstName.toUpperCase(),
                 attrs: { id: "firstName", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Apellido",
-                value: this.state.lastName,
+                value: this.state.lastName.toUpperCase(),
                 attrs: { id: "lastName", onChange: this.handleEdit }
               },
               {
@@ -264,35 +262,33 @@ class Profile extends Component {
             <DropDownList
               className="majorList"
               id="major"
+              currentMajor={this.state.major}
               onChange={this.handleEdit}
             ></DropDownList>
           </div>
-          { window.ismobile() &&
-          <> 
-            <div className="child2">
-              <div className="profilePicMobile">
-                <ImgContainer
-                  src={usercar}
-                  alt="Image Profile"
-                />
+          {window.ismobile() && (
+            <>
+              <div className="child2">
+                <div className="picture">
+                  <ImgContainer src={usercar} alt="Image Profile" />
+                </div>
               </div>
-            </div>
-            <div className="child3">
-              <div className="seccionAgregar">
-                <p>Agregar Vehículo</p>
-                <NavLink to="/addVehicle">
-                  <div className="PlusButton">+</div>
-                </NavLink>
+              <div className="child3">
+                <div className="seccionAgregar">
+                  <p>Agregar Vehículo</p>
+                  <NavLink to="/addVehicle">
+                    <div className="PlusButton">+</div>
+                  </NavLink>
+                </div>
+                <div className="seccionEliminar">
+                  <p>Eliminar Vehículo</p>
+                  <NavLink to="/deleteVehicle">
+                    <div className="DeleteButton">×</div>
+                  </NavLink>
+                </div>
               </div>
-              <div className="seccionEliminar">
-                <p>Eliminar Vehículo</p>
-                <NavLink to="/deleteVehicle">
-                  <div className="DeleteButton">×</div>
-                </NavLink>
-              </div>
-            </div>
             </>
-          }
+          )}
           <div className="SubSection-Add">
             <div className="guardarCambios" onClick={this.sendEdit}>
               Guardar cambios

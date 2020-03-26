@@ -1,6 +1,6 @@
 import React from "react";
 
-function dropDownList({ id, onChange, vehicleList }) {
+function dropDownList({ id, onChange, vehicleList, currentMajor }) {
   return (
     <React.Fragment>
       {id == "vehicle" ? (
@@ -31,7 +31,8 @@ function dropDownList({ id, onChange, vehicleList }) {
         <React.Fragment>
           <label>Carrera</label>
           <select id={id} onChange={onChange}>
-            <option value="">SELECCIONA UNA CARRERA</option>
+            <option value={currentMajor}>{currentMajor.toUpperCase()}</option>
+            <option value="">--- SELECCIONA UNA CARRERA ---</option>
             <option value="Arquitectura">ARQUITECTURA</option>
             <option value="Economía">ECONOMÍA</option>
             <option value="Ing. de Computación">ING. DE COMPUTACIÓN</option>

@@ -44,6 +44,10 @@
   display: none;
 }
 
+#vehicle {
+  cursor: pointer;
+}
+
 .responseVehicleError {
   color: white;
   background-color: #ff5252;
@@ -63,6 +67,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .acceptButton {
@@ -135,7 +140,7 @@
   .Section-VehicleDetail-Left .child1 {
     width: 200px;
     height: 200px;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
   }
 
   .acceptButton,
@@ -152,6 +157,11 @@
 }
 
 @media (max-width: 320px) {
+  .Section-VehicleDetail-Left .child1 {
+    width: 180px;
+    height: 180px;
+  }
+
   .acceptButton,
   .cancelButton {
     width: 120px;

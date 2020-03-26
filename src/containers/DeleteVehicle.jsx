@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import "assets/css/DeleteVehicle.css";
 import DropDownList from "../components/dropDownList/DropDownList";
 import { infoProfile, deleteVehicle } from "services/userServices";
+import ImgContainer from "components/userImg/ImgContainer";
+import InputPC from "components/inputPc/InputPC";
 
 class DeleteVehicle extends Component {
   constructor(props) {
@@ -10,6 +12,12 @@ class DeleteVehicle extends Component {
 
     this.state = {
       vehicles: "",
+      plate: "",
+      brand: "",
+      model: "",
+      year: "",
+      color: "",
+      vehicleCap: "",
       deleted: false
     };
   }
@@ -28,18 +36,19 @@ class DeleteVehicle extends Component {
       });
   }
 
+  /*
   handleChange = event => {
     const element = document.getElementById(event.target.id);
     this.setState({
       [event.target.id]: element.value
     });
   };
+  */
 
   sendDelete = event => {
     event.preventDefault();
-    const toDelete = document.getElementById("vehicle");
     const vehiclePlate = {
-      plate: toDelete.value
+      plate: this.state.plate
     };
 
     deleteVehicle(vehiclePlate)
@@ -57,21 +66,85 @@ class DeleteVehicle extends Component {
       });
   };
 
+  selectVehicle = vehicleSelected => event => {
+    event.preventDefault();
+    this.setState({
+      plate: vehicleSelected.plate,
+      brand: vehicleSelected.brand,
+      model: vehicleSelected.model,
+      year: vehicleSelected.year,
+      color: vehicleSelected.color,
+      vehicleCap: vehicleSelected.vehicle_capacity
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <div className="seccionVehiculos"></div>
         <div className="listaVehiculos">
-          <div className="carta">
-            {this.state.vehicles && (
+          {this.state.vehicles &&
+            this.state.vehicles.map(vehicle => {
+              return (
+                <div className="picture" id="listaVehiculos">
+                  <ImgContainer
+                    src={vehicle.vehicle_pic}
+                    alt="Image Profile"
+                    id="vehiculo"
+                    onClick={this.selectVehicle(vehicle)}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <div className="infoVehiculos">
+          {/*this.state.vehicles && (
               <DropDownList
                 className="vehicleList"
                 id="vehicle"
                 onChange={this.handleChange}
                 vehicleList={this.state.vehicles}
               ></DropDownList>
-            )}
-          </div>
+            )*/}
+          <InputPC
+            fields={[
+              {
+                type: "input",
+                label: "Placa",
+                value: this.state.plate.toUpperCase(),
+                attrs: {}
+              },
+              {
+                type: "input",
+                label: "Marca",
+                value: this.state.brand.toUpperCase(),
+                attrs: {}
+              },
+              {
+                type: "input",
+                label: "Modelo",
+                value: this.state.model.toUpperCase(),
+                attrs: {}
+              },
+              {
+                type: "input",
+                label: "Año",
+                value: this.state.year,
+                attrs: {}
+              },
+              {
+                type: "input",
+                label: "Color",
+                value: this.state.color.toUpperCase(),
+                attrs: {}
+              },
+              {
+                type: "input",
+                label: "Capacidad",
+                value: this.state.vehicleCap,
+                attrs: {}
+              }
+            ]}
+          />
         </div>
         <div className="eliminarCancelar">
           <NavLink to="/profile">

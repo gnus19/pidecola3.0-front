@@ -1,13 +1,25 @@
-.seccionVehiculos {
-  display: flex;
-  height: 35%;
-  padding: 0 20px 0 20px;
-}
-
 .listaVehiculos {
   display: flex;
-  height: 35%;
+  height: 30%;
   padding: 0 20px 0 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#listaVehiculos {
+  height: 200px;
+  width: 200px;
+}
+
+#vehiculo {
+  cursor: pointer;
+}
+
+.infoVehiculos {
+  display: flex;
+  height: 40%;
+  padding: 0 20px 0 20px;
+  align-items: center;
 }
 
 .eliminarCancelar {
@@ -46,4 +58,56 @@
 .deleteButton p,
 .cancelDeleteButton p {
   margin: 0;
+}
+
+@media (max-width: 425px) {
+  .eliminarCancelar {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eliminarCancelar a {
+    width: 100%;
+  }
+
+  .deleteButton,
+  .cancelDeleteButton {
+    margin: 10px 0;
+    width: inherit;
+  }
+
+  #listaVehiculos {
+    height: 120px;
+    width: 120px;
+  }
+
+  #vehiculo {
+  }
+}
+
+@media (max-width: 320px) {
+  .deleteButton,
+  .cancelDeleteButton {
+    height: 40px;
+    margin: 5px 0;
+  }
+
+  #listaVehiculos {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .listaVehiculos {
+    padding: 10px 20px 0 20px;
+  }
+
+  .infoVehiculos {
+    padding: 40px 20px 0 20px;
+  }
+
+  .eliminarCancelar {
+    justify-content: space-around;
+  }
 }
