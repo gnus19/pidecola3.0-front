@@ -153,7 +153,7 @@ class DeleteVehicle extends Component {
           </NavLink>
           <NavLink to="/profile">
             <div className="cancelDeleteButton">
-              <p>Cancelar</p>
+              <p>Atrás</p>
             </div>
           </NavLink>
         </div>

@@ -7,6 +7,7 @@ import {
 } from "services/userServices";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg";
+import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
 import DropDownList from "../components/dropDownList/DropDownList";
@@ -24,8 +25,8 @@ class Profile extends Component {
       age: "",
       phoneNumber: "",
       major: "",
-      vehicles: "",
-      showVehicle: "",
+      vehicles: [],
+      showVehicle: usercar,
       vehicleIndex: 0,
       picChanged: false,
       responseError: ""
@@ -37,20 +38,59 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
+
         this.setState({
-          profilePreview: response.data.profile_pic,
-          profilePic: response.data.profile_pic,
           email: response.data.email,
-          firstName: response.data.first_name,
-          lastName: response.data.last_name,
           carnet: response.data.email.split("@")[0],
-          age: response.data.age,
           phoneNumber: response.data.phone_number,
-          major: response.data.major,
-          vehicles: response.data.vehicles,
-          showVehicle: response.data.vehicles[0]
+          vehicles: response.data.vehicles
         });
+
+        if (response.data.first_name === undefined) {
+        } else {
+          this.setState({
+            firstName: response.data.first_name
+          });
+        }
+
+        if (response.data.last_name === undefined) {
+        } else {
+          this.setState({
+            lastName: response.data.last_name
+          });
+        }
+
+        if (response.data.age === undefined) {
+        } else {
+          this.setState({
+            age: response.data.age
+          });
+        }
+
+        if (response.data.major === undefined) {
+        } else {
+          this.setState({
+            major: response.data.major
+          });
+        }
+
+        if (response.data.vehicles.length === 0) {
+        } else {
+          this.setState({
+            vehicles: response.data.vehicles,
+            showVehicle: response.data.vehicles[0].vehicle_pic
+          });
+        }
+
+        if (response.data.profile_pic === undefined) {
+        } else {
+          this.setState({
+            profilePreview: response.data.profile_pic,
+            profilePic: response.data.profile_pic
+          });
+        }
       })
+
       .catch(error => {
         console.log("Catch", error);
       });
@@ -71,17 +111,17 @@ class Profile extends Component {
     let valid = true;
     let errorMessage = "";
 
-    if (!isNaN(this.state.firstName)) {
+    if (this.state.firstName !== "" && !isNaN(this.state.firstName)) {
       errorMessage = errorMessage + "Introduce un nombre válido. ";
       valid = false;
     }
 
-    if (!isNaN(this.state.lastName)) {
+    if (this.state.lastName !== "" && !isNaN(this.state.lastName)) {
       errorMessage = errorMessage + "Introduce un apellido válido. ";
       valid = false;
     }
 
-    if (isNaN(this.state.age)) {
+    if (this.state.age !== "" && isNaN(this.state.age)) {
       errorMessage = errorMessage + "Introduce una edad válida. ";
       valid = false;
     }
@@ -179,11 +219,13 @@ class Profile extends Component {
         this.setState({
           vehicleIndex: this.state.vehicles.length - 1,
           showVehicle: this.state.vehicles[this.state.vehicles.length - 1]
+            .vehicle_pic
         });
       } else {
         this.setState({
           vehicleIndex: this.state.vehicleIndex - 1,
           showVehicle: this.state.vehicles[this.state.vehicleIndex - 1]
+            .vehicle_pic
         });
       }
     }
@@ -198,12 +240,13 @@ class Profile extends Component {
       if (this.state.vehicleIndex + 1 === this.state.vehicles.length) {
         this.setState({
           vehicleIndex: 0,
-          showVehicle: this.state.vehicles[0]
+          showVehicle: this.state.vehicles[0].vehicle_pic
         });
       } else {
         this.setState({
           vehicleIndex: this.state.vehicleIndex + 1,
           showVehicle: this.state.vehicles[this.state.vehicleIndex + 1]
+            .vehicle_pic
         });
       }
     }
@@ -241,7 +284,7 @@ class Profile extends Component {
                 </div>
                 <div className="picture" id="vehicleImage">
                   <ImgContainer
-                    src={this.state.showVehicle.vehicle_pic}
+                    src={this.state.showVehicle}
                     alt="Image Profile"
                   />
                 </div>
@@ -281,13 +324,13 @@ class Profile extends Component {
               {
                 type: "input",
                 label: "Nombre",
-                value: this.state.firstName.toUpperCase(),
+                value: this.state.firstName,
                 attrs: { id: "firstName", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Apellido",
-                value: this.state.lastName.toUpperCase(),
+                value: this.state.lastName,
                 attrs: { id: "lastName", onChange: this.handleEdit }
               },
               {
@@ -340,7 +383,7 @@ class Profile extends Component {
                 </div>
                 <div className="picture" id="vehicleImage">
                   <ImgContainer
-                    src={this.state.showVehicle.vehicle_pic}
+                    src={this.state.showVehicle}
                     alt="Image Profile"
                   />
                 </div>
