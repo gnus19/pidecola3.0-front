@@ -3,7 +3,7 @@ import React from "react";
 function dropDownList({ id, onChange, vehicleList, currentMajor }) {
   return (
     <React.Fragment>
-      {id == "vehicle" ? (
+      {id === "vehicle" ? (
         <React.Fragment>
           <label>Vehículo</label>
           <select id={id} onChange={onChange}>
@@ -19,7 +19,7 @@ function dropDownList({ id, onChange, vehicleList, currentMajor }) {
               })}
           </select>
         </React.Fragment>
-      ) : id == "direction" ? (
+      ) : id === "direction" ? (
         <React.Fragment>
           <label>Dirección</label>
           <select id={id} onChange={onChange}>
@@ -27,7 +27,7 @@ function dropDownList({ id, onChange, vehicleList, currentMajor }) {
             <option value="desde">DESDE USB</option>
           </select>
         </React.Fragment>
-      ) : id == "major" ? (
+      ) : id === "major" ? (
         <React.Fragment>
           <label>Carrera</label>
           <select id={id} onChange={onChange}>

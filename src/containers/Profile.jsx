@@ -7,7 +7,6 @@ import {
 } from "services/userServices";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg";
-import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
 import DropDownList from "../components/dropDownList/DropDownList";

@@ -7,7 +7,7 @@ const ImgContainer = props => (
     style={{ height: props.height || "100%", width: props.width || "100%" }}
   >
     <div className="Envolved">
-      <img className="Img" {...props} />
+      <img className="Img" alt="imageEnv" {...props} />
     </div>
   </div>
 );

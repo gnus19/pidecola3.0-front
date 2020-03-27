@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { addVehicle, infoVehicle } from "services/userServices";
+import { addVehicle } from "services/userServices";
 import "assets/css/VehicleDetail.css";
 import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";

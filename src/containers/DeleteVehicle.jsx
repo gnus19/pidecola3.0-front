@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "assets/css/DeleteVehicle.css";
-import DropDownList from "../components/dropDownList/DropDownList";
 import { infoProfile, deleteVehicle } from "services/userServices";
 import ImgContainer from "components/userImg/ImgContainer";
 import InputPC from "components/inputPc/InputPC";
