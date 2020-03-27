@@ -25,6 +25,9 @@ class Profile extends Component {
       age: "",
       phoneNumber: "",
       major: "",
+      vehicles: "",
+      showVehicle: "",
+      vehicleIndex: 0,
       picChanged: false,
       responseError: ""
     };
@@ -44,7 +47,9 @@ class Profile extends Component {
           carnet: response.data.email.split("@")[0],
           age: response.data.age,
           phoneNumber: response.data.phone_number,
-          major: response.data.major
+          major: response.data.major,
+          vehicles: response.data.vehicles,
+          showVehicle: response.data.vehicles[0]
         });
       })
       .catch(error => {
@@ -146,6 +151,7 @@ class Profile extends Component {
   }
 
   profileImageSelected = event => {
+    event.preventDefault();
     this.setState({
       profilePic: event.target.files[0]
     });
@@ -162,6 +168,46 @@ class Profile extends Component {
       false
     );
     myFileItemReader.readAsDataURL(event.target.files[0]);
+  };
+
+  prevVehicle = event => {
+    event.preventDefault();
+
+    if (this.state.vehicles.length === 0 || this.state.vehicles.length === 1) {
+      return;
+    } else {
+      if (this.state.vehicleIndex - 1 < 0) {
+        this.setState({
+          vehicleIndex: this.state.vehicles.length - 1,
+          showVehicle: this.state.vehicles[this.state.vehicles.length - 1]
+        });
+      } else {
+        this.setState({
+          vehicleIndex: this.state.vehicleIndex - 1,
+          showVehicle: this.state.vehicles[this.state.vehicleIndex - 1]
+        });
+      }
+    }
+  };
+
+  nextVehicle = event => {
+    event.preventDefault();
+
+    if (this.state.vehicles.length === 0 || this.state.vehicles.length === 1) {
+      return;
+    } else {
+      if (this.state.vehicleIndex + 1 === this.state.vehicles.length) {
+        this.setState({
+          vehicleIndex: 0,
+          showVehicle: this.state.vehicles[0]
+        });
+      } else {
+        this.setState({
+          vehicleIndex: this.state.vehicleIndex + 1,
+          showVehicle: this.state.vehicles[this.state.vehicleIndex + 1]
+        });
+      }
+    }
   };
 
   render() {
@@ -187,21 +233,38 @@ class Profile extends Component {
           {!window.ismobile() && (
             <>
               <div className="child2">
-                <div className="picture">
-                  <ImgContainer src={usercar} alt="Image Profile" />
+                <div
+                  className="profileButton"
+                  id="prevButton"
+                  onClick={this.prevVehicle}
+                >
+                  <i className="material-icons">arrow_left</i>
+                </div>
+                <div className="picture" id="vehicleImage">
+                  <ImgContainer
+                    src={this.state.showVehicle.vehicle_pic}
+                    alt="Image Profile"
+                  />
+                </div>
+                <div
+                  className="profileButton"
+                  id="nextButton"
+                  onClick={this.nextVehicle}
+                >
+                  <i className="material-icons">arrow_right</i>
                 </div>
               </div>
               <div className="child3">
                 <div className="seccionAgregar">
                   <p>Agregar Vehículo</p>
                   <NavLink to="/addVehicle">
-                    <div className="PlusButton">+</div>
+                    <div className="profileButton">+</div>
                   </NavLink>
                 </div>
                 <div className="seccionEliminar">
                   <p>Eliminar Vehículo</p>
                   <NavLink to="/deleteVehicle">
-                    <div className="DeleteButton">×</div>
+                    <div className="profileButton">×</div>
                   </NavLink>
                 </div>
               </div>
@@ -269,21 +332,38 @@ class Profile extends Component {
           {window.ismobile() && (
             <>
               <div className="child2">
-                <div className="picture">
-                  <ImgContainer src={usercar} alt="Image Profile" />
+                <div
+                  className="profileButton"
+                  id="prevButton"
+                  onClick={this.prevVehicle}
+                >
+                  <i className="material-icons">arrow_left</i>
+                </div>
+                <div className="picture" id="vehicleImage">
+                  <ImgContainer
+                    src={this.state.showVehicle.vehicle_pic}
+                    alt="Image Profile"
+                  />
+                </div>
+                <div
+                  className="profileButton"
+                  id="nextButton"
+                  onClick={this.nextVehicle}
+                >
+                  <i className="material-icons">arrow_right</i>
                 </div>
               </div>
               <div className="child3">
                 <div className="seccionAgregar">
                   <p>Agregar Vehículo</p>
                   <NavLink to="/addVehicle">
-                    <div className="PlusButton">+</div>
+                    <div className="profileButton">+</div>
                   </NavLink>
                 </div>
                 <div className="seccionEliminar">
                   <p>Eliminar Vehículo</p>
                   <NavLink to="/deleteVehicle">
-                    <div className="DeleteButton">×</div>
+                    <div className="profileButton">×</div>
                   </NavLink>
                 </div>
               </div>
