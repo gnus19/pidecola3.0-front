@@ -58,9 +58,9 @@ class AvailablePassengers extends Component {
               let routeName = list.name;
               return list.requests.map((passenger, passengerIndex) => {
                 return <Passenger
-                  nombre="André Corcuera"
-                  carrera="Ingeniería en Computación"
-                  cohorte="12"
+                  nombre={passenger.user.fName + " " + passenger.user.lName} 
+                  carrera={passenger.user.major}
+                  cohorte={passenger.user.usbid.split('-')[0]}
                   ruta={list.name}
                   comentario={passenger.comment}
                 />

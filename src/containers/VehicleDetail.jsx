@@ -1,41 +1,193 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { addVehicle } from "services/userServices";
 import "assets/css/VehicleDetail.css";
 import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
 
 class VehicleDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      vehiclePreview: usercar,
+      vehiclePic: "",
+      plate: "",
+      brand: "",
+      model: "",
+      year: "",
+      color: "",
+      vehicleCap: "",
+      responseError: ""
+    };
+  }
+
+  handleEdit = event => {
+    const element = document.getElementById(event.target.id);
+    this.setState({
+      [event.target.id]: element.value
+    });
+  };
+
+  validVehicle = () => {
+    this.setState({
+      responseError: ""
+    });
+
+    let valid = true;
+    let errorMessage = "";
+
+    if (
+      this.state.plate !== "" &&
+      (this.state.plate.length < 6 || this.state.plate.length > 7)
+    ) {
+      errorMessage = errorMessage + "Introduce una placa válida. ";
+      valid = false;
+    }
+
+    if (
+      this.state.year !== "" &&
+      (isNaN(this.state.year) || this.state.year.length !== 4)
+    ) {
+      errorMessage = errorMessage + "Introduce un año válido. ";
+      valid = false;
+    }
+
+    if (isNaN(this.state.vehicleCap)) {
+      errorMessage =
+        errorMessage + "Capacidad solo puede ser un valor numérico. ";
+      valid = false;
+    }
+
+    if (
+      this.state.plate === "" ||
+      this.state.brand === "" ||
+      this.state.model === "" ||
+      this.state.year === "" ||
+      this.state.color === "" ||
+      this.state.vehicleCap === ""
+    ) {
+      errorMessage = errorMessage + "Todos los campos son requeridos. ";
+      valid = false;
+    }
+
+    if (this.state.vehiclePic === "") {
+      errorMessage = errorMessage + "Agrega una imagen del vehículo.";
+      valid = false;
+    }
+
+    if (!valid) {
+      this.setState({
+        responseError: errorMessage
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  sendVehicleEdit = event => {
+    event.preventDefault();
+
+    if (!this.validVehicle()) {
+      return;
+    }
+
+    let info = new FormData();
+    info.append("file", this.state.vehiclePic);
+    info.append("plate", this.state.plate);
+    info.append("brand", this.state.brand);
+    info.append("model", this.state.model);
+    info.append("year", this.state.year);
+    info.append("color", this.state.color);
+    info.append("vehicle_capacity", this.state.vehicleCap);
+    console.log("Info: ", info);
+    addVehicle(info)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+
+        if (response.status) {
+          this.props.history.push({
+            pathname: "/profile"
+          });
+        }
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  };
+
+  vehicleImageSelected = event => {
+    this.setState({
+      vehiclePic: event.target.files[0]
+    });
+
+    const myFileItemReader = new FileReader();
+    myFileItemReader.addEventListener(
+      "load",
+      () => {
+        this.setState({ vehiclePreview: myFileItemReader.result });
+      },
+      false
+    );
+    myFileItemReader.readAsDataURL(event.target.files[0]);
+  };
+
+  inputVehicleClick() {
+    document.getElementById("inputVehicleImage").click();
+  }
+
   render() {
     return (
       <div className="VehicleDetail">
         <div className="Section-VehicleDetail-Left">
           <div className="child1">
-            <ImgContainer src={usercar} alt="Image Vehicle" />
+            <input
+              type="file"
+              className="inputVehicleImage"
+              id="inputVehicleImage"
+              onChange={this.vehicleImageSelected}
+            />
+            <ImgContainer
+              src={this.state.vehiclePreview}
+              alt="Image Vehicle"
+              id="vehicle"
+              onClick={this.inputVehicleClick}
+            />
           </div>
         </div>
         <div className="Section-VehicleDetail-Right">
+          {this.state.responseError !== "" && (
+            <div className="responseVehicleError">
+              {this.state.responseError}
+            </div>
+          )}
           <InputPC
             fields={[
               {
                 type: "input",
                 label: "Placa",
-                attrs: {}
+                value: this.state.plate,
+                attrs: { id: "plate", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Marca",
-                attrs: {}
+                value: this.state.brand,
+                attrs: { id: "brand", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Modelo",
-                attrs: {}
+                value: this.state.model,
+                attrs: { id: "model", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Año",
-                attrs: {}
+                value: this.state.year,
+                attrs: { id: "year", onChange: this.handleEdit }
               }
             ]}
           />
@@ -44,21 +196,21 @@ class VehicleDetail extends Component {
               {
                 type: "input",
                 label: "Color",
-                attrs: {}
+                value: this.state.color,
+                attrs: { id: "color", onChange: this.handleEdit }
               },
               {
                 type: "input",
                 label: "Capacidad",
-                attrs: {}
+                value: this.state.vehicleCap,
+                attrs: { id: "vehicleCap", onChange: this.handleEdit }
               }
             ]}
           />
           <div className="SubSection-Buttons">
-            <NavLink to="/profile">
-              <div className="acceptButton">
-                <p>Guardar</p>
-              </div>
-            </NavLink>
+            <div className="acceptButton" onClick={this.sendVehicleEdit}>
+              <p>Guardar</p>
+            </div>
             <NavLink to="/profile">
               <div className="cancelButton">
                 <p>Cancelar</p>

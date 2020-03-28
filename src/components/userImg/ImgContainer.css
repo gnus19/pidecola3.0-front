@@ -1,17 +1,17 @@
-.ImgContainer{
-    padding: 20px;
+.ImgContainer {
+  padding: 10px;
 }
 
-.ImgContainer .Envolved{
-    height: 100%;
-    width: 100%;
-    background: #fff;
-    border-radius: 50%;
-    padding: 10px;
+.ImgContainer .Envolved {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border-radius: 50%;
+  padding: 10px;
 }
 
-.ImgContainer .Envolved .Img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
+.ImgContainer .Envolved .Img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
 }

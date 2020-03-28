@@ -55,6 +55,12 @@
   display: none;
 }
 
+.Info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .ProfilePicture {
   border-radius: 50%;
   height: 120px;
@@ -103,7 +109,7 @@
   background-color: #ebebeb;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
   .Top {
     height: 12%;
   }

@@ -36,6 +36,13 @@
   margin-right: 25px;
 }
 
+@media (max-width: 1600px) {
+  .logoUSB,
+  .logoFCE {
+    height: 70px;
+  }
+}
+
 /*iPad*/
 @media (width: 768px) and (height: 1024px) {
   .logoUSB,

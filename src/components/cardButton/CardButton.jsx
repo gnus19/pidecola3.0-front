@@ -13,7 +13,7 @@ function CardButton({ className, path, pideCola, title, text }) {
         </div>
         <div
           className={
-            className == "RequestButton"
+            className === "RequestButton"
               ? "ImageRequestButton"
               : "ImageOfferButton"
           }

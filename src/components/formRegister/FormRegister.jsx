@@ -72,10 +72,12 @@ class FormRegister extends Component {
   handleRegister = event => {
     event.preventDefault();
     if (this.validate()) {
-      this.state.emailError = "";
-      this.state.phoneNumberError = "";
-      this.state.passwordError = "";
-      this.state.passwordConfirmationError = "";
+      this.setState({
+        emailError: "",
+        phoneNumberError: "",
+        passwordError: "",
+        passwordConfirmationError: ""
+      });
     } else {
       return;
     }
@@ -86,7 +88,7 @@ class FormRegister extends Component {
     target.disabled = true;
     target.innerText = "Espera...";
     let required = { ...this.state };
-    required.register = true
+    required.register = true;
     delete required.passwordConfirmation;
     delete required.isMobile;
     createUser(required)
@@ -143,7 +145,7 @@ class FormRegister extends Component {
 
     if (this.state.passwordConfirmation === "") {
       passwordConfirmationError = "Introduce una contraseña";
-    } else if (this.state.passwordConfirmation != this.state.password) {
+    } else if (this.state.passwordConfirmation !== this.state.password) {
       passwordConfirmationError = "Las contraseñas deben ser iguales";
     }
 

@@ -59,9 +59,6 @@ class FormLogin extends Component {
 
   handleSubmit = () => {
     const isValid = this.validate();
-    if (isValid) {
-      this.setState(initialState);
-    }
     return isValid;
   };
 
