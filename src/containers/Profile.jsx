@@ -164,6 +164,13 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
+        if (response.status) {
+          localStorage.setItem("firstName", response.data.first_name);
+          localStorage.setItem("lastName", response.data.last_name);
+          this.props.history.push({
+            pathname: "/home"
+          });
+        }
       })
       .catch(error => {
         console.log("Catch", error);
@@ -179,6 +186,9 @@ class Profile extends Component {
       .then(response => {
         console.log("Response: ", response);
         this.setState({ profilePreview: response.data.profile_pic });
+        if (response.status) {
+          localStorage.setItem("profilePic", response.data.profile_pic);
+        }
       })
       .catch(error => {
         console.log("Catch", error);
@@ -252,6 +262,30 @@ class Profile extends Component {
     }
   };
 
+  checkAddVehicle = () => {
+    if (this.state.vehicles.length === 3) {
+      this.setState({
+        responseError: "El máximo de vehículos posibles es tres (3)"
+      });
+    } else {
+      this.props.history.push({
+        pathname: "/addVehicle"
+      });
+    }
+  };
+
+  checkDeleteVehicle = () => {
+    if (this.state.vehicles.length === 0) {
+      this.setState({
+        responseError: "No existe vehículo registrado para eliminar"
+      });
+    } else {
+      this.props.history.push({
+        pathname: "/deleteVehicle"
+      });
+    }
+  };
+
   render() {
     return (
       <div className="Profile">
@@ -297,17 +331,16 @@ class Profile extends Component {
                 </div>
               </div>
               <div className="child3">
-                <div className="seccionAgregar">
+                <div className="seccionAgregar" onClick={this.checkAddVehicle}>
                   <p>Agregar Vehículo</p>
-                  <NavLink to="/addVehicle">
-                    <div className="profileButton">+</div>
-                  </NavLink>
+                  <div className="profileButton">+</div>
                 </div>
-                <div className="seccionEliminar">
+                <div
+                  className="seccionEliminar"
+                  onClick={this.checkDeleteVehicle}
+                >
                   <p>Eliminar Vehículo</p>
-                  <NavLink to="/deleteVehicle">
-                    <div className="profileButton">×</div>
-                  </NavLink>
+                  <div className="profileButton">×</div>
                 </div>
               </div>
             </>
@@ -398,15 +431,16 @@ class Profile extends Component {
               <div className="child3">
                 <div className="seccionAgregar">
                   <p>Agregar Vehículo</p>
-                  <NavLink to="/addVehicle">
-                    <div className="profileButton">+</div>
-                  </NavLink>
+                  <div className="profileButton" onClick={this.checkAddVehicle}>
+                    +
+                  </div>
                 </div>
-                <div className="seccionEliminar">
+                <div
+                  className="seccionEliminar"
+                  onClick={this.checkDeleteVehicle}
+                >
                   <p>Eliminar Vehículo</p>
-                  <NavLink to="/deleteVehicle">
-                    <div className="profileButton">×</div>
-                  </NavLink>
+                  <div className="profileButton">×</div>
                 </div>
               </div>
             </>

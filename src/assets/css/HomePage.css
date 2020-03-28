@@ -55,6 +55,12 @@
   display: none;
 }
 
+.Info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .ProfilePicture {
   border-radius: 50%;
   height: 120px;
