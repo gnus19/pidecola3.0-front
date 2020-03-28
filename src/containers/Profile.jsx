@@ -83,6 +83,9 @@ class Profile extends Component {
         }
 
         if (response.data.profile_pic === undefined) {
+          this.setState({
+            profilePic: response.data.profile_pic
+          });
         } else {
           this.setState({
             profilePreview: response.data.profile_pic,
@@ -131,6 +134,21 @@ class Profile extends Component {
       valid = false;
     }
 
+    if (this.state.profilePic === undefined) {
+      errorMessage = errorMessage + "Añade una imagen de perfil. ";
+      valid = false;
+    }
+
+    if (
+      this.state.firstName === "" ||
+      this.state.lastName === "" ||
+      this.state.age === "" ||
+      this.state.major === ""
+    ) {
+      errorMessage = errorMessage + "Todos los campos son requeridos. ";
+      valid = false;
+    }
+
     if (!valid) {
       this.setState({
         responseError: errorMessage
@@ -142,12 +160,18 @@ class Profile extends Component {
   };
 
   sendEdit = event => {
+    console.log("state: ", this.state);
     if (!this.validProfile()) {
       return;
     }
     this.sendProfileEdit(event);
+
     if (this.state.picChanged) {
       this.sendProfilePicEdit(event);
+    } else {
+      this.props.history.push({
+        pathname: "/home"
+      });
     }
   };
 
@@ -164,9 +188,11 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        if (response.status) {
+        {
+          /*if (response.status) {
           localStorage.setItem("firstName", response.data.first_name);
           localStorage.setItem("lastName", response.data.last_name);
+        }*/
         }
       })
       .catch(error => {
@@ -182,9 +208,10 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        this.setState({ profilePreview: response.data.profile_pic });
         if (response.status) {
-          localStorage.setItem("profilePic", response.data.profile_pic);
+          {
+            /*localStorage.setItem("profilePic", response.data.profile_pic);*/
+          }
           this.props.history.push({
             pathname: "/home"
           });

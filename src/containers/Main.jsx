@@ -20,12 +20,43 @@ const removeLocalStorage = () => {
   localStorage.removeItem("tkauth");
 };
 
+/*
+infoProfile()
+  .then(res => res.json())
+  .then(response => {
+    console.log("Response: ", response);
+
+    localStorage.setItem("carnet", response.data.email.split("@")[0]);
+
+    if (response.data.first_name === undefined) {
+      localStorage.setItem("firstName", "Usuario");
+    } else {
+      localStorage.setItem("firstName", response.data.first_name);
+    }
+
+    if (response.data.last_name === undefined) {
+      localStorage.setItem("lastName", "");
+    } else {
+      localStorage.setItem("lastName", response.data.last_name);
+    }
+
+    if (response.data.profile_pic === undefined) {
+      localStorage.setItem("profilePic", profilePicture);
+    } else {
+      localStorage.setItem("profilePic", response.data.profile_pic);
+    }
+  })
+
+  .catch(error => {
+    console.log("Catch", error);
+  });
+*/
+
 const Main = ({ children }) => {
   useEffect(() => {
     const path = window.location.href.split("/")[
       window.location.href.split("/").length - 1
     ];
-    console.log("path: ", path);
 
     if (path === "home") {
       document.getElementById("homeOptions").style.background = "#ffd302";
@@ -50,43 +81,8 @@ const Main = ({ children }) => {
       document.getElementById("profileOptions").style.color = "#fff";
     } else {
     }
-
-    infoProfile()
-      .then(res => res.json())
-      .then(response => {
-        console.log("Response: ", response);
-
-        localStorage.setItem("carnet", response.data.email.split("@")[0]);
-
-        if (
-          response.data.first_name === undefined ||
-          response.data.first_name === ""
-        ) {
-          localStorage.setItem("firstName", "Usuario");
-        } else {
-          localStorage.setItem("firstName", response.data.first_name);
-        }
-
-        if (
-          response.data.last_name === undefined ||
-          response.data.last_name === ""
-        ) {
-          localStorage.setItem("lastName", "");
-        } else {
-          localStorage.setItem("lastName", response.data.last_name);
-        }
-
-        if (response.data.profile_pic === undefined) {
-          localStorage.setItem("profilePic", profilePicture);
-        } else {
-          localStorage.setItem("profilePic", response.data.profile_pic);
-        }
-      })
-
-      .catch(error => {
-        console.log("Catch", error);
-      });
   });
+
   return (
     <div className="HomePage">
       <div id="Content-Prin">
@@ -114,16 +110,13 @@ const Main = ({ children }) => {
             <div className="sidebar-sticky">
               <div className="Info">
                 <ImgContainer
-                  src={localStorage.getItem("profilePic")}
+                  src={profilePicture}
                   alt="profilePicture pidecola"
                   height="65%"
                   width="65%"
                 />
-                <p className="Username">
-                  {localStorage.getItem("firstName")}{" "}
-                  {localStorage.getItem("lastName")}
-                </p>
-                <p className="Carnet">{localStorage.getItem("carnet")}</p>
+                <p className="Username">Usuario</p>
+                <p className="Carnet">Carnet</p>
               </div>
               <ul className="nav flex-column">
                 <NavLink to="/home">
