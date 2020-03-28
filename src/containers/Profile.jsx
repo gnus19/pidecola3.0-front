@@ -167,9 +167,6 @@ class Profile extends Component {
         if (response.status) {
           localStorage.setItem("firstName", response.data.first_name);
           localStorage.setItem("lastName", response.data.last_name);
-          this.props.history.push({
-            pathname: "/home"
-          });
         }
       })
       .catch(error => {
@@ -188,6 +185,9 @@ class Profile extends Component {
         this.setState({ profilePreview: response.data.profile_pic });
         if (response.status) {
           localStorage.setItem("profilePic", response.data.profile_pic);
+          this.props.history.push({
+            pathname: "/home"
+          });
         }
       })
       .catch(error => {

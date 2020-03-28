@@ -16,83 +16,77 @@ const closeNav = () => {
   }
 };
 
-const changeColor = id => {
-  document.getElementById(id).style.background = "#ffd302";
-  document.getElementById(id).style.color = "#000";
-
-  if (id === "homeOptions") {
-    document.getElementById("profileOptions").style.background = "#1e2172";
-    document.getElementById("profileOptions").style.color = "#fff";
-    document.getElementById("helpOptions").style.background = "#1e2172";
-    document.getElementById("helpOptions").style.color = "#fff";
-  } else if (id === "profileOptions") {
-    document.getElementById("homeOptions").style.background = "#1e2172";
-    document.getElementById("homeOptions").style.color = "#fff";
-    document.getElementById("helpOptions").style.background = "#1e2172";
-    document.getElementById("helpOptions").style.color = "#fff";
-  } else if (id === "helpOptions") {
-    document.getElementById("homeOptions").style.background = "#1e2172";
-    document.getElementById("homeOptions").style.color = "#fff";
-    document.getElementById("profileOptions").style.background = "#1e2172";
-    document.getElementById("profileOptions").style.color = "#fff";
-  }
-};
-
 const removeLocalStorage = () => {
   localStorage.removeItem("tkauth");
 };
 
-infoProfile()
-  .then(res => res.json())
-  .then(response => {
-    console.log("Response: ", response);
-
-    localStorage.setItem("carnet", response.data.email.split("@")[0]);
-
-    if (
-      response.data.first_name === undefined ||
-      response.data.first_name === ""
-    ) {
-      localStorage.setItem("firstName", "Usuario");
-    } else {
-      localStorage.setItem("firstName", response.data.first_name);
-    }
-
-    if (
-      response.data.last_name === undefined ||
-      response.data.last_name === ""
-    ) {
-      localStorage.setItem("lastName", "");
-    } else {
-      localStorage.setItem("lastName", response.data.last_name);
-    }
-
-    if (response.data.profile_pic === undefined) {
-      localStorage.setItem("profilePic", profilePicture);
-    } else {
-      localStorage.setItem("profilePic", response.data.profile_pic);
-    }
-
-    /*
-    if (response.data.vehicles.length < 1) {
-      localStorage.setItem("gotVehicle", false);
-    } else {
-      localStorage.setItem("gotVehicle", true);
-    }
-    */
-  })
-
-  .catch(error => {
-    console.log("Catch", error);
-  });
-
 const Main = ({ children }) => {
   useEffect(() => {
-    document.getElementById("profileOptions").style.background = "#1e2172";
-    document.getElementById("profileOptions").style.color = "#fff";
-    document.getElementById("helpOptions").style.background = "#1e2172";
-    document.getElementById("helpOptions").style.color = "#fff";
-  })
+    const path = window.location.href.split("/")[
+      window.location.href.split("/").length - 1
+    ];
+    console.log("path: ", path);
+
+    if (path === "home") {
+      document.getElementById("homeOptions").style.background = "#ffd302";
+      document.getElementById("homeOptions").style.color = "#000";
+      document.getElementById("profileOptions").style.background = "#1e2172";
+      document.getElementById("profileOptions").style.color = "#fff";
+      document.getElementById("helpOptions").style.background = "#1e2172";
+      document.getElementById("helpOptions").style.color = "#fff";
+    } else if (path === "profile") {
+      document.getElementById("profileOptions").style.background = "#ffd302";
+      document.getElementById("profileOptions").style.color = "#000";
+      document.getElementById("homeOptions").style.background = "#1e2172";
+      document.getElementById("homeOptions").style.color = "#fff";
+      document.getElementById("helpOptions").style.background = "#1e2172";
+      document.getElementById("helpOptions").style.color = "#fff";
+    } else if (path === "help") {
+      document.getElementById("helpOptions").style.background = "#ffd302";
+      document.getElementById("helpOptions").style.color = "#000";
+      document.getElementById("homeOptions").style.background = "#1e2172";
+      document.getElementById("homeOptions").style.color = "#fff";
+      document.getElementById("profileOptions").style.background = "#1e2172";
+      document.getElementById("profileOptions").style.color = "#fff";
+    } else {
+    }
+
+    infoProfile()
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+
+        localStorage.setItem("carnet", response.data.email.split("@")[0]);
+
+        if (
+          response.data.first_name === undefined ||
+          response.data.first_name === ""
+        ) {
+          localStorage.setItem("firstName", "Usuario");
+        } else {
+          localStorage.setItem("firstName", response.data.first_name);
+        }
+
+        if (
+          response.data.last_name === undefined ||
+          response.data.last_name === ""
+        ) {
+          localStorage.setItem("lastName", "");
+        } else {
+          localStorage.setItem("lastName", response.data.last_name);
+        }
+
+        if (response.data.profile_pic === undefined) {
+          localStorage.setItem("profilePic", profilePicture);
+        } else {
+          localStorage.setItem("profilePic", response.data.profile_pic);
+        }
+      })
+
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  });
   return (
     <div className="HomePage">
       <div id="Content-Prin">
@@ -103,12 +97,7 @@ const Main = ({ children }) => {
             </button>
           </div>
           <div className="TopLogo">
-            <NavLink
-              to="/home"
-              onClick={() => {
-                changeColor("homeOptions");
-              }}
-            >
+            <NavLink to="/home">
               <img className="HomeLogo" src={logo} alt="HomeLogo" />
             </NavLink>
           </div>
@@ -137,34 +126,19 @@ const Main = ({ children }) => {
                 <p className="Carnet">{localStorage.getItem("carnet")}</p>
               </div>
               <ul className="nav flex-column">
-                <NavLink
-                  to="/home"
-                  onClick={() => {
-                    changeColor("homeOptions");
-                  }}
-                >
+                <NavLink to="/home">
                   <li className="Options" id="homeOptions">
                     <i className="material-icons">home</i>
                     <span>Inicio</span>
                   </li>
                 </NavLink>
-                <NavLink
-                  to="/profile"
-                  onClick={() => {
-                    changeColor("profileOptions");
-                  }}
-                >
+                <NavLink to="/profile">
                   <li className="Options" id="profileOptions">
                     <i className="material-icons">account_circle</i>
                     <span>Perfil</span>
                   </li>
                 </NavLink>
-                <NavLink
-                  to="/help"
-                  onClick={() => {
-                    changeColor("helpOptions");
-                  }}
-                >
+                <NavLink to="/help">
                   <li className="Options" id="helpOptions">
                     <i className="material-icons">help</i>
                     <span>Ayuda</span>
@@ -191,7 +165,6 @@ const Main = ({ children }) => {
       </div>
     </div>
   );
-}
-
+};
 
 export default Main;

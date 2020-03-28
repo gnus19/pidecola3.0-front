@@ -34,7 +34,7 @@ export function sendCode(req) {
 }
 
 export function editProfile(req) {
-  return fetch(SERVER + "/users", {
+  return fetch(SERVER + "/users/update/profile", {
     method: "PUT",
     body: JSON.stringify(req),
     headers: {
@@ -55,7 +55,7 @@ export function editProfilePicture(req) {
 }
 
 export function infoProfile() {
-  return fetch(SERVER + "/users", {
+  return fetch(SERVER + "/users/view/profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
