@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function CardButton({ className, path, pideCola, title, text }) {
+function CardButton({ className, path, pideCola, title, text, onClick }) {
   return (
     <>
       <NavLink
+        onClick={onClick}
         className={className}
         to={{ pathname: path, state: { pideCola: pideCola } }}
       >

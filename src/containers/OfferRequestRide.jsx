@@ -7,14 +7,32 @@ class OfferRequestRide extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      error: false,
+      errorMessage:
+        "No puedes ofrecer la cola sin tener al menos un vehículo registrado"
+    };
   }
+
+  checkVehicles = event => {
+    event.preventDefault();
+    if (JSON.parse(localStorage.getItem("vehicleList")).length < 1)
+      this.setState({
+        error: true
+      });
+  };
 
   render() {
     return (
       <div className="OfferRequestRide">
         <React.Fragment>
           <RecommendationBanner />
+          {this.state.error && (
+            <div className="responseProfileError">
+              No puedes ofrecer la cola sin tener al menos un vehículo
+              registrado
+            </div>
+          )}
           <div className="OfferRequest">
             <CardButton
               className="RequestButton"
@@ -30,6 +48,7 @@ class OfferRequestRide extends Component {
               pideCola={false}
               title="Dar cola"
               text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
+              onClick={this.checkVehicles}
             />
           </div>
         </React.Fragment>
