@@ -1,0 +1,53 @@
+.stateButtons {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+}
+
+.stateButtons p {
+  margin: 0;
+}
+
+.enCamino,
+.accidentado,
+.finalizada {
+  width: 325px;
+  height: 50px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.enCamino {
+  background: #1e2172;
+}
+
+.accidentado {
+  background: #d32f2f;
+}
+
+.finalizada {
+  background: #4caf50;
+}
+
+@media (max-width: 425px) {
+  .stateButtons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enCamino,
+  .accidentado,
+  .finalizada {
+    width: 100%;
+    margin: 10px 0 10px 0;
+  }
+}

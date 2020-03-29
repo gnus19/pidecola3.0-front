@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function CardButton({ className, path, pideCola, title, text }) {
+function CardButton({ className, title, text, onClick }) {
   return (
     <>
-      <NavLink
+      <div
+        onClick={onClick}
         className={className}
-        to={{ pathname: path, state: { pideCola: pideCola } }}
       >
         <div className="TopButton">
           <span className="TopComment">{title}</span>
@@ -22,7 +22,7 @@ function CardButton({ className, path, pideCola, title, text }) {
             <span className="Comment">{text}</span>
           </div>
         </div>
-      </NavLink>
+      </div>
     </>
   );
 }

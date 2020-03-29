@@ -84,19 +84,13 @@ class RoutesList extends Component {
     return (
       <div className="offer-request-content container-fluid">
         <React.Fragment>
-          {/*{this.props.recommendations && (
-            <div className="Recommendations"></div>
-		  )}*/}
           <RecommendationBanner />
-          {/*<div className="pidecola-message" text="">
-            Pide Cola USB te recuerda no utilizar tu telefono celular al
-            conducir.
-    </div>*/}
           {!this.props.location.state.pideCola && (
             <div className="carta">
               <DropDownList
                 id="vehicle"
                 onChange={this.handleChange}
+                vehicleList={JSON.parse(localStorage.getItem("vehicleList"))}
               ></DropDownList>
             </div>
           )}

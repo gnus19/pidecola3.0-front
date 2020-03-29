@@ -5,6 +5,7 @@
     "foto nombre cohorte"
     "foto carrera ruta"
     "foto comentario comentario";
+  cursor: pointer;
 }
 
 .grid-container > div {
@@ -69,8 +70,8 @@
     font-size: 14px;
   }
   .foto {
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
   }
 }
 

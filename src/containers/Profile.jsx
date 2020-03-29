@@ -188,12 +188,6 @@ class Profile extends Component {
       .then(res => res.json())
       .then(response => {
         console.log("Response: ", response);
-        {
-          /*if (response.status) {
-          localStorage.setItem("firstName", response.data.first_name);
-          localStorage.setItem("lastName", response.data.last_name);
-        }*/
-        }
       })
       .catch(error => {
         console.log("Catch", error);
@@ -209,9 +203,6 @@ class Profile extends Component {
       .then(response => {
         console.log("Response: ", response);
         if (response.status) {
-          {
-            /*localStorage.setItem("profilePic", response.data.profile_pic);*/
-          }
           this.props.history.push({
             pathname: "/home"
           });

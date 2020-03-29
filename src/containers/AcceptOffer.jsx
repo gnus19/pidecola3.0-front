@@ -6,6 +6,8 @@ import RideInfo from "../components/rideInfo/RideInfo";
 import "../components/rideInfo/RideInfo.css";
 import VehicleInfo from "../components/vehicleInfo/VehicleInfo";
 import "../components/vehicleInfo/VehicleInfo.css";
+import ChangeRideState from "../components/changeRideState/ChangeRideState";
+import "../components/changeRideState/ChangeRideState.css";
 
 class AcceptOffer extends Component {
   constructor(props) {
@@ -26,15 +28,11 @@ class AcceptOffer extends Component {
       <div className="container-fluid">
         <div className="sticky">
           <RecommendationBanner />
-          <NavLink
-            className="cancelarButton"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            to="/home"
-          >
-            Cancelar
-          </NavLink>
+          <div className="cancelarCola">
+            <NavLink to="/home">
+              <p>Cancelar</p>
+            </NavLink>
+          </div>
         </div>
         <React.Fragment>
           <RideInfo
@@ -66,6 +64,7 @@ class AcceptOffer extends Component {
               color="Rojo"
               placa="XXX-XXX"
             ></VehicleInfo>
+            <ChangeRideState />
           </React.Fragment>
         )}
       </div>

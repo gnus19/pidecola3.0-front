@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { infoProfile } from "services/userServices";
 import logo from "assets/images/logo.png";
@@ -20,39 +20,12 @@ const removeLocalStorage = () => {
   localStorage.removeItem("tkauth");
 };
 
-/*
-infoProfile()
-  .then(res => res.json())
-  .then(response => {
-    console.log("Response: ", response);
-
-    localStorage.setItem("carnet", response.data.email.split("@")[0]);
-
-    if (response.data.first_name === undefined) {
-      localStorage.setItem("firstName", "Usuario");
-    } else {
-      localStorage.setItem("firstName", response.data.first_name);
-    }
-
-    if (response.data.last_name === undefined) {
-      localStorage.setItem("lastName", "");
-    } else {
-      localStorage.setItem("lastName", response.data.last_name);
-    }
-
-    if (response.data.profile_pic === undefined) {
-      localStorage.setItem("profilePic", profilePicture);
-    } else {
-      localStorage.setItem("profilePic", response.data.profile_pic);
-    }
-  })
-
-  .catch(error => {
-    console.log("Catch", error);
-  });
-*/
-
 const Main = ({ children }) => {
+  const [profilePic, setProfilePic] = useState(profilePicture);
+  const [firstName, setFirstName] = useState("Usuario");
+  const [lastName, setLastName] = useState("");
+  const [carnet, setCarnet] = useState("Carnet");
+
   useEffect(() => {
     const path = window.location.href.split("/")[
       window.location.href.split("/").length - 1
@@ -65,6 +38,32 @@ const Main = ({ children }) => {
       document.getElementById("profileOptions").style.color = "#fff";
       document.getElementById("helpOptions").style.background = "#1e2172";
       document.getElementById("helpOptions").style.color = "#fff";
+
+      infoProfile()
+        .then(res => res.json())
+        .then(response => {
+          console.log("Response: ", response);
+          if (response.data.profile_pic !== undefined) {
+            setProfilePic(response.data.profile_pic);
+          }
+          if (response.data.first_name !== undefined) {
+            setFirstName(response.data.first_name);
+          }
+          if (response.data.last_name !== undefined) {
+            setLastName(response.data.last_name);
+          }
+
+          setCarnet(response.data.email.split("@")[0]);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem(
+            "vehicleList",
+            JSON.stringify(response.data.vehicles)
+          );
+        })
+
+        .catch(error => {
+          console.log("Catch", error);
+        });
     } else if (path === "profile") {
       document.getElementById("profileOptions").style.background = "#ffd302";
       document.getElementById("profileOptions").style.color = "#000";
@@ -110,13 +109,15 @@ const Main = ({ children }) => {
             <div className="sidebar-sticky">
               <div className="Info">
                 <ImgContainer
-                  src={profilePicture}
+                  src={profilePic}
                   alt="profilePicture pidecola"
                   height="65%"
                   width="65%"
                 />
-                <p className="Username">Usuario</p>
-                <p className="Carnet">Carnet</p>
+                <p className="Username">
+                  {firstName} {lastName}
+                </p>
+                <p className="Carnet">{carnet}</p>
               </div>
               <ul className="nav flex-column">
                 <NavLink to="/home">
