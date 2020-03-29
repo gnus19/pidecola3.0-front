@@ -16,10 +16,18 @@ class OfferRequestRide extends Component {
 
   checkVehicles = event => {
     event.preventDefault();
-    if (JSON.parse(localStorage.getItem("vehicleList")).length < 1)
+    if (!localStorage.getItem("vehicleList") || JSON.parse(localStorage.getItem("vehicleList")).length < 1) {
       this.setState({
         error: true
       });
+    }
+    else {
+      this.props.history.push({
+        pathname: '/ride',
+        state: { pideCola: false }
+      })
+    }
+      
   };
 
   render() {
