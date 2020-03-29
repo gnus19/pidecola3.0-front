@@ -54,6 +54,7 @@ const Main = ({ children }) => {
           }
 
           setCarnet(response.data.email.split("@")[0]);
+          localStorage.setItem("email", response.data.email);
           localStorage.setItem(
             "vehicleList",
             JSON.stringify(response.data.vehicles)
