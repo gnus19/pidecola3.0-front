@@ -7,30 +7,30 @@ import Passenger from "../components/passenger/Passenger";
 import "../components/passenger/Passenger.css";
 
 class AvailablePassengers extends Component {
-
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
       passengers: []
-    }
+    };
   }
 
   componentDidMount() {
-    console.log(`${this.props.location.state.direction} - ${this.props.location.state.route}`);
-    getWaitingList({destination: this.props.location.state.route})
-    .then(res => res.json())
-    .then(
-      response => {
-        console.log('Response', response);
-        this.setState({passengers: response.data})
-      }
-    )
+    console.log(
+      `${this.props.location.state.direction} - ${this.props.location.state.route}`
+    );
+    getWaitingList({ destination: this.props.location.state.route })
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response", response);
+        this.setState({ passengers: response.data });
+      });
   }
 
-  passengers = (list) => {
-  }
-  
+  passengers = list => {};
+
+  prueba = () => {};
+
   render() {
     return (
       <div className="container-fluid">
@@ -40,33 +40,32 @@ class AvailablePassengers extends Component {
           Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
         </div>*/}
           <div className="cartaInfo">
-            <p>{`${this.props.location.state.vehicle} || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
+            <p>{`${
+              this.props.location.state.vehicle
+            } || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
           </div>
-          {/*<Button
-          className="red"
-          text="Cancelar"
-          onClick={() => {
-            console.log("Clicked");
-          }}
-        />*/}
-          <NavLink className="cancelarButton" to="/home">
-            Cancelar
-          </NavLink>
+          <div className="cancelarButton">
+            <NavLink to="/home">
+              <p>Cancelar</p>
+            </NavLink>
+          </div>
         </div>
         <div className="listaPasajeros">
           {this.state.passengers.map((list, index) => {
-              let routeName = list.name;
-              return list.requests.map((passenger, passengerIndex) => {
-                return <Passenger
-                  nombre={passenger.user.fName + " " + passenger.user.lName} 
+            let routeName = list.name;
+            return list.requests.map((passenger, passengerIndex) => {
+              return (
+                <Passenger
+                  nombre={passenger.user.fName + " " + passenger.user.lName}
                   carrera={passenger.user.major}
-                  cohorte={passenger.user.usbid.split('-')[0]}
+                  cohorte={passenger.user.usbid.split("-")[0]}
                   ruta={list.name}
                   comentario={passenger.comment}
+                  onClick={this.prueba}
                 />
-              })
-            })
-          }
+              );
+            });
+          })}
         </div>
       </div>
     );

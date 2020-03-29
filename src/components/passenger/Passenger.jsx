@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Passenger({ nombre, carrera, cohorte, ruta, comentario }) {
+function Passenger({ nombre, carrera, cohorte, ruta, comentario, onClick }) {
+  const [clicked, setClicked] = useState(false);
+
+  const changeClick = () => {
+    if (clicked) {
+      setClicked(false);
+      document.getElementById("cartaPasajero").style.background = "white";
+    } else {
+      setClicked(true);
+      document.getElementById("cartaPasajero").style.background = "#4caf50";
+    }
+  };
+
   return (
-    <div className="carta grid-container">
+    <div
+      className="carta grid-container"
+      id="cartaPasajero"
+      onClick={changeClick}
+    >
       <div className="foto"></div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">

@@ -12,14 +12,14 @@
 */
 
 .listaPasajeros {
-  overflow: hidden;
   overflow-y: scroll;
+  overflow: hidden;
   height: 150px;
 }
 
 .cancelarButton {
-  width: inherit;
-  padding: 12px 0;
+  width: 100%;
+  height: 50px;
   color: white;
   background: #d32f2f;
   font-weight: bold;
@@ -34,6 +34,15 @@
 
 .cancelarButton p {
   margin: 0;
+  width: inherit;
+}
+
+.cancelarButton a {
+  color: white;
+  width: inherit;
+  height: 100%;
+  display: inherit;
+  align-items: inherit;
 }
 
 .cartaInfo {
