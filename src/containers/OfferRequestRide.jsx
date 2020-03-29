@@ -8,9 +8,7 @@ class OfferRequestRide extends Component {
     super(props);
 
     this.state = {
-      error: false,
-      errorMessage:
-        "No puedes ofrecer la cola sin tener al menos un vehículo registrado"
+      error: false
     };
   }
 
@@ -20,6 +18,9 @@ class OfferRequestRide extends Component {
       this.setState({
         error: true
       });
+    else {
+      return true;
+    }
   };
 
   render() {
@@ -48,7 +49,6 @@ class OfferRequestRide extends Component {
               pideCola={false}
               title="Dar cola"
               text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
-              onClick={this.checkVehicles}
             />
           </div>
         </React.Fragment>
