@@ -26,15 +26,11 @@ class AcceptOffer extends Component {
       <div className="container-fluid">
         <div className="sticky">
           <RecommendationBanner />
-          <NavLink
-            className="cancelarButton"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            to="/home"
-          >
-            Cancelar
-          </NavLink>
+          <div className="cancelarCola">
+            <NavLink to="/home">
+              <p>Cancelar</p>
+            </NavLink>
+          </div>
         </div>
         <React.Fragment>
           <RideInfo
