@@ -13,12 +13,11 @@ class OfferRequestRide extends Component {
   }
 
   checkVehicles = event => {
-    event.preventDefault();
+    // event.preventDefault();
     if (!localStorage.getItem("vehicleList") || JSON.parse(localStorage.getItem("vehicleList")).length < 1) {
       this.setState({
         error: true
       });
-<<<<<<< HEAD
     }
     else {
       this.props.history.push({
@@ -27,11 +26,6 @@ class OfferRequestRide extends Component {
       })
     }
       
-=======
-    else {
-      return true;
-    }
->>>>>>> d30a65bf933e4d03afc5224b2b1a013f4c9ca6d6
   };
 
   render() {
@@ -48,18 +42,21 @@ class OfferRequestRide extends Component {
           <div className="OfferRequest">
             <CardButton
               className="RequestButton"
-              path="/ride"
-              pideCola={true}
               title="Pedir cola"
               text="Solicita una cola para ir a la universidad o para salir de
               ella"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: '/ride',
+                  state: { pideCola: true }
+                })
+              }}
             />
             <CardButton
               className="OfferButton"
-              path="/ride"
-              pideCola={false}
               title="Dar cola"
               text="Brinda la ayuda a un compañero, profesor o empleado para ir o salir de la universidad"
+              onClick={this.checkVehicles}
             />
           </div>
         </React.Fragment>

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function CardButton({ className, path, pideCola, title, text, onClick }) {
+function CardButton({ className, title, text, onClick }) {
   return (
     <>
       <div
