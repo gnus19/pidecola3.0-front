@@ -21,3 +21,14 @@ export function getWaitingList(req) {
     }
   });
 }
+
+export function offerRide(req) {
+  return fetch(SERVER + "/requests/offerRide", {
+    method: "POST",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}

@@ -16,6 +16,9 @@
   align-self: center;
   align-content: center;
 }
+.checked{
+  background-color: #4caf50;
+}
 
 .foto {
   grid-area: foto;

@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 
-function Passenger({ nombre, carrera, cohorte, ruta, comentario, onClick }) {
+function Passenger({ nombre, carrera, usbid, cohorte, ruta, comentario, onClick }) {
   const [clicked, setClicked] = useState(false);
 
   const changeClick = () => {
-    if (clicked) {
-      setClicked(false);
-      document.getElementById("cartaPasajero").style.background = "white";
-    } else {
-      setClicked(true);
-      document.getElementById("cartaPasajero").style.background = "#4caf50";
-    }
+    // if (clicked) {
+    //   setClicked(false);
+    //   document.getElementById("cartaPasajero").style.background = "white";
+    // } else {
+    //   setClicked(true);
+    //   document.getElementById("cartaPasajero").style.background = "#4caf50";
+    // }
   };
 
   return (
     <div
       className="carta grid-container"
-      id="cartaPasajero"
-      onClick={changeClick}
+      id={usbid}
+      onClick={onClick}
     >
       <div className="foto"></div>
       <div className="nombre">{nombre}</div>
