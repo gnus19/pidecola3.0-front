@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ImgContainer from "../userImg/ImgContainer";
+import profilePicture from "assets/images/profilePicture.jpg";
 
 function Passenger({
   foto,
@@ -26,7 +27,10 @@ function Passenger({
   return (
     <div className="carta grid-container" id={usbid} onClick={onClick}>
       <div className="foto">
-        <ImgContainer src={foto} alt="Profile Picture" />
+        <ImgContainer
+          src={foto === undefined ? profilePicture : foto}
+          alt="Profile Picture"
+        />
       </div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">
