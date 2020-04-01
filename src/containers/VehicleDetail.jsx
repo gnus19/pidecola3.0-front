@@ -193,11 +193,7 @@ class VehicleDetail extends Component {
                 label: "Año",
                 value: this.state.year,
                 attrs: { id: "year", onChange: this.handleEdit }
-              }
-            ]}
-          />
-          <InputPC
-            fields={[
+              },
               {
                 type: "input",
                 label: "Color",

@@ -126,7 +126,8 @@ class Profile extends Component {
 
     if (
       (this.state.age !== "" && isNaN(this.state.age)) ||
-      this.state.age < 16 || this.state.age > 100
+      this.state.age < 16 ||
+      this.state.age > 100
     ) {
       errorMessage = errorMessage + "Introduce una edad válida. ";
       valid = false;
@@ -134,11 +135,6 @@ class Profile extends Component {
 
     if (this.state.phoneNumber.length !== 11) {
       errorMessage = errorMessage + "Introduce un número de teléfono válido. ";
-      valid = false;
-    }
-
-    if (this.state.profilePic === undefined) {
-      errorMessage = errorMessage + "Añade una imagen de perfil. ";
       valid = false;
     }
 
