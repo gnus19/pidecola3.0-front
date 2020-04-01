@@ -1,10 +1,37 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
+import { cancelRequest } from "../services/requestRideService";
 
 function WaitOffer(props) {
-  
+  const cancelRideRequest = () => {
+    const cancelRequestBody = {
+      user: props.location.state.user,
+      startLocation:
+        props.location.state.direction === "hacia"
+          ? props.location.state.route
+          : "USB",
+      destination:
+        props.location.state.direction === "hacia"
+          ? "USB"
+          : props.location.state.route
+    };
+    console.log("cancel: ", cancelRequestBody);
+    cancelRequest(cancelRequestBody)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+        if (response.status) {
+          props.history.push({
+            pathname: "/home"
+          });
+        }
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
+  };
+
   return (
     <div className="container-fluid">
       <div className="sticky">
@@ -22,15 +49,9 @@ function WaitOffer(props) {
             console.log("Clicked");
           }}
         />*/}
-        <NavLink
-          className="cancelarButton"
-          onClick={() => {
-            console.log("Clicked");
-          }}
-          to="/home"
-        >
+        <div className="cancelarButton" onClick={cancelRideRequest}>
           Cancelar
-        </NavLink>
+        </div>
         <div style={{ margin: "100px" }}>
           <span style={{ fontWeight: "bold", fontSize: "25px" }}>
             Espere ...

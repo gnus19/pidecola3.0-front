@@ -11,6 +11,17 @@ export function requestRide(req) {
   });
 }
 
+export function cancelRequest(req) {
+  return fetch(SERVER + "/requests/cancel", {
+    method: "POST",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}
+
 export function getWaitingList(req) {
   return fetch(SERVER + "/recommend", {
     method: "POST",
