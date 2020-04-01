@@ -13,6 +13,7 @@ import Main from "containers/Main";
 import Profile from "containers/Profile";
 import VehicleDetail from "containers/VehicleDetail";
 import DeleteVehicle from "containers/DeleteVehicle";
+import Stats from "containers/Stats";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 import WaitOffer from "./containers/WaitOffer";
@@ -46,14 +47,6 @@ function App() {
               render={props => tokenRequired(HomePage, props)}
             />
             <Route
-              path="/ride"
-              render={props => tokenRequired(RoutesList, props)}
-            />
-            <Route
-              path="/passengers"
-              render={props => tokenRequired(AvailablePassengers, props)}
-            />
-            <Route
               path="/profile"
               render={props => tokenRequired(Profile, props)}
             />
@@ -64,6 +57,18 @@ function App() {
             <Route
               path="/deleteVehicle"
               render={props => tokenRequired(DeleteVehicle, props)}
+            />
+            <Route
+              path="/stats"
+              render={props => tokenRequired(Stats, props)}
+            />
+            <Route
+              path="/ride"
+              render={props => tokenRequired(RoutesList, props)}
+            />
+            <Route
+              path="/passengers"
+              render={props => tokenRequired(AvailablePassengers, props)}
             />
             <Route
               path="/waitOffer"

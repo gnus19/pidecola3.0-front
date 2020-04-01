@@ -36,6 +36,8 @@ const Main = ({ children }) => {
       document.getElementById("homeOptions").style.color = "#000";
       document.getElementById("profileOptions").style.background = "#1e2172";
       document.getElementById("profileOptions").style.color = "#fff";
+      document.getElementById("statsOptions").style.background = "#1e2172";
+      document.getElementById("statsOptions").style.color = "#fff";
       document.getElementById("helpOptions").style.background = "#1e2172";
       document.getElementById("helpOptions").style.color = "#fff";
 
@@ -69,6 +71,17 @@ const Main = ({ children }) => {
       document.getElementById("profileOptions").style.color = "#000";
       document.getElementById("homeOptions").style.background = "#1e2172";
       document.getElementById("homeOptions").style.color = "#fff";
+      document.getElementById("statsOptions").style.background = "#1e2172";
+      document.getElementById("statsOptions").style.color = "#fff";
+      document.getElementById("helpOptions").style.background = "#1e2172";
+      document.getElementById("helpOptions").style.color = "#fff";
+    } else if (path === "stats") {
+      document.getElementById("statsOptions").style.background = "#ffd302";
+      document.getElementById("statsOptions").style.color = "#000";
+      document.getElementById("homeOptions").style.background = "#1e2172";
+      document.getElementById("homeOptions").style.color = "#fff";
+      document.getElementById("profileOptions").style.background = "#1e2172";
+      document.getElementById("profileOptions").style.color = "#fff";
       document.getElementById("helpOptions").style.background = "#1e2172";
       document.getElementById("helpOptions").style.color = "#fff";
     } else if (path === "help") {
@@ -78,6 +91,8 @@ const Main = ({ children }) => {
       document.getElementById("homeOptions").style.color = "#fff";
       document.getElementById("profileOptions").style.background = "#1e2172";
       document.getElementById("profileOptions").style.color = "#fff";
+      document.getElementById("statsOptions").style.background = "#1e2172";
+      document.getElementById("statsOptions").style.color = "#fff";
     } else {
     }
   });
@@ -130,6 +145,12 @@ const Main = ({ children }) => {
                   <li className="Options" id="profileOptions">
                     <i className="material-icons">account_circle</i>
                     <span>Perfil</span>
+                  </li>
+                </NavLink>
+                <NavLink to="/stats">
+                  <li className="Options" id="statsOptions">
+                    <i className="material-icons">assessment</i>
+                    <span>Estadísticas</span>
                   </li>
                 </NavLink>
                 <NavLink to="/help">
