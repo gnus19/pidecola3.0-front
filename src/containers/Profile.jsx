@@ -124,7 +124,10 @@ class Profile extends Component {
       valid = false;
     }
 
-    if (this.state.age !== "" && isNaN(this.state.age)) {
+    if (
+      (this.state.age !== "" && isNaN(this.state.age)) ||
+      this.state.age < 16 || this.state.age > 100
+    ) {
       errorMessage = errorMessage + "Introduce una edad válida. ";
       valid = false;
     }

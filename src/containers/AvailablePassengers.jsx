@@ -36,17 +36,14 @@ class AvailablePassengers extends Component {
     var passengerCard = document.getElementById(usbid);
 
     // Changes background color
-    if(passengerCard.classList) {
+    if (passengerCard.classList) {
       passengerCard.classList.toggle("checked");
-    }
-    else {
+    } else {
       var classes = passengerCard.className.split(" ");
       var index = classes.indexOf("checked");
-    
-      if (index >= 0)
-        classes.splice(index, 1);
-      else
-        classes.push("checked");
+
+      if (index >= 0) classes.splice(index, 1);
+      else classes.push("checked");
       passengerCard.className = classes.join(" ");
     }
 
@@ -54,44 +51,50 @@ class AvailablePassengers extends Component {
     var inList = this.state.sendingTo.indexOf(email);
     // Is not in array
     if (inList < 0) {
-      this.setState(previousState => { return { sendingTo: [...previousState.sendingTo, email] } })      
+      this.setState(previousState => {
+        return { sendingTo: [...previousState.sendingTo, email] };
+      });
     }
     // Is in array
     else {
       var newArray = [...this.state.sendingTo];
       newArray.splice(inList, 1);
-      this.setState(previousState => { return { sendingTo: newArray } })
+      this.setState(previousState => {
+        return { sendingTo: newArray };
+      });
     }
   };
 
-  offerRide = (event) => {
-
+  offerRide = event => {
     // All requests objects
     var allRequestObjects = [];
 
-    this.state.sendingTo.map((userEmail) => {
-      allRequestObjects.push(offerRide(
-        { rider: localStorage.getItem("email"), passenger: userEmail } )
+    this.state.sendingTo.map(userEmail => {
+      allRequestObjects.push(
+        offerRide({
+          rider: localStorage.getItem("email"),
+          passenger: userEmail
+        })
       );
-    })
+    });
 
     Promise.all(allRequestObjects)
-    .then((allRes) => {
-        return Promise.all(allRes.map((allRes) => {
-          return allRes.json();
-        }))
-      }
-    )
-    .then((Responses) => {
-      // console.log("Responses", Responses[0]);
-      Responses.map((info) => {
-        console.log("Info", info);
+      .then(allRes => {
+        return Promise.all(
+          allRes.map(allRes => {
+            return allRes.json();
+          })
+        );
       })
-    })
-    .catch(error => {
-      console.log("ERROR in sending emails",error);
-      
-    })
+      .then(Responses => {
+        // console.log("Responses", Responses[0]);
+        Responses.map(info => {
+          console.log("Info", info);
+        });
+      })
+      .catch(error => {
+        console.log("ERROR in sending emails", error);
+      });
 
     // One by one
 
@@ -105,8 +108,7 @@ class AvailablePassengers extends Component {
     //     }
     //   )
     // })
-
-  } 
+  };
 
   render() {
     return (
@@ -126,24 +128,23 @@ class AvailablePassengers extends Component {
               <p>Cancelar</p>
             </NavLink>
           </div>
-          <Button
-            className="green"
-            text="Ofrecer"
-            onClick={this.offerRide}
-          />
+          <Button className="green" text="Ofrecer" onClick={this.offerRide} />
         </div>
         <div id="listaPasajeros" className="listaPasajeros">
           {this.state.passengers.map((list, index) => {
             return list.requests.map((passenger, passengerIndex) => {
               return (
                 <Passenger
+                  foto={passenger.user.prPic}
                   nombre={passenger.user.fName + " " + passenger.user.lName}
                   carrera={passenger.user.major}
                   cohorte={passenger.user.usbid.split("-")[0]}
                   ruta={list.name}
                   usbid={passenger.user.usbid}
                   comentario={passenger.comment}
-                  onClick={()  => {this.prueba(passenger.user.usbid, passenger.email)}}
+                  onClick={() => {
+                    this.prueba(passenger.user.usbid, passenger.email);
+                  }}
                 />
               );
             });

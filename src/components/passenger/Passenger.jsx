@@ -1,6 +1,16 @@
 import React, { useState } from "react";
+import ImgContainer from "../userImg/ImgContainer";
 
-function Passenger({ nombre, carrera, usbid, cohorte, ruta, comentario, onClick }) {
+function Passenger({
+  foto,
+  nombre,
+  carrera,
+  usbid,
+  cohorte,
+  ruta,
+  comentario,
+  onClick
+}) {
   const [clicked, setClicked] = useState(false);
 
   const changeClick = () => {
@@ -14,12 +24,10 @@ function Passenger({ nombre, carrera, usbid, cohorte, ruta, comentario, onClick 
   };
 
   return (
-    <div
-      className="carta grid-container"
-      id={usbid}
-      onClick={onClick}
-    >
-      <div className="foto"></div>
+    <div className="carta grid-container" id={usbid} onClick={onClick}>
+      <div className="foto">
+        <ImgContainer src={foto} alt="Profile Picture" />
+      </div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">
         Cohorte: <span> {cohorte}</span>

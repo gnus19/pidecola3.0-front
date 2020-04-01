@@ -59,6 +59,11 @@ class VehicleDetail extends Component {
       valid = false;
     }
 
+    if (this.state.vehicleCap < 1) {
+      errorMessage = errorMessage + "Capacidad debe ser mínimo uno (1). ";
+      valid = false;
+    }
+
     if (
       this.state.plate === "" ||
       this.state.brand === "" ||
