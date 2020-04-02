@@ -77,8 +77,6 @@ class Stats extends Component {
       });
   }
 
-  getRidesGiven = () => {};
-
   render() {
     return (
       <div className="Stats">

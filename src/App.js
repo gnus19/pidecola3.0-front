@@ -14,6 +14,7 @@ import Profile from "containers/Profile";
 import VehicleDetail from "containers/VehicleDetail";
 import DeleteVehicle from "containers/DeleteVehicle";
 import Stats from "containers/Stats";
+import Help from "containers/Help";
 import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 import WaitOffer from "./containers/WaitOffer";
@@ -62,6 +63,7 @@ function App() {
               path="/stats"
               render={props => tokenRequired(Stats, props)}
             />
+            <Route path="/help" render={props => tokenRequired(Help, props)} />
             <Route
               path="/ride"
               render={props => tokenRequired(RoutesList, props)}
