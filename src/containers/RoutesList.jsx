@@ -68,7 +68,7 @@ class RoutesList extends Component {
             state: { direction: this.state.direction, route: this.state.route }
           });
         } else {
-          console.log("ERROR");
+          console.log("ERROR");;
         }
       })
       .catch(error => {
