@@ -2,8 +2,20 @@ import React from "react";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
+import socketIOClient from 'socket.io-client';
+import { SERVER } from "./global";
 
 function WaitOffer(props) {
+
+  // const [socket, setSocket] = useState(socketIOClient(SERVER))
+  // useEffect(() => {
+  //   // offeredRide chanel
+  //   socket.on('offeredRide', (riderData)=> {
+  //     // Sets ride and redirect to accept offer
+  //   })
+  //   socket.emit('')
+  // });
+
   const cancelRideRequest = () => {
     const cancelRequestBody = {
       user: props.location.state.user,
@@ -26,6 +38,9 @@ function WaitOffer(props) {
             pathname: "/home"
           });
         }
+
+        // Emit event for canceling offer
+        // socket.emit('cancelRide', cancelRequestBody);
       })
       .catch(error => {
         console.log("Catch", error);
