@@ -6,26 +6,31 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 import Passenger from "../components/passenger/Passenger";
 import "../components/passenger/Passenger.css";
 import io from 'socket.io-client';
-const socket  = io(global.SERVER);
+import global from '../global';
 class AvailablePassengers extends Component {
   constructor(props) {
     super(props);
 
+    this.socket = io(global.SERVER);
     this.state = {
       passengers: []
     };
   }
 
   componentDidMount() {
+    
 
-    if (socket && !socket.connected) socket.connect();
-    socket.on('connect', () => console.log('connected Scoket'))
-    socket.on('reconnecting', times => console.log('Reconnecting' + times))
-    socket.on('disconnect', reason => console.log('Reconnecting' + reason))
+    // if (socket && !socket.connected) socket.connect();
+    // this.socket.connect();
+    
+    this.socket.on('connect', () => console.log('connected Scoket'))
+    this.socket.on('reconnecting', times => console.log('Reconnecting ' + times))
+    this.socket.on('disconnect', reason => console.log('Reconnecting ' + reason))
 
-    socket.emit('offer', {email: localStorage.getItem('email')})
+    this.socket.emit('offer', {email: localStorage.getItem('email')})
+    // console.log("Connected?", this.socket.connected);
 
-    socket.on('passengers', msg => {
+    this.socket.on('passengers', msg => {
       console.log('Passenger from socket: ',msg)
     })
 
@@ -57,6 +62,7 @@ class AvailablePassengers extends Component {
               this.props.location.state.vehicle
             } || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
           </div>
+          {/* <button onClick={() => { this.socket.emit('offer', {email: localStorage.getItem('email')}) ; console.log("Emited");}}>Emit</button> */}
           <div className="cancelarButton">
             <NavLink to="/home">
               <p>Cancelar</p>

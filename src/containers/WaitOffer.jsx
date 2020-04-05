@@ -4,21 +4,22 @@ import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import global from '../global.js'
 import io from 'socket.io-client';
-const socket  = io(global.SERVER);
+// const socket  = io(global.SERVER);
 
 class WaitOffer extends Component{
 
   constructor(props){
     super(props)
+    this.socket = io(global.SERVER);
   }
 
   componentDidMount() {
-    if (socket && !socket.connected) socket.connect();
-    socket.on('connect', () => console.log('connected Scoket'))
-    socket.on('reconnecting', times => console.log('Reconnecting' + times))
-    socket.on('disconnect', reason => console.log('Reconnecting' + reason))
+    // if (socket && !socket.connected) socket.connect();
+    this.socket.on('connect', () => console.log('connected Scoket'))
+    this.socket.on('reconnecting', times => console.log('Reconnecting' + times))
+    this.socket.on('disconnect', reason => console.log('Reconnecting' + reason))
 
-    socket.on('rideOffer', msg => {
+    this.socket.on('rideOffer', msg => {
       console.log(msg)
     })
   }
