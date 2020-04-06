@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import {
   editProfile,
   editProfilePicture,
@@ -124,18 +123,17 @@ class Profile extends Component {
       valid = false;
     }
 
-    if (this.state.age !== "" && isNaN(this.state.age)) {
+    if (
+      (this.state.age !== "" && isNaN(this.state.age)) ||
+      this.state.age < 16 ||
+      this.state.age > 100
+    ) {
       errorMessage = errorMessage + "Introduce una edad válida. ";
       valid = false;
     }
 
     if (this.state.phoneNumber.length !== 11) {
       errorMessage = errorMessage + "Introduce un número de teléfono válido. ";
-      valid = false;
-    }
-
-    if (this.state.profilePic === undefined) {
-      errorMessage = errorMessage + "Añade una imagen de perfil. ";
       valid = false;
     }
 

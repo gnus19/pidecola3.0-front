@@ -1,25 +1,37 @@
 import React, { useState } from "react";
+import ImgContainer from "../userImg/ImgContainer";
+import profilePicture from "assets/images/profilePicture.jpg";
 
-function Passenger({ nombre, carrera, cohorte, ruta, comentario, onClick }) {
+function Passenger({
+  foto,
+  nombre,
+  carrera,
+  usbid,
+  cohorte,
+  ruta,
+  comentario,
+  onClick
+}) {
   const [clicked, setClicked] = useState(false);
 
   const changeClick = () => {
-    if (clicked) {
-      setClicked(false);
-      document.getElementById("cartaPasajero").style.background = "white";
-    } else {
-      setClicked(true);
-      document.getElementById("cartaPasajero").style.background = "#4caf50";
-    }
+    // if (clicked) {
+    //   setClicked(false);
+    //   document.getElementById("cartaPasajero").style.background = "white";
+    // } else {
+    //   setClicked(true);
+    //   document.getElementById("cartaPasajero").style.background = "#4caf50";
+    // }
   };
 
   return (
-    <div
-      className="carta grid-container"
-      id="cartaPasajero"
-      onClick={changeClick}
-    >
-      <div className="foto"></div>
+    <div className="carta grid-container" id={usbid} onClick={onClick}>
+      <div className="foto">
+        <ImgContainer
+          src={foto === undefined ? profilePicture : foto}
+          alt="Profile Picture"
+        />
+      </div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">
         Cohorte: <span> {cohorte}</span>
