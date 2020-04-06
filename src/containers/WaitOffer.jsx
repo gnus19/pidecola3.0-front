@@ -3,7 +3,7 @@ import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
 import socketIOClient from 'socket.io-client';
-import { SERVER } from "./global";
+import { SERVER } from "../global";
 
 function WaitOffer(props) {
 
