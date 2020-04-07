@@ -19,24 +19,23 @@ class AvailablePassengers extends Component {
 
   componentDidMount() {
     
-
-    // if (socket && !socket.connected) socket.connect();
-    // this.socket.connect();
-    
     this.socket.on('connect', () => console.log('connected Scoket'))
     this.socket.on('reconnecting', times => console.log('Reconnecting ' + times))
     this.socket.on('disconnect', reason => console.log('Reconnecting ' + reason))
 
     this.socket.emit('offer', {email: localStorage.getItem('email')})
-    // console.log("Connected?", this.socket.connected);
 
     this.socket.on('passengers', msg => {
       console.log('Passenger from socket: ',msg)
+      console.log(this.state)
+      if(msg.status) this.setState({ passengers: msg.data })
+      console.log(this.state)
     })
 
     console.log(
       `${this.props.location.state.direction} - ${this.props.location.state.route}`
     );
+
     getWaitingList({ destination: this.props.location.state.route })
       .then(res => res.json())
       .then(response => {
@@ -70,8 +69,7 @@ class AvailablePassengers extends Component {
           </div>
         </div>
         <div className="listaPasajeros">
-          {this.state.passengers.map((list, index) => {
-            let routeName = list.name;
+          {this.state.passengers.map( list => {
             return list.requests.map((passenger, passengerIndex) => {
               return (
                 <Passenger
@@ -81,6 +79,7 @@ class AvailablePassengers extends Component {
                   ruta={list.name}
                   comentario={passenger.comment}
                   onClick={this.prueba}
+                  key={passengerIndex}
                 />
               );
             });

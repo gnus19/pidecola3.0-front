@@ -42,7 +42,6 @@ const Main = ({ children }) => {
       infoProfile()
         .then(res => res.json())
         .then(response => {
-          console.log("Response: ", response);
           if (response.data.profile_pic !== undefined) {
             setProfilePic(response.data.profile_pic);
           }
@@ -99,13 +98,12 @@ const Main = ({ children }) => {
         </nav>
         <div id="Content-Sec">
           <nav className="Sidebar" id="Sidebar">
-            <a
-              href="javascript:void(0)"
+            <div
               className="HideOption"
               onClick={closeNav}
             >
               ×
-            </a>
+            </div>
             <div className="sidebar-sticky">
               <div className="Info">
                 <ImgContainer

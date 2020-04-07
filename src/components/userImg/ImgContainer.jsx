@@ -13,7 +13,7 @@ const ImgContainer = props => {
     style={{ height: props.height || "100%", width: props.width || "100%" }}
   >
     <div className="Envolved">
-      <img className="Img" onError={defaultImg} {...props} />
+      <img className="Img" onError={defaultImg} {...props} alt="prfile_pic"/>
     </div>
   </div>
   );
