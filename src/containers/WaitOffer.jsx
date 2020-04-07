@@ -1,16 +1,15 @@
 import React, {Component} from "react";
-import { NavLink } from "react-router-dom";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import global from '../global.js'
+import { cancelRequest } from "../services/requestRideService";
 import io from 'socket.io-client';
-// const socket  = io(global.SERVER);
+import { SERVER } from "../global";
 
-class WaitOffer extends Component{
-
-  constructor(props){
-    super(props)
-    this.socket = io(global.SERVER);
+class WaitOffer extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.socket = io(SERVER);
   }
 
   componentDidMount() {
@@ -22,6 +21,37 @@ class WaitOffer extends Component{
     this.socket.on('rideOffer', msg => {
       console.log(msg)
     })
+  }
+
+  cancelRideRequest = () => {
+    const cancelRequestBody = {
+      user: this.props.location.state.user,
+      startLocation:
+        this.props.location.state.direction === "hacia"
+          ? this.props.location.state.route
+          : "USB",
+      destination:
+        this.props.location.state.direction === "hacia"
+          ? "USB"
+          : this.props.location.state.route
+    };
+    console.log("cancel: ", cancelRequestBody);
+    cancelRequest(cancelRequestBody)
+      .then(res => res.json())
+      .then(response => {
+        console.log("Response: ", response);
+        if (response.status) {
+          this.props.history.push({
+            pathname: "/home"
+          });
+        }
+
+        // Emit event for canceling offer
+        // socket.emit('cancelRide', cancelRequestBody);
+      })
+      .catch(error => {
+        console.log("Catch", error);
+      });
   }
 
   render() {
@@ -42,15 +72,9 @@ class WaitOffer extends Component{
               console.log("Clicked");
             }}
           />*/}
-          <NavLink
-            className="cancelarButton"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-            to="/home"
-          >
+          <div className="cancelarButton" onClick={this.cancelRideRequest}>
             Cancelar
-          </NavLink>
+          </div>
           <div style={{ margin: "100px" }}>
             <span style={{ fontWeight: "bold", fontSize: "25px" }}>
               Espere ...
@@ -58,7 +82,7 @@ class WaitOffer extends Component{
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

@@ -9,6 +9,8 @@ const handleColor = btnType => {
       return "blue-btn";
     case "red":
       return "red-btn";
+    case "green":
+      return "green-btn";
     default:
       return "";
   }

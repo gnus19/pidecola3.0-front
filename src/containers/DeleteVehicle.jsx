@@ -67,6 +67,14 @@ class DeleteVehicle extends Component {
 
   selectVehicle = vehicleSelected => event => {
     event.preventDefault();
+
+    this.state.vehicles.map(vehicleBackground => {
+      const everyVehicle = document.getElementById(vehicleBackground.plate);
+      return everyVehicle.children[0].children[0].style.background = "white";
+    });
+
+    const currentVehicle = document.getElementById(vehicleSelected.plate);
+    currentVehicle.children[0].children[0].style.background = "#1e2172";
     this.setState({
       plate: vehicleSelected.plate,
       brand: vehicleSelected.brand,
@@ -85,12 +93,14 @@ class DeleteVehicle extends Component {
             this.state.vehicles.map(vehicle => {
               return (
                 <div className="picture" id="listaVehiculos">
-                  <ImgContainer
-                    src={vehicle.vehicle_pic}
-                    alt="Image Profile"
-                    id="vehiculo"
-                    onClick={this.selectVehicle(vehicle)}
-                  />
+                  <div id={vehicle.plate}>
+                    <ImgContainer
+                      src={vehicle.vehicle_pic}
+                      alt="Image Profile"
+                      id="vehiculo"
+                      onClick={this.selectVehicle(vehicle)}
+                    />
+                  </div>
                 </div>
               );
             })}

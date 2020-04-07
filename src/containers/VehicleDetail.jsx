@@ -59,6 +59,11 @@ class VehicleDetail extends Component {
       valid = false;
     }
 
+    if (this.state.vehicleCap < 1) {
+      errorMessage = errorMessage + "Capacidad debe ser mínimo uno (1). ";
+      valid = false;
+    }
+
     if (
       this.state.plate === "" ||
       this.state.brand === "" ||
@@ -188,11 +193,7 @@ class VehicleDetail extends Component {
                 label: "Año",
                 value: this.state.year,
                 attrs: { id: "year", onChange: this.handleEdit }
-              }
-            ]}
-          />
-          <InputPC
-            fields={[
+              },
               {
                 type: "input",
                 label: "Color",

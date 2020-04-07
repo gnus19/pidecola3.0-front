@@ -27,6 +27,10 @@
   background: red;
   color: #ffffff;
 }
+.green-btn {
+  background: #4caf50;
+  color: #ffffff;
+}
 
 @media (max-width: 768px) {
   .Button {

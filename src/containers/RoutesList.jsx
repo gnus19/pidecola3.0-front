@@ -65,7 +65,11 @@ class RoutesList extends Component {
         if (response.status) {
           this.props.history.push({
             pathname: "/waitOffer",
-            state: { direction: this.state.direction, route: this.state.route }
+            state: {
+              user: this.state.user,
+              direction: this.state.direction,
+              route: this.state.route
+            }
           });
         } else {
           console.log("ERROR");;

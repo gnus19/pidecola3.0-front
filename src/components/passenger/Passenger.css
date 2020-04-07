@@ -16,7 +16,16 @@
   align-self: center;
   align-content: center;
 }
+.checked {
+  background-color: #4caf50;
+}
 
+.foto {
+  grid-area: foto;
+  justify-self: center;
+}
+
+/*
 .foto {
   grid-area: foto;
   border-radius: 50%;
@@ -26,6 +35,7 @@
   background-repeat: no-repeat;
   justify-self: center;
 }
+*/
 
 .nombre {
   grid-area: nombre;
@@ -70,8 +80,8 @@
     font-size: 14px;
   }
   .foto {
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
   }
 }
 
