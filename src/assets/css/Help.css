@@ -6,6 +6,7 @@
   padding: 10px 20px 10px 20px;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .Terminos {
@@ -125,8 +126,64 @@
 }
 
 .infoAyuda {
-  font-size: 100%;
+  font-size: 90%;
   text-align: center;
   color: black;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .Help {
+    justify-content: start;
+  }
+
+  .Terminos {
+    height: max-content;
+  }
+
+  #cartaTerminos {
+    height: 180px;
+    margin-bottom: 15px;
+  }
+
+  .Personal {
+    height: max-content;
+    flex-direction: column;
+  }
+
+  #cartaDevTeam,
+  #cartaLinks {
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .Links {
+    height: max-content;
+    flex-direction: column;
+  }
+
+  .logoImage {
+    height: 40px;
+    width: 40px;
+  }
+
+  #cartaSupervisor,
+  #cartaContacto {
+    height: 80px;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  .topText {
+    font-size: 75%;
+    text-align: center;
+    color: white;
+  }
+
+  .infoAyuda {
+    font-size: 60%;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+  }
 }
