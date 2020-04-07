@@ -3,7 +3,7 @@ import {
   ridesGiven,
   ridesReceived,
   likesReceived,
-  dislikesReceived
+  dislikesReceived,
 } from "services/userServices";
 import "assets/css/Stats.css";
 import InputPC from "components/inputPc/InputPC";
@@ -15,64 +15,64 @@ class Stats extends Component {
       ridesGiven: "",
       ridesReceived: "",
       likes: "",
-      dislikes: ""
+      dislikes: "",
     };
   }
 
   componentDidMount() {
     ridesGiven()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         this.setState({
-          ridesGiven: response.data
+          ridesGiven: response.data,
         });
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
 
     ridesReceived()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         this.setState({
-          ridesReceived: response.data
+          ridesReceived: response.data,
         });
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
 
     likesReceived()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         this.setState({
-          likes: response.data
+          likes: response.data,
         });
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
 
     dislikesReceived()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         this.setState({
-          dislikes: response.data
+          dislikes: response.data,
         });
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   }
@@ -84,28 +84,32 @@ class Stats extends Component {
           fields={[
             {
               type: "input",
-              label: "Colas dadas",
-              value: this.state.ridesGiven,
-              attrs: {}
-            },
-            {
-              type: "input",
               label: "Colas recibidas",
               value: this.state.ridesReceived,
-              attrs: {}
+              attrs: {},
+            },
+          ]}
+        />
+        <InputPC
+          fields={[
+            {
+              type: "input",
+              label: "Colas dadas",
+              value: this.state.ridesGiven,
+              attrs: {},
             },
             {
               type: "input",
               label: "Likes",
               value: this.state.likes,
-              attrs: {}
+              attrs: {},
             },
             {
               type: "input",
               label: "Dislikes",
               value: this.state.dislikes,
-              attrs: {}
-            }
+              attrs: {},
+            },
           ]}
         />
       </div>
