@@ -14,54 +14,119 @@
   height: 50%;
   width: inherit;
   justify-content: center;
+  padding: 10px 0 10px 0;
 }
 
 .Personal {
   display: flex;
-  flex-direction: column;
-  height: 30%;
+  flex-direction: row;
+  height: 25%;
   width: inherit;
   justify-content: center;
+  padding: 10px 0 10px 0;
+}
+
+.personalContent {
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+}
+
+.team {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .Links {
   display: flex;
-  flex-direction: column;
-  height: 20%;
+  flex-direction: row;
+  height: 25%;
   width: inherit;
   justify-content: center;
+  padding: 10px 0 10px 0;
 }
 
 .cartaAyuda {
+  height: 100%;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0px 2px 4px #888888;
   border-radius: 5px;
   position: relative;
   background-color: white;
-  width: inherit;
 }
 
 .logoImage {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   cursor: pointer;
 }
 
 #cartaTerminos {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
 }
 
-#cartaPersonal {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-}
-
+#cartaDevTeam,
 #cartaLinks {
+  margin-right: 15px;
+}
+
+#cartaSupervisor,
+#cartaContacto {
+  margin-left: 15px;
+}
+
+#supervTeam {
+  width: 100%;
+}
+
+.helpTop {
+  height: 30%;
+  background: #171956;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px 5px 0 0;
+}
+
+#termsTop {
+  height: 15%;
+}
+
+.topText {
+  font-size: 120%;
+  text-align: center;
+  color: white;
+}
+
+.linkLogos {
+  height: 70%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 90%;
+}
+
+.contactoContent {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.datos {
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoAyuda {
+  font-size: 100%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
 }
