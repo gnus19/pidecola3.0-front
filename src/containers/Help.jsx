@@ -32,6 +32,36 @@ class Help extends Component {
             <div className="helpTop" id="faqsTop">
               <span className="topText">FAQs</span>
             </div>
+            <div className="faqsContent">
+              <span className="infoAyuda">
+                ¿PideCola 3.0 me asegura conseguir una cola?
+              </span>
+              <span className="infoAyuda" id="faqsRespuesta">
+                *RESPUESTA*
+              </span>
+              <span className="infoAyuda">¿Cómo pedir/dar la cola?</span>
+              <span className="infoAyuda" id="faqsRespuesta">
+                *RESPUESTA*
+              </span>
+              <span className="infoAyuda">
+                ¿Qué hacer una vez que termine la cola?
+              </span>
+              <span className="infoAyuda" id="faqsRespuesta">
+                *RESPUESTA*
+              </span>
+              <span className="infoAyuda">
+                ¿Qué hacer si ocurre un accidente en el transcurso de la cola?
+              </span>
+              <span className="infoAyuda" id="faqsRespuesta">
+                *RESPUESTA*
+              </span>
+              <span className="infoAyuda">
+                ¿Qué hacer si PideCola 3.0 no funciona correctamente?
+              </span>
+              <span className="infoAyuda" id="faqsRespuesta">
+                *RESPUESTA*
+              </span>
+            </div>
           </div>
         </div>
         <div className="Personal">

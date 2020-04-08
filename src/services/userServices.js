@@ -6,8 +6,8 @@ export function createUser(req) {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 }
 
@@ -17,8 +17,8 @@ export function loginUser(req) {
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Basic " + btoa(req.email + ":" + req.password)
-    }
+      Authorization: "Basic " + btoa(req.email + ":" + req.password),
+    },
   });
 }
 
@@ -28,8 +28,8 @@ export function sendCode(req) {
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Basic " + btoa(req.email + ":" + req.password)
-    }
+      Authorization: "Basic " + btoa(req.email + ":" + req.password),
+    },
   });
 }
 
@@ -38,8 +38,18 @@ export function infoProfile() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
+  });
+}
+
+export function infoRide() {
+  return fetch(SERVER + "/requests/get", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -49,8 +59,8 @@ export function editProfile(req) {
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -59,8 +69,8 @@ export function editProfilePicture(req) {
     method: "PUT",
     body: req,
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -69,8 +79,8 @@ export function addVehicle(req) {
     method: "PUT",
     body: req,
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -80,8 +90,8 @@ export function deleteVehicle(req) {
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -90,8 +100,8 @@ export function ridesGiven() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -100,8 +110,8 @@ export function ridesReceived() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -110,8 +120,8 @@ export function likesReceived() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }
 
@@ -120,7 +130,7 @@ export function dislikesReceived() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("tkauth")
-    }
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
   });
 }

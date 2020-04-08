@@ -16,7 +16,7 @@ class RoutesList extends Component {
       direction: "",
       route: "",
       vehicle: "",
-      comment: ""
+      comment: "",
     };
   }
 
@@ -34,18 +34,18 @@ class RoutesList extends Component {
       direction: direction.value,
       route: route.value,
       vehicle: !this.props.location.state.pideCola ? vehicle.value : "",
-      comment: this.props.location.state.pideCola ? comment.value : ""
+      comment: this.props.location.state.pideCola ? comment.value : "",
     });
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({
-      [event.target.id]: element.value
+      [event.target.id]: element.value,
     });
   };
 
-  sendRequest = event => {
+  sendRequest = (event) => {
     event.preventDefault();
     const comment = document.getElementById("comment");
     console.log("request: ", comment.value);
@@ -55,12 +55,12 @@ class RoutesList extends Component {
       startLocation:
         this.state.direction === "hacia" ? this.state.route : "USB",
       destination: this.state.direction === "hacia" ? "USB" : this.state.route,
-      comment: this.state.comment
+      comment: this.state.comment,
     };
     console.log("send request body: ", requestBody);
     requestRide(requestBody)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({
@@ -68,8 +68,8 @@ class RoutesList extends Component {
             state: {
               user: this.state.user,
               direction: this.state.direction,
-              route: this.state.route
-            }
+              route: this.state.route,
+            },
           });
         } else {
           console.log("ERROR");
@@ -78,17 +78,17 @@ class RoutesList extends Component {
             state: {
               user: this.state.user,
               direction: this.state.direction,
-              route: this.state.route
-            }
+              route: this.state.route,
+            },
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   };
 
-  searchPassengers = event => {
+  searchPassengers = (event) => {
     event.preventDefault();
   };
 
@@ -125,8 +125,8 @@ class RoutesList extends Component {
                   {
                     type: "input",
                     label: "Comentarios",
-                    attrs: { id: "comment", onChange: this.handleChange }
-                  }
+                    attrs: { id: "comment", onChange: this.handleChange },
+                  },
                 ]}
               />
             </div>
@@ -140,8 +140,8 @@ class RoutesList extends Component {
               state: {
                 direction: this.state.direction,
                 route: this.state.route,
-                vehicle: this.state.vehicle
-              }
+                vehicle: this.state.vehicle,
+              },
             }}
             // onClick={this.searchPassengers}
           >
@@ -155,8 +155,8 @@ class RoutesList extends Component {
               state: {
                 direction: this.state.direction,
                 route: this.state.route,
-                comment: this.state.comment
-              }
+                comment: this.state.comment,
+              },
             }}
             onClick={this.sendRequest}
           >

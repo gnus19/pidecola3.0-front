@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { infoProfile } from "services/userServices";
+import { infoProfile, infoRide } from "services/userServices";
 import logo from "assets/images/logo.png";
 import list from "assets/images/list.svg";
 import ImgContainer from "components/userImg/ImgContainer";
@@ -42,8 +42,8 @@ const Main = ({ children }) => {
       document.getElementById("helpOptions").style.color = "#fff";
 
       infoProfile()
-        .then(res => res.json())
-        .then(response => {
+        .then((res) => res.json())
+        .then((response) => {
           if (response.data.profile_pic !== undefined) {
             setProfilePic(response.data.profile_pic);
           }
@@ -62,9 +62,25 @@ const Main = ({ children }) => {
           );
         })
 
-        .catch(error => {
+        .catch((error) => {
           console.log("Catch", error);
         });
+      /*
+      infoRide()
+        .then((res) => res.json())
+        .then((response) => {
+          console.log("Response: ", response);
+
+          if (response.status) {
+            console.log("status: ", response.status);
+            setActiveRide(response.status);
+          }
+        })
+
+        .catch((error) => {
+          console.log("Catch: ", error);
+        });
+        */
     } else if (path === "profile") {
       document.getElementById("profileOptions").style.background = "#ffd302";
       document.getElementById("profileOptions").style.color = "#000";
@@ -113,10 +129,7 @@ const Main = ({ children }) => {
         </nav>
         <div id="Content-Sec">
           <nav className="Sidebar" id="Sidebar">
-            <div
-              className="HideOption"
-              onClick={closeNav}
-            >
+            <div className="HideOption" onClick={closeNav}>
               ×
             </div>
             <div className="sidebar-sticky">
