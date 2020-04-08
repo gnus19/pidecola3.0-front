@@ -1,34 +1,37 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
 import Toast from "../components/toast/toast";
 
 class WaitOffer extends Component {
-  
   constructor(props) {
     super(props);
     this.socket = io(SERVER);
     this.state = {
-      riderInfo: null
-    }
+      riderInfo: null,
+    };
   }
 
   componentDidMount() {
     // if (socket && !socket.connected) socket.connect();
-    this.socket.on('connect', () => console.log('connected Scoket'))
-    this.socket.on('reconnecting', times => console.log('Reconnecting' + times))
-    this.socket.on('disconnect', reason => console.log('Reconnecting' + reason))
+    this.socket.on("connect", () => console.log("connected Scoket"));
+    this.socket.on("reconnecting", (times) =>
+      console.log("Reconnecting" + times)
+    );
+    this.socket.on("disconnect", (reason) =>
+      console.log("Reconnecting" + reason)
+    );
 
-    this.socket.emit('offer', {email: localStorage.getItem('email')})
+    this.socket.emit("offer", { email: localStorage.getItem("email") });
 
-    this.socket.on('rideOffer', msg => {
+    this.socket.on("rideOffer", (msg) => {
       console.log(msg);
-      this.setState({ riderInfo: msg })
-    })
+      this.setState({ riderInfo: msg });
+    });
   }
 
   cancelRideRequest = () => {
@@ -37,41 +40,38 @@ class WaitOffer extends Component {
       startLocation:
         this.props.location.state.direction === "hacia"
           ? this.props.location.state.route
-          : "USB",     
+          : "USB",
       destination:
         this.props.location.state.direction === "hacia"
           ? "USB"
-          : this.props.location.state.route
+          : this.props.location.state.route,
     };
     console.log("cancel: ", cancelRequestBody);
     cancelRequest(cancelRequestBody)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({
-            pathname: "/home"
+            pathname: "/home",
           });
         }
 
         // Emit event for canceling offer
         // socket.emit('cancelRide', cancelRequestBody);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
-  }
+  };
 
   render() {
     return (
       <div className="container-fluid">
-        <Toast text="Mantegase en esta página hasta que le ofrezcan cola"
-        />
-        { this.state.riderInfo ?
-          <AcceptOffer
-          rider={this.state.riderInfo.data}
-          />
-          :
+        <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
+        {this.state.riderInfo ? (
+          <AcceptOffer rider={this.state.riderInfo.data} />
+        ) : (
           <div className="sticky">
             <RecommendationBanner />
             <div className="cartaInfo">
@@ -82,13 +82,13 @@ class WaitOffer extends Component {
             </div>
             <div style={{ margin: "50px" }}>
               <span style={{ fontWeight: "bold", fontSize: "25px" }}>
-                Espere que un conductor le ofrezca la cola
+                Espera que un conductor te ofrezca la cola
               </span>
             </div>
           </div>
-        }
+        )}
       </div>
-    )
+    );
   }
 }
 

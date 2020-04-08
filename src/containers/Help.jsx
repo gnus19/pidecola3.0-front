@@ -27,10 +27,10 @@ class Help extends Component {
   render() {
     return (
       <div className="Help">
-        <div className="Terminos">
-          <div className="cartaAyuda" id="cartaTerminos">
-            <div className="helpTop" id="termsTop">
-              <span className="topText">TÉRMINOS Y CONDICIONES</span>
+        <div className="FAQs">
+          <div className="cartaAyuda" id="cartaFAQs">
+            <div className="helpTop" id="faqsTop">
+              <span className="topText">FAQs</span>
             </div>
           </div>
         </div>

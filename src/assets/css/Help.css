@@ -9,7 +9,7 @@
   overflow-y: scroll;
 }
 
-.Terminos {
+.FAQs {
   display: flex;
   flex-direction: column;
   height: 50%;
@@ -66,7 +66,7 @@
   cursor: pointer;
 }
 
-#cartaTerminos {
+#cartaFAQs {
 }
 
 #cartaDevTeam,
@@ -92,7 +92,7 @@
   border-radius: 5px 5px 0 0;
 }
 
-#termsTop {
+#faqsTop {
   height: 15%;
 }
 
@@ -137,11 +137,11 @@
     justify-content: start;
   }
 
-  .Terminos {
+  .FAQs {
     height: max-content;
   }
 
-  #cartaTerminos {
+  #cartaFAQs {
     height: 180px;
     margin-bottom: 15px;
   }

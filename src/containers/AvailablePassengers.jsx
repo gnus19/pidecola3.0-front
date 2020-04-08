@@ -5,8 +5,8 @@ import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
 import "../components/passenger/Passenger.css";
-import io from 'socket.io-client';
-import global from '../global';
+import io from "socket.io-client";
+import global from "../global";
 import Button from "../components/button/Button";
 import { offerRide } from "../services/requestRideService";
 import Toast from "../components/toast/toast";
@@ -18,38 +18,41 @@ class AvailablePassengers extends Component {
     this.socket = io(global.SERVER);
     this.state = {
       passengers: [],
-      sendingTo: []
+      sendingTo: [],
     };
   }
 
   componentDidMount() {
-    
-    this.socket.on('connect', () => console.log('connected Scoket'))
-    this.socket.on('reconnecting', times => console.log('Reconnecting ' + times))
-    this.socket.on('disconnect', reason => console.log('Reconnecting ' + reason))
+    this.socket.on("connect", () => console.log("connected Scoket"));
+    this.socket.on("reconnecting", (times) =>
+      console.log("Reconnecting " + times)
+    );
+    this.socket.on("disconnect", (reason) =>
+      console.log("Reconnecting " + reason)
+    );
 
-    this.socket.emit('offer', {email: localStorage.getItem('email')})
+    this.socket.emit("offer", { email: localStorage.getItem("email") });
 
-    this.socket.on('passengers', msg => {
-      console.log('Passenger from socket: ',msg)
-      console.log(this.state)
-      if(msg.status) this.setState({ passengers: msg.data })
-      console.log(this.state)
-    })
+    this.socket.on("passengers", (msg) => {
+      console.log("Passenger from socket: ", msg);
+      console.log(this.state);
+      if (msg.status) this.setState({ passengers: msg.data });
+      console.log(this.state);
+    });
 
     console.log(
       `${this.props.location.state.direction} - ${this.props.location.state.route}`
     );
 
     getWaitingList({ destination: this.props.location.state.route })
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response", response);
         this.setState({ passengers: response.data });
       });
   }
 
-  passengers = list => {};
+  passengers = (list) => {};
 
   prueba = (usbid, email) => {
     var passengerCard = document.getElementById(usbid);
@@ -70,7 +73,7 @@ class AvailablePassengers extends Component {
     var inList = this.state.sendingTo.indexOf(email);
     // Is not in array
     if (inList < 0) {
-      this.setState(previousState => {
+      this.setState((previousState) => {
         return { sendingTo: [...previousState.sendingTo, email] };
       });
     }
@@ -78,40 +81,40 @@ class AvailablePassengers extends Component {
     else {
       var newArray = [...this.state.sendingTo];
       newArray.splice(inList, 1);
-      this.setState(previousState => {
+      this.setState((previousState) => {
         return { sendingTo: newArray };
       });
     }
   };
 
-  offerRide = event => {
+  offerRide = (event) => {
     // All requests objects
     var allRequestObjects = [];
 
-    this.state.sendingTo.forEach(userEmail => {
+    this.state.sendingTo.forEach((userEmail) => {
       allRequestObjects.push(
         offerRide({
           rider: localStorage.getItem("email"),
-          passenger: userEmail
+          passenger: userEmail,
         })
       );
     });
 
     Promise.all(allRequestObjects)
-      .then(allRes => {
+      .then((allRes) => {
         return Promise.all(
-          allRes.map(allRes => {
+          allRes.map((allRes) => {
             return allRes.json();
           })
         );
       })
-      .then(Responses => {
+      .then((Responses) => {
         // console.log("Responses", Responses[0]);
-        Responses.forEach(info => {
+        Responses.forEach((info) => {
           console.log("Info", info);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("ERROR in sending emails", error);
       });
 
@@ -132,9 +135,7 @@ class AvailablePassengers extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Toast
-        text="Mantegase en esta página hasta que le acepen la cola"
-        />
+        <Toast text="Mantente en esta página hasta que acepten la cola" />
         <div className="sticky">
           <RecommendationBanner />
           {/*<div className="pidecola-message" text="">
@@ -154,7 +155,7 @@ class AvailablePassengers extends Component {
           <Button className="green" text="Ofrecer" onClick={this.offerRide} />
         </div>
         <div id="listaPasajeros" className="listaPasajeros">
-          {this.state.passengers.map( list => {
+          {this.state.passengers.map((list) => {
             return list.requests.map((passenger, passengerIndex) => {
               return (
                 <Passenger
