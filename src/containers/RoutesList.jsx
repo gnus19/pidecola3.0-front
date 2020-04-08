@@ -72,7 +72,15 @@ class RoutesList extends Component {
             }
           });
         } else {
-          console.log("ERROR");;
+          console.log("ERROR");
+          this.props.history.push({
+            pathname: "/waitOffer",
+            state: {
+              user: this.state.user,
+              direction: this.state.direction,
+              route: this.state.route
+            }
+          });
         }
       })
       .catch(error => {

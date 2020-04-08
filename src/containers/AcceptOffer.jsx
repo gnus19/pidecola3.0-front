@@ -12,6 +12,8 @@ import "../components/changeRideState/ChangeRideState.css";
 class AcceptOffer extends Component {
   constructor(props) {
     super(props);
+    console.log(props.rider);
+    
     this.state = {
       accepted: false
     };
@@ -36,9 +38,9 @@ class AcceptOffer extends Component {
         </div>
         <React.Fragment>
           <RideInfo
-            nombre="André Corcuera"
-            cohorte="12"
-            carrera="Ingeniería en Computación"
+            nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}
+            cohorte={this.props.rider.email.split('-')[0]}
+            carrera={this.props.rider.major}
             ruta="Baruta"
             numeroPasajeros="2"
             pasajeros="Ángel Morante, Pedro Maldonado"

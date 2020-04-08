@@ -9,6 +9,7 @@ import io from 'socket.io-client';
 import global from '../global';
 import Button from "../components/button/Button";
 import { offerRide } from "../services/requestRideService";
+import Toast from "../components/toast/toast";
 
 class AvailablePassengers extends Component {
   constructor(props) {
@@ -131,6 +132,9 @@ class AvailablePassengers extends Component {
   render() {
     return (
       <div className="container-fluid">
+        <Toast
+        text="Mantegase en esta página hasta que le acepen la cola"
+        />
         <div className="sticky">
           <RecommendationBanner />
           {/*<div className="pidecola-message" text="">

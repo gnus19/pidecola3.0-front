@@ -4,12 +4,17 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 import { cancelRequest } from "../services/requestRideService";
 import io from 'socket.io-client';
 import { SERVER } from "../global";
+import AcceptOffer from "./AcceptOffer";
+import Toast from "../components/toast/toast";
 
 class WaitOffer extends Component {
   
   constructor(props) {
     super(props);
     this.socket = io(SERVER);
+    this.state = {
+      riderInfo: null
+    }
   }
 
   componentDidMount() {
@@ -18,8 +23,11 @@ class WaitOffer extends Component {
     this.socket.on('reconnecting', times => console.log('Reconnecting' + times))
     this.socket.on('disconnect', reason => console.log('Reconnecting' + reason))
 
+    this.socket.emit('offer', {email: localStorage.getItem('email')})
+
     this.socket.on('rideOffer', msg => {
-      console.log(msg)
+      console.log(msg);
+      this.setState({ riderInfo: msg })
     })
   }
 
@@ -29,7 +37,7 @@ class WaitOffer extends Component {
       startLocation:
         this.props.location.state.direction === "hacia"
           ? this.props.location.state.route
-          : "USB",
+          : "USB",     
       destination:
         this.props.location.state.direction === "hacia"
           ? "USB"
@@ -57,30 +65,28 @@ class WaitOffer extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className="sticky">
-          <RecommendationBanner />
-          {/*<div className="pidecola-message" text="">
-            Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
-          </div>*/}
-          <div className="cartaInfo">
-            <p>{`${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
+        <Toast text="Mantegase en esta página hasta que le ofrezcan cola"
+        />
+        { this.state.riderInfo ?
+          <AcceptOffer
+          rider={this.state.riderInfo.data}
+          />
+          :
+          <div className="sticky">
+            <RecommendationBanner />
+            <div className="cartaInfo">
+              <p>{`${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
+            </div>
+            <div className="cancelarButton" onClick={this.cancelRideRequest}>
+              Cancelar
+            </div>
+            <div style={{ margin: "50px" }}>
+              <span style={{ fontWeight: "bold", fontSize: "25px" }}>
+                Espere que un conductor le ofrezca la cola
+              </span>
+            </div>
           </div>
-          {/*<Button
-            className="red"
-            text="Cancelar"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-          />*/}
-          <div className="cancelarButton" onClick={this.cancelRideRequest}>
-            Cancelar
-          </div>
-          <div style={{ margin: "100px" }}>
-            <span style={{ fontWeight: "bold", fontSize: "25px" }}>
-              Espere ...
-            </span>
-          </div>
-        </div>
+        }
       </div>
     )
   }
