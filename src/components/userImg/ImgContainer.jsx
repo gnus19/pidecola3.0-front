@@ -4,13 +4,14 @@ import userDefault from "../../assets/images/user.png";
 
 const ImgContainer = props => {
   const defaultImg = event => {
+    console.log("img error");
+    
     event.target.setAttribute("src", userDefault);
   };
 
   return (
     <div
-      className="ImgContainer"
-      style={{ height: props.height || "100%", width: props.width || "100%" }}
+      className={`ImgContainer ${props.size}`}
     >
       <div className="Envolved">
         <img className="Img" onError={defaultImg} {...props} alt="prfile_pic"/>

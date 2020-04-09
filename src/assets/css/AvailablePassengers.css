@@ -13,10 +13,24 @@
 
 .listaPasajeros {
   overflow-y: scroll;
-  overflow: hidden;
   height: 150px;
   list-style-type: none;
   padding-inline-start: 0;
+}
+
+.ofrecerButton {
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 .cancelarButton {
@@ -65,31 +79,31 @@
 
 @media (min-height: 568px) {
   .listaPasajeros {
-    height: 230px;
+    height: 180px;
   }
 }
 @media (min-height: 640px) {
   .listaPasajeros {
-    height: 288px;
+    height: 230px;
   }
 }
 @media (min-height: 667px) {
   .listaPasajeros {
-    height: 340px;
+    height: 280px;
   }
 }
 @media (min-height: 736px) {
   .listaPasajeros {
-    height: 400px;
+    height: 330px;
   }
 }
 @media (min-height: 1024px) {
   .listaPasajeros {
-    height: 638px;
+    height: 580px;
   }
 }
 @media (min-height: 1024px) {
   .listaPasajeros {
-    height: 638px;
+    height: 580px;
   }
 }

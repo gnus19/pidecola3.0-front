@@ -17,6 +17,12 @@
   align-content: center;
 }
 .checked {
+  background-color: lightgray;
+}
+.reject {
+  background-color: #d32f2f;
+}
+.accept {
   background-color: #4caf50;
 }
 
@@ -102,11 +108,15 @@
   }
 
   .foto {
-    width: 55px;
-    height: 56px;
-    margin-top: 25%;
+    width: auto;
+    height: auto;
+    padding-bottom: 0 !important;
   }
+}
 
+@media only screen
+and (min-width: 320px)
+and (max-width: 360px){
   .nombre,
   .carrera {
     font-size: 12px;
@@ -121,18 +131,54 @@
     font-size: 10px;
   }
 }
+@media only screen
+and (min-width: 361px)
+and (max-width: 420px){
+  .nombre,
+  .carrera {
+    font-size: 14px;
+  }
 
-@media (width: 320px) and (height: 568px) {
-  .foto {
-    margin-top: 50%;
+  .cohorte,
+  .año,
+  .ruta,
+  .parada,
+  .comentario,
+  .inputComentario {
+    font-size: 12px;
+  }
+}
+@media only screen
+and (min-width: 768px)
+and (max-width: 1024px){
+  .nombre,
+  .carrera {
+    font-size: 18px;
+  }
+
+  .cohorte,
+  .año,
+  .ruta,
+  .parada,
+  .comentario,
+  .inputComentario {
+    font-size: 16px;
+  }
+}
+@media only screen
+and (min-width: 1024px){
+  .nombre,
+  .carrera {
+    font-size: 22px;
+  }
+
+  .cohorte,
+  .año,
+  .ruta,
+  .parada,
+  .comentario,
+  .inputComentario {
+    font-size: 20px;
   }
 }
 
-/*iPad*/
-@media (width: 768px) and (height: 1024px) {
-  .foto {
-    width: 80px;
-    height: 80px;
-    margin-top: 5%;
-  }
-}

@@ -9,6 +9,9 @@
   padding-right: 15px;
   background-color: #e5e5e5;
 }
+.responseProfileError{
+  margin-top: 8px;
+}
 
 .OfferRequest {
   height: 100%;
@@ -49,8 +52,8 @@
 
 .ImageRequestButton {
   height: 75%;
-  width: cover;
-  background: url("../../assets/images/autostop.jpg");
+  width: 100%;
+  background-image: url("../../assets/images/autostop.jpg");
   background-size: cover;
   border-radius: 0 0 5px 5px;
 }
@@ -58,7 +61,7 @@
 .ImageOfferButton {
   height: 75%;
   width: 100%;
-  background: url("../../assets/images/rider.jpg");
+  background-image: url("../../assets/images/rider.jpg");
   background-size: cover;
   border-radius: 0 0 5px 5px;
 }

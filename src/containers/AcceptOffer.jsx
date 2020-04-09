@@ -37,14 +37,14 @@ class AcceptOffer extends Component {
           </div>
         </div>
         <React.Fragment>
-          {/*<RideInfo
+          <RideInfo
             nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}
             cohorte={this.props.rider.email.split('-')[0]}
             carrera={this.props.rider.major}
             ruta="Baruta"
             numeroPasajeros="2"
             pasajeros="Ángel Morante, Pedro Maldonado"
-          />*/}
+          />
         </React.Fragment>
         {!this.state.accepted && (
           <div className="aceptarRechazar">

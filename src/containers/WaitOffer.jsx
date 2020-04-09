@@ -29,7 +29,7 @@ class WaitOffer extends Component {
     this.socket.emit("offer", { email: localStorage.getItem("email") });
 
     this.socket.on("rideOffer", (msg) => {
-      console.log(msg);
+      console.log("riderOffer"+msg);
       this.setState({ riderInfo: msg });
     });
   }

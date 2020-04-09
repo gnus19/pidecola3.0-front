@@ -137,8 +137,7 @@ const Main = ({ children }) => {
                 <ImgContainer
                   src={profilePic}
                   alt="profilePicture pidecola"
-                  height="65%"
-                  width="65%"
+                  size="menu"
                 />
                 <p className="Username">
                   {firstName} {lastName}

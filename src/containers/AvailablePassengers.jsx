@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { getWaitingList } from "services/requestRideService";
 import "../assets/css/AvailablePassengers.css";
+
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
-import "../components/passenger/Passenger.css";
 import io from "socket.io-client";
 import global from "../global";
 import Button from "../components/button/Button";
@@ -19,6 +19,7 @@ class AvailablePassengers extends Component {
     this.state = {
       passengers: [],
       sendingTo: [],
+      offer: "Ofrecer"
     };
   }
 
@@ -89,6 +90,7 @@ class AvailablePassengers extends Component {
 
   offerRide = (event) => {
     // All requests objects
+    this.setState({offer: "Espere..."});
     var allRequestObjects = [];
 
     this.state.sendingTo.forEach((userEmail) => {
@@ -113,9 +115,11 @@ class AvailablePassengers extends Component {
         Responses.forEach((info) => {
           console.log("Info", info);
         });
+        this.setState({ offer: "Ofrecer" })
       })
       .catch((error) => {
         console.log("ERROR in sending emails", error);
+        this.setState({ offer: "Ofrecer" })
       });
 
     // One by one
@@ -152,7 +156,9 @@ class AvailablePassengers extends Component {
               <p>Cancelar</p>
             </NavLink>
           </div>
-          <Button className="green" text="Ofrecer" onClick={this.offerRide} />
+          <div className="ofrecerButton">
+            <Button className="green" text={this.state.offer} onClick={this.offerRide} />
+          </div>
         </div>
         <div id="listaPasajeros" className="listaPasajeros">
           {this.state.passengers.map((list) => {

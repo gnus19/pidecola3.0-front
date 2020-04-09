@@ -22,7 +22,7 @@ class OfferRequestRide extends Component {
       .then((response) => {
         console.log("Response: ", response);
 
-        if (response.status) {
+        if (response.message !== "No existe") {
           console.log("status: ", response.status);
           this.setState({
             activeRide: true,

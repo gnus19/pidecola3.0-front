@@ -1,5 +1,6 @@
 import React from "react";
 import ImgContainer from "../userImg/ImgContainer";
+import "./Passenger.css";
 import profilePicture from "assets/images/profilePicture.jpg";
 
 function Passenger({
@@ -19,6 +20,7 @@ function Passenger({
         <ImgContainer
           src={foto === undefined ? profilePicture : foto}
           alt="Profile Picture"
+          size="passenger-img"
         />
       </div>
       <div className="nombre">{nombre}</div>
