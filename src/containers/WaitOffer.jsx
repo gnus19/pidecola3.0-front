@@ -5,7 +5,7 @@ import { cancelRequest } from "../services/requestRideService";
 import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
-import Toast from "../components/toast/Toast";
+import Toast from "../components/toast/toast";
 
 class WaitOffer extends Component {
   constructor(props) {

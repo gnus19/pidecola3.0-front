@@ -7,7 +7,7 @@ import Passenger from "../components/passenger/Passenger";
 import io from "socket.io-client";
 import global from "../global";
 import { offerRide } from "../services/requestRideService";
-import Toast from "../components/toast/Toast";
+import Toast from "../components/toast/toast";
 
 class AvailablePassengers extends Component {
   constructor(props) {

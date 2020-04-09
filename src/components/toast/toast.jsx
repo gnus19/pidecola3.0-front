@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Toast.css";
+import "./toast.css";
 
 function Toast({ text }) {
   useEffect(() => {
