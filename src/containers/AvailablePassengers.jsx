@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { getWaitingList } from "services/requestRideService";
 import "../assets/css/AvailablePassengers.css";
-
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
 import io from "socket.io-client";
@@ -19,7 +18,9 @@ class AvailablePassengers extends Component {
     this.state = {
       passengers: [],
       sendingTo: [],
-      offer: "Ofrecer"
+      offer: "Ofrecer",
+      currentVehicle: "",
+      capError: false,
     };
   }
 
@@ -51,6 +52,15 @@ class AvailablePassengers extends Component {
         console.log("Response", response);
         this.setState({ passengers: response.data });
       });
+
+    var vehicleList = JSON.parse(localStorage.getItem("vehicleList"));
+    vehicleList.map((vehicle) => {
+      if (vehicle.plate === this.props.location.state.vehicle) {
+        this.setState({
+          currentVehicle: vehicle,
+        });
+      }
+    });
   }
 
   passengers = (list) => {};
@@ -89,8 +99,21 @@ class AvailablePassengers extends Component {
   };
 
   offerRide = (event) => {
+    this.setState({
+      capError: false,
+    });
+
+    if (
+      this.state.sendingTo.length > this.state.currentVehicle.vehicle_capacity
+    ) {
+      this.setState({
+        capError: true,
+      });
+      return;
+    }
+
     // All requests objects
-    this.setState({offer: "Espere..."});
+    this.setState({ offer: "Espere..." });
     var allRequestObjects = [];
 
     this.state.sendingTo.forEach((userEmail) => {
@@ -115,11 +138,12 @@ class AvailablePassengers extends Component {
         Responses.forEach((info) => {
           console.log("Info", info);
         });
-        this.setState({ offer: "Ofrecer" })
+        this.setState({ offer: "Ofrecer" });
+        console.log("state: ", this.state);
       })
       .catch((error) => {
         console.log("ERROR in sending emails", error);
-        this.setState({ offer: "Ofrecer" })
+        this.setState({ offer: "Ofrecer" });
       });
 
     // One by one
@@ -139,25 +163,32 @@ class AvailablePassengers extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Toast text="Mantente en esta página hasta que acepten la cola" />
+        <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
           <RecommendationBanner />
-          {/*<div className="pidecola-message" text="">
-          Pide Cola USB te recuerda no utilizar tu telefono celular al conducir.
-        </div>*/}
           <div className="cartaInfo">
             <p>{`${
               this.props.location.state.vehicle
             } || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
           </div>
+          {this.state.capError && (
+            <div className="responseProfileError">
+              Debes seleccionar una cantidad de pasajeros menor a la máxima
+              capacidad del vehículo.
+            </div>
+          )}
           {/* <button onClick={() => { this.socket.emit('offer', {email: localStorage.getItem('email')}) ; console.log("Emited");}}>Emit</button> */}
           <div className="cancelarButton">
             <NavLink to="/home">
               <p>Cancelar</p>
             </NavLink>
           </div>
-          <div className="ofrecerButton">
-            <Button className="green" text={this.state.offer} onClick={this.offerRide} />
+          <div
+            className="ofrecerButton"
+            text={this.state.offer}
+            onClick={this.offerRide}
+          >
+            <p>Ofrecer</p>
           </div>
         </div>
         <div id="listaPasajeros" className="listaPasajeros">
