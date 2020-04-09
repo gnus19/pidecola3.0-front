@@ -6,9 +6,8 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 import Passenger from "../components/passenger/Passenger";
 import io from "socket.io-client";
 import global from "../global";
-import Button from "../components/button/Button";
 import { offerRide } from "../services/requestRideService";
-import Toast from "../components/toast/toast";
+import Toast from "../components/toast/Toast";
 
 class AvailablePassengers extends Component {
   constructor(props) {

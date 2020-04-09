@@ -11,9 +11,10 @@ function Passenger({
   cohorte,
   ruta,
   comentario,
-  onClick
+  onClick,
+  colaAceptada,
+  telefono,
 }) {
-
   return (
     <div className="carta grid-container" id={usbid} onClick={onClick}>
       <div className="foto">
@@ -34,6 +35,14 @@ function Passenger({
         Ruta: <span> {ruta}</span>
       </div>
       <div className="comentario">
+        {colaAceptada === "true" ? (
+          <div className="comentario" id="telefono">
+            Teléfono: <span> {telefono}</span>
+            <br />
+          </div>
+        ) : (
+          <></>
+        )}
         Comentario: <span> {comentario}</span>
       </div>
     </div>

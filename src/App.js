@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 import "assets/css/App.css";
@@ -19,6 +19,7 @@ import RoutesList from "containers/RoutesList";
 import AvailablePassengers from "./containers/AvailablePassengers";
 import WaitOffer from "./containers/WaitOffer";
 import AcceptOffer from "./containers/AcceptOffer";
+import RideProcess from "./containers/RideProcess";
 
 const tokenRequired = (Component, props) => {
   const token = localStorage.getItem("tkauth");
@@ -34,51 +35,58 @@ function App() {
           <Route
             exact
             path="/login"
-            render={props => <SignPage {...props} />}
+            render={(props) => <SignPage {...props} />}
           />
           <Route
             exact
             path="/register"
-            render={props => <SignPage {...props} />}
+            render={(props) => <SignPage {...props} />}
           />
           <Redirect exact from="/" to="/login" />
           <Main>
             <Route
               path="/home"
-              render={props => tokenRequired(HomePage, props)}
+              render={(props) => tokenRequired(HomePage, props)}
             />
             <Route
               path="/profile"
-              render={props => tokenRequired(Profile, props)}
+              render={(props) => tokenRequired(Profile, props)}
             />
             <Route
               path="/addVehicle"
-              render={props => tokenRequired(VehicleDetail, props)}
+              render={(props) => tokenRequired(VehicleDetail, props)}
             />
             <Route
               path="/deleteVehicle"
-              render={props => tokenRequired(DeleteVehicle, props)}
+              render={(props) => tokenRequired(DeleteVehicle, props)}
             />
             <Route
               path="/stats"
-              render={props => tokenRequired(Stats, props)}
+              render={(props) => tokenRequired(Stats, props)}
             />
-            <Route path="/help" render={props => tokenRequired(Help, props)} />
+            <Route
+              path="/help"
+              render={(props) => tokenRequired(Help, props)}
+            />
             <Route
               path="/ride"
-              render={props => tokenRequired(RoutesList, props)}
+              render={(props) => tokenRequired(RoutesList, props)}
             />
             <Route
               path="/passengers"
-              render={props => tokenRequired(AvailablePassengers, props)}
+              render={(props) => tokenRequired(AvailablePassengers, props)}
             />
             <Route
               path="/waitOffer"
-              render={props => tokenRequired(WaitOffer, props)}
+              render={(props) => tokenRequired(WaitOffer, props)}
             />
             <Route
               path="/offer"
-              render={props => tokenRequired(AcceptOffer, props)}
+              render={(props) => tokenRequired(AcceptOffer, props)}
+            />
+            <Route
+              path="/rideProcess"
+              render={(props) => tokenRequired(RideProcess, props)}
             />
           </Main>
         </Switch>
