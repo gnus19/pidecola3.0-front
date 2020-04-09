@@ -28,22 +28,21 @@ class AcceptOffer extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className="sticky">
+        {/*<div className="sticky">
           <RecommendationBanner />
-          <div className="cancelarCola">
+          <div className="cancelarCola" onClick={this.cancelRideRequest}>
             <NavLink to="/home">
               <p>Cancelar</p>
-            </NavLink>
+    </NavLink>
           </div>
-        </div>
+        </div>*/}
         <React.Fragment>
           <RideInfo
+            foto={this.props.rider.profile_pic}
             nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}
-            cohorte={this.props.rider.email.split('-')[0]}
+            cohorte={this.props.rider.email.split("-")[0]}
             carrera={this.props.rider.major}
             ruta="Baruta"
-            numeroPasajeros="2"
-            pasajeros="Ángel Morante, Pedro Maldonado"
           />
         </React.Fragment>
         {!this.state.accepted && (

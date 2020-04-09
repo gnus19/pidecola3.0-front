@@ -4,8 +4,7 @@
   grid-template-areas:
     "titulo titulo titulo"
     "fotoConductor nombreConductor cohorteConductor"
-    "fotoConductor carreraConductor rutaConductor"
-    "fotoConductor pasajeros pasajeros";
+    "fotoConductor carreraConductor rutaConductor";
 }
 
 .grid-container-offer > div {
@@ -19,15 +18,21 @@
 
 .fotoConductor {
   grid-area: fotoConductor;
+  justify-self: center;
+}
+
+/*
+.fotoConductor {
+  grid-area: fotoConductor;
   border-radius: 50%;
   background-color: #dddbdb;
-  background-image: url("../../assets/images/user.png");
   background-position: center;
   background-repeat: no-repeat;
   width: 117.97px;
   height: 120px;
   justify-self: center;
 }
+*/
 
 .titulo {
   grid-area: titulo;
@@ -55,22 +60,16 @@
   grid-area: rutaConductor;
 }
 
-.pasajeros {
-  grid-area: pasajeros;
-}
-
 .cohorteConductor,
 .carreraConductor,
-.rutaConductor,
-.pasajeros {
+.rutaConductor {
   font-size: normal;
   font-weight: bold;
 }
 
 .cohorteConductor span,
 .carreraConductor span,
-.rutaConductor span,
-.pasajeros span {
+.rutaConductor span {
   font-weight: normal;
 }
 

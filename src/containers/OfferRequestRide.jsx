@@ -65,12 +65,12 @@ class OfferRequestRide extends Component {
       this.setState({
         error: errorMessage,
       });
-    } else {
-      this.props.history.push({
-        pathname: "/ride",
-        state: { pideCola: false },
-      });
     }
+
+    this.props.history.push({
+      pathname: "/ride",
+      state: { pideCola: false },
+    });
   };
 
   checkRideState = (event) => {

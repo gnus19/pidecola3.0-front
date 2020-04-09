@@ -29,7 +29,7 @@ class WaitOffer extends Component {
     this.socket.emit("offer", { email: localStorage.getItem("email") });
 
     this.socket.on("rideOffer", (msg) => {
-      console.log("riderOffer"+msg);
+      console.log("riderOffer" + msg);
       this.setState({ riderInfo: msg });
     });
   }
@@ -68,18 +68,20 @@ class WaitOffer extends Component {
   render() {
     return (
       <div className="container-fluid">
+        <div className="sticky">
+          <RecommendationBanner />
+          <div className="cartaInfo">
+            <p>{`${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
+          </div>
+          <div className="cancelarButton" onClick={this.cancelRideRequest}>
+            Cancelar
+          </div>
+        </div>
         <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
         {this.state.riderInfo ? (
           <AcceptOffer rider={this.state.riderInfo.data} />
         ) : (
           <div className="sticky">
-            <RecommendationBanner />
-            <div className="cartaInfo">
-              <p>{`${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
-            </div>
-            <div className="cancelarButton" onClick={this.cancelRideRequest}>
-              Cancelar
-            </div>
             <div style={{ margin: "50px" }}>
               <span style={{ fontWeight: "bold", fontSize: "25px" }}>
                 Espera que un conductor te ofrezca la cola
