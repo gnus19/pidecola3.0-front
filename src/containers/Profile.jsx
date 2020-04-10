@@ -318,6 +318,7 @@ class Profile extends Component {
                 src={this.state.profilePreview}
                 alt="Image Profile"
                 id="profile"
+                size="profile-img"
                 onClick={this.inputProfileClick}
               />
             </div>
@@ -336,6 +337,7 @@ class Profile extends Component {
                   <ImgContainer
                     src={this.state.showVehicle}
                     alt="Image Profile"
+                    size="profile-img"
                   />
                 </div>
                 <div
@@ -434,6 +436,7 @@ class Profile extends Component {
                   <ImgContainer
                     src={this.state.showVehicle}
                     alt="Image Profile"
+                    size="profile-img"
                   />
                 </div>
                 <div

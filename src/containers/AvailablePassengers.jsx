@@ -31,6 +31,13 @@ class AvailablePassengers extends Component {
     this.socket.on("disconnect", (reason) =>
       console.log("Reconnecting " + reason)
     );
+    // PAssenger response
+    this.socket.on('passengerResponse', (data) => {
+      console.log(data);
+      if (data.answer === "Sí") {
+        const htmlElement = document.getElementById(data.passenger.split('@')[0]);
+      }
+    })
 
     this.socket.emit("offer", { email: localStorage.getItem("email") });
 
@@ -62,9 +69,7 @@ class AvailablePassengers extends Component {
     });
   }
 
-  passengers = (list) => {};
-
-  prueba = (usbid, email) => {
+  addPassenger = (usbid, email) => {
     var passengerCard = document.getElementById(usbid);
 
     // Changes background color
@@ -97,6 +102,7 @@ class AvailablePassengers extends Component {
     }
   };
 
+  // Manda la oferta de cola a los pasajeros
   offerRide = (event) => {
     this.setState({
       capError: false,
@@ -137,7 +143,7 @@ class AvailablePassengers extends Component {
         Responses.forEach((info) => {
           console.log("Info", info);
         });
-        this.setState({ offer: "Ofrecer" });
+        this.setState({ offer: `Iniciar cola 0/${this.state.sendingTo.length}` });
         console.log("state: ", this.state);
       })
       .catch((error) => {
@@ -203,7 +209,7 @@ class AvailablePassengers extends Component {
                   usbid={passenger.user.usbid}
                   comentario={passenger.comment}
                   onClick={() => {
-                    this.prueba(passenger.user.usbid, passenger.email);
+                    this.addPassenger(passenger.user.usbid, passenger.email);
                   }}
                   key={passengerIndex}
                 />
