@@ -7,7 +7,11 @@ import ImgContainer from "components/userImg/ImgContainer";
 import profilePicture from "assets/images/profilePicture.jpg";
 
 const openNav = () => {
-  document.getElementById("Sidebar").style.width = "50%";
+  if (window.screen.width === 768 && window.screen.height === 1024) {
+    document.getElementById("Sidebar").style.width = "40%";
+  } else {
+    document.getElementById("Sidebar").style.width = "50%";
+  }
 };
 
 const closeNav = () => {
@@ -65,22 +69,6 @@ const Main = ({ children }) => {
         .catch((error) => {
           console.log("Catch", error);
         });
-      /*
-      infoRide()
-        .then((res) => res.json())
-        .then((response) => {
-          console.log("Response: ", response);
-
-          if (response.status) {
-            console.log("status: ", response.status);
-            setActiveRide(response.status);
-          }
-        })
-
-        .catch((error) => {
-          console.log("Catch: ", error);
-        });
-        */
     } else if (path === "profile") {
       document.getElementById("profileOptions").style.background = "#ffd302";
       document.getElementById("profileOptions").style.color = "#000";

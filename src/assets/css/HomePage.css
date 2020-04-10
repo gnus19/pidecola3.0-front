@@ -149,6 +149,10 @@
     width: 75%;
   }
 
+  .Options {
+    padding-left: 15px;
+  }
+
   .TopLogo {
     background-color: #171956;
     width: 80%;
@@ -185,5 +189,30 @@
   .Main {
     width: 100%;
     transition: margin-left 0.5s;
+  }
+}
+
+/* Ipad Pro */
+@media (width: 1024px) and (height: 1366px) {
+  .Options {
+    padding-left: 7px;
+  }
+
+  .Options span {
+    font-size: 2vh;
+  }
+}
+
+/* Ipad */
+@media (width: 768px) and (height: 1024px) {
+  .Options {
+    padding-left: 50px;
+  }
+}
+
+/* Iphone X */
+@media (width: 375px) and (height: 812px) {
+  .Options {
+    padding-left: 7px;
   }
 }

@@ -54,7 +54,6 @@
   padding: 8px;
   border-radius: 5px;
   font-weight: 500;
-  
 }
 
 .acceptButton,
@@ -129,7 +128,7 @@
   .Section-VehicleDetail-Right {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 0 20px 0 20px;
   }
 
