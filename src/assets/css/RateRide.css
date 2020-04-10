@@ -8,12 +8,11 @@
 }
 
 .rateMessage {
-  height: 100px;
+  height: 25%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 50px;
 }
 
 #cartaMessage {
@@ -25,7 +24,7 @@
 }
 
 .rate {
-  height: max-content;
+  height: 50%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,19 +32,26 @@
 
 .rateImages,
 .rateButtons {
-  height: max-content;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 20px;
+  align-items: center;
+}
+
+.rateImages {
+  height: 60%;
+}
+
+.rateButtons {
+  height: 40%;
 }
 
 .like,
 .dislike {
   background: #4caf50;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
@@ -54,7 +60,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .likeButton,
@@ -84,21 +89,22 @@
 .dislikeButton {
   background: #d32f2f;
 }
+
 .finalizarButton {
   background: #1e2172;
 }
 
-.likeImage {
-  height: 200px;
-  width: 250px;
+.rateImage {
+  height: 150px;
+  width: 200px;
 }
 
 .finalizarRate {
-  height: max-content;
+  height: 25%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  justify-content: center;
 }
 
 #finalizarButton {
