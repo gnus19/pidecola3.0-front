@@ -6,6 +6,13 @@
   justify-content: center;
 }
 
+.picture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #listaVehiculos {
   height: 200px;
   width: 200px;

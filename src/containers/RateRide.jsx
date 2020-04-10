@@ -2,92 +2,104 @@ import React, { Component } from "react";
 import "assets/css/RateRide.css";
 import like from "assets/images/like.png";
 import dislike from "assets/images/dislike.png";
+import likeDislike from "assets/images/likeDislike.png";
+import InputPC from "components/inputPc/InputPC";
 
 class RateRide extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      message: "¿CÓMO CALIFICARÍAS LA COLA QUE TE DIO *NOMBRE*?",
       rated: false,
-      likeHovered: false,
-      dislikeHovered: false,
+      ratedImage: likeDislike,
+      ratedBackground: "white",
+      dislike: false,
     };
   }
 
-  onMouseEnterLike = (event) => {
-    this.setState({
-      likeHovered: true,
-    });
-  };
-
-  onMouseLeaveLike = (event) => {
-    this.setState({
-      likeHovered: false,
-    });
-  };
-
-  onMouseEnterDislike = (event) => {
-    this.setState({
-      dislikeHovered: true,
-    });
-  };
-
-  onMouseLeaveDislike = (event) => {
-    this.setState({
-      dislikeHovered: false,
-    });
-  };
-
   rateRide = (event) => {
+    const rate = document.getElementById(event.target.id);
+    if (rate.id === "likeButton") {
+      this.setState({
+        message: "¡GRACIAS POR CALIFICAR LA COLA!",
+        rated: true,
+        ratedImage: like,
+        ratedBackground: "#4caf50",
+      });
+    } else {
+      this.setState({
+        message:
+          "¡GRACIAS POR CALIFICAR LA COLA! COMENTA ABAJO POR QUÉ CONSIDERAS QUE LA COLA FUE MALA.",
+        rated: true,
+        ratedImage: dislike,
+        ratedBackground: "#d32f2f",
+        dislike: true,
+        rideComment: "",
+      });
+    }
+  };
+
+  handleChange = (event) => {
+    const element = document.getElementById(event.target.id);
     this.setState({
-      rated: true,
+      [event.target.id]: element.value,
     });
   };
 
   render() {
-    const { likeHovered } = this.state;
-    const likeStyle = likeHovered ? { backgroundColor: "#4caf50" } : {};
-    const { dislikeHovered } = this.state;
-    const dislikeStyle = dislikeHovered ? { backgroundColor: "#d32f2f" } : {};
     return (
       <div className="rateRide">
         <div className="rateMessage">
-          {!this.state.rated ? (
-            <div className="carta" id="cartaMessage">
-              ¿CÓMO CALIFICARÍAS LA COLA QUE TE DIO *NOMBRE*?
-            </div>
-          ) : (
-            <div className="carta" id="cartaMessage">
-              ¡GRACIAS POR CALIFICAR LA COLA!
-            </div>
-          )}
+          <div className="carta" id="cartaMessage">
+            {this.state.message}
+          </div>
         </div>
         <div className="rate">
           <div className="rateImages">
-            <div className="like" style={likeStyle}>
-              <img className="rateImage" src={like} />
-            </div>
-            <div className="dislike" style={dislikeStyle}>
-              <img className="rateImage" src={dislike} />
+            <div className="rateEnvolve">
+              <div
+                className="showImage"
+                style={{ backgroundColor: this.state.ratedBackground }}
+              >
+                <img className="rateImage" src={this.state.ratedImage} />
+              </div>
             </div>
           </div>
+
           <div className="rateButtons">
-            <div
-              className="likeButton"
-              onMouseEnter={this.onMouseEnterLike}
-              onMouseLeave={this.onMouseLeaveLike}
-              onClick={this.rateRide}
-            >
-              <span>LIKE</span>
-            </div>
-            <div
-              className="dislikeButton"
-              onMouseEnter={this.onMouseEnterDislike}
-              onMouseLeave={this.onMouseLeaveDislike}
-              onClick={this.rateRide}
-            >
-              <span>DISLIKE</span>
-            </div>
+            {!this.state.rated && (
+              <React.Fragment>
+                <div
+                  className="likeButton"
+                  id="likeButton"
+                  onClick={this.rateRide}
+                >
+                  LIKE
+                </div>
+                <div
+                  className="dislikeButton"
+                  id="dislikeButton"
+                  onClick={this.rateRide}
+                >
+                  DISLIKE
+                </div>
+              </React.Fragment>
+            )}
+            {this.state.dislike && (
+              <div className="Comentarios">
+                <InputPC
+                  id="dislikeComment"
+                  fields={[
+                    {
+                      type: "input",
+                      label: "Comentarios",
+                      attrs: { id: "rideComment", onChange: this.handleChange },
+                    },
+                  ]}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="finalizarRate">

@@ -34,10 +34,13 @@ class Help extends Component {
             </div>
             <div className="faqsContent">
               <span className="infoAyuda">
-                ¿PideCola 3.0 me asegura conseguir una cola?
+                ¿PideCola me asegura conseguir un traslado desde/hacia la USB?
               </span>
               <span className="infoAyuda" id="faqsRespuesta">
-                *RESPUESTA*
+                No, PideCola 3.0 no se hace responsable de asegurar una cola a
+                sus usuarios, solo se asegura de establecer un canal de
+                integración y comunicación entre la comunidad universitaria para
+                llegar y salir de la USB.
               </span>
               <span className="infoAyuda">¿Cómo pedir/dar la cola?</span>
               <span className="infoAyuda" id="faqsRespuesta">
