@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import ChangeRideState from "../components/changeRideState/ChangeRideState";

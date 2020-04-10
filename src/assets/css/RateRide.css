@@ -1,0 +1,106 @@
+.rateRide {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px 0 20px;
+  align-items: center;
+}
+
+.rateMessage {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#cartaMessage {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0px 0px 2px #888888;
+}
+
+.rate {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rateImages,
+.rateButtons {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.like,
+.dislike {
+  background: #4caf50;
+  width: 300px;
+  height: 300px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.likeButton,
+.dislikeButton,
+.finalizarButton {
+  width: 325px;
+  height: 50px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.like,
+.dislike {
+  background: white;
+}
+
+.likeButton {
+  background: #4caf50;
+}
+
+.dislikeButton {
+  background: #d32f2f;
+}
+.finalizarButton {
+  background: #1e2172;
+}
+
+.likeImage {
+  height: 200px;
+  width: 250px;
+}
+
+.finalizarRate {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+#finalizarButton {
+  width: 100%;
+}

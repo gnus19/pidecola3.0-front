@@ -20,6 +20,7 @@ import AvailablePassengers from "./containers/AvailablePassengers";
 import WaitOffer from "./containers/WaitOffer";
 import AcceptOffer from "./containers/AcceptOffer";
 import RideProcess from "./containers/RideProcess";
+import RateRide from "./containers/RateRide";
 
 const tokenRequired = (Component, props) => {
   const token = localStorage.getItem("tkauth");
@@ -87,6 +88,10 @@ function App() {
             <Route
               path="/rideProcess"
               render={(props) => tokenRequired(RideProcess, props)}
+            />
+            <Route
+              path="/rateRide"
+              render={(props) => tokenRequired(RateRide, props)}
             />
           </Main>
         </Switch>
