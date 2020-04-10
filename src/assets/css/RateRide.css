@@ -120,4 +120,9 @@
   .rateButtons {
     flex-direction: column;
   }
+
+  .likeButton,
+  .dislikeButton {
+    width: 100%;
+  }
 }
