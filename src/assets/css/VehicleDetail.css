@@ -83,6 +83,9 @@
   width: 226px;
   height: 226px;
   margin-top: 5vh;
+  align-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .Section-VehicleDetail-Left .child2 {

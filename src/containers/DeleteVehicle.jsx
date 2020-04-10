@@ -98,6 +98,7 @@ class DeleteVehicle extends Component {
                       src={vehicle.vehicle_pic}
                       alt="Image Profile"
                       id="vehiculo"
+                      size="profile-img"
                       onClick={this.selectVehicle(vehicle)}
                     />
                   </div>

@@ -158,6 +158,7 @@ class VehicleDetail extends Component {
               src={this.state.vehiclePreview}
               alt="Image Vehicle"
               id="vehicle"
+              size="detail-vehicle-img"
               onClick={this.inputVehicleClick}
             />
           </div>

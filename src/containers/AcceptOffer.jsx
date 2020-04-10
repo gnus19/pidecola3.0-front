@@ -6,21 +6,56 @@ import "../components/rideInfo/RideInfo.css";
 import VehicleInfo from "../components/vehicleInfo/VehicleInfo";
 import "../components/vehicleInfo/VehicleInfo.css";
 import "../components/changeRideState/ChangeRideState.css";
+import { respondOfferRide } from "../services/requestRideService";
+// Sockets
+import io from "socket.io-client";
+import global from "../global";
 
 class AcceptOffer extends Component {
   constructor(props) {
     super(props);
     console.log(props.rider);
+    this.socket = io(global.SERVER);
 
     this.state = {
       accepted: false,
     };
   }
 
-  changeState = () => {
+  componentDidMount() {
+    this.socket.on("connect", () => console.log("connected Scoket"));
+    this.socket.on("reconnecting", (times) =>
+      console.log("Reconnecting " + times)
+    );
+    this.socket.on("disconnect", (reason) =>
+      console.log("Reconnecting " + reason)
+    );
+
+    this.socket.emit("offer", { email: localStorage.getItem("email") });
+
+
+  }
+
+  changeState = (accept) => {
     this.setState({
       accepted: true,
     });
+    // Respond offer to rider
+    let requestBody = {
+      rider: this.props.rider.email,
+      passenger: localStorage.getItem("email"),
+      accept: accept
+    }
+    respondOfferRide(requestBody)
+    .then((res) => {
+      res.json()
+    })
+    .then(
+      (response) => {
+        console.log(response);
+        // IR a la pantalla de cola
+      }
+    )
   };
 
   render() {
@@ -45,10 +80,10 @@ class AcceptOffer extends Component {
         </React.Fragment>
         {!this.state.accepted && (
           <div className="aceptarRechazar">
-            <div className="aceptarCola" onClick={this.changeState}>
+            <div className="aceptarCola" onClick={ () => this.changeState("Sí")}>
               <p>Aceptar</p>
             </div>
-            <div className="rechazarCola">
+            <div className="rechazarCola" onClick={ () => this.changeState("No")}>
               <NavLink to="/waitOffer">
                 <p>Rechazar</p>
               </NavLink>
