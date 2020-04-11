@@ -14,11 +14,12 @@ import global from "../global";
 class AcceptOffer extends Component {
   constructor(props) {
     super(props);
-    console.log(props.rider);
+    console.log(props);
     this.socket = io(global.SERVER);
 
     this.state = {
       accepted: false,
+      rejectLabel: "Rechazar"
     };
   }
 
@@ -37,9 +38,14 @@ class AcceptOffer extends Component {
   }
 
   changeState = (accept) => {
-    this.setState({
-      accepted: true,
-    });
+    if (accept === "No") {
+      this.setState({rejectLabel: "Rechazando..."})
+    }
+    else {
+      this.setState({
+        accepted: true,
+      });
+    }
     // Respond offer to rider
     let requestBody = {
       rider: this.props.rider.email,
@@ -54,8 +60,15 @@ class AcceptOffer extends Component {
       (response) => {
         console.log(response);
         // IR a la pantalla de cola
+        if (accept === "No") {
+          this.props.rejectRider();
+        }
       }
     )
+    .catch((error) => {
+      console.log("Error sending offer anwser", error);
+      
+    })
   };
 
   render() {
@@ -84,9 +97,7 @@ class AcceptOffer extends Component {
               <p>Aceptar</p>
             </div>
             <div className="rechazarCola" onClick={ () => this.changeState("No")}>
-              <NavLink to="/waitOffer">
-                <p>Rechazar</p>
-              </NavLink>
+              <p>{this.state.rejectLabel}</p>
             </div>
           </div>
         )}
