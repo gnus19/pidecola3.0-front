@@ -22,6 +22,7 @@ class AvailablePassengers extends Component {
       offer: "Ofrecer",
       currentVehicle: "",
       capError: false,
+      confirmedPassengers: [],
     };
   }
 
@@ -38,42 +39,53 @@ class AvailablePassengers extends Component {
     this.socket.emit("offer", { email: localStorage.getItem("email") });
 
     // PAssenger response
-    this.socket.on('passengerResponse', (socket) => {
-      console.log('passengerResponse', socket);
-      const htmlElement = document.getElementById(socket.data.passenger.split('@')[0]);
+    this.socket.on("passengerResponse", (socket) => {
+      console.log("passengerResponse", socket);
+      const htmlElement = document.getElementById(
+        socket.data.passenger.split("@")[0]
+      );
       if (socket.data.answer === "Sí") {
         // replace cheked class by accept class
-        
+
         if (htmlElement.classList) {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("accept");
         } else {
-          htmlElement.className = htmlElement.className.replace(/\bchecked\b/g, "accept");
+          htmlElement.className = htmlElement.className.replace(
+            /\bchecked\b/g,
+            "accept"
+          );
         }
         // Remove passenger in sending to
         let index = this.state.sendingTo.indexOf(socket.data.passenger);
         console.log("Passanger index: ", index);
-        
+
         let newAcceptArray = [...this.state.sendingTo];
         this.setState((previousState) => {
-          return {  };
-        })
+          return {};
+        });
         newAcceptArray.splice(index, 1);
         this.setState((previousState) => {
           return {
             sendingTo: newAcceptArray,
-            acceptOffer: [...previousState.acceptOffer, previousState.sendingTo[index]],
-            offer: `Ofrecer`
+            acceptOffer: [
+              ...previousState.acceptOffer,
+              previousState.sendingTo[index],
+            ],
+            offer: `Ofrecer`,
           };
         });
-      }
-      else { // Passenger respond no to the offer
+      } else {
+        // Passenger respond no to the offer
         // replace cheked class by reject class
         if (htmlElement.classList) {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("reject");
         } else {
-          htmlElement.className = htmlElement.className.replace(/\bchecked\b/g, "reject");
+          htmlElement.className = htmlElement.className.replace(
+            /\bchecked\b/g,
+            "reject"
+          );
         }
         // Remove passenger in sending to
         let inList = this.state.sendingTo.indexOf(socket.data.passenger);
@@ -83,7 +95,7 @@ class AvailablePassengers extends Component {
           return { sendingTo: newArray };
         });
       }
-    })
+    });
 
     this.socket.on("passengers", (msg) => {
       console.log("Passenger from socket: ", msg);
@@ -119,7 +131,10 @@ class AvailablePassengers extends Component {
 
     // Checks if element has reject class
     if (passengerCard.className.match(/\breject\b/g)) {
-      passengerCard.className = passengerCard.className.replace(/\breject\b/g, "");
+      passengerCard.className = passengerCard.className.replace(
+        /\breject\b/g,
+        ""
+      );
     }
 
     // Changes background color
@@ -162,7 +177,8 @@ class AvailablePassengers extends Component {
       this.state.sendingTo.length > this.state.currentVehicle.vehicle_capacity
     ) {
       this.setState({
-        capError: "Debes seleccionar una cantidad de pasajeros menor a la máxima capacidad del vehículo.",
+        capError:
+          "Debes seleccionar una cantidad de pasajeros menor a la máxima capacidad del vehículo.",
       });
       return;
     } else if (this.state.sendingTo.length === 0) {
@@ -224,7 +240,9 @@ class AvailablePassengers extends Component {
   beginRide = () => {
     this.setState({ capError: "" });
     if (this.state.acceptOffer.length === 0) {
-      this.setState({capError: "Al menos una persona debe aceptar su oferta de cola"});
+      this.setState({
+        capError: "Al menos una persona debe aceptar su oferta de cola",
+      });
       return;
     }
 
@@ -234,41 +252,61 @@ class AvailablePassengers extends Component {
       rider: localStorage.getItem("email"),
       passenger: this.state.acceptOffer,
       seats: this.state.currentVehicle.vehicle_capacity,
-      startLocation: this.props.location.state.direction === "hacia" ? this.props.location.state.route : "USB",
-      destination: this.props.location.state.direction === "hacia" ? "USB" : this.props.location.state.route
-    }
+      startLocation:
+        this.props.location.state.direction === "hacia"
+          ? this.props.location.state.route
+          : "USB",
+      destination:
+        this.props.location.state.direction === "hacia"
+          ? "USB"
+          : this.props.location.state.route,
+    };
 
     createNewRide(requestBody)
-    .then((res) => res.json())
-    .then(
-      (response) => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("new ride: ", response);
-        
-        this.props.history.push(
-          {
-            pathname: '/rideProcess',
-            state: {
-              rideInfo: response
-            }
-          }
-        )
-      }
-    )
-    .catch(
-      (error) => {
+
+        this.props.history.push({
+          pathname: "/rideProcess",
+          state: {
+            rideInfo: response,
+            confirmedPassengers: this.state.confirmedPassengers,
+          },
+        });
+      })
+      .catch((error) => {
         console.log(error);
-        
-        this.setState({ capError: "Intente mas tarde" })
-      }
-    )
-    
-  }
+
+        this.setState({ capError: "Intente mas tarde" });
+      });
+  };
+
+  prueba = (event) => {
+    let listaConfirmados = this.state.confirmedPassengers;
+    listaConfirmados.map((emailConfirmados) => {
+      let usbidConfirmados = document.getElementById(
+        emailConfirmados.split("@")[0]
+      );
+      listaConfirmados.push(usbidConfirmados);
+    });
+
+    this.setState({
+      confirmedPassengers: listaConfirmados,
+    });
+  };
+
+  pruebaFinal = (event) => {
+    console.log("prueba: ", this.state.confirmedPassengers);
+  };
 
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
+          <button onClick={this.prueba} />
+          <button onClick={this.pruebaFinal} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${
@@ -276,9 +314,7 @@ class AvailablePassengers extends Component {
             } || ${this.props.location.state.direction.toUpperCase()} USB || ${this.props.location.state.route.toUpperCase()}`}</p>
           </div>
           {this.state.capError && (
-            <div className="responseProfileError">
-              {this.state.capError}
-            </div>
+            <div className="responseProfileError">{this.state.capError}</div>
           )}
           {/* <button onClick={() => { this.socket.emit('offer', {email: localStorage.getItem('email')}) ; console.log("Emited");}}>Emit</button> */}
           <div className="cancelarButton">
@@ -292,14 +328,15 @@ class AvailablePassengers extends Component {
               text="Ofrecer"
               onClick={this.offerRide}
             >
-              <p>{this.state.offer}</p>
+              {this.state.offer}
             </div>
             <div
               className="ofrecerButton"
+              id="iniciarButton"
               text="Iniciar"
               onClick={this.beginRide}
             >
-              <p>Iniciar <br />cola</p>
+              Iniciar cola
             </div>
           </div>
         </div>

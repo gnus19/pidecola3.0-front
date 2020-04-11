@@ -19,7 +19,7 @@ class AcceptOffer extends Component {
 
     this.state = {
       accepted: false,
-      rejectLabel: "Rechazar"
+      rejectLabel: "Rechazar",
     };
   }
 
@@ -33,15 +33,12 @@ class AcceptOffer extends Component {
     );
 
     this.socket.emit("offer", { email: localStorage.getItem("email") });
-
-
   }
 
   changeState = (accept) => {
     if (accept === "No") {
-      this.setState({rejectLabel: "Rechazando..."})
-    }
-    else {
+      this.setState({ rejectLabel: "Rechazando..." });
+    } else {
       this.setState({
         accepted: true,
       });
@@ -50,30 +47,27 @@ class AcceptOffer extends Component {
     let requestBody = {
       rider: this.props.rider.email,
       passenger: localStorage.getItem("email"),
-      accept: accept
-    }
+      accept: accept,
+    };
     respondOfferRide(requestBody)
-    .then((res) => {
-      res.json()
-    })
-    .then(
-      (response) => {
+      .then((res) => {
+        res.json();
+      })
+      .then((response) => {
         console.log(response);
         // IR a la pantalla de cola
         if (accept === "No") {
           this.props.rejectRider();
         }
-      }
-    )
-    .catch((error) => {
-      console.log("Error sending offer anwser", error);
-      
-    })
+      })
+      .catch((error) => {
+        console.log("Error sending offer anwser", error);
+      });
   };
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" id="containerFluidAccept">
         {/*<div className="sticky">
           <RecommendationBanner />
           <div className="cancelarCola" onClick={this.cancelRideRequest}>
@@ -93,10 +87,13 @@ class AcceptOffer extends Component {
         </React.Fragment>
         {!this.state.accepted && (
           <div className="aceptarRechazar">
-            <div className="aceptarCola" onClick={ () => this.changeState("Sí")}>
+            <div className="aceptarCola" onClick={() => this.changeState("Sí")}>
               <p>Aceptar</p>
             </div>
-            <div className="rechazarCola" onClick={ () => this.changeState("No")}>
+            <div
+              className="rechazarCola"
+              onClick={() => this.changeState("No")}
+            >
               <p>{this.state.rejectLabel}</p>
             </div>
           </div>

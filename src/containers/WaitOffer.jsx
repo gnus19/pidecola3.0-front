@@ -3,6 +3,7 @@ import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
 import { infoRide } from "services/userServices";
+import { respondOfferRide } from "../services/requestRideService";
 import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
@@ -15,8 +16,8 @@ class WaitOffer extends Component {
     this.rejectRider = this.rejectRider.bind(this);
     this.state = {
       riderInfo: null,
-      direction: '',
-      route: ''
+      direction: "",
+      route: "",
     };
   }
 
@@ -38,8 +39,7 @@ class WaitOffer extends Component {
                 : response.data.destination,
           });
         }
-      })
-
+      });
 
     // if (socket && !socket.connected) socket.connect();
     this.socket.on("connect", () => console.log("connected Scoket"));
@@ -59,16 +59,33 @@ class WaitOffer extends Component {
   }
 
   cancelRideRequest = () => {
+    const containerFluidAccept = document.getElementById(
+      "containerFluidAccept"
+    );
+
+    if (containerFluidAccept !== null) {
+      let requestBody = {
+        rider: this.state.riderInfo.data.email,
+        passenger: localStorage.getItem("email"),
+        accept: "No",
+      };
+      respondOfferRide(requestBody)
+        .then((res) => {
+          res.json();
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log("Error sending offer anwser", error);
+        });
+    }
+
     const cancelRequestBody = {
       user: localStorage.getItem("email"),
       startLocation:
-        this.state.direction === "hacia"
-          ? this.state.route
-          : "USB",
-      destination:
-        this.state.direction === "hacia"
-          ? "USB"
-          : this.state.route,
+        this.state.direction === "hacia" ? this.state.route : "USB",
+      destination: this.state.direction === "hacia" ? "USB" : this.state.route,
     };
     console.log("cancel: ", cancelRequestBody);
     cancelRequest(cancelRequestBody)
@@ -90,7 +107,7 @@ class WaitOffer extends Component {
   };
 
   rejectRider() {
-    this.setState({riderInfo: null});
+    this.setState({ riderInfo: null });
   }
 
   render() {
@@ -99,9 +116,7 @@ class WaitOffer extends Component {
         <div className="sticky">
           <RecommendationBanner />
           <div className="cartaInfo">
-
-              <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
-
+            <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
           </div>
           <div className="cancelarButton" onClick={this.cancelRideRequest}>
             Cancelar
@@ -109,7 +124,12 @@ class WaitOffer extends Component {
         </div>
         <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
         {this.state.riderInfo ? (
-          <AcceptOffer rider={this.state.riderInfo.data} rejectRider={this.rejectRider} {...this.props} />
+          <AcceptOffer
+            id="prueba"
+            rider={this.state.riderInfo.data}
+            rejectRider={this.rejectRider}
+            {...this.props}
+          />
         ) : (
           <div className="sticky">
             <div style={{ margin: "50px" }}>

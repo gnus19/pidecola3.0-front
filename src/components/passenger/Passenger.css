@@ -9,12 +9,14 @@
 }
 
 .grid-container > div {
+  display: flex;
   background-color: rgba(#2196f3, 0.4);
   text-align: center;
   justify-content: center;
   align-items: center;
   align-self: center;
   align-content: center;
+  white-space: pre;
 }
 .checked {
   background-color: lightgray;

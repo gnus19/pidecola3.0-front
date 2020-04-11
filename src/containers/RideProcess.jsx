@@ -8,13 +8,20 @@ class RideProcess extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      passengers: this.props.location.state.rideInfo.data.passenger,
+    };
   }
+
+  prueba = (event) => {
+    console.log("passengers: ", this.props.location.state);
+  };
 
   render() {
     return (
       <div className="container-fluid">
         <div className="sticky">
+          <button onClick={this.prueba} />
           <RecommendationBanner />
         </div>
         <div className="listaPasajeros">
