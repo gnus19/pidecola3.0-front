@@ -2,20 +2,18 @@
   padding: 8px;
   display: grid;
   grid-template-areas:
-    "foto nombre cohorte telefono"
-    "foto carrera carrera ruta"
-    "foto comentario comentario comentario";
+    "foto nombre nombre"
+    "foto cohorte telefono"
+    "foto carrera ruta"
+    "foto comentario comentario";
   cursor: pointer;
 }
 
 .grid-container > div {
   display: flex;
   background-color: rgba(#2196f3, 0.4);
-  text-align: center;
-  justify-content: center;
   align-items: center;
   align-self: center;
-  align-content: center;
   white-space: pre;
 }
 .checked {
@@ -31,25 +29,17 @@
 .foto {
   grid-area: foto;
   justify-self: center;
+  justify-content: center;
 }
-
-/*
-.foto {
-  grid-area: foto;
-  border-radius: 50%;
-  background-color: #dddbdb;
-  background-image: url("../../assets/images/user.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  justify-self: center;
-}
-*/
 
 .nombre {
   grid-area: nombre;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .cohorte {
@@ -104,7 +94,8 @@
     padding: 8px;
     display: grid;
     grid-template-areas:
-      "foto nombre cohorte telefono"
+      "foto nombre nombre nombre"
+      "foto telefono telefono cohorte"
       "foto carrera carrera ruta"
       "foto comentario comentario comentario";
   }
@@ -123,13 +114,13 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 360px) {
-  .nombre,
-  .carrera {
+  .nombre {
     font-size: 12px;
   }
 
   .cohorte,
   .telefono,
+  .carrera,
   .año,
   .ruta,
   .parada,
@@ -138,13 +129,13 @@
   }
 }
 @media only screen and (min-width: 361px) and (max-width: 420px) {
-  .nombre,
-  .carrera {
+  .nombre {
     font-size: 14px;
   }
 
   .cohorte,
   .telefono,
+  .carrera,
   .año,
   .ruta,
   .parada,
@@ -153,13 +144,13 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .nombre,
-  .carrera {
+  .nombre {
     font-size: 18px;
   }
 
   .cohorte,
   .telefono,
+  .carrera,
   .año,
   .ruta,
   .parada,
@@ -168,13 +159,13 @@
   }
 }
 @media only screen and (min-width: 1024px) {
-  .nombre,
-  .carrera {
+  .nombre {
     font-size: 22px;
   }
 
   .cohorte,
   .telefono,
+  .carrera,
   .año,
   .ruta,
   .parada,
