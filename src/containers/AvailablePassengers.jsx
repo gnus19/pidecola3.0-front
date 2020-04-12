@@ -44,13 +44,14 @@ class AvailablePassengers extends Component {
       const htmlElement = document.getElementById(
         socket.data.passenger.split("@")[0]
       );
-      if (socket.data.answer === "Sí") {
+      if (socket.data && socket.data.answer === "Sí") {
         // replace cheked class by accept class
 
-        if (htmlElement.classList) {
+        if (htmlElement && htmlElement.classList) {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("accept");
         } else {
+          if(!htmlElement) return
           htmlElement.className = htmlElement.className.replace(
             /\bchecked\b/g,
             "accept"
@@ -78,10 +79,11 @@ class AvailablePassengers extends Component {
       } else {
         // Passenger respond no to the offer
         // replace cheked class by reject class
-        if (htmlElement.classList) {
+        if (htmlElement && htmlElement.classList) {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("reject");
         } else {
+          if(!htmlElement) return
           htmlElement.className = htmlElement.className.replace(
             /\bchecked\b/g,
             "reject"
