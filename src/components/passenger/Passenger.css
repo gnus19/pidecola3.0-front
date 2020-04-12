@@ -2,9 +2,9 @@
   padding: 8px;
   display: grid;
   grid-template-areas:
-    "foto nombre cohorte"
-    "foto carrera ruta"
-    "foto comentario comentario";
+    "foto nombre cohorte telefono"
+    "foto carrera carrera ruta"
+    "foto comentario comentario comentario";
   cursor: pointer;
 }
 
@@ -56,6 +56,10 @@
   grid-area: cohorte;
 }
 
+.telefono {
+  grid-area: telefono;
+}
+
 .carrera {
   grid-area: carrera;
 }
@@ -69,6 +73,7 @@
 }
 
 .cohorte,
+.telefono,
 .carrera,
 .ruta,
 .comentario {
@@ -77,14 +82,11 @@
 }
 
 .cohorte span,
+.telefono span,
 .carrera span,
 .ruta span,
 .comentario span {
   font-weight: normal;
-}
-
-#telefono {
-  margin-bottom: 10px;
 }
 
 @media (min-width: 420px) and (max-height: 768px) {
@@ -102,9 +104,9 @@
     padding: 8px;
     display: grid;
     grid-template-areas:
-      "foto nombre cohorte"
-      "foto carrera ruta"
-      "foto comentario comentario";
+      "foto nombre cohorte telefono"
+      "foto carrera carrera ruta"
+      "foto comentario comentario comentario";
   }
 
   .grid-container > div {
@@ -127,6 +129,7 @@
   }
 
   .cohorte,
+  .telefono,
   .año,
   .ruta,
   .parada,
@@ -141,6 +144,7 @@
   }
 
   .cohorte,
+  .telefono,
   .año,
   .ruta,
   .parada,
@@ -155,6 +159,7 @@
   }
 
   .cohorte,
+  .telefono,
   .año,
   .ruta,
   .parada,
@@ -169,6 +174,7 @@
   }
 
   .cohorte,
+  .telefono,
   .año,
   .ruta,
   .parada,

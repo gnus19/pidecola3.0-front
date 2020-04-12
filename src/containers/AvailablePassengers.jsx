@@ -246,6 +246,29 @@ class AvailablePassengers extends Component {
       return;
     }
 
+    // Crea un arreglo de arreglos de datos de los pasajeros confirmados
+
+    let listaConfirmados = this.state.confirmedPassengers;
+    this.state.acceptOffer.map((emailConfirmado) => {
+      let usbidConfirmado = document.getElementById(
+        emailConfirmado.split("@")[0]
+      );
+      let confirmadoDatos = [
+        usbidConfirmado.children[0].children[0].children[0].children[0].src,
+        usbidConfirmado.children[1].innerHTML,
+        usbidConfirmado.children[2].children[0].innerHTML,
+        usbidConfirmado.children[3].children[0].innerHTML,
+        usbidConfirmado.children[4].children[0].innerHTML,
+        usbidConfirmado.children[5].children[0].innerHTML,
+        usbidConfirmado.children[6].children[0].innerHTML,
+      ];
+      listaConfirmados.push(confirmadoDatos);
+    });
+
+    this.setState({
+      confirmedPassengers: listaConfirmados,
+    });
+
     // Creating new Ride
 
     let requestBody = {
@@ -282,31 +305,11 @@ class AvailablePassengers extends Component {
       });
   };
 
-  prueba = (event) => {
-    let listaConfirmados = this.state.confirmedPassengers;
-    listaConfirmados.map((emailConfirmados) => {
-      let usbidConfirmados = document.getElementById(
-        emailConfirmados.split("@")[0]
-      );
-      listaConfirmados.push(usbidConfirmados);
-    });
-
-    this.setState({
-      confirmedPassengers: listaConfirmados,
-    });
-  };
-
-  pruebaFinal = (event) => {
-    console.log("prueba: ", this.state.confirmedPassengers);
-  };
-
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
-          <button onClick={this.prueba} />
-          <button onClick={this.pruebaFinal} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${
@@ -351,6 +354,7 @@ class AvailablePassengers extends Component {
                   cohorte={passenger.user.usbid.split("-")[0]}
                   ruta={list.name}
                   usbid={passenger.user.usbid}
+                  telefono={passenger.user.phone}
                   comentario={passenger.comment}
                   onClick={() => {
                     this.addPassenger(passenger.user.usbid, passenger.email);

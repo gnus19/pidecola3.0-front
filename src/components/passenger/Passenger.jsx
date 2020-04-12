@@ -12,7 +12,6 @@ function Passenger({
   ruta,
   comentario,
   onClick,
-  colaAceptada,
   telefono,
 }) {
   return (
@@ -28,6 +27,9 @@ function Passenger({
       <div className="cohorte">
         Cohorte: <span> {cohorte}</span>
       </div>
+      <div className="telefono">
+        Teléfono: <span> {telefono}</span>
+      </div>
       <div className="carrera">
         Carrera: <span> {carrera}</span>
       </div>
@@ -35,14 +37,6 @@ function Passenger({
         Ruta: <span> {ruta}</span>
       </div>
       <div className="comentario">
-        {colaAceptada === "true" ? (
-          <div className="comentario" id="telefono">
-            Teléfono: <span> {telefono}</span>
-            <br />
-          </div>
-        ) : (
-          <></>
-        )}
         Comentario: <span> {comentario}</span>
       </div>
     </div>

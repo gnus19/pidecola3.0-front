@@ -9,51 +9,30 @@ class RideProcess extends Component {
     super(props);
 
     this.state = {
-      passengers: this.props.location.state.rideInfo.data.passenger,
+      passengers: this.props.location.state.confirmedPassengers,
     };
   }
-
-  prueba = (event) => {
-    console.log("passengers: ", this.props.location.state);
-  };
 
   render() {
     return (
       <div className="container-fluid">
         <div className="sticky">
-          <button onClick={this.prueba} />
           <RecommendationBanner />
         </div>
         <div className="listaPasajeros">
-          {/*this.state.passengers.map((list) => {
-            return list.requests.map((passenger, passengerIndex) => {
-              return (
-                <Passenger
-                  foto={passenger.user.prPic}
-                  nombre={passenger.user.fName + " " + passenger.user.lName}
-                  carrera={passenger.user.major}
-                  cohorte={passenger.user.usbid.split("-")[0]}
-                  ruta={list.name}
-                  usbid={passenger.user.usbid}
-                  comentario={passenger.comment}
-                  onClick={() => {
-                    this.prueba(passenger.user.usbid, passenger.email);
-                  }}
-                  key={passengerIndex}
-                />
-              );
-            });
-          })*/}
-          <Passenger
-            nombre="javier vivas"
-            carrera="ingeniera"
-            cohorte="12"
-            ruta="baruta"
-            usbid="12-11067"
-            comentario="dfghfghghdhfgh"
-            colaAceptada="true"
-            telefono="02121234567"
-          />
+          {this.state.passengers.map((confirmedPassenger) => {
+            return (
+              <Passenger
+                foto={confirmedPassenger[0]}
+                nombre={confirmedPassenger[1]}
+                cohorte={confirmedPassenger[2]}
+                telefono={confirmedPassenger[3]}
+                carrera={confirmedPassenger[4]}
+                ruta={confirmedPassenger[5]}
+                comentario={confirmedPassenger[6]}
+              />
+            );
+          })}
         </div>
         <ChangeRideState />
       </div>
