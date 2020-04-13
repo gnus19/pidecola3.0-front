@@ -11,7 +11,7 @@ export function createNewRide(req) {
   });
 }
 
-export function getRide(req) {
+export function getRide() {
   return fetch(SERVER + "/rides/get", {
     method: "GET",
     headers: {

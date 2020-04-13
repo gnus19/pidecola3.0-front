@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "assets/css/RideProcess.css";
 import "../assets/css/AvailablePassengers.css";
-import { getRide, changeStatus } from "services/rideService";
+import { changeStatus } from "services/rideService";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import ChangeRideState from "../components/changeRideState/ChangeRideState";
 import Passenger from "../components/passenger/Passenger";
 
 class RideProcess extends Component {
@@ -16,33 +15,24 @@ class RideProcess extends Component {
     };
   }
 
-  prueba = (event) => {
-    getRide()
-      .then((res) => res.json())
-      .then((response) => {
-        console.log("Response: ", response);
-      })
-
-      .catch((error) => {
-        console.log("Catch", error);
-      });
-  };
-
-  prueba2 = (event) => {
-    console.log("props: ", this.props.location.state);
-    console.log(this.state);
-  };
-
   changeStatus = (event) => {
     let status = document.getElementById(event.target.id);
-
     let newStatus = "";
     if (status.id === "enCamino") {
       newStatus = "En Camino";
+      this.setState({
+        rideStatus: "En Camino",
+      });
     } else if (status.id === "accidentado") {
       newStatus = "Accidentado";
+      this.setState({
+        rideStatus: "Accidentado",
+      });
     } else {
       newStatus = "Finalizado";
+      this.setState({
+        rideStatus: "Finalizado",
+      });
     }
 
     const changeStatusBody = {
@@ -53,7 +43,7 @@ class RideProcess extends Component {
       destination: this.props.location.state.rideInfo.data.destination,
       status: newStatus,
     };
-    console.log(changeStatusBody);
+
     changeStatus(changeStatusBody)
       .then((res) => res.json())
       .then((response) => {
@@ -68,8 +58,6 @@ class RideProcess extends Component {
     return (
       <div className="RideProcess">
         <div className="sticky" id="recommendationBanner">
-          <button onClick={this.prueba} />
-          <button onClick={this.prueba2} />
           <RecommendationBanner />
         </div>
         <div className="Ride">
