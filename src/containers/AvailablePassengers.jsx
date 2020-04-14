@@ -199,6 +199,8 @@ class AvailablePassengers extends Component {
         offerRide({
           rider: localStorage.getItem("email"),
           passenger: userEmail,
+          car: this.props.location.state.vehicle,
+          route: this.props.location.state.route
         })
       );
     });

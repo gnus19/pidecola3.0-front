@@ -8,7 +8,6 @@ import Passenger from "../components/passenger/Passenger";
 class RideProcess extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       passengers: this.props.location.state.confirmedPassengers,
       rideStatus: this.props.location.state.rideInfo.data.status,
