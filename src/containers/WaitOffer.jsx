@@ -125,7 +125,6 @@ class WaitOffer extends Component {
         <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
         {this.state.riderInfo ? (
           <AcceptOffer
-            id="prueba"
             rider={this.state.riderInfo.data}
             rejectRider={this.rejectRider}
             {...this.props}

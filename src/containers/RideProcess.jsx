@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "assets/css/RideProcess.css";
 import "../assets/css/AvailablePassengers.css";
-import { changeStatus } from "services/rideService";
+import { changeStatus, endRide } from "services/rideService";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import Passenger from "../components/passenger/Passenger";
 
@@ -28,6 +28,23 @@ class RideProcess extends Component {
         rideStatus: "Accidentado",
       });
     } else {
+      const endRideBody = {
+        rider: this.props.location.state.rideInfo.data.rider,
+        passenger: this.props.location.state.rideInfo.data.passenger,
+        seats: this.props.location.state.rideInfo.data.available_seats,
+        startLocation: this.props.location.state.rideInfo.data.start_location,
+        destination: this.props.location.state.rideInfo.data.destination,
+      };
+
+      endRide(endRideBody)
+        .then((res) => res.json())
+        .then((response) => {
+          console.log("Response endRide: ", response);
+        })
+        .catch((error) => {
+          console.log("Catch", error);
+        });
+
       newStatus = "Finalizado";
       this.setState({
         rideStatus: "Finalizado",
@@ -44,6 +61,25 @@ class RideProcess extends Component {
     };
 
     changeStatus(changeStatusBody)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("Response: ", response);
+      })
+      .catch((error) => {
+        console.log("Catch", error);
+      });
+  };
+
+  endRide = (event) => {
+    const endRideBody = {
+      rider: this.props.location.state.rideInfo.data.rider,
+      passenger: this.props.location.state.rideInfo.data.passenger,
+      seats: this.props.location.state.rideInfo.data.available_seats,
+      startLocation: this.props.location.state.rideInfo.data.start_location,
+      destination: this.props.location.state.rideInfo.data.destination,
+    };
+
+    endRide(endRideBody)
       .then((res) => res.json())
       .then((response) => {
         console.log("Response: ", response);

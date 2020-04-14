@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import "assets/css/AcceptOffer.css";
 import RideInfo from "../components/rideInfo/RideInfo";
 import "../components/rideInfo/RideInfo.css";
@@ -21,7 +20,7 @@ class AcceptOffer extends Component {
     this.state = {
       accepted: false,
       rejectLabel: "Rechazar",
-      rideStatus: "esperando"
+      rideStatus: "esperando",
     };
   }
 
@@ -38,15 +37,23 @@ class AcceptOffer extends Component {
 
     this.socket.on("rideStatusChanged", (msg) => {
       console.log("rideStatusChanged", msg);
-      this.setState({ rideStatus: msg.data.status })
+      this.setState({ rideStatus: msg.data.status });
       // Send passenger to review page
       if (msg.data.status === "Finalizado") {
         this.props.history.push({
-          pathname: '/rateRide',
+          pathname: "/rateRide",
           state: {
-            rider: this.props.rider
-          }
-        })
+            rider: this.props.rider,
+            startLocation:
+              this.props.history.location.state.direction === "hacia"
+                ? this.props.rider.route
+                : "USB",
+            destination:
+              this.props.history.location.state.direction === "hacia"
+                ? "USB"
+                : this.props.rider.route,
+          },
+        });
       }
     });
   }
@@ -70,7 +77,7 @@ class AcceptOffer extends Component {
         res.json();
       })
       .then((response) => {
-        console.log("respond offer: ",response);
+        console.log("respond offer: ", response);
         // IR a la pantalla de cola
         if (accept === "No") {
           this.props.rejectRider();
@@ -82,6 +89,7 @@ class AcceptOffer extends Component {
   };
 
   prueba = (event) => {
+    console.log("state: ", this.state);
     console.log("props: ", this.props);
   };
 
@@ -97,11 +105,10 @@ class AcceptOffer extends Component {
           </div>
         </div>*/}
         <React.Fragment>
-        {this.state.accepted && (
-          <RideProgressCard
-          rideState={this.state.rideStatus}
-          />
-        )}
+          {this.state.accepted && (
+            <RideProgressCard rideState={this.state.rideStatus} />
+          )}
+          <button onClick={this.prueba} />
           <RideInfo
             foto={this.props.rider.profile_pic}
             nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}

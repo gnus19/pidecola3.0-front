@@ -85,6 +85,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  box-shadow: 0px 2px 4px #888888;
 }
 
 .likeButton {
@@ -117,6 +118,21 @@
 }
 
 @media (max-width: 768px) {
+  .rateEnvolve {
+    height: 180px;
+    width: 180px;
+  }
+
+  .showImage {
+    height: 160px;
+    width: 160px;
+  }
+
+  .rateImage {
+    height: 100px;
+    width: 100px;
+  }
+
   .rateButtons {
     flex-direction: column;
   }

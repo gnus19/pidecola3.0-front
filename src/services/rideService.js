@@ -31,3 +31,25 @@ export function changeStatus(req) {
     },
   });
 }
+
+export function endRide(req) {
+  return fetch(SERVER + "/rides/endRide", {
+    method: "PUT",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
+  });
+}
+
+export function sendFeedback(req) {
+  return fetch(SERVER + "/rides/commentARide", {
+    method: "PUT",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
+  });
+}
