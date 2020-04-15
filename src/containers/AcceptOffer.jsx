@@ -44,14 +44,8 @@ class AcceptOffer extends Component {
           pathname: "/rateRide",
           state: {
             rider: this.props.rider,
-            startLocation:
-              this.props.history.location.state.direction === "hacia"
-                ? this.props.rider.route
-                : "USB",
-            destination:
-              this.props.history.location.state.direction === "hacia"
-                ? "USB"
-                : this.props.rider.route,
+            startLocation: msg.data.start_location,
+            destination: msg.data.destination,
           },
         });
       }
@@ -134,6 +128,7 @@ class AcceptOffer extends Component {
         {this.state.accepted && (
           <React.Fragment>
             <VehicleInfo
+              foto={this.props.rider.car.vehicle_pic}
               marca={this.props.rider.car.brand}
               modelo={this.props.rider.car.model}
               color={this.props.rider.car.color}

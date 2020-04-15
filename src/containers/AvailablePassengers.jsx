@@ -51,7 +51,7 @@ class AvailablePassengers extends Component {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("accept");
         } else {
-          if(!htmlElement) return
+          if (!htmlElement) return;
           htmlElement.className = htmlElement.className.replace(
             /\bchecked\b/g,
             "accept"
@@ -83,7 +83,7 @@ class AvailablePassengers extends Component {
           htmlElement.classList.remove("checked");
           htmlElement.classList.add("reject");
         } else {
-          if(!htmlElement) return
+          if (!htmlElement) return;
           htmlElement.className = htmlElement.className.replace(
             /\bchecked\b/g,
             "reject"
@@ -200,7 +200,7 @@ class AvailablePassengers extends Component {
           rider: localStorage.getItem("email"),
           passenger: userEmail,
           car: this.props.location.state.vehicle,
-          route: this.props.location.state.route
+          route: this.props.location.state.route,
         })
       );
     });
@@ -309,11 +309,16 @@ class AvailablePassengers extends Component {
       });
   };
 
+  prueba = (event) => {
+    console.log("props: ", this.props);
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
+          <button onClick={this.prueba} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${

@@ -12,16 +12,17 @@ class RateRide extends Component {
 
     this.state = {
       message:
-        "¿CÓMO CALIFICARÍAS LA COLA QUE TE DIO " +
-        this.props.location.state.rider.first_name.toUpperCase() +
+        "¿Cómo calificarías la cola que te dio " +
+        this.props.location.state.rider.first_name +
         " " +
-        this.props.location.state.rider.last_name.toUpperCase() +
+        this.props.location.state.rider.last_name +
         "?",
       rated: false,
       ratedImage: likeDislike,
       ratedBackground: "white",
       dislike: false,
       rideComment: " ",
+      finished: false,
     };
   }
 
@@ -36,7 +37,7 @@ class RateRide extends Component {
     const rate = document.getElementById(event.target.id);
     if (rate.id === "likeButton") {
       this.setState({
-        message: "¡GRACIAS POR CALIFICAR LA COLA!",
+        message: "¡Gracias por calificar la cola!",
         rated: true,
         ratedImage: like,
         ratedBackground: "#4caf50",
@@ -44,7 +45,7 @@ class RateRide extends Component {
     } else {
       this.setState({
         message:
-          "¡GRACIAS POR CALIFICAR LA COLA! COMENTA ABAJO POR QUÉ CONSIDERAS QUE LA COLA NO FUE BUENA.",
+          "¡Gracias por calificar la cola! Comenta abajo por qué consideras que la cola no fue buena.",
         rated: true,
         ratedImage: dislike,
         ratedBackground: "#d32f2f",
@@ -55,10 +56,23 @@ class RateRide extends Component {
 
   feedback = (event) => {
     if (!this.state.rated) {
-      this.props.history.push({
-        pathname: "/home",
+      this.setState({
+        finished: true,
       });
+
+      setTimeout(
+        function () {
+          this.props.history.push({
+            pathname: "/home",
+          });
+        }.bind(this),
+        5000
+      );
     } else {
+      this.setState({
+        finished: true,
+      });
+
       if (this.state.dislike) {
         const sendFeedbackBody = {
           rider: this.props.location.state.rider.email,
@@ -93,22 +107,25 @@ class RateRide extends Component {
             console.log("Catch", error);
           });
       }
-    }
-  };
 
-  prueba = (event) => {
-    console.log("email: ", localStorage.getItem("email"));
-    console.log("props: ", this.props.location.state);
+      setTimeout(
+        function () {
+          this.props.history.push({
+            pathname: "/home",
+          });
+        }.bind(this),
+        5000
+      );
+    }
   };
 
   render() {
     return (
       <div className="rateRide">
         <div className="rateMessage">
-          <div className="carta" id="cartaMessage">
+          <span style={{ fontWeight: "bold", fontSize: "20px" }}>
             {this.state.message}
-          </div>
-          <button onClick={this.prueba} />
+          </span>
         </div>
         <div className="rate">
           <div className="rateImages">
@@ -123,25 +140,25 @@ class RateRide extends Component {
           </div>
 
           <div className="rateButtons">
-            {!this.state.rated && (
+            {!this.state.finished && !this.state.rated && (
               <React.Fragment>
                 <div
                   className="likeButton"
                   id="likeButton"
                   onClick={this.rateRide}
                 >
-                  LIKE
+                  ¡BUENA!{" "}
                 </div>
                 <div
                   className="dislikeButton"
                   id="dislikeButton"
                   onClick={this.rateRide}
                 >
-                  DISLIKE
+                  MALA
                 </div>
               </React.Fragment>
             )}
-            {this.state.dislike && (
+            {!this.state.finished && this.state.dislike && (
               <div className="Comentarios">
                 <InputPC
                   id="dislikeComment"
@@ -154,6 +171,11 @@ class RateRide extends Component {
                   ]}
                 />
               </div>
+            )}
+            {this.state.finished && (
+              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                ¡Gracias por usar PideCola 3.0!
+              </span>
             )}
           </div>
         </div>

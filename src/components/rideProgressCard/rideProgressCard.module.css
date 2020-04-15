@@ -4,7 +4,8 @@
   position: relative;
   background: #fff;
   padding: 10px;
-  width: 100%
+  width: 100%;
+  font-weight: bold;
 }
 .waiting_sphere {
   height: 25px;

@@ -110,10 +110,16 @@ class WaitOffer extends Component {
     this.setState({ riderInfo: null });
   }
 
+  prueba = (event) => {
+    console.log("state: ", this.state);
+    console.log("props: ", this.props);
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <div className="sticky">
+          <button onClick={this.prueba} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>

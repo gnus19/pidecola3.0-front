@@ -28,23 +28,6 @@ class RideProcess extends Component {
         rideStatus: "Accidentado",
       });
     } else {
-      const endRideBody = {
-        rider: this.props.location.state.rideInfo.data.rider,
-        passenger: this.props.location.state.rideInfo.data.passenger,
-        seats: this.props.location.state.rideInfo.data.available_seats,
-        startLocation: this.props.location.state.rideInfo.data.start_location,
-        destination: this.props.location.state.rideInfo.data.destination,
-      };
-
-      endRide(endRideBody)
-        .then((res) => res.json())
-        .then((response) => {
-          console.log("Response endRide: ", response);
-        })
-        .catch((error) => {
-          console.log("Catch", error);
-        });
-
       newStatus = "Finalizado";
       this.setState({
         rideStatus: "Finalizado",
@@ -64,6 +47,25 @@ class RideProcess extends Component {
       .then((res) => res.json())
       .then((response) => {
         console.log("Response: ", response);
+        if (newStatus === "Finalizado") {
+          const endRideBody = {
+            rider: this.props.location.state.rideInfo.data.rider,
+            passenger: this.props.location.state.rideInfo.data.passenger,
+            seats: this.props.location.state.rideInfo.data.available_seats,
+            startLocation: this.props.location.state.rideInfo.data
+              .start_location,
+            destination: this.props.location.state.rideInfo.data.destination,
+          };
+
+          endRide(endRideBody)
+            .then((res) => res.json())
+            .then((response) => {
+              console.log("Response endRide: ", response);
+            })
+            .catch((error) => {
+              console.log("Catch", error);
+            });
+        }
       })
       .catch((error) => {
         console.log("Catch", error);
@@ -89,10 +91,15 @@ class RideProcess extends Component {
       });
   };
 
+  prueba = (event) => {
+    console.log("props: ", this.props);
+  };
+
   render() {
     return (
       <div className="RideProcess">
         <div className="sticky" id="recommendationBanner">
+          <button onClicl={this.prueba} />
           <RecommendationBanner />
         </div>
         <div className="Ride">
