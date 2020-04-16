@@ -18,20 +18,22 @@ class VehicleDetail extends Component {
       year: "",
       color: "",
       vehicleCap: "",
-      responseError: ""
+      responseError: "",
     };
   }
 
-  handleEdit = event => {
+  // Actualiza los cambios de los inputs a medida que se escribe
+  handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({
-      [event.target.id]: element.value
+      [event.target.id]: element.value,
     });
   };
 
+  // Verifica que los datos introducidos cumplen con las reglas necesarias
   validVehicle = () => {
     this.setState({
-      responseError: ""
+      responseError: "",
     });
 
     let valid = true;
@@ -83,7 +85,7 @@ class VehicleDetail extends Component {
 
     if (!valid) {
       this.setState({
-        responseError: errorMessage
+        responseError: errorMessage,
       });
       return false;
     }
@@ -91,7 +93,8 @@ class VehicleDetail extends Component {
     return true;
   };
 
-  sendVehicleEdit = event => {
+  // Envía los datos del vehículo para ser guardados
+  sendVehicleEdit = (event) => {
     event.preventDefault();
 
     if (!this.validVehicle()) {
@@ -108,24 +111,25 @@ class VehicleDetail extends Component {
     info.append("vehicle_capacity", this.state.vehicleCap);
     console.log("Info: ", info);
     addVehicle(info)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         if (response.status) {
           this.props.history.push({
-            pathname: "/profile"
+            pathname: "/profile",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   };
 
-  vehicleImageSelected = event => {
+  // Muestra un preview de la imagen seleccionada
+  vehicleImageSelected = (event) => {
     this.setState({
-      vehiclePic: event.target.files[0]
+      vehiclePic: event.target.files[0],
     });
 
     const myFileItemReader = new FileReader();
@@ -139,6 +143,7 @@ class VehicleDetail extends Component {
     myFileItemReader.readAsDataURL(event.target.files[0]);
   };
 
+  // Apunta a la imagen para que funcione como botón para añadir imagen
   inputVehicleClick() {
     document.getElementById("inputVehicleImage").click();
   }
@@ -150,6 +155,7 @@ class VehicleDetail extends Component {
           <div className="child1">
             <input
               type="file"
+              accept=".jpg,.jpeg,.png"
               className="inputVehicleImage"
               id="inputVehicleImage"
               onChange={this.vehicleImageSelected}
@@ -175,38 +181,38 @@ class VehicleDetail extends Component {
                 type: "input",
                 label: "Placa",
                 value: this.state.plate,
-                attrs: { id: "plate", onChange: this.handleEdit }
+                attrs: { id: "plate", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Marca",
                 value: this.state.brand,
-                attrs: { id: "brand", onChange: this.handleEdit }
+                attrs: { id: "brand", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Modelo",
                 value: this.state.model,
-                attrs: { id: "model", onChange: this.handleEdit }
+                attrs: { id: "model", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Año",
                 value: this.state.year,
-                attrs: { id: "year", onChange: this.handleEdit }
+                attrs: { id: "year", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Color",
                 value: this.state.color,
-                attrs: { id: "color", onChange: this.handleEdit }
+                attrs: { id: "color", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Capacidad",
                 value: this.state.vehicleCap,
-                attrs: { id: "vehicleCap", onChange: this.handleEdit }
-              }
+                attrs: { id: "vehicleCap", onChange: this.handleChange },
+              },
             ]}
           />
           <div className="SubSection-Buttons">

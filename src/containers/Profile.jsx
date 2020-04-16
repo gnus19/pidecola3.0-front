@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   editProfile,
   editProfilePicture,
-  infoProfile
+  infoProfile,
 } from "services/userServices";
 import "assets/css/Profile.css";
 import profilePicture from "assets/images/profilePicture.jpg";
@@ -28,48 +28,49 @@ class Profile extends Component {
       showVehicle: usercar,
       vehicleIndex: 0,
       picChanged: false,
-      responseError: ""
+      responseError: "",
     };
   }
 
+  // Solicita los datos del usuario en la base de datos para mostrarlos
   componentDidMount() {
     infoProfile()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
 
         this.setState({
           email: response.data.email,
           carnet: response.data.email.split("@")[0],
           phoneNumber: response.data.phone_number,
-          vehicles: response.data.vehicles
+          vehicles: response.data.vehicles,
         });
 
         if (response.data.first_name === undefined) {
         } else {
           this.setState({
-            firstName: response.data.first_name
+            firstName: response.data.first_name,
           });
         }
 
         if (response.data.last_name === undefined) {
         } else {
           this.setState({
-            lastName: response.data.last_name
+            lastName: response.data.last_name,
           });
         }
 
         if (response.data.age === undefined) {
         } else {
           this.setState({
-            age: response.data.age
+            age: response.data.age,
           });
         }
 
         if (response.data.major === undefined) {
         } else {
           this.setState({
-            major: response.data.major
+            major: response.data.major,
           });
         }
 
@@ -77,37 +78,39 @@ class Profile extends Component {
         } else {
           this.setState({
             vehicles: response.data.vehicles,
-            showVehicle: response.data.vehicles[0].vehicle_pic
+            showVehicle: response.data.vehicles[0].vehicle_pic,
           });
         }
 
         if (response.data.profile_pic === undefined) {
           this.setState({
-            profilePic: response.data.profile_pic
+            profilePic: response.data.profile_pic,
           });
         } else {
           this.setState({
             profilePreview: response.data.profile_pic,
-            profilePic: response.data.profile_pic
+            profilePic: response.data.profile_pic,
           });
         }
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   }
 
-  handleEdit = event => {
+  // Actualiza los cambios de los inputs a medida que se escribe
+  handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({
-      [event.target.id]: element.value
+      [event.target.id]: element.value,
     });
   };
 
+  // Verifica que los datos introducidos cumplen con las reglas necesarias
   validProfile = () => {
     this.setState({
-      responseError: ""
+      responseError: "",
     });
 
     let valid = true;
@@ -149,7 +152,7 @@ class Profile extends Component {
 
     if (!valid) {
       this.setState({
-        responseError: errorMessage
+        responseError: errorMessage,
       });
       return false;
     }
@@ -157,7 +160,8 @@ class Profile extends Component {
     return true;
   };
 
-  sendEdit = event => {
+  // Maneja las funciones de envío de los datos de perfil para su actualización
+  sendEdit = (event) => {
     console.log("state: ", this.state);
     if (!this.validProfile()) {
       return;
@@ -168,57 +172,64 @@ class Profile extends Component {
       this.sendProfilePicEdit(event);
     } else {
       this.props.history.push({
-        pathname: "/home"
+        pathname: "/home",
       });
     }
   };
 
-  sendProfileEdit = event => {
+  // Envía los datos básicos de perfil para ser guardados
+  sendProfileEdit = (event) => {
     event.preventDefault();
     const editBody = {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
       age: this.state.age,
       phone_number: this.state.phoneNumber,
-      major: this.state.major
+      major: this.state.major,
     };
     editProfile(editBody)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   };
 
-  sendProfilePicEdit = event => {
+  // Envía la imagen de perfil para ser guardada
+  sendProfilePicEdit = (event) => {
     event.preventDefault();
     let profilePicture = new FormData();
     profilePicture.append("file", this.state.profilePic);
     editProfilePicture(profilePicture)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({
-            pathname: "/home"
+            pathname: "/home",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   };
 
+  // Apunta a la imagen para que funcione como botón para añadir imagen
   inputProfileClick() {
     document.getElementById("inputProfileImage").click();
   }
 
-  profileImageSelected = event => {
+  // Muestra un preview de la imagen seleccionada
+  profileImageSelected = (event) => {
     event.preventDefault();
+
+    console.log("file: ", event.target.files[0]);
+
     this.setState({
-      profilePic: event.target.files[0]
+      profilePic: event.target.files[0],
     });
 
     const myFileItemReader = new FileReader();
@@ -227,7 +238,7 @@ class Profile extends Component {
       () => {
         this.setState({
           profilePreview: myFileItemReader.result,
-          picChanged: true
+          picChanged: true,
         });
       },
       false
@@ -235,7 +246,8 @@ class Profile extends Component {
     myFileItemReader.readAsDataURL(event.target.files[0]);
   };
 
-  prevVehicle = event => {
+  // Muestra el vehículo anterior en la lista de vehículos registrados
+  prevVehicle = (event) => {
     event.preventDefault();
 
     if (this.state.vehicles.length === 0 || this.state.vehicles.length === 1) {
@@ -245,19 +257,20 @@ class Profile extends Component {
         this.setState({
           vehicleIndex: this.state.vehicles.length - 1,
           showVehicle: this.state.vehicles[this.state.vehicles.length - 1]
-            .vehicle_pic
+            .vehicle_pic,
         });
       } else {
         this.setState({
           vehicleIndex: this.state.vehicleIndex - 1,
           showVehicle: this.state.vehicles[this.state.vehicleIndex - 1]
-            .vehicle_pic
+            .vehicle_pic,
         });
       }
     }
   };
 
-  nextVehicle = event => {
+  // Muestra el siguiente vehículo en la lista de vehículos registrados
+  nextVehicle = (event) => {
     event.preventDefault();
 
     if (this.state.vehicles.length === 0 || this.state.vehicles.length === 1) {
@@ -266,38 +279,40 @@ class Profile extends Component {
       if (this.state.vehicleIndex + 1 === this.state.vehicles.length) {
         this.setState({
           vehicleIndex: 0,
-          showVehicle: this.state.vehicles[0].vehicle_pic
+          showVehicle: this.state.vehicles[0].vehicle_pic,
         });
       } else {
         this.setState({
           vehicleIndex: this.state.vehicleIndex + 1,
           showVehicle: this.state.vehicles[this.state.vehicleIndex + 1]
-            .vehicle_pic
+            .vehicle_pic,
         });
       }
     }
   };
 
+  // Verifica la cantidad de vehículos registrados para permitir, o no, registrar más vehículos
   checkAddVehicle = () => {
     if (this.state.vehicles.length === 3) {
       this.setState({
-        responseError: "El máximo de vehículos posibles es tres (3)"
+        responseError: "El máximo de vehículos posibles es tres (3)",
       });
     } else {
       this.props.history.push({
-        pathname: "/addVehicle"
+        pathname: "/addVehicle",
       });
     }
   };
 
+  // Verifica la cantidad de vehículos registrados para permitir eliminarlos
   checkDeleteVehicle = () => {
     if (this.state.vehicles.length === 0) {
       this.setState({
-        responseError: "No existe vehículo registrado para eliminar"
+        responseError: "No existe vehículo registrado para eliminar",
       });
     } else {
       this.props.history.push({
-        pathname: "/deleteVehicle"
+        pathname: "/deleteVehicle",
       });
     }
   };
@@ -309,6 +324,7 @@ class Profile extends Component {
           <div className="child1">
             <input
               type="file"
+              accept=".jpg,.jpeg,.png"
               className="inputProfileImage"
               id="inputProfileImage"
               onChange={this.profileImageSelected}
@@ -376,20 +392,20 @@ class Profile extends Component {
                 type: "input",
                 label: "Nombre",
                 value: this.state.firstName,
-                attrs: { id: "firstName", onChange: this.handleEdit }
+                attrs: { id: "firstName", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Apellido",
                 value: this.state.lastName,
-                attrs: { id: "lastName", onChange: this.handleEdit }
+                attrs: { id: "lastName", onChange: this.handleChange },
               },
               {
                 type: "input",
                 label: "Edad",
                 value: this.state.age,
-                attrs: { id: "age", onChange: this.handleEdit }
-              }
+                attrs: { id: "age", onChange: this.handleChange },
+              },
             ]}
           />
           <InputPC
@@ -398,20 +414,20 @@ class Profile extends Component {
                 type: "input",
                 label: "Carnet",
                 value: this.state.carnet,
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Correo",
                 value: this.state.email,
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Teléfono",
                 value: this.state.phoneNumber,
-                attrs: { id: "phoneNumber", onChange: this.handleEdit }
-              }
+                attrs: { id: "phoneNumber", onChange: this.handleChange },
+              },
             ]}
           />
           <div className="carta">
@@ -419,7 +435,7 @@ class Profile extends Component {
               className="majorList"
               id="major"
               currentMajor={this.state.major}
-              onChange={this.handleEdit}
+              onChange={this.handleChange}
             ></DropDownList>
           </div>
           {window.ismobile() && (
