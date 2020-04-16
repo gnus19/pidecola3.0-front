@@ -22,6 +22,7 @@ class WaitOffer extends Component {
     };
   }
 
+  // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
     infoRide()
       .then((res) => res.json())
@@ -59,6 +60,7 @@ class WaitOffer extends Component {
     });
   }
 
+  // Cancela la oferta de cola
   cancelRideRequest = () => {
     const containerFluidAccept = document.getElementById(
       "containerFluidAccept"

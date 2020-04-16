@@ -10,6 +10,7 @@ class Help extends Component {
     this.state = {};
   }
 
+  // Abre una pestaña nueva con dirección URL en base a la imagen a la que se le dio click
   goTo = (event) => {
     event.preventDefault();
     const id = event.target.id;

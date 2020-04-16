@@ -5,7 +5,6 @@ import "../components/rideInfo/RideInfo.css";
 import VehicleInfo from "../components/vehicleInfo/VehicleInfo";
 import RideProgressCard from "../components/rideProgressCard/rideProgressCard";
 import "../components/vehicleInfo/VehicleInfo.css";
-import "../components/changeRideState/ChangeRideState.css";
 import { respondOfferRide } from "../services/requestRideService";
 // Sockets
 import io from "socket.io-client";
@@ -24,6 +23,7 @@ class AcceptOffer extends Component {
     };
   }
 
+  // Prende los sockets para emitir la respuesta a la oferta y recibir los cambios de estado de la cola
   componentDidMount() {
     this.socket.on("connect", () => console.log("connected Scoket"));
     this.socket.on("reconnecting", (times) =>
@@ -57,6 +57,7 @@ class AcceptOffer extends Component {
     });
   }
 
+  // Responde a la oferta de cola
   changeState = (accept) => {
     if (accept === "No") {
       this.setState({ rejectLabel: "Rechazando..." });
@@ -77,7 +78,7 @@ class AcceptOffer extends Component {
       })
       .then((response) => {
         console.log("respond offer: ", response);
-        // IR a la pantalla de cola
+        // Ir a la pantalla de cola
         if (accept === "No") {
           this.props.rejectRider();
         }
@@ -90,14 +91,6 @@ class AcceptOffer extends Component {
   render() {
     return (
       <div className="container-fluid" id="containerFluidAccept">
-        {/*<div className="sticky">
-          <RecommendationBanner />
-          <div className="cancelarCola" onClick={this.cancelRideRequest}>
-            <NavLink to="/home">
-              <p>Cancelar</p>
-    </NavLink>
-          </div>
-        </div>*/}
         <React.Fragment>
           <RideInfo
             foto={this.props.rider.profile_pic}

@@ -15,6 +15,7 @@ class RideProcess extends Component {
     };
   }
 
+  // Cambia el estado de la cola
   changeStatus = (event) => {
     let status = document.getElementById(event.target.id);
     let newStatus = "";
