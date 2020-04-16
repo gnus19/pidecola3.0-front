@@ -17,60 +17,54 @@ class DeleteVehicle extends Component {
       year: "",
       color: "",
       vehicleCap: "",
-      deleted: false
+      deleted: false,
     };
   }
 
+  // Solicita los datos de los vehículos registrados para mostrarlos
   componentDidMount() {
     infoProfile()
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
         this.setState({
-          vehicles: response.data.vehicles
+          vehicles: response.data.vehicles,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   }
 
-  /*
-  handleChange = event => {
-    const element = document.getElementById(event.target.id);
-    this.setState({
-      [event.target.id]: element.value
-    });
-  };
-  */
-
-  sendDelete = event => {
+  // Envía la solicitud de eliminación de vehículos
+  sendDelete = (event) => {
     event.preventDefault();
     const vehiclePlate = {
-      plate: this.state.plate
+      plate: this.state.plate,
     };
 
     deleteVehicle(vehiclePlate)
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({
-            pathname: "/profile"
+            pathname: "/profile",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Catch", error);
       });
   };
 
-  selectVehicle = vehicleSelected => event => {
+  // Muestra los datos del vehículo seleccionado
+  selectVehicle = (vehicleSelected) => (event) => {
     event.preventDefault();
 
-    this.state.vehicles.map(vehicleBackground => {
+    this.state.vehicles.map((vehicleBackground) => {
       const everyVehicle = document.getElementById(vehicleBackground.plate);
-      return everyVehicle.children[0].children[0].style.background = "white";
+      return (everyVehicle.children[0].children[0].style.background = "white");
     });
 
     const currentVehicle = document.getElementById(vehicleSelected.plate);
@@ -81,7 +75,7 @@ class DeleteVehicle extends Component {
       model: vehicleSelected.model,
       year: vehicleSelected.year,
       color: vehicleSelected.color,
-      vehicleCap: vehicleSelected.vehicle_capacity
+      vehicleCap: vehicleSelected.vehicle_capacity,
     });
   };
 
@@ -90,7 +84,7 @@ class DeleteVehicle extends Component {
       <React.Fragment>
         <div className="listaVehiculos">
           {this.state.vehicles &&
-            this.state.vehicles.map(vehicle => {
+            this.state.vehicles.map((vehicle) => {
               return (
                 <div className="picture" id="listaVehiculos">
                   <div id={vehicle.plate}>
@@ -107,52 +101,44 @@ class DeleteVehicle extends Component {
             })}
         </div>
         <div className="infoVehiculos">
-          {/*this.state.vehicles && (
-              <DropDownList
-                className="vehicleList"
-                id="vehicle"
-                onChange={this.handleChange}
-                vehicleList={this.state.vehicles}
-              ></DropDownList>
-            )*/}
           <InputPC
             fields={[
               {
                 type: "input",
                 label: "Placa",
                 value: this.state.plate.toUpperCase(),
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Marca",
                 value: this.state.brand.toUpperCase(),
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Modelo",
                 value: this.state.model.toUpperCase(),
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Año",
                 value: this.state.year,
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Color",
                 value: this.state.color.toUpperCase(),
-                attrs: {}
+                attrs: {},
               },
               {
                 type: "input",
                 label: "Capacidad",
                 value: this.state.vehicleCap,
-                attrs: {}
-              }
+                attrs: {},
+              },
             ]}
           />
         </div>

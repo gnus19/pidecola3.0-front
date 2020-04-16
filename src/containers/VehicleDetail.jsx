@@ -22,7 +22,7 @@ class VehicleDetail extends Component {
     };
   }
 
-  // Actualiza los cambios de los inputs a medida que se escribe
+  // Actualiza los cambios de los inputs a medida que son modificados
   handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({

@@ -6,6 +6,7 @@ import list from "assets/images/list.svg";
 import ImgContainer from "components/userImg/ImgContainer";
 import profilePicture from "assets/images/profilePicture.jpg";
 
+// Muestra el sidebar cuando se encuentra oculto en vistas móvil
 const openNav = () => {
   if (window.screen.width === 768 && window.screen.height === 1024) {
     document.getElementById("Sidebar").style.width = "40%";
@@ -14,12 +15,14 @@ const openNav = () => {
   }
 };
 
+// Oculta el sidebar cuando se encuentra visible en vistas móvil
 const closeNav = () => {
   if (window.screen.width <= 768) {
     document.getElementById("Sidebar").style.width = "0";
   }
 };
 
+// Elimina el token de autenticación del local storage
 const removeLocalStorage = () => {
   localStorage.removeItem("tkauth");
 };
@@ -45,6 +48,7 @@ const Main = ({ children }) => {
       document.getElementById("helpOptions").style.background = "#1e2172";
       document.getElementById("helpOptions").style.color = "#fff";
 
+      // Solicita los datos del usuario en la base de datos
       infoProfile()
         .then((res) => res.json())
         .then((response) => {

@@ -20,6 +20,7 @@ class RoutesList extends Component {
     };
   }
 
+  // Verifica si el usuario está solicitando una cola o la está ofreciendo. Da valores predeterminados a los campos
   componentDidMount() {
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
@@ -38,6 +39,7 @@ class RoutesList extends Component {
     });
   }
 
+  // Actualiza los cambios de los inputs a medida que son modificados
   handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({
@@ -45,6 +47,7 @@ class RoutesList extends Component {
     });
   };
 
+  // En caso de estar solicitando una cola, envía los datos de la solicitud para ser almacenados
   sendRequest = (event) => {
     event.preventDefault();
     const comment = document.getElementById("comment");

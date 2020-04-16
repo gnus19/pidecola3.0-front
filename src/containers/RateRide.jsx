@@ -4,7 +4,7 @@ import like from "assets/images/like.png";
 import dislike from "assets/images/dislike.png";
 import likeDislike from "assets/images/likeDislike.png";
 import InputPC from "components/inputPc/InputPC";
-import { sendFeedback, getRide } from "services/rideService";
+import { sendFeedback } from "services/rideService";
 
 class RateRide extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class RateRide extends Component {
     };
   }
 
+  // Actualiza los cambios del input de Comentario a medida que es modificado
   handleChange = (event) => {
     const element = document.getElementById(event.target.id);
     this.setState({
@@ -33,6 +34,7 @@ class RateRide extends Component {
     });
   };
 
+  // Cambia el estado de la calificación, la imagen y muestra un mensaje acorde a la calificación
   rateRide = (event) => {
     const rate = document.getElementById(event.target.id);
     if (rate.id === "likeButton") {
@@ -54,6 +56,7 @@ class RateRide extends Component {
     }
   };
 
+  // Envía la calificación para ser almacenada
   feedback = (event) => {
     if (!this.state.rated) {
       this.setState({

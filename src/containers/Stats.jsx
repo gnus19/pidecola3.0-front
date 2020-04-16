@@ -16,10 +16,10 @@ class Stats extends Component {
       ridesReceived: "",
       likes: "",
       dislikes: "",
-      prueba: false,
     };
   }
 
+  // Solicita los datos de las colas en las que participó el usuario para mostrarlos
   componentDidMount() {
     ridesGiven()
       .then((res) => res.json())
@@ -78,23 +78,9 @@ class Stats extends Component {
       });
   }
 
-  prueba = (event) => {
-    console.log("prueba timer");
-    setTimeout(
-      function () {
-        //Start the timer
-        this.props.history.push({
-          pathname: "/home",
-        }); //After 1 second, set render to true
-      }.bind(this),
-      5000
-    );
-  };
-
   render() {
     return (
       <div className="Stats">
-        <button onClick={this.prueba} />
         <InputPC
           fields={[
             {
@@ -105,7 +91,6 @@ class Stats extends Component {
             },
           ]}
         />
-        {this.state.prueba && <h1>PRUEBA</h1>}
         <InputPC
           fields={[
             {

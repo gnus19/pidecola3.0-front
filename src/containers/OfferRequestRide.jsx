@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { infoRide } from "services/userServices";
+import { getRide } from "services/rideService";
 import "../assets/css/OfferRequestRide.css";
 import CardButton from "../components/cardButton/CardButton";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
@@ -10,12 +11,14 @@ class OfferRequestRide extends Component {
 
     this.state = {
       error: "",
+      activeRequest: false,
       activeRide: false,
       direction: "",
       route: "",
     };
   }
 
+  // Solicita si el usuario tiene una solicitud de cola abierta y, de ser así, sus datos
   componentDidMount() {
     infoRide()
       .then((res) => res.json())
@@ -25,7 +28,7 @@ class OfferRequestRide extends Component {
         if (response.message !== "No existe") {
           console.log("status: ", response.status);
           this.setState({
-            activeRide: true,
+            activeRequest: true,
             direction:
               response.data.startLocation === "USB" ? "desde" : "hacia",
             route:
@@ -39,8 +42,25 @@ class OfferRequestRide extends Component {
       .catch((error) => {
         console.log("Catch: ", error);
       });
+
+    getRide()
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("Response: ", response);
+
+        if (response.data !== "Cola no existe") {
+          this.setState({
+            activeRide: true,
+          });
+        }
+      })
+
+      .catch((error) => {
+        console.log("Catch: ", error);
+      });
   }
 
+  // Verifica si el usuario tiene al menos un vehículo registrado para dar la cola y si no tiene una solicitud de cola activa
   checkOffer = (event) => {
     // event.preventDefault();
 
@@ -55,7 +75,7 @@ class OfferRequestRide extends Component {
         "No puedes ofrecer la cola sin tener al menos un vehículo registrado. ";
     }
 
-    if (this.state.activeRide) {
+    if (this.state.activeRequest) {
       errorMessage =
         errorMessage +
         "No puedes ofrecer la cola si tienes una solicitud de cola activa.";
@@ -67,22 +87,23 @@ class OfferRequestRide extends Component {
       });
     }
 
+    //if (!this.state.activeRequest) {
     this.props.history.push({
       pathname: "/ride",
       state: { pideCola: false },
     });
+    //}
   };
 
+  // En caso de tener una solicitud de cola activa, el usuario es redirigido a la vista de Espera. En caso contrario, es redirigido a la vista de Pedir cola
   checkRideState = (event) => {
     console.log("ridestate: ", this.state);
-    if (!this.state.activeRide) {
-      console.log("PRUEBA FALSE");
+    if (!this.state.activeRequest) {
       this.props.history.push({
         pathname: "/ride",
         state: { pideCola: true },
       });
     } else {
-      console.log("PRUEBA TRUE");
       this.props.history.push({
         pathname: "/waitOffer",
         state: {
