@@ -82,11 +82,6 @@ class AcceptOffer extends Component {
       });
   };
 
-  prueba = (event) => {
-    console.log("state: ", this.state);
-    console.log("props: ", this.props);
-  };
-
   render() {
     return (
       <div className="container-fluid" id="containerFluidAccept">
@@ -99,10 +94,6 @@ class AcceptOffer extends Component {
           </div>
         </div>*/}
         <React.Fragment>
-          {this.state.accepted && (
-            <RideProgressCard rideState={this.state.rideStatus} />
-          )}
-          <button onClick={this.prueba} />
           <RideInfo
             foto={this.props.rider.profile_pic}
             nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}
@@ -135,6 +126,9 @@ class AcceptOffer extends Component {
               placa={this.props.rider.car.plate}
             ></VehicleInfo>
           </React.Fragment>
+        )}
+        {this.state.accepted && (
+          <RideProgressCard rideState={this.state.rideStatus} />
         )}
       </div>
     );

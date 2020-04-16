@@ -309,16 +309,11 @@ class AvailablePassengers extends Component {
       });
   };
 
-  prueba = (event) => {
-    console.log("props: ", this.props);
-  };
-
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
-          <button onClick={this.prueba} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${

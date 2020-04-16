@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../assets/css/WaitOffer.css";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
@@ -110,40 +111,36 @@ class WaitOffer extends Component {
     this.setState({ riderInfo: null });
   }
 
-  prueba = (event) => {
-    console.log("state: ", this.state);
-    console.log("props: ", this.props);
-  };
-
   render() {
     return (
-      <div className="container-fluid">
-        <div className="sticky">
-          <button onClick={this.prueba} />
-          <RecommendationBanner />
-          <div className="cartaInfo">
-            <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
-          </div>
-          <div className="cancelarButton" onClick={this.cancelRideRequest}>
-            Cancelar
-          </div>
-        </div>
-        <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
-        {this.state.riderInfo ? (
-          <AcceptOffer
-            rider={this.state.riderInfo.data}
-            rejectRider={this.rejectRider}
-            {...this.props}
-          />
-        ) : (
+      <div className="waitOffer">
+        <div className="container-fluid">
           <div className="sticky">
-            <div style={{ margin: "50px" }}>
-              <span style={{ fontWeight: "bold", fontSize: "25px" }}>
-                Espera que un conductor te ofrezca la cola
-              </span>
+            <RecommendationBanner />
+            <div className="cartaInfo">
+              <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
+            </div>
+            <div className="cancelarButton" onClick={this.cancelRideRequest}>
+              Cancelar
             </div>
           </div>
-        )}
+          <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
+          {this.state.riderInfo ? (
+            <AcceptOffer
+              rider={this.state.riderInfo.data}
+              rejectRider={this.rejectRider}
+              {...this.props}
+            />
+          ) : (
+            <div className="sticky">
+              <div style={{ margin: "50px" }}>
+                <span style={{ fontWeight: "bold", fontSize: "25px" }}>
+                  Espera que un conductor te ofrezca la cola
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

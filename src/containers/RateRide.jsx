@@ -66,7 +66,7 @@ class RateRide extends Component {
             pathname: "/home",
           });
         }.bind(this),
-        5000
+        3000
       );
     } else {
       this.setState({
@@ -114,7 +114,7 @@ class RateRide extends Component {
             pathname: "/home",
           });
         }.bind(this),
-        5000
+        3000
       );
     }
   };

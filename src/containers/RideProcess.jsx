@@ -11,6 +11,7 @@ class RideProcess extends Component {
     this.state = {
       passengers: this.props.location.state.confirmedPassengers,
       rideStatus: this.props.location.state.rideInfo.data.status,
+      finshed: false,
     };
   }
 
@@ -65,6 +66,19 @@ class RideProcess extends Component {
             .catch((error) => {
               console.log("Catch", error);
             });
+
+          this.setState({
+            finished: true,
+          });
+
+          setTimeout(
+            function () {
+              this.props.history.push({
+                pathname: "/home",
+              });
+            }.bind(this),
+            3000
+          );
         }
       })
       .catch((error) => {
@@ -72,34 +86,10 @@ class RideProcess extends Component {
       });
   };
 
-  endRide = (event) => {
-    const endRideBody = {
-      rider: this.props.location.state.rideInfo.data.rider,
-      passenger: this.props.location.state.rideInfo.data.passenger,
-      seats: this.props.location.state.rideInfo.data.available_seats,
-      startLocation: this.props.location.state.rideInfo.data.start_location,
-      destination: this.props.location.state.rideInfo.data.destination,
-    };
-
-    endRide(endRideBody)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log("Response: ", response);
-      })
-      .catch((error) => {
-        console.log("Catch", error);
-      });
-  };
-
-  prueba = (event) => {
-    console.log("props: ", this.props);
-  };
-
   render() {
     return (
       <div className="RideProcess">
         <div className="sticky" id="recommendationBanner">
-          <button onClicl={this.prueba} />
           <RecommendationBanner />
         </div>
         <div className="Ride">
@@ -118,29 +108,36 @@ class RideProcess extends Component {
               );
             })}
           </div>
-          <div className="stateButtons">
-            <div
-              className="statusButton"
-              id="enCamino"
-              onClick={this.changeStatus}
-            >
-              EN CAMINO
+          {!this.state.finished && (
+            <div className="stateButtons">
+              <div
+                className="statusButton"
+                id="enCamino"
+                onClick={this.changeStatus}
+              >
+                EN CAMINO
+              </div>
+              <div
+                className="statusButton"
+                id="accidentado"
+                onClick={this.changeStatus}
+              >
+                ACCIDENTADO
+              </div>
+              <div
+                className="statusButton"
+                id="finalizada"
+                onClick={this.changeStatus}
+              >
+                FINALIZADA
+              </div>
             </div>
-            <div
-              className="statusButton"
-              id="accidentado"
-              onClick={this.changeStatus}
-            >
-              ACCIDENTADO
-            </div>
-            <div
-              className="statusButton"
-              id="finalizada"
-              onClick={this.changeStatus}
-            >
-              FINALIZADA
-            </div>
-          </div>
+          )}
+          {this.state.finished && (
+            <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+              ¡Gracias por usar PideCola 3.0!
+            </span>
+          )}
         </div>
       </div>
     );

@@ -17,7 +17,8 @@
 
 .fotoConductor {
   grid-area: fotoConductor;
-  justify-self: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .titulo {
@@ -75,7 +76,7 @@
   }
 
   .titulo {
-    font-size: 15px;
+    font-size: 12px;
     margin-bottom: 5px;
   }
 
@@ -84,7 +85,7 @@
   .carreraConductor,
   .rutaConductor,
   .pasajeros {
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 5px;
   }
 }

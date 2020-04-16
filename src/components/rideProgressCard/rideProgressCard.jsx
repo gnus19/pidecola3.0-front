@@ -2,11 +2,13 @@ import React from "react";
 import styles from "./rideProgressCard.module.css";
 
 function RideProgressCard({ rideState }) {
-  console.log("satte", rideState);
+  console.log("state", rideState);
 
   return (
     <div className={styles.card}>
-      <h5 style={{ fontWeight: "bold" }}>Estado de cola</h5>
+      {/*<h5 id="estado">Estado de cola</h5>*/}
+      {/*<span id="estado">Estado de la cola </span>*/}
+      <p className={styles.estado}>Estado de la cola</p>
       {rideState === "esperando" && (
         <div className={styles.container}>
           <div className={styles.flex}>
