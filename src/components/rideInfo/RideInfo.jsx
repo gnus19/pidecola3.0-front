@@ -2,7 +2,7 @@ import React from "react";
 import ImgContainer from "../userImg/ImgContainer";
 import profilePicture from "assets/images/profilePicture.jpg";
 
-function RideInfo({ foto, nombre, cohorte, carrera, ruta }) {
+function RideInfo({ foto, nombre, telefono, cohorte, carrera, ruta }) {
   return (
     <div className="carta grid-container-offer">
       <div className="fotoConductor">
@@ -12,10 +12,14 @@ function RideInfo({ foto, nombre, cohorte, carrera, ruta }) {
           size="passenger-img"
         />
       </div>
-      <div className="titulo">{nombre} está dispuesto a darte la cola... </div>
-      <div className="nombreConductor">{nombre}</div>
+      <div className="titulo">
+        {nombre} <span> está dispuesto a darte la cola...</span>{" "}
+      </div>
       <div className="cohorteConductor">
         Cohorte: <span> {cohorte}</span>
+      </div>
+      <div className="telefonoConductor">
+        Teléfono: <span> {telefono}</span>
       </div>
       <div className="carreraConductor">
         Carrera: <span> {carrera}</span>

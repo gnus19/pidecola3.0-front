@@ -58,6 +58,11 @@
   color: white;
 }
 
+#containerFluidAccept {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 @media (max-width: 1024px) {
   .aceptarCola {
     margin-left: 15px;

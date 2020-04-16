@@ -4,41 +4,27 @@ import like from "assets/images/like.png";
 import dislike from "assets/images/dislike.png";
 import likeDislike from "assets/images/likeDislike.png";
 import InputPC from "components/inputPc/InputPC";
+import { sendFeedback, getRide } from "services/rideService";
 
 class RateRide extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      message: "¿CÓMO CALIFICARÍAS LA COLA QUE TE DIO *NOMBRE*?",
+      message:
+        "¿Cómo calificarías la cola que te dio " +
+        this.props.location.state.rider.first_name +
+        " " +
+        this.props.location.state.rider.last_name +
+        "?",
       rated: false,
       ratedImage: likeDislike,
       ratedBackground: "white",
       dislike: false,
+      rideComment: " ",
+      finished: false,
     };
   }
-
-  rateRide = (event) => {
-    const rate = document.getElementById(event.target.id);
-    if (rate.id === "likeButton") {
-      this.setState({
-        message: "¡GRACIAS POR CALIFICAR LA COLA!",
-        rated: true,
-        ratedImage: like,
-        ratedBackground: "#4caf50",
-      });
-    } else {
-      this.setState({
-        message:
-          "¡GRACIAS POR CALIFICAR LA COLA! COMENTA ABAJO POR QUÉ CONSIDERAS QUE LA COLA FUE MALA.",
-        rated: true,
-        ratedImage: dislike,
-        ratedBackground: "#d32f2f",
-        dislike: true,
-        rideComment: "",
-      });
-    }
-  };
 
   handleChange = (event) => {
     const element = document.getElementById(event.target.id);
@@ -47,13 +33,99 @@ class RateRide extends Component {
     });
   };
 
+  rateRide = (event) => {
+    const rate = document.getElementById(event.target.id);
+    if (rate.id === "likeButton") {
+      this.setState({
+        message: "¡Gracias por calificar la cola!",
+        rated: true,
+        ratedImage: like,
+        ratedBackground: "#4caf50",
+      });
+    } else {
+      this.setState({
+        message:
+          "¡Gracias por calificar la cola! Comenta abajo por qué consideras que la cola no fue buena.",
+        rated: true,
+        ratedImage: dislike,
+        ratedBackground: "#d32f2f",
+        dislike: true,
+      });
+    }
+  };
+
+  feedback = (event) => {
+    if (!this.state.rated) {
+      this.setState({
+        finished: true,
+      });
+
+      setTimeout(
+        function () {
+          this.props.history.push({
+            pathname: "/home",
+          });
+        }.bind(this),
+        3000
+      );
+    } else {
+      this.setState({
+        finished: true,
+      });
+
+      if (this.state.dislike) {
+        const sendFeedbackBody = {
+          rider: this.props.location.state.rider.email,
+          user: localStorage.getItem("email"),
+          comment: this.state.rideComment,
+          like: this.state.dislike === false ? "Sí" : "No",
+          startLocation: this.props.location.state.startLocation,
+          destination: this.props.location.state.destination,
+        };
+        sendFeedback(sendFeedbackBody)
+          .then((res) => res.json())
+          .then((response) => {
+            console.log("Response: ", response);
+          })
+          .catch((error) => {
+            console.log("Catch", error);
+          });
+      } else {
+        const sendFeedbackBody = {
+          rider: this.props.location.state.rider.email,
+          user: localStorage.getItem("email"),
+          like: this.state.dislike === false ? "Sí" : "No",
+          startLocation: this.props.location.state.startLocation,
+          destination: this.props.location.state.destination,
+        };
+        sendFeedback(sendFeedbackBody)
+          .then((res) => res.json())
+          .then((response) => {
+            console.log("Response: ", response);
+          })
+          .catch((error) => {
+            console.log("Catch", error);
+          });
+      }
+
+      setTimeout(
+        function () {
+          this.props.history.push({
+            pathname: "/home",
+          });
+        }.bind(this),
+        3000
+      );
+    }
+  };
+
   render() {
     return (
       <div className="rateRide">
         <div className="rateMessage">
-          <div className="carta" id="cartaMessage">
+          <span style={{ fontWeight: "bold", fontSize: "20px" }}>
             {this.state.message}
-          </div>
+          </span>
         </div>
         <div className="rate">
           <div className="rateImages">
@@ -68,25 +140,25 @@ class RateRide extends Component {
           </div>
 
           <div className="rateButtons">
-            {!this.state.rated && (
+            {!this.state.finished && !this.state.rated && (
               <React.Fragment>
                 <div
                   className="likeButton"
                   id="likeButton"
                   onClick={this.rateRide}
                 >
-                  LIKE
+                  ¡BUENA!{" "}
                 </div>
                 <div
                   className="dislikeButton"
                   id="dislikeButton"
                   onClick={this.rateRide}
                 >
-                  DISLIKE
+                  MALA
                 </div>
               </React.Fragment>
             )}
-            {this.state.dislike && (
+            {!this.state.finished && this.state.dislike && (
               <div className="Comentarios">
                 <InputPC
                   id="dislikeComment"
@@ -100,11 +172,20 @@ class RateRide extends Component {
                 />
               </div>
             )}
+            {this.state.finished && (
+              <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                ¡Gracias por usar PideCola 3.0!
+              </span>
+            )}
           </div>
         </div>
         <div className="finalizarRate">
-          <div className="finalizarButton" id="finalizarButton">
-            <span>FINALIZAR</span>
+          <div
+            className="finalizarButton"
+            id="finalizarButton"
+            onClick={this.feedback}
+          >
+            FINALIZAR
           </div>
         </div>
       </div>

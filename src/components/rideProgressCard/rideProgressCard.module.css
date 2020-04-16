@@ -1,0 +1,74 @@
+.card {
+  box-shadow: 0px 2px 4px #888888;
+  border-radius: 5px;
+  position: relative;
+  background: #fff;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.waiting_sphere {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #ffd302;
+  display: inline-block;
+}
+.going_sphere {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #1e2172;
+  display: inline-block;
+}
+.done_sphere {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  display: inline-block;
+}
+.accident_sphere {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #d32f2f;
+  display: inline-block;
+}
+.line {
+  border-bottom: 1px solid black;
+}
+.no_color {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #888888;
+}
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+.message {
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+@media (max-width: 425px) {
+  .waiting_sphere,
+  .going_sphere,
+  .done_sphere,
+  .accident_sphere,
+  .no_color {
+    height: 20px;
+    width: 20px;
+  }
+
+  .message {
+    font-size: 12px;
+  }
+
+  .estado {
+    font-size: 15px;
+  }
+}

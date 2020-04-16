@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import "assets/css/AcceptOffer.css";
 import RideInfo from "../components/rideInfo/RideInfo";
 import "../components/rideInfo/RideInfo.css";
 import VehicleInfo from "../components/vehicleInfo/VehicleInfo";
+import RideProgressCard from "../components/rideProgressCard/rideProgressCard";
 import "../components/vehicleInfo/VehicleInfo.css";
 import "../components/changeRideState/ChangeRideState.css";
 import { respondOfferRide } from "../services/requestRideService";
@@ -20,6 +20,7 @@ class AcceptOffer extends Component {
     this.state = {
       accepted: false,
       rejectLabel: "Rechazar",
+      rideStatus: "esperando",
     };
   }
 
@@ -33,6 +34,22 @@ class AcceptOffer extends Component {
     );
 
     this.socket.emit("offer", { email: localStorage.getItem("email") });
+
+    this.socket.on("rideStatusChanged", (msg) => {
+      console.log("rideStatusChanged", msg);
+      this.setState({ rideStatus: msg.data.status });
+      // Send passenger to review page
+      if (msg.data.status === "Finalizado") {
+        this.props.history.push({
+          pathname: "/rateRide",
+          state: {
+            rider: this.props.rider,
+            startLocation: msg.data.start_location,
+            destination: msg.data.destination,
+          },
+        });
+      }
+    });
   }
 
   changeState = (accept) => {
@@ -54,7 +71,7 @@ class AcceptOffer extends Component {
         res.json();
       })
       .then((response) => {
-        console.log(response);
+        console.log("respond offer: ", response);
         // IR a la pantalla de cola
         if (accept === "No") {
           this.props.rejectRider();
@@ -80,9 +97,10 @@ class AcceptOffer extends Component {
           <RideInfo
             foto={this.props.rider.profile_pic}
             nombre={`${this.props.rider.first_name} ${this.props.rider.last_name}`}
+            telefono={this.props.rider.phone_number}
             cohorte={this.props.rider.email.split("-")[0]}
             carrera={this.props.rider.major}
-            ruta="Baruta"
+            ruta={this.props.rider.route}
           />
         </React.Fragment>
         {!this.state.accepted && (
@@ -101,12 +119,16 @@ class AcceptOffer extends Component {
         {this.state.accepted && (
           <React.Fragment>
             <VehicleInfo
-              marca="Toyota"
-              modelo="Corolla"
-              color="Rojo"
-              placa="XXX-XXX"
+              foto={this.props.rider.car.vehicle_pic}
+              marca={this.props.rider.car.brand}
+              modelo={this.props.rider.car.model}
+              color={this.props.rider.car.color}
+              placa={this.props.rider.car.plate}
             ></VehicleInfo>
           </React.Fragment>
+        )}
+        {this.state.accepted && (
+          <RideProgressCard rideState={this.state.rideStatus} />
         )}
       </div>
     );

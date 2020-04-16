@@ -1,3 +1,28 @@
+.RideProcess {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 0 20px;
+}
+
+#recommendationBanner {
+  height: 20%;
+}
+
+.Ride {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media (min-height: 736px) {
+  #listaAceptados {
+    height: 400px;
+  }
+}
+
 .stateButtons {
   height: auto;
   width: 100%;
@@ -11,9 +36,7 @@
   margin: 0;
 }
 
-.enCamino,
-.accidentado,
-.finalizada {
+.statusButton {
   width: 325px;
   height: 50px;
   text-decoration: none;
@@ -26,17 +49,18 @@
   align-items: center;
   cursor: pointer;
   margin: 10px;
+  box-shadow: 0px 2px 4px #888888;
 }
 
-.enCamino {
+#enCamino {
   background: #1e2172;
 }
 
-.accidentado {
+#accidentado {
   background: #d32f2f;
 }
 
-.finalizada {
+#finalizada {
   background: #4caf50;
 }
 
@@ -46,9 +70,7 @@
     flex-direction: column;
   }
 
-  .enCamino,
-  .accidentado,
-  .finalizada {
+  .statusButton {
     height: 40px;
     width: 100%;
     font-size: 12px;

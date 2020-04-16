@@ -8,6 +8,7 @@
 
 .grid-container-vehicle > div {
   background-color: rgba(#2196f3, 0.4);
+  display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -17,14 +18,9 @@
 
 .fotoVehiculo {
   grid-area: fotoVehiculo;
-  border-radius: 50%;
-  background-color: #dddbdb;
-  background-image: url("../../assets/images/user-car.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 117.97px;
-  height: 120px;
+  flex-direction: row;
   justify-self: center;
+  justify-content: center;
 }
 
 .marca {
@@ -69,5 +65,14 @@
   .color,
   .placa {
     font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .marca,
+  .modelo,
+  .color,
+  .placa {
+    font-size: 20px;
   }
 }
