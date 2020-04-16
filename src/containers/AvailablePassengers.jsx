@@ -23,6 +23,14 @@ class AvailablePassengers extends Component {
       currentVehicle: "",
       capError: false,
       confirmedPassengers: [],
+      startLocation:
+        this.props.history.location.state.direction === "hacia"
+          ? this.props.history.location.state.route
+          : "USB",
+      destination:
+        this.props.history.location.state.direction === "hacia"
+          ? "USB"
+          : this.props.history.location.state.route,
     };
   }
 
@@ -309,12 +317,23 @@ class AvailablePassengers extends Component {
       });
   };
 
+  prueba = (event) => {
+    console.log("passengers: ", this.state.passengers);
+  };
+
+  prueba2 = (event) => {
+    console.log("state: ", this.state);
+    console.log("props: ", this.props);
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
           <RecommendationBanner />
+          <button onClick={this.prueba} />
+          <button onClick={this.prueba2} />
           <div className="cartaInfo">
             <p>{`${
               this.props.location.state.vehicle
@@ -351,20 +370,39 @@ class AvailablePassengers extends Component {
           {this.state.passengers.map((list) => {
             return list.requests.map((passenger, passengerIndex) => {
               return (
-                <Passenger
-                  foto={passenger.user.prPic}
-                  nombre={passenger.user.fName + " " + passenger.user.lName}
-                  carrera={passenger.user.major}
-                  cohorte={passenger.user.usbid.split("-")[0]}
-                  ruta={list.name}
-                  usbid={passenger.user.usbid}
-                  telefono={passenger.user.phone}
-                  comentario={passenger.comment}
-                  onClick={() => {
-                    this.addPassenger(passenger.user.usbid, passenger.email);
-                  }}
-                  key={passengerIndex}
-                />
+                this.state.startLocation === "USB" &&
+                passenger.startLocation === "USB" && (
+                  <Passenger
+                    foto={passenger.user.prPic}
+                    nombre={passenger.user.fName + " " + passenger.user.lName}
+                    carrera={passenger.user.major}
+                    cohorte={passenger.user.usbid.split("-")[0]}
+                    ruta={list.name}
+                    usbid={passenger.user.usbid}
+                    telefono={passenger.user.phone}
+                    comentario={passenger.comment}
+                    onClick={() => {
+                      this.addPassenger(passenger.user.usbid, passenger.email);
+                    }}
+                    key={passengerIndex}
+                  />
+                ) || this.state.destination === "USB" &&
+                passenger.destination === "USB" && (
+                  <Passenger
+                    foto={passenger.user.prPic}
+                    nombre={passenger.user.fName + " " + passenger.user.lName}
+                    carrera={passenger.user.major}
+                    cohorte={passenger.user.usbid.split("-")[0]}
+                    ruta={list.name}
+                    usbid={passenger.user.usbid}
+                    telefono={passenger.user.phone}
+                    comentario={passenger.comment}
+                    onClick={() => {
+                      this.addPassenger(passenger.user.usbid, passenger.email);
+                    }}
+                    key={passengerIndex}
+                  />
+                )
               );
             });
           })}
