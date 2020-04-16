@@ -40,14 +40,19 @@ class AcceptOffer extends Component {
       this.setState({ rideStatus: msg.data.status });
       // Send passenger to review page
       if (msg.data.status === "Finalizado") {
-        this.props.history.push({
-          pathname: "/rateRide",
-          state: {
-            rider: this.props.rider,
-            startLocation: msg.data.start_location,
-            destination: msg.data.destination,
-          },
-        });
+        setTimeout(
+          function () {
+            this.props.history.push({
+              pathname: "/rateRide",
+              state: {
+                rider: this.props.rider,
+                startLocation: msg.data.start_location,
+                destination: msg.data.destination,
+              },
+            });
+          }.bind(this),
+          3000
+        );
       }
     });
   }
