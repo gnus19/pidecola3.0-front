@@ -3,7 +3,7 @@ import "../assets/css/WaitOffer.css";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
-import { infoRide } from "services/userServices";
+import { getRequest } from "services/userServices";
 import { respondOfferRide } from "../services/requestRideService";
 import io from "socket.io-client";
 import { SERVER } from "../global";
@@ -24,7 +24,7 @@ class WaitOffer extends Component {
 
   // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
-    infoRide()
+    getRequest()
       .then((res) => res.json())
       .then((response) => {
         console.log("Response: ", response);

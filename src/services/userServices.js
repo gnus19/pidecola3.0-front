@@ -43,7 +43,7 @@ export function infoProfile() {
   });
 }
 
-export function infoRide() {
+export function getRequest() {
   return fetch(SERVER + "/requests/get", {
     method: "GET",
     headers: {

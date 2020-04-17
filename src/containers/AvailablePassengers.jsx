@@ -266,6 +266,22 @@ class AvailablePassengers extends Component {
       let usbidConfirmado = document.getElementById(
         emailConfirmado.split("@")[0]
       );
+
+      let pasajeroConfirmado = {
+        email: emailConfirmado,
+        foto:
+          usbidConfirmado.children[0].children[0].children[0].children[0].src,
+        nombre: usbidConfirmado.children[1].innerHTML,
+        cohorte: usbidConfirmado.children[2].children[0].innerHTML,
+        telefono: usbidConfirmado.children[3].children[0].innerHTML,
+        carrera: usbidConfirmado.children[4].children[0].innerHTML,
+        ruta: usbidConfirmado.children[5].children[0].innerHTML,
+        comentario: usbidConfirmado.children[6].children[0].innerHTML,
+      };
+
+      listaConfirmados.push(pasajeroConfirmado);
+
+      /*
       let confirmadoDatos = [
         usbidConfirmado.children[0].children[0].children[0].children[0].src,
         usbidConfirmado.children[1].innerHTML,
@@ -276,6 +292,7 @@ class AvailablePassengers extends Component {
         usbidConfirmado.children[6].children[0].innerHTML,
       ];
       listaConfirmados.push(confirmadoDatos);
+      */
     });
 
     this.setState({
@@ -286,7 +303,7 @@ class AvailablePassengers extends Component {
 
     let requestBody = {
       rider: localStorage.getItem("email"),
-      passenger: this.state.acceptOffer,
+      passenger: this.state.confirmedPassengers,
       seats: this.state.currentVehicle.vehicle_capacity,
       startLocation:
         this.props.location.state.direction === "hacia"
