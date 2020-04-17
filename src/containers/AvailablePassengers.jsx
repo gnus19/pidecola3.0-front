@@ -313,6 +313,7 @@ class AvailablePassengers extends Component {
         this.props.location.state.direction === "hacia"
           ? "USB"
           : this.props.location.state.route,
+      vehicleId: this.state.currentVehicle._id,
     };
 
     createNewRide(requestBody)
@@ -335,11 +336,17 @@ class AvailablePassengers extends Component {
       });
   };
 
+  prueba = (event) => {
+    console.log("state: ", this.state);
+    console.log("props: ", this.props);
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
+          <button onClick={this.prueba} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${

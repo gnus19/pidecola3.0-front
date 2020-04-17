@@ -52,11 +52,15 @@ class OfferRequestRide extends Component {
         console.log("Response: ", response);
 
         if (response.data !== "Cola no existe") {
+          let rideInfo = {
+            data: response.data.ride,
+          };
+
           this.setState({
             activeRide: true,
-            rideInfo: response,
-            rider: response.data.rider,
-            passenger: response.data.passenger,
+            rideInfo: rideInfo,
+            rider: response.data.ride.rider,
+            passenger: response.data.ride.passenger,
           });
         }
       })
@@ -163,10 +167,15 @@ class OfferRequestRide extends Component {
     }
   };
 
+  prueba = (event) => {
+    console.log("state: ", this.state);
+  };
+
   render() {
     return (
       <div className="OfferRequestRide">
         <React.Fragment>
+          <button onClick={this.prueba} />
           <RecommendationBanner />
           {this.state.error && (
             <div className="responseProfileError">{this.state.error}</div>
