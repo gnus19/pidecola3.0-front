@@ -134,7 +134,11 @@ class WaitOffer extends Component {
             <div className="cartaInfo">
               <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
             </div>
-            <div className="cancelarButton" onClick={this.cancelRideRequest}>
+            <div
+              className="cancelarButton"
+              id="cancelRequestButton"
+              onClick={this.cancelRideRequest}
+            >
               Cancelar
             </div>
           </div>
