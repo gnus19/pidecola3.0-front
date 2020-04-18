@@ -153,7 +153,6 @@ class OfferRequestRide extends Component {
     }
 
     if (!this.state.activeRequest && !this.state.activeRide) {
-      console.log("prueba 1");
       this.props.history.push({
         pathname: "/ride",
         state: { pideCola: true },

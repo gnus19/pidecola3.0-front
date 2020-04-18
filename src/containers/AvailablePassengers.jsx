@@ -280,19 +280,6 @@ class AvailablePassengers extends Component {
       };
 
       listaConfirmados.push(pasajeroConfirmado);
-
-      /*
-      let confirmadoDatos = [
-        usbidConfirmado.children[0].children[0].children[0].children[0].src,
-        usbidConfirmado.children[1].innerHTML,
-        usbidConfirmado.children[2].children[0].innerHTML,
-        usbidConfirmado.children[3].children[0].innerHTML,
-        usbidConfirmado.children[4].children[0].innerHTML,
-        usbidConfirmado.children[5].children[0].innerHTML,
-        usbidConfirmado.children[6].children[0].innerHTML,
-      ];
-      listaConfirmados.push(confirmadoDatos);
-      */
     });
 
     this.setState({
@@ -336,17 +323,11 @@ class AvailablePassengers extends Component {
       });
   };
 
-  prueba = (event) => {
-    console.log("state: ", this.state);
-    console.log("props: ", this.props);
-  };
-
   render() {
     return (
       <div className="container-fluid">
         <Toast text="Mantente en esta página hasta que acepten la cola." />
         <div className="sticky">
-          <button onClick={this.prueba} />
           <RecommendationBanner />
           <div className="cartaInfo">
             <p>{`${

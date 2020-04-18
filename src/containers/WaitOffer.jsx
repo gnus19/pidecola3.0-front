@@ -45,8 +45,6 @@ class WaitOffer extends Component {
 
     if (this.props.history.location.state !== undefined) {
       if (this.props.history.location.state.activeRide) {
-        console.log("prueba: ", this.props);
-
         this.setState({
           riderInfo: this.props.history.location.state.riderInfo,
           direction: this.props.history.location.state.riderInfo.direction,
