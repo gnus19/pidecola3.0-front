@@ -201,20 +201,16 @@ class OfferRequestRide extends Component {
         state: {
           riderInfo: riderInfo,
           activeRide: true,
+          rideStatus: this.state.rideInfo.data.status,
         },
       });
     }
-  };
-
-  prueba = (event) => {
-    console.log("state: ", this.state);
   };
 
   render() {
     return (
       <div className="OfferRequestRide">
         <React.Fragment>
-          <button onClick={this.prueba} />
           <RecommendationBanner />
           {this.state.error && (
             <div className="responseProfileError">{this.state.error}</div>

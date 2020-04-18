@@ -55,6 +55,15 @@ class AcceptOffer extends Component {
         );
       }
     });
+
+    if (this.props.history.location.state !== undefined) {
+      if (this.props.history.location.state.activeRide) {
+        this.setState({
+          accepted: true,
+          rideStatus: this.props.history.location.state.rideStatus,
+        });
+      }
+    }
   }
 
   // Responde a la oferta de cola
