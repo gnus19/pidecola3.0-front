@@ -9,6 +9,7 @@ import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
 import Toast from "../components/toast/toast";
+import { createRef } from "react";
 
 class WaitOffer extends Component {
   constructor(props) {
@@ -32,7 +33,6 @@ class WaitOffer extends Component {
         if (response.message !== "No existe") {
           console.log("status: ", response.status);
           this.setState({
-            activeRide: true,
             direction:
               response.data.startLocation === "USB" ? "desde" : "hacia",
             route:
@@ -42,6 +42,18 @@ class WaitOffer extends Component {
           });
         }
       });
+
+    if (this.props.history.location.state !== undefined) {
+      if (this.props.history.location.state.activeRide) {
+        console.log("prueba: ", this.props);
+
+        this.setState({
+          riderInfo: this.props.history.location.state.riderInfo,
+          direction: this.props.history.location.state.riderInfo.direction,
+          route: this.props.history.location.state.riderInfo.route,
+        });
+      }
+    }
 
     // if (socket && !socket.connected) socket.connect();
     this.socket.on("connect", () => console.log("connected Scoket"));

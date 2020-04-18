@@ -17,6 +17,7 @@ class OfferRequestRide extends Component {
       activeRide: false,
       rideInfo: "",
       rider: "",
+      riderInfo: "",
       passenger: "",
     };
   }
@@ -60,6 +61,7 @@ class OfferRequestRide extends Component {
             activeRide: true,
             rideInfo: rideInfo,
             rider: response.data.ride.rider,
+            riderInfo: response.data.riderInfo,
             passenger: response.data.ride.passenger,
           });
         }
@@ -150,18 +152,55 @@ class OfferRequestRide extends Component {
       return;
     }
 
-    if (!this.state.activeRequest) {
+    if (!this.state.activeRequest && !this.state.activeRide) {
+      console.log("prueba 1");
       this.props.history.push({
         pathname: "/ride",
         state: { pideCola: true },
       });
-    } else {
+    }
+
+    if (this.state.activeRequest && !this.state.activeRide) {
+      this.props.history.push({
+        pathname: "/waitOffer",
+      });
+    }
+
+    if (
+      this.state.activeRide &&
+      this.state.rider !== localStorage.getItem("email")
+    ) {
+      let data = {
+        email: this.state.rider,
+        first_name: this.state.riderInfo.fname,
+        last_name: this.state.riderInfo.lname,
+        age: this.state.riderInfo.age,
+        major: this.state.riderInfo.major,
+        phone_number: this.state.riderInfo.phone,
+        profile_pic: this.state.riderInfo.photo,
+        car: this.state.riderInfo.vehicle[0].vehicles,
+        route:
+          this.state.rideInfo.data.start_location === "USB"
+            ? this.state.rideInfo.data.destination
+            : this.state.rideInfo.data.start_location,
+      };
+
+      let riderInfo = {
+        activeRide: true,
+        data: data,
+        direction:
+          this.state.rideInfo.data.destination === "USB" ? "hacia" : "desde",
+        route:
+          this.state.rideInfo.data.start_location === "USB"
+            ? this.state.rideInfo.data.destination
+            : this.state.rideInfo.data.start_location,
+      };
+
       this.props.history.push({
         pathname: "/waitOffer",
         state: {
-          user: localStorage.getItem("email"),
-          direction: this.state.direction,
-          route: this.state.route,
+          riderInfo: riderInfo,
+          activeRide: true,
         },
       });
     }
