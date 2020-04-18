@@ -9,7 +9,7 @@ function RideProgressCard({ rideState }) {
       {/*<h5 id="estado">Estado de cola</h5>*/}
       {/*<span id="estado">Estado de la cola </span>*/}
       <p className={styles.estado}>Estado de la cola</p>
-      {rideState === "esperando" && (
+      {rideState === "En Espera" && (
         <div className={styles.container}>
           <div className={styles.flex}>
             <div className={styles.waiting_sphere}></div>

@@ -11,7 +11,7 @@ class RideProcess extends Component {
     this.state = {
       passengers: this.props.location.state.confirmedPassengers,
       rideStatus: this.props.location.state.rideInfo.data.status,
-      finshed: false,
+      finished: false,
     };
   }
 
@@ -98,13 +98,13 @@ class RideProcess extends Component {
             {this.state.passengers.map((confirmedPassenger) => {
               return (
                 <Passenger
-                  foto={confirmedPassenger[0]}
-                  nombre={confirmedPassenger[1]}
-                  cohorte={confirmedPassenger[2]}
-                  telefono={confirmedPassenger[3]}
-                  carrera={confirmedPassenger[4]}
-                  ruta={confirmedPassenger[5]}
-                  comentario={confirmedPassenger[6]}
+                  foto={confirmedPassenger.foto}
+                  nombre={confirmedPassenger.nombre}
+                  cohorte={confirmedPassenger.cohorte}
+                  telefono={confirmedPassenger.telefono}
+                  carrera={confirmedPassenger.carrera}
+                  ruta={confirmedPassenger.ruta}
+                  comentario={confirmedPassenger.comentario}
                 />
               );
             })}

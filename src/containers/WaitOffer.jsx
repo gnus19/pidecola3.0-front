@@ -3,12 +3,13 @@ import "../assets/css/WaitOffer.css";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 import { cancelRequest } from "../services/requestRideService";
-import { infoRide } from "services/userServices";
+import { getRequest } from "services/userServices";
 import { respondOfferRide } from "../services/requestRideService";
 import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
 import Toast from "../components/toast/toast";
+import { createRef } from "react";
 
 class WaitOffer extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class WaitOffer extends Component {
 
   // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
-    infoRide()
+    getRequest()
       .then((res) => res.json())
       .then((response) => {
         console.log("Response: ", response);
@@ -32,7 +33,6 @@ class WaitOffer extends Component {
         if (response.message !== "No existe") {
           console.log("status: ", response.status);
           this.setState({
-            activeRide: true,
             direction:
               response.data.startLocation === "USB" ? "desde" : "hacia",
             route:
@@ -42,6 +42,16 @@ class WaitOffer extends Component {
           });
         }
       });
+
+    if (this.props.history.location.state !== undefined) {
+      if (this.props.history.location.state.activeRide) {
+        this.setState({
+          riderInfo: this.props.history.location.state.riderInfo,
+          direction: this.props.history.location.state.riderInfo.direction,
+          route: this.props.history.location.state.riderInfo.route,
+        });
+      }
+    }
 
     // if (socket && !socket.connected) socket.connect();
     this.socket.on("connect", () => console.log("connected Scoket"));
@@ -122,7 +132,11 @@ class WaitOffer extends Component {
             <div className="cartaInfo">
               <p>{`${this.state.direction.toUpperCase()} USB || ${this.state.route.toUpperCase()}`}</p>
             </div>
-            <div className="cancelarButton" onClick={this.cancelRideRequest}>
+            <div
+              className="cancelarButton"
+              id="cancelRequestButton"
+              onClick={this.cancelRideRequest}
+            >
               Cancelar
             </div>
           </div>

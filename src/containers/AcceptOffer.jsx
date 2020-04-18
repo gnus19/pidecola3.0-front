@@ -19,7 +19,7 @@ class AcceptOffer extends Component {
     this.state = {
       accepted: false,
       rejectLabel: "Rechazar",
-      rideStatus: "esperando",
+      rideStatus: "En Espera",
     };
   }
 
@@ -55,6 +55,16 @@ class AcceptOffer extends Component {
         );
       }
     });
+
+    if (this.props.history.location.state !== undefined) {
+      if (this.props.history.location.state.activeRide) {
+        this.setState({
+          accepted: true,
+          rideStatus: this.props.history.location.state.rideStatus,
+        });
+        document.getElementById("cancelRequestButton").style.display = "none";
+      }
+    }
   }
 
   // Responde a la oferta de cola
@@ -65,6 +75,7 @@ class AcceptOffer extends Component {
       this.setState({
         accepted: true,
       });
+      document.getElementById("cancelRequestButton").style.display = "none";
     }
     // Respond offer to rider
     let requestBody = {

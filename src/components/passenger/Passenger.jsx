@@ -25,19 +25,19 @@ function Passenger({
       </div>
       <div className="nombre">{nombre}</div>
       <div className="cohorte">
-        Cohorte: <span> {cohorte}</span>
+        Cohorte: <span>{cohorte}</span>
       </div>
       <div className="telefono">
-        Teléfono: <span> {telefono}</span>
+        Teléfono: <span>{telefono}</span>
       </div>
       <div className="carrera">
-        Carrera: <span> {carrera}</span>
+        Carrera: <span>{carrera}</span>
       </div>
       <div className="ruta">
-        Ruta: <span> {ruta}</span>
+        Ruta: <span>{ruta}</span>
       </div>
       <div className="comentario">
-        Comentario: <span> {comentario}</span>
+        Comentario: <span>{comentario}</span>
       </div>
     </div>
   );

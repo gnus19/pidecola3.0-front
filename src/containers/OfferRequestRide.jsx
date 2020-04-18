@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { infoRide } from "services/userServices";
+import { getRequest } from "services/userServices";
 import { getRide } from "services/rideService";
 import "../assets/css/OfferRequestRide.css";
 import CardButton from "../components/cardButton/CardButton";
@@ -12,15 +12,19 @@ class OfferRequestRide extends Component {
     this.state = {
       error: "",
       activeRequest: false,
-      activeRide: false,
       direction: "",
       route: "",
+      activeRide: false,
+      rideInfo: "",
+      rider: "",
+      riderInfo: "",
+      passenger: "",
     };
   }
 
   // Solicita si el usuario tiene una solicitud de cola abierta y, de ser así, sus datos
   componentDidMount() {
-    infoRide()
+    getRequest()
       .then((res) => res.json())
       .then((response) => {
         console.log("Response: ", response);
@@ -49,8 +53,16 @@ class OfferRequestRide extends Component {
         console.log("Response: ", response);
 
         if (response.data !== "Cola no existe") {
+          let rideInfo = {
+            data: response.data.ride,
+          };
+
           this.setState({
             activeRide: true,
+            rideInfo: rideInfo,
+            rider: response.data.ride.rider,
+            riderInfo: response.data.riderInfo,
+            passenger: response.data.ride.passenger,
           });
         }
       })
@@ -78,38 +90,117 @@ class OfferRequestRide extends Component {
     if (this.state.activeRequest) {
       errorMessage =
         errorMessage +
-        "No puedes ofrecer la cola si tienes una solicitud de cola activa.";
+        "No puedes ofrecer la cola si tienes una solicitud de cola activa. ";
+    }
+
+    if (
+      this.state.activeRide &&
+      this.state.rider !== localStorage.getItem("email")
+    ) {
+      errorMessage =
+        errorMessage +
+        "No puedes ofrecer la cola si eres pasajero en una cola activa.";
     }
 
     if (errorMessage !== "") {
       this.setState({
         error: errorMessage,
       });
+      return;
     }
 
-    //if (!this.state.activeRequest) {
-    this.props.history.push({
-      pathname: "/ride",
-      state: { pideCola: false },
-    });
-    //}
+    if (
+      this.state.activeRide &&
+      this.state.rider === localStorage.getItem("email")
+    ) {
+      this.props.history.push({
+        pathname: "/rideProcess",
+        state: {
+          rideInfo: this.state.rideInfo,
+          confirmedPassengers: this.state.passenger,
+        },
+      });
+    }
+
+    if (!this.state.activeRequest && !this.state.activeRide) {
+      this.props.history.push({
+        pathname: "/ride",
+        state: { pideCola: false },
+      });
+    }
   };
 
   // En caso de tener una solicitud de cola activa, el usuario es redirigido a la vista de Espera. En caso contrario, es redirigido a la vista de Pedir cola
-  checkRideState = (event) => {
+  checkRequest = (event) => {
     console.log("ridestate: ", this.state);
-    if (!this.state.activeRequest) {
+
+    let errorMessage = "";
+
+    if (
+      this.state.activeRide &&
+      this.state.rider === localStorage.getItem("email")
+    ) {
+      errorMessage =
+        errorMessage +
+        "No puedes pedir la cola si tienes una cola activa como conductor. ";
+    }
+
+    if (errorMessage !== "") {
+      this.setState({
+        error: errorMessage,
+      });
+      return;
+    }
+
+    if (!this.state.activeRequest && !this.state.activeRide) {
       this.props.history.push({
         pathname: "/ride",
         state: { pideCola: true },
       });
-    } else {
+    }
+
+    if (this.state.activeRequest && !this.state.activeRide) {
+      this.props.history.push({
+        pathname: "/waitOffer",
+      });
+    }
+
+    if (
+      this.state.activeRide &&
+      this.state.rider !== localStorage.getItem("email")
+    ) {
+      let data = {
+        email: this.state.rider,
+        first_name: this.state.riderInfo.fname,
+        last_name: this.state.riderInfo.lname,
+        age: this.state.riderInfo.age,
+        major: this.state.riderInfo.major,
+        phone_number: this.state.riderInfo.phone,
+        profile_pic: this.state.riderInfo.photo,
+        car: this.state.riderInfo.vehicle[0].vehicles,
+        route:
+          this.state.rideInfo.data.start_location === "USB"
+            ? this.state.rideInfo.data.destination
+            : this.state.rideInfo.data.start_location,
+      };
+
+      let riderInfo = {
+        activeRide: true,
+        data: data,
+        direction:
+          this.state.rideInfo.data.destination === "USB" ? "hacia" : "desde",
+        route:
+          this.state.rideInfo.data.start_location === "USB"
+            ? this.state.rideInfo.data.destination
+            : this.state.rideInfo.data.start_location,
+      };
+
       this.props.history.push({
         pathname: "/waitOffer",
         state: {
-          user: localStorage.getItem("email"),
-          direction: this.state.direction,
-          route: this.state.route,
+          riderInfo: riderInfo,
+          activeRide: true,
+          rideStatus: this.state.rideInfo.data.status,
         },
       });
     }
@@ -129,7 +220,7 @@ class OfferRequestRide extends Component {
               title="Pedir cola"
               text="Solicita una cola para ir a la universidad o para salir de
               ella"
-              onClick={this.checkRideState}
+              onClick={this.checkRequest}
             />
             <CardButton
               className="OfferButton"

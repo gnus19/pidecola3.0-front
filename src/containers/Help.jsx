@@ -17,7 +17,6 @@ class Help extends Component {
     if (id === "twitter") {
       window.open("https://twitter.com/FCEUSB");
     } else if (id === "instagram") {
-      console.log("prueba");
       window.open("https://instagram.com/fceusb?igshid=iy31u23evlek");
     } else if (id === "telegram") {
       window.open("https://t.me/FCEUSB");
