@@ -4,6 +4,10 @@
   height: auto;
   justify-content: space-between;
   width: 100%;
+  border-bottom: black;
+  border-width: 0 0 1px 0;
+  padding-bottom: 5px;
+  border-style: solid;
 }
 
 .aceptarRechazar p,

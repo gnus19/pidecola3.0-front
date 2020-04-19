@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import "../assets/css/WaitOffer.css";
 import "../assets/css/AvailablePassengers.css";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
-import { cancelRequest } from "../services/requestRideService";
+import { cancelRequest, offerRide } from "../services/requestRideService";
 import { getRequest } from "services/userServices";
 import { respondOfferRide } from "../services/requestRideService";
 import io from "socket.io-client";
 import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
 import Toast from "../components/toast/toast";
-import { createRef } from "react";
+
 
 class WaitOffer extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class WaitOffer extends Component {
     this.socket = io(SERVER);
     this.rejectRider = this.rejectRider.bind(this);
     this.state = {
-      riderInfo: null,
+      riderInfo: [],
       direction: "",
       route: "",
     };
@@ -45,8 +45,9 @@ class WaitOffer extends Component {
 
     if (this.props.history.location.state !== undefined) {
       if (this.props.history.location.state.activeRide) {
+        let offers = [...this.state.riderInfo];
         this.setState({
-          riderInfo: this.props.history.location.state.riderInfo,
+          riderInfo:offers.push(this.props.history.location.state.riderInfo),
           direction: this.props.history.location.state.riderInfo.direction,
           route: this.props.history.location.state.riderInfo.route,
         });
@@ -66,7 +67,10 @@ class WaitOffer extends Component {
 
     this.socket.on("rideOffer", (msg) => {
       console.log("riderOffer", msg);
-      this.setState({ riderInfo: msg });
+      let offers = [...this.state.riderInfo, msg.data]
+      console.log("OFFER", offers);
+      
+      this.setState({ riderInfo: offers });
     });
   }
 
@@ -77,21 +81,45 @@ class WaitOffer extends Component {
     );
 
     if (containerFluidAccept !== null) {
-      let requestBody = {
-        rider: this.state.riderInfo.data.email,
-        passenger: localStorage.getItem("email"),
-        accept: "No",
-      };
-      respondOfferRide(requestBody)
-        .then((res) => {
-          res.json();
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log("Error sending offer anwser", error);
-        });
+      let offers = this.state.riderInfo;
+      let offersResponds = []
+      // Rejecting no to al others riders
+      offers.forEach((rider) => {
+        offersResponds.push(
+          respondOfferRide({
+            rider: rider.email,
+            passenger: localStorage.getItem("email"),
+            accept: 'No'
+          })
+        )
+      })
+      Promise.all(offersResponds)
+      .then((allRes) => {
+        return Promise.all(
+          allRes.map((allRes) => {
+            return allRes.json();
+          })
+        );
+      })
+      .then((responses) => {
+  
+      })
+
+      // let requestBody = {
+      //   rider: this.state.riderInfo.data.email,
+      //   passenger: localStorage.getItem("email"),
+      //   accept: "No",
+      // };
+      // respondOfferRide(requestBody)
+      //   .then((res) => {
+      //     res.json();
+      //   })
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log("Error sending offer anwser", error);
+      //   });
     }
 
     const cancelRequestBody = {
@@ -119,8 +147,46 @@ class WaitOffer extends Component {
       });
   };
 
-  rejectRider() {
-    this.setState({ riderInfo: null });
+  // Rejects riderEmail offer
+  rejectRider = (riderEmail) => {
+    let offers = this.state.riderInfo;
+    let oldIndex = this.state.riderInfo.findIndex((element) => { return riderEmail === element.email });
+    offers.splice(oldIndex, 1);
+    this.setState({ riderInfo: offers });
+  }
+
+  // Rejects all other riders except riderEmail
+  rejectAllOtherRiders = (riderEmail) => {
+    // Removing accepted rider
+    let offers = this.state.riderInfo;
+    let oldIndex = this.state.riderInfo.findIndex((element) => { return riderEmail === element.email });
+    let acceptedRider = this.state.riderInfo[oldIndex];
+    offers.splice(oldIndex, 1);
+    this.setState({riderInfo: [acceptedRider]});
+
+    let offersResponds = []
+    // Rejecting no to al others riders
+    offers.forEach((rider) => {
+      offersResponds.push(
+        respondOfferRide({
+          rider: rider.email,
+          passenger: localStorage.getItem("email"),
+          accept: 'No'
+        })
+      )
+    })
+    Promise.all(offersResponds)
+    .then((allRes) => {
+      return Promise.all(
+        allRes.map((allRes) => {
+          return allRes.json();
+        })
+      );
+    })
+    .then((responses) => {
+
+    })
+
   }
 
   render() {
@@ -141,13 +207,17 @@ class WaitOffer extends Component {
             </div>
           </div>
           <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
-          {this.state.riderInfo ? (
-            <AcceptOffer
-              rider={this.state.riderInfo.data}
-              rejectRider={this.rejectRider}
-              {...this.props}
-            />
-          ) : (
+          {this.state.riderInfo && this.state.riderInfo.length > 0 ? 
+            this.state.riderInfo.map((info) => {
+              return <AcceptOffer
+                        rider={info}
+                        rejectRider={this.rejectRider}
+                        rejectAllOtherRiders={this.rejectAllOtherRiders}
+                        {...this.props}
+                      />
+            })
+            
+           : (
             <div className="sticky">
               <div style={{ margin: "50px" }}>
                 <span style={{ fontWeight: "bold", fontSize: "25px" }}>
