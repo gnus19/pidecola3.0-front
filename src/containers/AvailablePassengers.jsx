@@ -8,7 +8,7 @@ import io from "socket.io-client";
 import global from "../global";
 import { offerRide } from "../services/requestRideService";
 import Toast from "../components/toast/toast";
-import { createNewRide } from "../services/rideService";
+import { createNewRide, cancelOffer } from "../services/rideService";
 
 class AvailablePassengers extends Component {
   constructor(props) {
@@ -323,6 +323,11 @@ class AvailablePassengers extends Component {
       });
   };
 
+  handleCancelOffer = () => {
+    if(this.state.sendingTo || this.state.sendingTo.length) cancelOffer(localStorage.getItem("email"), this.state.sendingTo)
+    return this.props.history.push({pathname: "/home"})
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -338,10 +343,10 @@ class AvailablePassengers extends Component {
             <div className="responseProfileError">{this.state.capError}</div>
           )}
           {/* <button onClick={() => { this.socket.emit('offer', {email: localStorage.getItem('email')}) ; console.log("Emited");}}>Emit</button> */}
-          <div className="cancelarButton">
-            <NavLink to="/home">
+          <div className="cancelarButton" onClick = { this.handleCancelOffer}>
+            {/* <NavLink to="/home"> */}
               <p>Cancelar</p>
-            </NavLink>
+            {/* </NavLink> */}
           </div>
           <div className="begin-offer-content">
             <div

@@ -70,6 +70,12 @@ class WaitOffer extends Component {
       localStorage.setItem('offerActive', 'true')
       this.setState({ riderInfo: msg });
     });
+
+    this.socket.on("offerCancel", (msg) => {
+      console.log("offerCancel", msg);
+      localStorage.removeItem('offerActive')
+      // this.setState({ riderInfo: null });
+    });
   }
 
   // Cancela la oferta de cola
