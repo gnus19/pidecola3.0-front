@@ -91,7 +91,10 @@ class AcceptOffer extends Component {
         console.log("respond offer: ", response);
         // Ir a la pantalla de cola
         if (accept === "No") {
-          this.props.rejectRider();
+          this.props.rejectRider(this.props.rider.email);
+        }
+        else {
+          this.props.rejectAllOtherRiders(this.props.rider.email);
         }
       })
       .catch((error) => {
