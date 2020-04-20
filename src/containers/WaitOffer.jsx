@@ -62,10 +62,11 @@ class WaitOffer extends Component {
       console.log("Reconnecting" + reason)
     );
 
-    this.socket.emit("offer", { email: localStorage.getItem("email") });
+    this.socket.emit("request", { email: localStorage.getItem("email") });
 
     this.socket.on("rideOffer", (msg) => {
       console.log("riderOffer", msg);
+      localStorage.setItem('offerActive', 'true')
       this.setState({ riderInfo: msg });
     });
   }
@@ -104,6 +105,7 @@ class WaitOffer extends Component {
     cancelRequest(cancelRequestBody)
       .then((res) => res.json())
       .then((response) => {
+        localStorage.removeItem('offerActive')
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({

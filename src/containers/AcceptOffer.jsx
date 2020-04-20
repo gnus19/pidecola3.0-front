@@ -72,6 +72,7 @@ class AcceptOffer extends Component {
     if (accept === "No") {
       this.setState({ rejectLabel: "Rechazando..." });
     } else {
+      localStorage.removeItem('offerActive')
       this.setState({
         accepted: true,
       });
