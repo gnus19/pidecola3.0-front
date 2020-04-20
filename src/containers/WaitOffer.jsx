@@ -25,6 +25,7 @@ class WaitOffer extends Component {
 
   // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
+    console.log(this.props.location.accepted)
     getRequest()
       .then((res) => res.json())
       .then((response) => {
