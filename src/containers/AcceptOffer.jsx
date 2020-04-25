@@ -13,8 +13,7 @@ import global from "../global";
 class AcceptOffer extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    this.socket = io(global.SERVER);
+    this.socket = props.socket;
 
     this.state = {
       accepted: false,
@@ -30,10 +29,8 @@ class AcceptOffer extends Component {
       console.log("Reconnecting " + times)
     );
     this.socket.on("disconnect", (reason) =>
-      console.log("Reconnecting " + reason)
+      console.log("Disconnect " + reason)
     );
-
-    this.socket.emit("offer", { email: localStorage.getItem("email") });
 
     this.socket.on("rideStatusChanged", (msg) => {
       console.log("rideStatusChanged", msg);
@@ -93,7 +90,10 @@ class AcceptOffer extends Component {
         console.log("respond offer: ", response);
         // Ir a la pantalla de cola
         if (accept === "No") {
-          this.props.rejectRider();
+          this.props.rejectRider(this.props.rider.email);
+        }
+        else {
+          this.props.rejectAllOtherRiders(this.props.rider.email);
         }
       })
       .catch((error) => {
