@@ -13,7 +13,10 @@ import { createNewRide, cancelOffer } from "../services/rideService";
 class AvailablePassengers extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props)
+    if(this.props.history.location.offers){
+      console.log(this.props)
+    }
     this.socket = io(global.SERVER);
     this.state = {
       passengers: [],
@@ -210,6 +213,8 @@ class AvailablePassengers extends Component {
           passenger: userEmail,
           car: this.props.location.state.vehicle,
           route: this.props.location.state.route,
+          startLocation: this.state.startLocation,
+          destination: this.state.destination
         })
       );
     });

@@ -61,7 +61,6 @@ class WaitOffer extends Component {
     this.socket.on("disconnect", (reason) =>
       console.log("Reconnecting" + reason)
     );
-
     this.socket.emit("request", { email: localStorage.getItem("email") });
 
     // New rider socket

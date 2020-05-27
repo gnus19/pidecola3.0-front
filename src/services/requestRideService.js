@@ -54,3 +54,14 @@ export function respondOfferRide(req) {
     }
   });
 }
+
+export function reviewOffers(req) {
+  return fetch(SERVER + "/requests/review/offers", {
+    method: "POST",
+    body: JSON.stringify(req),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth")
+    }
+  });
+}

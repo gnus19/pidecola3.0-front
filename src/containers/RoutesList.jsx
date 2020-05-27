@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { requestRide } from "services/requestRideService";
+import { requestRide, reviewOffers } from "services/requestRideService";
 import "../assets/css/RoutesList.css";
 import DropDownList from "../components/dropDownList/DropDownList";
 import InputPC from "../components/inputPc/InputPC";
@@ -22,6 +22,15 @@ class RoutesList extends Component {
 
   // Verifica si el usuario está solicitando una cola o la está ofreciendo. Da valores predeterminados a los campos
   componentDidMount() {
+
+    reviewOffers({ email: localStorage.getItem("email") })
+    .then((res) => res.json())
+    .then( res => {
+      // if(res && res.status && res.data.length) return this.props.history.push({ pathname: "/passengers", offers: res.data });
+    })
+    .catch( err => {
+      console.log(err)
+    })
     if(localStorage.getItem('offerActive')) return this.props.history.push({ pathname: "/waitOffer" });
     if(localStorage.getItem('rideAccept')) return this.props.history.push({ pathname: "/waitOffer", accepted: true});
     const direction = document.getElementById("direction");
@@ -91,10 +100,6 @@ class RoutesList extends Component {
       .catch((error) => {
         console.log("Catch", error);
       });
-  };
-
-  searchPassengers = (event) => {
-    event.preventDefault();
   };
 
   render() {
