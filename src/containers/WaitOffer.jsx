@@ -10,7 +10,6 @@ import { SERVER } from "../global";
 import AcceptOffer from "./AcceptOffer";
 import Toast from "../components/toast/toast";
 
-
 class WaitOffer extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +24,7 @@ class WaitOffer extends Component {
 
   // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
+    console.log(this.props.location.accepted)
     getRequest()
       .then((res) => res.json())
       .then((response) => {
@@ -47,7 +47,7 @@ class WaitOffer extends Component {
       if (this.props.history.location.state.activeRide) {
         let offers = [...this.state.riderInfo];
         this.setState({
-          riderInfo:offers.push(this.props.history.location.state.riderInfo),
+          riderInfo: [this.props.history.location.state.riderInfo],
           direction: this.props.history.location.state.riderInfo.direction,
           route: this.props.history.location.state.riderInfo.route,
         });
@@ -63,14 +63,20 @@ class WaitOffer extends Component {
       console.log("Reconnecting" + reason)
     );
 
-    this.socket.emit("offer", { email: localStorage.getItem("email") });
+    this.socket.emit("request", { email: localStorage.getItem("email") });
 
+    // New rider socket
     this.socket.on("rideOffer", (msg) => {
       console.log("riderOffer", msg);
-      let offers = [...this.state.riderInfo, msg.data]
-      console.log("OFFER", offers);
-      
-      this.setState({ riderInfo: offers });
+      localStorage.setItem('offerActive', 'true')
+      let rideroffers = [...this.state.riderInfo, msg.data];
+      this.setState({ riderInfo: rideroffers });
+    });
+
+    this.socket.on("offerCancel", (msg) => {
+      console.log("offerCancel", msg);
+      localStorage.removeItem('offerActive')
+      // this.setState({ riderInfo: null });
     });
   }
 
@@ -104,22 +110,6 @@ class WaitOffer extends Component {
       .then((responses) => {
   
       })
-
-      // let requestBody = {
-      //   rider: this.state.riderInfo.data.email,
-      //   passenger: localStorage.getItem("email"),
-      //   accept: "No",
-      // };
-      // respondOfferRide(requestBody)
-      //   .then((res) => {
-      //     res.json();
-      //   })
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log("Error sending offer anwser", error);
-      //   });
     }
 
     const cancelRequestBody = {
@@ -132,6 +122,7 @@ class WaitOffer extends Component {
     cancelRequest(cancelRequestBody)
       .then((res) => res.json())
       .then((response) => {
+        localStorage.removeItem('offerActive')
         console.log("Response: ", response);
         if (response.status) {
           this.props.history.push({
@@ -207,16 +198,17 @@ class WaitOffer extends Component {
             </div>
           </div>
           <Toast text="Mantente en esta página hasta que te ofrezcan cola" />
-          {this.state.riderInfo && this.state.riderInfo.length > 0 ? 
-            this.state.riderInfo.map((info) => {
-              return <AcceptOffer
-                        rider={info}
-                        rejectRider={this.rejectRider}
-                        rejectAllOtherRiders={this.rejectAllOtherRiders}
-                        {...this.props}
-                      />
-            })
-            
+          {this.state.riderInfo && this.state.riderInfo.length > 0 ?
+          this.state.riderInfo.map((riderInfo) => {
+            return <AcceptOffer
+              rider={riderInfo}
+              rejectRider={this.rejectRider}
+              rejectAllOtherRiders={this.rejectAllOtherRiders}
+              socket={this.socket}
+              {...this.props}
+            />
+          })
+
            : (
             <div className="sticky">
               <div style={{ margin: "50px" }}>

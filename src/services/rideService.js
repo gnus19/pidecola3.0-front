@@ -53,3 +53,14 @@ export function sendFeedback(req) {
     },
   });
 }
+
+export function cancelOffer(rider, passengers){
+  return fetch(SERVER + "/rides/cancel", {
+    method: "POST",
+    body: JSON.stringify({rider: rider, passengers: passengers}),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("tkauth"),
+    },
+  });
+}
