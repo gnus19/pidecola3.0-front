@@ -24,6 +24,10 @@ class RateRide extends Component {
       rideComment: " ",
       finished: false,
     };
+    // Remueve rideAccept del localStorage, habilitando al pasajero de aceptar una nueva cola
+    if (localStorage.getItem('rideAccept')) {
+      localStorage.removeItem('rideAccept');
+    }
   }
 
   // Actualiza los cambios del input de Comentario a medida que es modificado
@@ -76,8 +80,11 @@ class RateRide extends Component {
         finished: true,
       });
 
+      // Setting Feedback body for http request
+      var sendFeedbackBody;
+
       if (this.state.dislike) {
-        const sendFeedbackBody = {
+        sendFeedbackBody = {
           rider: this.props.location.state.rider.email,
           user: localStorage.getItem("email"),
           comment: this.state.rideComment,
@@ -85,32 +92,26 @@ class RateRide extends Component {
           startLocation: this.props.location.state.startLocation,
           destination: this.props.location.state.destination,
         };
-        sendFeedback(sendFeedbackBody)
-          .then((res) => res.json())
-          .then((response) => {
-            console.log("Response: ", response);
-          })
-          .catch((error) => {
-            console.log("Catch", error);
-          });
       } else {
-        const sendFeedbackBody = {
+        sendFeedbackBody = {
           rider: this.props.location.state.rider.email,
           user: localStorage.getItem("email"),
           like: this.state.dislike === false ? "Sí" : "No",
           startLocation: this.props.location.state.startLocation,
           destination: this.props.location.state.destination,
         };
-        sendFeedback(sendFeedbackBody)
-          .then((res) => res.json())
-          .then((response) => {
-            console.log("Response: ", response);
-          })
-          .catch((error) => {
-            console.log("Catch", error);
-          });
       }
 
+      // Envia feedback del conductor
+      sendFeedback(sendFeedbackBody)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("Response: ", response);
+      })
+      .catch((error) => {
+        console.log("Catch", error);
+      });
+      // Regresa a la pantalla de inicio luego de 3 segundos
       setTimeout(
         function () {
           this.props.history.push({
