@@ -22,6 +22,8 @@ class RoutesList extends Component {
 
   // Verifica si el usuario está solicitando una cola o la está ofreciendo. Da valores predeterminados a los campos
   componentDidMount() {
+    if(localStorage.getItem('offerActive')) return this.props.history.push({ pathname: "/waitOffer" });
+    if(localStorage.getItem('rideAccept')) return this.props.history.push({ pathname: "/waitOffer", accepted: true});
     const direction = document.getElementById("direction");
     const route = document.getElementById("route");
     const vehicle = !this.props.location.state.pideCola
