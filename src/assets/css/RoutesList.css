@@ -9,7 +9,7 @@
 .pidecola-message {
   background-color: #ffc107;
   color: white;
-  width: inherit;
+  width: 100%;
   border-radius: 5px;
   padding: 8px;
   display: flex;

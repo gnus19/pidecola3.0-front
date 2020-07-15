@@ -19,7 +19,12 @@ class RecommendationBanner extends Component {
 
   render() {
     const { recommendations, count } = this.state;
-    return (
+    var url = document.URL.split("/");
+    return url[url.length - 1] === "addVehicle" ? (
+      <div className="pidecola-message" text="">
+        Evita que salga la placa de tu auto en la foto
+      </div>
+    ) : (
       <div className="pidecola-message" text="">
         {recommendations[count]}
       </div>

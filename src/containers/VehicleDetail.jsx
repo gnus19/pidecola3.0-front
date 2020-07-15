@@ -5,6 +5,7 @@ import "assets/css/VehicleDetail.css";
 import usercar from "assets/images/user-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
+import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
 
 class VehicleDetail extends Component {
   constructor(props) {
@@ -175,6 +176,7 @@ class VehicleDetail extends Component {
               {this.state.responseError}
             </div>
           )}
+          <RecommendationBanner />
           <InputPC
             fields={[
               {
