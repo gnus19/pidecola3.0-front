@@ -44,25 +44,40 @@ class Help extends Component {
               </span>
               <span className="infoAyuda">¿Cómo pedir/dar la cola?</span>
               <span className="infoAyuda" id="faqsRespuesta">
-                *RESPUESTA*
+                En la sección de Inicio, seleccionar la tarjeta correspondiente
+                para Pedir/Dar cola, luego, seleccionar los datos de la ruta.
+                Como conductor, debe indicar el vehículo que usará. Como
+                pasajero, tiene la opción de hacer un comentario que considere
+                relevante.
               </span>
               <span className="infoAyuda">
                 ¿Qué hacer una vez que termine la cola?
               </span>
               <span className="infoAyuda" id="faqsRespuesta">
-                *RESPUESTA*
+                Como conductor, debe indicar la finalización con el botón de
+                "Finalizada", luego la aplicación automáticamente lo llevará al
+                Inicio. Como pasajero, se le presenta la posibilidad de
+                calificar la cola, así como dejar un comentario.
               </span>
               <span className="infoAyuda">
                 ¿Qué hacer si ocurre un accidente en el transcurso de la cola?
               </span>
               <span className="infoAyuda" id="faqsRespuesta">
-                *RESPUESTA*
+                Como conductor, si los pasajeros aún no están en el vehículo, se
+                debe presionar el botón de "Accidentado" para hacerles saber que
+                ocurrió algo, así como notificarles vía celular. Luego de llegar
+                a un acuerdo con los pasajeros, si el problema no puede
+                solucionarse, el conductor debe finalizar la cola para que los
+                pasajeros puedan solicitar otra, si así lo desean. En caso de
+                alguna emergencia, se puede contactar a la FCE por las distintas
+                vías proporcionadas.
               </span>
               <span className="infoAyuda">
                 ¿Qué hacer si PideCola 3.0 no funciona correctamente?
               </span>
               <span className="infoAyuda" id="faqsRespuesta">
-                *RESPUESTA*
+                Notificar a la FCE mediante las vías proporcionadas y explicar
+                detalladamente la situación.
               </span>
             </div>
           </div>
@@ -130,7 +145,7 @@ class Help extends Component {
             </div>
             <div className="contactoContent">
               <div className="datos">
-                <span className="infoAyuda">NÚMERO - </span>
+                <span className="infoAyuda">NÚMERO - (0212) 9063020</span>
               </div>
               <div className="datos">
                 <span className="infoAyuda">CORREO - FCEUSB@USB.VE</span>

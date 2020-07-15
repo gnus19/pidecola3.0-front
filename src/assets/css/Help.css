@@ -23,8 +23,8 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px 10px 20px;
-  justify-content: space-evenly;
   align-items: flex-start;
+  overflow-y: auto;
 }
 
 #faqsRespuesta {
