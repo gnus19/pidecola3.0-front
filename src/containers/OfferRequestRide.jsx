@@ -8,7 +8,7 @@ import RecommendationBanner from "../components/recommendationBanner/Recommendat
 class OfferRequestRide extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       error: "",
       activeRequest: false,
@@ -19,6 +19,7 @@ class OfferRequestRide extends Component {
       rider: "",
       riderInfo: "",
       passenger: "",
+      canceledRide: props.location.state ? props.location.state.canceledRide : false
     };
   }
 
@@ -211,6 +212,12 @@ class OfferRequestRide extends Component {
       <div className="OfferRequestRide">
         <React.Fragment>
           <RecommendationBanner />
+          { this.state.canceledRide &&
+          <div className="responseProfileError">
+            El conductor ha cancelado la cola
+            <span className="closeCancelationAlert" onClick={()=>{ this.setState({canceledRide: false}) }}>&times;</span>
+          </div>
+          }
           {this.state.error && (
             <div className="responseProfileError">{this.state.error}</div>
           )}

@@ -323,8 +323,11 @@ class AvailablePassengers extends Component {
       });
   };
 
+  // Cancela la oferta de cola
   handleCancelOffer = () => {
-    if(this.state.sendingTo || this.state.sendingTo.length) cancelOffer(localStorage.getItem("email"), this.state.sendingTo)
+    if(this.state.sendingTo || this.state.sendingTo.length) {
+      cancelOffer(localStorage.getItem("email"), this.state.acceptOffer)
+    }
     return this.props.history.push({pathname: "/home"})
   }
 

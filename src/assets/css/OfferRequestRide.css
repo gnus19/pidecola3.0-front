@@ -12,6 +12,12 @@
 .responseProfileError{
   margin-top: 12px;
 }
+.closeCancelationAlert {
+  float: right;
+  cursor: pointer;
+  z-index: 999;
+  padding: 0 5px;
+}
 
 .OfferRequest {
   height: 100%;

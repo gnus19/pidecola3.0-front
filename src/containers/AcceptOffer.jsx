@@ -32,6 +32,7 @@ class AcceptOffer extends Component {
       console.log("Disconnect " + reason)
     );
 
+    // Listen the ride status changes
     this.socket.on("rideStatusChanged", (msg) => {
       console.log("rideStatusChanged", msg);
       this.setState({ rideStatus: msg.data.status });
@@ -52,6 +53,16 @@ class AcceptOffer extends Component {
         );
       }
     });
+
+    // Listen a ride cancelation by the rider
+    this.socket.on("offerCancel", (data)=>{
+      localStorage.removeItem('rideAccept');
+      this.props.history.push({
+        pathname: '/home',
+        state: {canceledRide: true}
+      })
+      
+    })
 
     if (this.props.history.location.state !== undefined) {
       if (this.props.history.location.state.activeRide) {
