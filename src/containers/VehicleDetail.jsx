@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { addVehicle } from "services/userServices";
 import "assets/css/VehicleDetail.css";
-import usercar from "assets/images/user-car.png";
+import addcar from "assets/images/add-car.png";
 import InputPC from "components/inputPc/InputPC";
 import ImgContainer from "components/userImg/ImgContainer";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
@@ -11,7 +11,7 @@ class VehicleDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vehiclePreview: usercar,
+      vehiclePreview: addcar,
       vehiclePic: "",
       plate: "",
       brand: "",
