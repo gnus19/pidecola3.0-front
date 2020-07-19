@@ -24,7 +24,6 @@ class WaitOffer extends Component {
 
   // Prende los sockets para recibir las ofertas de cola
   componentDidMount() {
-    console.log(this.props.location.accepted)
     getRequest()
       .then((res) => res.json())
       .then((response) => {
@@ -78,6 +77,8 @@ class WaitOffer extends Component {
       localStorage.removeItem('offerActive')
       // this.setState({ riderInfo: null });
     });
+    console.log('Rider Info:', this.state.riderInfo);
+    
   }
 
   // Cancela la oferta de cola

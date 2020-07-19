@@ -4,6 +4,7 @@ import { getRide } from "services/rideService";
 import "../assets/css/OfferRequestRide.css";
 import CardButton from "../components/cardButton/CardButton";
 import RecommendationBanner from "../components/recommendationBanner/RecommendationBanner";
+import { log } from "util";
 
 class OfferRequestRide extends Component {
   constructor(props) {
@@ -186,8 +187,8 @@ class OfferRequestRide extends Component {
       };
 
       let riderInfo = {
+        ...data,
         activeRide: true,
-        data: data,
         direction:
           this.state.rideInfo.data.destination === "USB" ? "hacia" : "desde",
         route:
@@ -195,7 +196,8 @@ class OfferRequestRide extends Component {
             ? this.state.rideInfo.data.destination
             : this.state.rideInfo.data.start_location,
       };
-
+      console.log('Ride - 199');
+      
       this.props.history.push({
         pathname: "/waitOffer",
         state: {
