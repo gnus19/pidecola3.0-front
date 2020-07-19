@@ -171,12 +171,12 @@ class VehicleDetail extends Component {
           </div>
         </div>
         <div className="Section-VehicleDetail-Right">
+          <RecommendationBanner />
           {this.state.responseError !== "" && (
             <div className="responseVehicleError">
               {this.state.responseError}
             </div>
           )}
-          <RecommendationBanner />
           <InputPC
             fields={[
               {
