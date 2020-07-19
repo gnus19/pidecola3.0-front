@@ -22,7 +22,21 @@ function VehicleInfo({ foto, marca, modelo, color, placa }) {
         Color: <span> {color}</span>
       </div>
       <div className="placa">
-        Placa: <span> {placa}</span>
+        Placa:{" "}
+        <span>
+          {" "}
+          {{ placa }.placa.length === 6
+            ? { placa }.placa[0] +
+              { placa }.placa[1] +
+              "**" +
+              { placa }.placa[4] +
+              { placa }.placa[5]
+            : { placa }.placa[0] +
+              { placa }.placa[1] +
+              "***" +
+              { placa }.placa[5] +
+              { placa }.placa[6]}
+        </span>
       </div>
     </div>
   );
