@@ -1,10 +1,16 @@
 import "./global.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Pidecola",
-  description: "Web app para viajes compartidos desde y hacia la Universidad Simón Bolívar",
+  description:
+    "Web app para viajes compartidos desde y hacia la Universidad Simón Bolívar",
 };
 
 export default function RootLayout({
@@ -14,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="light">
-        <Providers>
-          {children}
-        </Providers>
+      <body
+        className={`${inter.className} light text-foreground bg-background`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
