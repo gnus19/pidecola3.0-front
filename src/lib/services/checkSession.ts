@@ -1,4 +1,5 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { NextResponse } from "next/server";
 
 const SERVER = process.env.NEXT_PUBLIC_API_URL;
 
@@ -14,8 +15,16 @@ export async function checkSession(authCookie: RequestCookie | undefined) {
     },
   });
 
-  const result = await res.json();
-  if (res.status === 200) return true;
+  const { data } = await res.json();
+
+  if (res.status === 200) {
+    // Resets session token
+    const response = NextResponse.next();
+    response.cookies.set("auth_token", data.token, {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+    });
+    return true;
+  }
 
   return false;
 }
