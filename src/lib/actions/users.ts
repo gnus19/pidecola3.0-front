@@ -1,7 +1,7 @@
 "use server";
 
 import getApiToken from "../services/apiKey";
-import { cookies } from "next/headers";
+import setAuthCookie from "../services/setAuthCookie";
 
 const SERVER = process.env.NEXT_PUBLIC_API_URL;
 
@@ -44,9 +44,6 @@ export async function registerUser(_currentState: unknown, formData: FormData) {
   return { status: res.status, message: result.message };
 }
 
-const setAuthCookie = (res: Response, payload: { data: { token: string } }) => {
-  if (res.status !== 200) return;
-  cookies().set("auth_token", payload.data.token, {
-    maxAge: 1000 * 60 * 60 * 24 * 30,
-  });
-};
+export async function logoutUser() {
+  setAuthCookie(null, { data: { token: "" } }, 0);
+}
