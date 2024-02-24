@@ -5,7 +5,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-screen">
+    <div className="flex flex-col h-screen">
       <Header />
       {children}
     </div>
