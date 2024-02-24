@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 py-2 flex justify-between items-center w-screen bg-white dark:bg-gray-800 transition ease-in-out duration-300 ${
+      className={`z-50 sticky top-0 py-2 flex justify-between items-center w-screen bg-white dark:bg-gray-800 transition ease-in-out duration-300 ${
         isTop
           ? "border-b border-slate-200 dark:border-slate-600"
           : "shadow-md backdrop-blur-sm bg-gray-200/30 dark:bg-gray-900"
