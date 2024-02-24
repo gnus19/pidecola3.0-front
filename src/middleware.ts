@@ -8,7 +8,11 @@ export async function middleware(request: NextRequest) {
   const isValidSession = await checkSession(authCookie);
 
   // Si un usuario tiene una sesión válida, no tiene que entrar en login o register
-  if (pathname.startsWith("/register") || pathname.startsWith("/login"))
+  if (
+    pathname.startsWith("/register") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/logout")
+  )
     if (isValidSession)
       return NextResponse.redirect(new URL("/profile", request.url));
 
