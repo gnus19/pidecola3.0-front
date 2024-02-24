@@ -5,27 +5,70 @@ import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
+import { loginUser } from "@/lib/actions/users";
+import { useFormState, useFormStatus } from "react-dom";
+import { useRouter } from "next/navigation";
+
+const LoginButton = () => {
+  const { pending } = useFormStatus();
+  return pending ? (
+    <Button
+      type="submit"
+      isLoading
+      className="w-min mt-10 mb-4"
+      color="default"
+      variant="shadow"
+    >
+      Iniciar sesión
+    </Button>
+  ) : (
+    <Button
+      type="submit"
+      className="w-min mt-10 mb-4"
+      color="primary"
+      variant="shadow"
+    >
+      Iniciar sesión
+    </Button>
+  );
+};
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [resMessage, dispatch] = useFormState(loginUser, undefined);
+  const router = useRouter();
+
+  // Redirect if login was successful
+  if (resMessage?.status === 200) router.push("/profile");
+
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
-    <div className="bg-white dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 md:rounded-xl p-6 w-full md:max-w-md md:border-solid md:border-2 md:border-slate-200 dark:md:border-slate-600">
-      <h1 className="text-3xl text-center mb-12">Iniciar sesión</h1>
-      <form className="flex flex-col items-center">
+    <div className="z-10 bg-slate-200/80 backdrop-blur-lg dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 md:rounded-xl p-6 w-full md:max-w-md md:border-solid md:border-2 md:border-slate-200 dark:md:border-slate-600">
+      <h1 className="font-black text-neutral-600 dark:text-slate-300 text-3xl text-center mb-12">
+        Iniciar sesión
+      </h1>
+
+      <form className="flex flex-col items-center" action={dispatch}>
         <Input
           isRequired
           type="email"
           label="Email"
+          name="email"
           labelPlacement="outside"
           placeholder="xx-xxxxxxx@usb.ve"
           description="Ingresa tu correo USB"
+          isInvalid={resMessage?.message === "El usuario no existe"}
+          errorMessage={
+            resMessage?.message === "El usuario no existe" &&
+            "El usuario no existe, ¿quisieras registrarte? "
+          }
+          variant="faded"
           className="mb-8"
-          variant="bordered"
         />
         <Input
           isRequired
+          name="password"
           label="Contraseña"
           labelPlacement="outside"
           placeholder="Ingresa tu contraseña"
@@ -39,12 +82,15 @@ const LoginForm = () => {
             </button>
           }
           type={isVisible ? "text" : "password"}
-          variant="bordered"
+          isInvalid={resMessage?.message === "Contraseña Incorrecta"}
+          errorMessage={
+            resMessage?.message === "Contraseña Incorrecta" &&
+            "La contraseña es incorrecta"
+          }
+          variant="faded"
         />
 
-        <Button className="w-min mt-10 mb-4" color="primary" variant="shadow">
-          Iniciar sesión
-        </Button>
+        <LoginButton />
       </form>
       <p className="mt-4 text-sm text-gray-600 text-center">
         ¿Aún no estás registrado?{" "}
