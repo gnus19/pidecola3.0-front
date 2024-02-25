@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export default function setAuthCookie(
+export function setAuthCookie(
   res: Response | null,
   payload: { data: { token: string } },
   maxAge = 1000 * 60 * 60 * 24 * 30
@@ -9,4 +9,8 @@ export default function setAuthCookie(
   cookies().set("auth_token", payload.data.token, {
     maxAge,
   });
+}
+
+export function getAuthCookie() {
+  return cookies().get("auth_token");
 }
