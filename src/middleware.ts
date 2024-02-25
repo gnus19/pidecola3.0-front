@@ -9,9 +9,9 @@ export async function middleware(request: NextRequest) {
 
   // Si un usuario tiene una sesión válida, no tiene que entrar en login o register
   if (
+    pathname === "/" ||
     pathname.startsWith("/register") ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/logout")
+    pathname.startsWith("/login")
   )
     if (isValidSession)
       return NextResponse.redirect(new URL("/profile", request.url));
@@ -22,7 +22,3 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
   }
 }
-
-export const config = {
-  matcher: ["/profile/:path*", "/login/:path*", "/register/:path*"],
-};
