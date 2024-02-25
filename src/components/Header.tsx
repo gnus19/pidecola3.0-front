@@ -22,8 +22,8 @@ const Header = () => {
     <header
       className={`z-50 sticky top-0 min-h-14 py-2 px-4 sm:px-10 flex justify-between sm:justify-end items-center w-screen bg-white dark:bg-gray-800 transition ease-in-out duration-300 ${
         isTop
-          ? "border-b border-slate-200 dark:border-slate-600"
-          : "shadow-md backdrop-blur-sm bg-gray-200/30 dark:bg-gray-900"
+          ? "bg-neutral-50"
+          : "shadow-md backdrop-blur-sm bg-neutral-200/30 dark:bg-gray-900"
       }`}
     >
       <Link
