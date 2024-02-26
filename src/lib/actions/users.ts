@@ -35,7 +35,7 @@ export async function registerUser(_currentState: unknown, formData: FormData) {
     password: formData.get("password"),
   };
   const token = getApiToken();
-  const res = await fetch(`${SERVER}/register`, {
+  const res = await fetch(`${SERVER}/users`, {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
