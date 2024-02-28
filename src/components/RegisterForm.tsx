@@ -9,7 +9,6 @@ import { registerUser } from "@/lib/actions/users";
 import { useFormState, useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { registerSchema } from "@/lib/validations/userSchema";
-import { isError } from "util";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -59,8 +58,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="z-10 bg-slate-200/80 backdrop-blur-lg dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 md:rounded-xl p-6 w-full md:max-w-md md:border-solid md:border-2 md:border-slate-200 dark:md:border-slate-600">
-      <h1 className="mb-12 [text-shadow:_2px_2px_5px_rgb(0_0_0_/_25%)] font-black text-neutral-700 dark:text-slate-300 text-3xl text-center ">
+    <div className="z-10 bg-slate-200/80 backdrop-blur-lg dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 md:rounded-xl p-6 w-full md:max-w-md ">
+      <h1 className="mb-12 dark:text-slate-300 text-2xl text-center ">
         Regístrate
       </h1>
 
