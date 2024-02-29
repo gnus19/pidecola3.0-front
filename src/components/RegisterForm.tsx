@@ -58,7 +58,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="z-10 bg-slate-200/80 backdrop-blur-lg dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 md:rounded-xl p-6 w-full md:max-w-md ">
+    <div className="z-10 bg-slate-200/80 backdrop-blur-lg dark:bg-slate-800 md:shadow-lg dark:shadow-gray-900 rounded-xl p-6 w-full max-w-sm sm:max-w-md md:max-w-lg">
       <h1 className="mb-12 dark:text-slate-300 text-2xl text-center ">
         Regístrate
       </h1>
