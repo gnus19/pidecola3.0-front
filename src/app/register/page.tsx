@@ -4,11 +4,12 @@ import autostop from "../../assets/autostop.jpg";
 
 export default function Register() {
   return (
-    <div className="flex flex-grow items-center justify-center py-20 relative">
+    <div className="relative overflow-hidden w-full flex flex-grow items-center justify-center">
       <Image
         src={autostop}
         alt="Imágen de fondo de una persona con un pulgar levantado"
-        fill={true}
+        placeholder="blur"
+        className="object-cover absolute h-full w-full"
       />
       <RegisterForm />
     </div>
