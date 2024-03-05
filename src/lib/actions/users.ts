@@ -30,6 +30,8 @@ export async function logoutUser() {
 
 export async function registerUser(_currentState: unknown, formData: FormData) {
   const req = {
+    first_name: formData.get("first_name"),
+    last_name: formData.get("last_name"),
     email: formData.get("email"),
     phoneNumber: formData.get("phoneNumber"),
     password: formData.get("password"),
