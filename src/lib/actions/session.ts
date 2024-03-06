@@ -10,7 +10,7 @@ const isAccessTokenExpired = () => {
   const data = jwtDecode(access);
   if (!data.exp) return true;
   return dayjs.unix(data.exp).diff(dayjs()) < 1;
-}
+};
 
 const refreshTokens = async () => {
   const { refresh } = getAuthCookies();
@@ -23,8 +23,8 @@ const refreshTokens = async () => {
     },
   });
   if (res.status === 401) return;
-  const result = await res.json();
-  setAuthCookies(res, result);
+  const { access } = await res.json();
+  setAuthCookies(res, { refresh, access });
 };
 
 export { isAccessTokenExpired, refreshTokens };
