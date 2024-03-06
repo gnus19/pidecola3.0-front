@@ -57,11 +57,12 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    setEmailErrInfo(resMessage?.message || "");
+    if (resMessage?.status === 400)
+      setEmailErrInfo(resMessage?.message[0]);
   }, [resMessage]);
 
   // Redirect if login was successful
-  if (resMessage?.status === 200) router.push("/profile");
+  if (resMessage?.status === 201) router.push("/profile");
 
   const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputNumber = e.target.value;
