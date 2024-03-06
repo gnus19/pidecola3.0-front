@@ -43,7 +43,6 @@ const RegisterForm = () => {
       setPhoneErrInfo(phoneNumber?.[0] || "");
       setPassErrInfo(password?.[0] || "");
       setConfPassErrInfo(confirmPass?.[0] || "");
-      console.log(fieldErrors);
       return;
     }
     setFirstNameErrInfo("");
