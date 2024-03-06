@@ -61,15 +61,20 @@ export async function getUserEmail() {
   const cookies = getAuthCookies();
   if (!cookies) return;
 
-  const isExpired = isAccessTokenExpired();
-  if (isExpired) await refreshTokens();
+  if (isAccessTokenExpired()) await refreshTokens();
   const { refresh, access } = getAuthCookies();
   if (!refresh || !access) return;
 
   const { user_id } = jwtDecode(access) as { user_id: string };
-  const res = await fetch(`${SERVER}/accounts/${user_id}/`);
+  const res = await fetch(`${SERVER}/accounts/${user_id}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access}`,
+    },
+  });
 
   if (res.status === 401) return;
   const result = await res.json();
-  return { email: result.email };
+  return { email: result.email, name: `${result.first_name} ${result.last_name}` };
 }
