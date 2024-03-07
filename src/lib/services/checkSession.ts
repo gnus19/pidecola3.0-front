@@ -1,26 +1,23 @@
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextResponse } from "next/server";
 
 const SERVER = process.env.NEXT_PUBLIC_API_URL;
 
-export async function checkSession(authCookie: RequestCookie | undefined) {
-  if (!authCookie) return false;
-  const token = authCookie.value;
-  const res = await fetch(`${SERVER}/session`, {
+export async function checkSession(refreshToken: string | undefined) {
+  if (!refreshToken) return false;
+  const res = await fetch(`${SERVER}/auth/refresh/`, {
     method: "POST",
-    body: JSON.stringify({ token }),
+    body: JSON.stringify({ refresh: refreshToken }),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
 
-  const { data } = await res.json();
+  const { access } = await res.json();
 
   if (res.status === 200) {
-    // Resets session token
+    // Resets access token
     const response = NextResponse.next();
-    response.cookies.set("auth_token", data.token, {
+    response.cookies.set("access_token", access, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
     });
     return true;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
@@ -14,6 +14,9 @@ const RegisterForm = () => {
   const router = useRouter();
   const [isVisiblePass, setIsVisiblePass] = useState(false);
   const [isVisibleConfirmation, setIsVisibleConfirmation] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstNameErrInfo, setFirstNameErrInfo] = useState("");
+  const [lastNameErrInfo, setLastNameErrInfo] = useState("");
   const [emailErrInfo, setEmailErrInfo] = useState("");
   const [phoneErrInfo, setPhoneErrInfo] = useState("");
   const [passErrInfo, setPassErrInfo] = useState("");
@@ -26,14 +29,24 @@ const RegisterForm = () => {
     const validationResponse = registerSchema.safeParse(data);
     if (!validationResponse.success) {
       const { fieldErrors } = validationResponse.error.formErrors;
-      const { email, phoneNumber, password, confirmPass } = fieldErrors;
+      const {
+        first_name,
+        last_name,
+        email,
+        phoneNumber,
+        password,
+        confirmPass,
+      } = fieldErrors;
+      setFirstNameErrInfo(first_name?.[0] || "");
+      setLastNameErrInfo(last_name?.[0] || "");
       setEmailErrInfo(email?.[0] || "");
       setPhoneErrInfo(phoneNumber?.[0] || "");
       setPassErrInfo(password?.[0] || "");
       setConfPassErrInfo(confirmPass?.[0] || "");
-      console.log(fieldErrors);
       return;
     }
+    setFirstNameErrInfo("");
+    setLastNameErrInfo("");
     setEmailErrInfo("");
     setPhoneErrInfo("");
     setPassErrInfo("");
@@ -43,11 +56,27 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    setEmailErrInfo(resMessage?.message || "");
+    if (resMessage?.status === 400)
+      setEmailErrInfo(resMessage?.message[0]);
   }, [resMessage]);
 
   // Redirect if login was successful
-  if (resMessage?.status === 200) router.push("/profile");
+  if (resMessage?.status === 201) router.push("/profile");
+
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputNumber = e.target.value;
+    const limitedNumber = inputNumber.slice(0,12)
+    const cleanedNumber = limitedNumber.replace(/-/g, "").replace(/\D/g,"");
+    const areaCode = cleanedNumber.slice(0, 4);
+    const mainNumber = cleanedNumber.slice(4);
+    if (mainNumber) {
+      const formattedNumber = `${areaCode}-${mainNumber}`;
+      setPhoneNumber(formattedNumber);
+      return;
+    }
+
+    setPhoneNumber(areaCode);
+  };
 
   const togglePassVisibility = () => {
     setIsVisiblePass(!isVisiblePass);
@@ -64,11 +93,36 @@ const RegisterForm = () => {
       </h1>
 
       <form className="flex flex-col items-center" action={submitAction}>
+        <div className="flex flex-row w-full gap-4 mb-4">
+          <Input
+            isRequired
+            name="first_name"
+            type="text"
+            label="Nombre"
+            labelPlacement="outside"
+            placeholder="Ingresa tu nombre"
+            variant="faded"
+            isInvalid={firstNameErrInfo !== ""}
+            errorMessage={firstNameErrInfo}
+          />
+          <Input
+            isRequired
+            name="last_name"
+            type="text"
+            label="Apellido"
+            labelPlacement="outside"
+            placeholder="Ingresa tu appellido"
+            variant="faded"
+            isInvalid={lastNameErrInfo !== ""}
+            errorMessage={lastNameErrInfo}
+          />
+        </div>
         <Input
           isRequired
           name="email"
           type="email"
           label="Email"
+          labelPlacement="outside"
           placeholder="xx-xxxxxxx@usb.ve"
           description="Ingresa tu correo USB"
           className="mb-4"
@@ -84,6 +138,8 @@ const RegisterForm = () => {
           label="Número de teléfono"
           labelPlacement="outside"
           placeholder="Ingresa tu número telefónico"
+          value={phoneNumber}
+          onChange={handlePhoneNumberChange}
           className="mb-4"
           variant="faded"
           isInvalid={phoneErrInfo !== ""}

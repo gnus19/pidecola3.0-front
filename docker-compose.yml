@@ -4,6 +4,19 @@ services:
   web:
     build: .
     environment:
-      DB_URI: https://api:5000
+      NEXT_PUBLIC_API_URL: "http://host.docker.internal:8000"
+      API_SECRET: "django-insecure-to81=t+gc4eqjqpeh$(+y!h(0s9s28nc_y*)a2*4(lsav9wbx-"
+      REACT_EDITOR: code
+
+    command: "npm run dev"      
     ports:
       - 3000:3000
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /home/src/web
+          ignore:
+            - node_modules/      
+        - action: rebuild
+          path: package.json

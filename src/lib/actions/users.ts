@@ -1,67 +1,80 @@
 "use server";
 
-import getApiToken from "../services/apiKey";
-import { setAuthCookie, getAuthCookie } from "../services/authCookie";
+import { setAuthCookies, getAuthCookies } from "../services/authCookie";
+import { jwtDecode } from "jwt-decode";
+import { isAccessTokenExpired, refreshTokens } from "./session";
 
 const SERVER = process.env.NEXT_PUBLIC_API_URL;
 
 export async function loginUser(_currentState: unknown, formData: FormData) {
   const req = {
-    email: formData.get("email"),
+    username: formData.get("email"),
     password: formData.get("password"),
   };
-  const token = getApiToken();
-  const res = await fetch(`${SERVER}/login`, {
+  const res = await fetch(`${SERVER}/auth/login/`, {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
   const result = await res.json();
-  setAuthCookie(res, result);
+  setAuthCookies(res, result);
   return { status: res.status, message: result.message };
 }
 
 export async function logoutUser() {
-  setAuthCookie(null, { data: { token: "" } }, 0);
+  const { refresh } = getAuthCookies();
+  setAuthCookies(null, { refresh: "", access: "" }, 0);
+  if (!refresh) return;
+
+  await fetch(`${SERVER}/auth/logout/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ refresh }),
+  });
 }
 
 export async function registerUser(_currentState: unknown, formData: FormData) {
   const req = {
+    first_name: formData.get("first_name"),
+    last_name: formData.get("last_name"),
     email: formData.get("email"),
-    phoneNumber: formData.get("phoneNumber"),
+    phone_number: formData.get("phoneNumber"),
     password: formData.get("password"),
   };
-  const token = getApiToken();
-  const res = await fetch(`${SERVER}/users`, {
+  const res = await fetch(`${SERVER}/auth/register/`, {
     method: "POST",
     body: JSON.stringify(req),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
   const result = await res.json();
-  setAuthCookie(res, result);
+  setAuthCookies(res, result);
   return { status: res.status, message: result.message };
 }
 
 export async function getUserEmail() {
-  const cookie = getAuthCookie();
-  if (!cookie) return;
+  const cookies = getAuthCookies();
+  if (!cookies) return;
 
-  const token = cookie.value;
+  if (isAccessTokenExpired()) await refreshTokens();
+  const { refresh, access } = getAuthCookies();
+  if (!refresh || !access) return;
 
-  const res = await fetch(`${SERVER}/users`, {
+  const { user_id } = jwtDecode(access) as { user_id: string };
+  const res = await fetch(`${SERVER}/accounts/${user_id}/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${access}`,
     },
   });
 
+  if (res.status === 401) return;
   const result = await res.json();
-  if (res.status === 200) return { email: result.data.email };
+  return { email: result.email, name: `${result.first_name} ${result.last_name}` };
 }
