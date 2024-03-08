@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 const TextAlternator = () =>{
   const [currentText, setCurrentText] = useState(0);
   const texts = [
-    "¡Por favor! sigue nuestras medidas sugeridas para que nuestra comunidad permanezca siendo increible.",
+    "¡Por favor! sigue nuestras medidas sugeridas para que nuestra comunidad permanezca siendo increíble.",
     "Recuerda que juntos podemos crear un ambiente positivo, sano y respetuoso para todos."
   ]
 
