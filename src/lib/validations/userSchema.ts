@@ -53,4 +53,18 @@ const registerSchema = z
     path: ["confirmPass"],
   });
 
-export { loginSchema, registerSchema };
+  const editInformationSchema = z
+  .object({
+    first_name: z
+      .string()      
+      .refine((e) => /^[A-Za-z ]*$/.test(e), {
+        message: "Tienes un nombre curioso. Sin embargo, no es permitido colocar números",
+      }),
+    last_name: z
+      .string()
+      .refine((e) => /^[A-Za-z ]*$/.test(e), {
+        message: "Tienes un apellido curioso. Sin embargo, no es permitido colocar números",
+      })
+  })
+
+export { loginSchema, registerSchema, editInformationSchema };

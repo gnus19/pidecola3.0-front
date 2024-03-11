@@ -5,7 +5,7 @@ import { getAuthCookies } from "../services/authCookie";
 
 const SERVER:string = process.env.NEXT_PUBLIC_API_URL;
 
-type Method_options = "GET" | "POST" | "DELETE" | "PUT" | "PATH"
+type Method_options = "GET" | "POST" | "DELETE" | "PUT" | "PATCH"
 
 // Wrapper de la funcion fetch. Usada como base para realizar
 // llamadas al back.
@@ -71,7 +71,7 @@ export async function getAccessToken(){
 
 // TODO: Debe mejorarse el manejo del caso de cuanto no hay
 // cookies
-export async function getCookiesJson(){
+export async function getCookiesJson(): Promise<{user_id: Number}>{
     const access = await getAccessToken()  
     return jwtDecode(access);
 }
